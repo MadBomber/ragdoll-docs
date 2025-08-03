@@ -1,0 +1,2891 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../configuration/">
+      
+      
+        <link rel="next" href="../database-schema/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Contributing - Ragdoll Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#contributing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ragdoll Documentation" class="md-header__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ragdoll Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Contributing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ragdoll Documentation" class="md-nav__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ragdoll Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ragdoll Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Client API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jobs Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Models Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#guidelines-for-contributing-to-the-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines for Contributing to the Project
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Guidelines for Contributing to the Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-start-for-contributors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start for Contributors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fork-and-clone-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fork and Clone Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Environment Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-codebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding the Codebase
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Understanding the Codebase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Organization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design Patterns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coding-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coding Conventions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribution-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contribution Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contribution Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Contributions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Contributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bug Fixes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Implementations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Improvements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation Contributions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Documentation Contributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documentation-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation Updates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Contributions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Contributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Coverage Improvements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Process
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#branch-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branch Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Branch Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#branch-naming-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branch Naming Conventions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-message-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commit Message Format
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Quality
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Quality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-commit-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-commit Checklist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-review-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Review Preparation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submission-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Submission Process
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Submission Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pull-request-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pull Request Process
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pull Request Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pr-creation-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      PR Creation Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pr-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      PR Template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Review Process
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-review-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Review Guidelines
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Review Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-contributors" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Contributors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-reviewers" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Reviewers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bug-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bug Reports
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bug Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Issue Templates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Issue Templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-report-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bug Report Template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#information-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Information Requirements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Requests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Format
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Request Format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature-request-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Request Template
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluation Process
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#community-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Community Guidelines
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Community Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-of-conduct" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code of Conduct
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code of Conduct">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#behavioral-expectations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavioral Expectations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communication-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Communication Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communication-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Communication Channels
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release Process
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release Cycle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changelog-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Changelog Maintenance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Help
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Help">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before-contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before Contributing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#need-assistance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Need Assistance?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recognition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recognition
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Deployment Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../document-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embedding System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Variables Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extending the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-uploads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Upload System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation &amp; Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LLM Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metadata Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Modal Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Performance Tuning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Considerations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#guidelines-for-contributing-to-the-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines for Contributing to the Project
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Guidelines for Contributing to the Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-start-for-contributors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start for Contributors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fork-and-clone-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fork and Clone Process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Environment Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-codebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding the Codebase
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Understanding the Codebase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Organization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design Patterns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coding-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coding Conventions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribution-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contribution Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contribution Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Contributions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Contributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bug Fixes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Implementations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Improvements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation Contributions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Documentation Contributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documentation-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation Updates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Contributions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Contributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Coverage Improvements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Process
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Development Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#branch-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branch Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Branch Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#branch-naming-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branch Naming Conventions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-message-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commit Message Format
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Quality
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Quality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-commit-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-commit Checklist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-review-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Review Preparation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submission-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Submission Process
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Submission Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pull-request-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pull Request Process
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pull Request Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pr-creation-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      PR Creation Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pr-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      PR Template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Review Process
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-review-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Review Guidelines
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code Review Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-contributors" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Contributors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-reviewers" class="md-nav__link">
+    <span class="md-ellipsis">
+      For Reviewers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bug-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bug Reports
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bug Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Issue Templates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Issue Templates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-report-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bug Report Template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#information-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Information Requirements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Requests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Format
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Request Format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature-request-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Request Template
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluation Process
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#community-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Community Guidelines
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Community Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-of-conduct" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code of Conduct
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Code of Conduct">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#behavioral-expectations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavioral Expectations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communication-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Communication Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communication-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Communication Channels
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release Process
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Release Cycle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changelog-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Changelog Maintenance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Help
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Help">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before-contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before Contributing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#need-assistance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Need Assistance?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recognition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recognition
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="contributing">Contributing</h1>
+<h2 id="guidelines-for-contributing-to-the-project">Guidelines for Contributing to the Project</h2>
+<p>Welcome to Ragdoll! We appreciate your interest in contributing to this PostgreSQL-focused RAG system. This guide provides comprehensive information for all types of contributions.</p>
+<h3 id="quick-start-for-contributors">Quick Start for Contributors</h3>
+<ol>
+<li><strong>Fork</strong> the repository on GitHub</li>
+<li><strong>Clone</strong> your fork locally</li>
+<li><strong>Set up</strong> the development environment</li>
+<li><strong>Create</strong> a feature branch</li>
+<li><strong>Make</strong> your changes with tests</li>
+<li><strong>Submit</strong> a pull request</li>
+</ol>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="development-setup">Development Setup</h3>
+<h4 id="fork-and-clone-process">Fork and Clone Process</h4>
+<pre><code class="language-bash"># 1. Fork the repository on GitHub (click Fork button)
+
+# 2. Clone your fork
+git clone https://github.com/YOUR_USERNAME/ragdoll.git
+cd ragdoll
+
+# 3. Add upstream remote
+git remote add upstream https://github.com/original-org/ragdoll.git
+
+# 4. Verify remotes
+git remote -v
+# origin    https://github.com/YOUR_USERNAME/ragdoll.git (fetch)
+# origin    https://github.com/YOUR_USERNAME/ragdoll.git (push)
+# upstream  https://github.com/original-org/ragdoll.git (fetch)
+# upstream  https://github.com/original-org/ragdoll.git (push)
+</code></pre>
+<h4 id="development-environment-setup">Development Environment Setup</h4>
+<p><strong>Prerequisites</strong>:
+- Ruby 3.0+ (recommended: 3.2+)
+- PostgreSQL 12+ with pgvector extension
+- Git 2.0+
+- Basic development tools (gcc, make, etc.)</p>
+<pre><code class="language-bash"># Install dependencies
+bundle install
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your API keys and database credentials
+
+# Set up PostgreSQL database
+./bin/setup_postgresql.rb
+
+# Run tests to verify setup
+bundle exec rake test
+
+# Check code style
+bundle exec rubocop
+</code></pre>
+<h4 id="initial-configuration">Initial Configuration</h4>
+<pre><code class="language-ruby"># config/development.rb (create if needed)
+Ragdoll::Core.configure do |config|
+  config.database_config = {
+    adapter: 'postgresql',
+    database: 'ragdoll_development',
+    username: 'ragdoll',
+    password: ENV['DATABASE_PASSWORD'],
+    host: 'localhost',
+    port: 5432,
+    auto_migrate: true,
+    logger: Logger.new(STDOUT, level: Logger::INFO)
+  }
+
+  # Set up API keys for testing
+  config.ruby_llm_config[:openai][:api_key] = ENV['OPENAI_API_KEY']
+end
+</code></pre>
+<h3 id="understanding-the-codebase">Understanding the Codebase</h3>
+<h4 id="architecture-overview">Architecture Overview</h4>
+<pre><code class="language-mermaid">flowchart TD
+    A[Client Layer] --&gt; B[Service Layer]
+    B --&gt; C[Model Layer] 
+    C --&gt; D[Database Layer]
+
+    B --&gt; E[Jobs Layer]
+    E --&gt; F[External APIs]
+
+    D --&gt; G[PostgreSQL + pgvector]
+    F --&gt; H[LLM Providers]
+
+    subgraph &quot;Core Services&quot;
+        I[DocumentProcessor]
+        J[EmbeddingService]
+        K[SearchEngine]
+        L[TextGenerationService]
+    end
+
+    B --&gt; I
+    B --&gt; J
+    B --&gt; K
+    B --&gt; L
+</code></pre>
+<h4 id="code-organization">Code Organization</h4>
+<pre><code>lib/ragdoll/core/
+├── client.rb              # Main public API
+├── configuration.rb       # System configuration
+├── database.rb           # Database setup and migrations
+├── document_processor.rb # Multi-format parsing
+├── embedding_service.rb  # Vector generation
+├── search_engine.rb      # Semantic search
+├── text_chunker.rb       # Content segmentation
+├── text_generation_service.rb # LLM integration
+├── jobs/                 # Background processing
+│   ├── generate_embeddings.rb
+│   ├── extract_keywords.rb
+│   └── generate_summary.rb
+├── models/               # ActiveRecord models
+│   ├── document.rb
+│   ├── embedding.rb
+│   └── content.rb        # STI base class
+└── services/             # Specialized services
+    ├── metadata_generator.rb
+    └── image_description_service.rb
+</code></pre>
+<h4 id="design-patterns">Design Patterns</h4>
+<ul>
+<li><strong>Service Layer Pattern</strong>: Business logic in dedicated service classes</li>
+<li><strong>Repository Pattern</strong>: Database access through ActiveRecord models</li>
+<li><strong>Factory Pattern</strong>: Document creation through DocumentProcessor</li>
+<li><strong>Strategy Pattern</strong>: Multiple LLM providers via configuration</li>
+<li><strong>Observer Pattern</strong>: Background jobs triggered by model callbacks</li>
+</ul>
+<h4 id="coding-conventions">Coding Conventions</h4>
+<ul>
+<li><strong>Ruby Style</strong>: Follow Ruby community conventions</li>
+<li><strong>RuboCop</strong>: Automated style enforcement</li>
+<li><strong>Naming</strong>: Descriptive names over comments</li>
+<li><strong>Methods</strong>: Single responsibility, max 20 lines</li>
+<li><strong>Classes</strong>: Max 200 lines, extract services for complex logic</li>
+</ul>
+<h2 id="contribution-types">Contribution Types</h2>
+<h3 id="code-contributions">Code Contributions</h3>
+<h4 id="bug-fixes">Bug Fixes</h4>
+<pre><code class="language-bash"># Create bug fix branch
+git checkout -b fix/document-parsing-error
+
+# Write failing test first
+# test/core/document_processor_test.rb
+def test_handles_corrupted_pdf
+  assert_raises(DocumentProcessor::ParseError) do
+    DocumentProcessor.parse('test/fixtures/corrupted.pdf')
+  end
+end
+
+# Implement fix
+# lib/ragdoll/core/document_processor.rb
+def parse_pdf
+  # Add error handling
+rescue PDF::Reader::MalformedPDFError =&gt; e
+  raise ParseError, &quot;Corrupted PDF: #{e.message}&quot;
+end
+
+# Verify fix works
+bundle exec rake test
+</code></pre>
+<h4 id="feature-implementations">Feature Implementations</h4>
+<pre><code class="language-bash"># Create feature branch
+git checkout -b feature/add-excel-support
+
+# Plan implementation
+# 1. Add Excel gem dependency
+# 2. Implement parse_excel method
+# 3. Add Excel to supported formats
+# 4. Write comprehensive tests
+# 5. Update documentation
+
+# Implementation example
+# Gemfile
+gem 'roo', '~&gt; 2.9'
+
+# lib/ragdoll/core/document_processor.rb
+when '.xlsx', '.xls'
+  parse_excel
+
+private
+
+def parse_excel
+  workbook = Roo::Spreadsheet.open(@file_path)
+  content = extract_excel_content(workbook)
+  metadata = extract_excel_metadata(workbook)
+
+  {
+    content: content,
+    metadata: metadata,
+    document_type: 'excel'
+  }
+end
+</code></pre>
+<h4 id="performance-improvements">Performance Improvements</h4>
+<pre><code class="language-ruby"># Example: Optimize batch embedding generation
+class EmbeddingService
+  def generate_embeddings_batch_optimized(texts, batch_size: 50)
+    # Process in smaller batches to reduce memory usage
+    texts.each_slice(batch_size).flat_map do |batch|
+      generate_embeddings_batch(batch)
+    end
+  end
+end
+
+# Add benchmark test
+class EmbeddingServicePerformanceTest &lt; Minitest::Test
+  def test_batch_processing_performance
+    texts = Array.new(1000) { &quot;Sample text #{rand(1000)}&quot; }
+
+    time = Benchmark.measure do
+      service.generate_embeddings_batch_optimized(texts)
+    end
+
+    assert time.real &lt; 30, &quot;Batch processing too slow: #{time.real}s&quot;
+  end
+end
+</code></pre>
+<h3 id="documentation-contributions">Documentation Contributions</h3>
+<h4 id="documentation-updates">Documentation Updates</h4>
+<pre><code class="language-markdown"># Always include code examples
+## New Feature Documentation
+
+### Usage
+
+```ruby
+# Basic usage
+client = Ragdoll::Core.client
+result = client.new_feature(param: 'value')
+
+# Advanced usage with options
+result = client.new_feature(
+  param: 'value',
+  advanced_option: true,
+  callback: -&gt;(data) { puts data }
+)
+</code></pre>
+<h3 id="configuration">Configuration</h3>
+<pre><code class="language-ruby">Ragdoll::Core.configure do |config|
+  config.new_feature_config = {
+    enabled: true,
+    timeout: 30
+  }
+end
+</code></pre>
+<pre><code>
+#### API Documentation
+
+```ruby
+# Use YARD-style documentation
+class NewService
+  # Process documents with advanced filtering
+  #
+  # @param documents [Array&lt;Document&gt;] Documents to process
+  # @param options [Hash] Processing options
+  # @option options [String] :filter_type ('all') Filter criteria
+  # @option options [Integer] :batch_size (100) Batch processing size
+  # @return [Array&lt;Hash&gt;] Processed document results
+  # @raise [ProcessingError] When processing fails
+  #
+  # @example Basic usage
+  #   service = NewService.new
+  #   results = service.process(documents)
+  #
+  # @example With options
+  #   results = service.process(documents, 
+  #     filter_type: 'academic',
+  #     batch_size: 50
+  #   )
+  def process(documents, options = {})
+    # Implementation
+  end
+end
+</code></pre>
+<h3 id="testing-contributions">Testing Contributions</h3>
+<h4 id="test-coverage-improvements">Test Coverage Improvements</h4>
+<pre><code class="language-ruby"># Always test edge cases
+class DocumentProcessorTest &lt; Minitest::Test
+  def test_handles_empty_file
+    File.write('test/fixtures/empty.txt', '')
+    result = DocumentProcessor.parse('test/fixtures/empty.txt')
+    assert_equal '', result[:content]
+  end
+
+  def test_handles_binary_file
+    assert_raises(DocumentProcessor::UnsupportedFormatError) do
+      DocumentProcessor.parse('test/fixtures/binary.exe')
+    end
+  end
+
+  def test_handles_very_large_file
+    # Create 100MB test file
+    large_content = 'x' * (100 * 1024 * 1024)
+    File.write('test/fixtures/large.txt', large_content)
+
+    result = DocumentProcessor.parse('test/fixtures/large.txt')
+    assert result[:content].length &gt; 0
+  ensure
+    File.delete('test/fixtures/large.txt') if File.exist?('test/fixtures/large.txt')
+  end
+end
+</code></pre>
+<h2 id="development-process">Development Process</h2>
+<h3 id="branch-management">Branch Management</h3>
+<h4 id="branch-naming-conventions">Branch Naming Conventions</h4>
+<ul>
+<li><strong>Features</strong>: <code>feature/short-description</code></li>
+<li><strong>Bug fixes</strong>: <code>fix/issue-description</code></li>
+<li><strong>Documentation</strong>: <code>docs/section-being-updated</code></li>
+<li><strong>Refactoring</strong>: <code>refactor/component-name</code></li>
+<li><strong>Performance</strong>: <code>perf/optimization-area</code></li>
+</ul>
+<h4 id="commit-message-format">Commit Message Format</h4>
+<pre><code>Type: Brief description (50 characters max)
+
+Detailed explanation of what changed and why. Include:
+- What problem this solves
+- How it was implemented
+- Any breaking changes
+- References to issues (#123)
+
+Types: feat, fix, docs, style, refactor, test, chore
+</code></pre>
+<p><strong>Examples</strong>:</p>
+<pre><code>feat: Add Excel document processing support
+
+- Implement parse_excel method using roo gem
+- Support .xlsx and .xls file formats
+- Extract cell values, formulas, and metadata
+- Add comprehensive test coverage
+- Update documentation with usage examples
+
+Resolves #145
+</code></pre>
+<pre><code>fix: Handle corrupted PDF files gracefully
+
+- Add proper error handling for PDF::Reader exceptions
+- Return informative error messages
+- Add test cases for various corruption scenarios
+- Prevent application crashes during parsing
+
+Fixes #178
+</code></pre>
+<h3 id="code-quality">Code Quality</h3>
+<h4 id="pre-commit-checklist">Pre-commit Checklist</h4>
+<pre><code class="language-bash"># Run before every commit
+
+# 1. Code style check
+bundle exec rubocop
+
+# 2. Run all tests
+bundle exec rake test
+
+# 3. Check test coverage
+open coverage/index.html
+# Ensure coverage &gt;= 85%
+
+# 4. Run specific tests for changed code
+bundle exec rake test test/core/your_changed_test.rb
+
+# 5. Manual testing of changes
+./bin/console
+# Test your changes interactively
+</code></pre>
+<h4 id="code-review-preparation">Code Review Preparation</h4>
+<pre><code class="language-bash"># Before creating PR
+
+# 1. Rebase on latest main
+git fetch upstream
+git rebase upstream/main
+
+# 2. Squash commits if needed
+git rebase -i HEAD~3
+
+# 3. Update documentation
+# Update relevant .md files
+# Add code examples
+# Update CHANGELOG.md
+
+# 4. Self-review your changes
+git diff upstream/main..HEAD
+</code></pre>
+<h2 id="submission-process">Submission Process</h2>
+<h3 id="pull-request-process">Pull Request Process</h3>
+<h4 id="pr-creation-guidelines">PR Creation Guidelines</h4>
+<ol>
+<li><strong>Title</strong>: Clear, concise description of changes</li>
+<li><strong>Description</strong>: Use the PR template</li>
+<li><strong>Labels</strong>: Add appropriate labels (bug, feature, documentation)</li>
+<li><strong>Reviewers</strong>: Request reviews from maintainers</li>
+<li><strong>Linked Issues</strong>: Reference related issues</li>
+</ol>
+<h4 id="pr-template">PR Template</h4>
+<pre><code class="language-markdown">## Summary
+
+Brief description of changes and motivation.
+
+## Changes Made
+
+- [ ] Added new feature X
+- [ ] Fixed bug in component Y
+- [ ] Updated documentation
+- [ ] Added test coverage
+
+## Testing
+
+- [ ] All existing tests pass
+- [ ] Added new tests for changes
+- [ ] Manual testing completed
+- [ ] Performance impact assessed
+
+## Documentation
+
+- [ ] Updated relevant documentation
+- [ ] Added code examples
+- [ ] Updated CHANGELOG.md
+
+## Breaking Changes
+
+- [ ] No breaking changes
+- [ ] Breaking changes documented below
+
+## Checklist
+
+- [ ] Code follows style guidelines
+- [ ] Self-review completed
+- [ ] Code is commented where needed
+- [ ] Tests cover edge cases
+</code></pre>
+<h4 id="review-process">Review Process</h4>
+<ol>
+<li><strong>Automated Checks</strong>: CI must pass</li>
+<li><strong>Code Review</strong>: At least one maintainer approval</li>
+<li><strong>Testing</strong>: Manual testing by reviewer</li>
+<li><strong>Documentation</strong>: Verify docs are complete</li>
+<li><strong>Merge</strong>: Squash and merge after approval</li>
+</ol>
+<h3 id="code-review-guidelines">Code Review Guidelines</h3>
+<h4 id="for-contributors">For Contributors</h4>
+<ul>
+<li><strong>Respond promptly</strong> to review feedback</li>
+<li><strong>Ask questions</strong> if feedback is unclear</li>
+<li><strong>Test suggested changes</strong> before implementing</li>
+<li><strong>Update PR description</strong> if scope changes</li>
+<li><strong>Be patient</strong> - thorough reviews take time</li>
+</ul>
+<h4 id="for-reviewers">For Reviewers</h4>
+<ul>
+<li><strong>Be constructive</strong> and specific in feedback</li>
+<li><strong>Explain the why</strong> behind suggestions</li>
+<li><strong>Acknowledge good code</strong> when you see it</li>
+<li><strong>Test the changes</strong> locally when possible</li>
+<li><strong>Consider backward compatibility</strong> impact</li>
+</ul>
+<h2 id="bug-reports">Bug Reports</h2>
+<h3 id="issue-templates">Issue Templates</h3>
+<h4 id="bug-report-template">Bug Report Template</h4>
+<pre><code class="language-markdown">**Bug Description**
+A clear description of what the bug is.
+
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Configure Ragdoll with...
+2. Process document...
+3. Call search method...
+4. See error
+
+**Expected Behavior**
+What you expected to happen.
+
+**Actual Behavior**
+What actually happened, including error messages.
+
+**Environment**
+- Ruby version: [e.g. 3.2.0]
+- Ragdoll version: [e.g. 0.1.0]
+- PostgreSQL version: [e.g. 14.2]
+- Operating System: [e.g. macOS 12.0]
+
+**Additional Context**
+- Configuration details
+- Log output
+- Sample files (if applicable)
+- Stack trace
+
+**Possible Solution**
+(Optional) Suggest a fix or workaround
+</code></pre>
+<h4 id="information-requirements">Information Requirements</h4>
+<p><strong>Always include</strong>:
+- <strong>Reproduction steps</strong>: Minimal code to reproduce
+- <strong>Environment details</strong>: Ruby, PostgreSQL, OS versions
+- <strong>Configuration</strong>: Relevant Ragdoll configuration
+- <strong>Error messages</strong>: Complete stack traces
+- <strong>Expected vs actual</strong>: What should happen vs what happens</p>
+<p><strong>For document processing issues</strong>:
+- File format and size
+- Sample file (if not sensitive)
+- Processing configuration</p>
+<p><strong>For search issues</strong>:
+- Query text
+- Search configuration
+- Database state (document count, embedding count)</p>
+<h2 id="feature-requests">Feature Requests</h2>
+<h3 id="request-format">Request Format</h3>
+<h4 id="feature-request-template">Feature Request Template</h4>
+<pre><code class="language-markdown">**Feature Summary**
+One-line summary of the requested feature.
+
+**Problem Statement**
+What problem does this solve? What use case does it enable?
+
+**Proposed Solution**
+Detailed description of the proposed implementation.
+
+**Alternative Solutions**
+Other approaches you've considered.
+
+**Use Cases**
+Specific scenarios where this would be useful:
+1. Scenario 1: ...
+2. Scenario 2: ...
+
+**Implementation Considerations**
+- Database schema changes needed
+- API changes required
+- Backward compatibility impact
+- Performance implications
+
+**Priority**
+- [ ] Critical - Blocking current work
+- [ ] High - Important for upcoming release
+- [ ] Medium - Would be nice to have
+- [ ] Low - Future consideration
+
+**Would you be willing to implement this?**
+- [ ] Yes, I can submit a PR
+- [ ] Yes, with guidance
+- [ ] No, but I can test
+- [ ] No
+</code></pre>
+<h3 id="evaluation-process">Evaluation Process</h3>
+<ol>
+<li><strong>Initial Review</strong>: Maintainers assess fit with project goals</li>
+<li><strong>Community Discussion</strong>: Gather feedback from users</li>
+<li><strong>Technical Design</strong>: Plan implementation approach</li>
+<li><strong>Priority Assignment</strong>: Based on impact and complexity</li>
+<li><strong>Implementation</strong>: Either by maintainers or community</li>
+</ol>
+<h2 id="community-guidelines">Community Guidelines</h2>
+<h3 id="code-of-conduct">Code of Conduct</h3>
+<h4 id="behavioral-expectations">Behavioral Expectations</h4>
+<ul>
+<li><strong>Be respectful</strong> in all interactions</li>
+<li><strong>Be inclusive</strong> and welcoming to newcomers</li>
+<li><strong>Be constructive</strong> in criticism and feedback</li>
+<li><strong>Be patient</strong> with questions and learning</li>
+<li><strong>Be professional</strong> in all communications</li>
+</ul>
+<h4 id="communication-guidelines">Communication Guidelines</h4>
+<ul>
+<li><strong>Use clear, descriptive titles</strong> for issues and PRs</li>
+<li><strong>Provide context</strong> when asking questions</li>
+<li><strong>Search existing issues</strong> before creating new ones</li>
+<li><strong>Stay on topic</strong> in discussions</li>
+<li><strong>Use appropriate channels</strong> for different types of communication</li>
+</ul>
+<h3 id="communication-channels">Communication Channels</h3>
+<ul>
+<li><strong>GitHub Issues</strong>: Bug reports, feature requests</li>
+<li><strong>GitHub Discussions</strong>: General questions, ideas</li>
+<li><strong>Pull Requests</strong>: Code review and discussion</li>
+<li><strong>Documentation</strong>: Inline comments and suggestions</li>
+</ul>
+<h2 id="release-process">Release Process</h2>
+<h3 id="version-management">Version Management</h3>
+<p>Ragdoll follows <strong>Semantic Versioning</strong> (SemVer):</p>
+<ul>
+<li><strong>MAJOR.MINOR.PATCH</strong> (e.g., 1.2.3)</li>
+<li><strong>MAJOR</strong>: Breaking changes</li>
+<li><strong>MINOR</strong>: New features (backward compatible)</li>
+<li><strong>PATCH</strong>: Bug fixes (backward compatible)</li>
+</ul>
+<h3 id="release-cycle">Release Cycle</h3>
+<ul>
+<li><strong>Patch releases</strong>: As needed for critical bugs</li>
+<li><strong>Minor releases</strong>: Monthly with new features</li>
+<li><strong>Major releases</strong>: Quarterly with breaking changes</li>
+</ul>
+<h3 id="changelog-maintenance">Changelog Maintenance</h3>
+<pre><code class="language-markdown"># Changelog
+
+## [Unreleased]
+
+### Added
+- New feature descriptions
+
+### Changed
+- Modified behavior descriptions
+
+### Fixed
+- Bug fix descriptions
+
+### Removed
+- Deprecated feature removals
+
+## [1.2.0] - 2024-01-15
+
+### Added
+- Excel document processing support
+- Batch embedding optimization
+
+### Fixed
+- PDF parsing error handling
+- Memory leak in background jobs
+</code></pre>
+<h2 id="getting-help">Getting Help</h2>
+<h3 id="before-contributing">Before Contributing</h3>
+<ol>
+<li><strong>Read the documentation</strong> - Check existing docs first</li>
+<li><strong>Search issues</strong> - Your question might already be answered</li>
+<li><strong>Try the troubleshooting guide</strong> - Common issues and solutions</li>
+<li><strong>Check the development guide</strong> - Setup and workflow information</li>
+</ol>
+<h3 id="need-assistance">Need Assistance?</h3>
+<ul>
+<li><strong>Questions</strong>: Use GitHub Discussions</li>
+<li><strong>Bugs</strong>: Create detailed issue reports</li>
+<li><strong>Features</strong>: Submit feature request with use cases</li>
+<li><strong>Code</strong>: Start with small contributions and ask for guidance</li>
+</ul>
+<h3 id="recognition">Recognition</h3>
+<p>Contributors are recognized in:
+- <strong>README.md</strong> - Contributor section
+- <strong>CHANGELOG.md</strong> - Release notes
+- <strong>GitHub</strong> - Automatic contribution tracking
+- <strong>Documentation</strong> - Author attribution where appropriate</p>
+<p>Thank you for contributing to Ragdoll! 🎉</p>
+<hr />
+<p><em>This document is part of the Ragdoll documentation suite. For immediate help, see the <a href="../quick-start/">Quick Start Guide</a> or <a href="../api-client/">API Reference</a>.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

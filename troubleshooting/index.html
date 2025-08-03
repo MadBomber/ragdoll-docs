@@ -1,0 +1,2363 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../testing/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Troubleshooting - Ragdoll Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#troubleshooting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ragdoll Documentation" class="md-header__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ragdoll Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Troubleshooting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ragdoll Documentation" class="md-nav__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ragdoll Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ragdoll Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Client API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jobs Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Models Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Deployment Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../document-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embedding System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Variables Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extending the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-uploads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Upload System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation &amp; Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LLM Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metadata Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Modal Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Performance Tuning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Considerations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues and Solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Issues and Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-diagnostic-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Diagnostic Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependency Problems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dependency Problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ruby-version-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ruby Version Compatibility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gem-installation-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gem Installation Failures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-library-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Library Requirements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-setup-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Setup Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Setup Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-connection-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL Connection Problems
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pgvector-extension-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      pgvector Extension Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration Failures
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runtime Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Runtime Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-processing-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Processing Errors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Processing Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-format-parsing-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Format Parsing Failures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-extraction-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Extraction Problems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-and-embedding-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search and Embedding Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Search and Embedding Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector-generation-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector Generation Failures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity-search-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Similarity Search Problems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Problems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connection-timeouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection Timeouts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-performance-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Index Performance Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm-provider-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Provider Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LLM Provider Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-key-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Key Validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider-specific-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider-Specific Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slow-search-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slow Search Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-job-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background Job Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Background Job Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#queue-backlog-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Queue Backlog Problems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Console
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-error-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Error Messages
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Support Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#self-diagnosis-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self-Diagnosis Checklist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Help
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emergency-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Emergency Recovery
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues-and-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues and Solutions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Issues and Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-diagnostic-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Diagnostic Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependency Problems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dependency Problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ruby-version-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ruby Version Compatibility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gem-installation-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gem Installation Failures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-library-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Library Requirements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-setup-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Setup Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Setup Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-connection-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL Connection Problems
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pgvector-extension-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      pgvector Extension Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migration-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration Failures
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runtime-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runtime Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Runtime Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-processing-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Processing Errors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Processing Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-format-parsing-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Format Parsing Failures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-extraction-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Extraction Problems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-and-embedding-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search and Embedding Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Search and Embedding Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector-generation-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector Generation Failures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity-search-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Similarity Search Problems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Problems
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connection-timeouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection Timeouts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-performance-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Index Performance Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm-provider-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Provider Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LLM Provider Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-key-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Key Validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider-specific-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider-Specific Issues
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slow-search-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slow Search Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-job-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background Job Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Background Job Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#queue-backlog-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Queue Backlog Problems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logging Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Console
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-error-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Error Messages
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support Resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Support Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#self-diagnosis-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Self-Diagnosis Checklist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Help
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emergency-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Emergency Recovery
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="troubleshooting">Troubleshooting</h1>
+<h2 id="common-issues-and-solutions">Common Issues and Solutions</h2>
+<p>This guide provides comprehensive troubleshooting information for Ragdoll, covering installation, runtime, configuration, and performance issues with practical solutions.</p>
+<h3 id="quick-diagnostic-commands">Quick Diagnostic Commands</h3>
+<pre><code class="language-ruby"># Check system health
+client = Ragdoll::Core.client
+puts &quot;System healthy: #{client.healthy?}&quot;
+puts &quot;Database connected: #{Ragdoll::Core::Database.connected?}&quot;
+puts client.stats
+</code></pre>
+<h2 id="installation-issues">Installation Issues</h2>
+<h3 id="dependency-problems">Dependency Problems</h3>
+<h4 id="ruby-version-compatibility">Ruby Version Compatibility</h4>
+<p><strong>Issue</strong>: Ragdoll requires Ruby 3.0+</p>
+<pre><code>ERROR: ragdoll requires Ruby version &gt;= 3.0.0
+</code></pre>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-bash"># Check Ruby version
+ruby --version
+
+# Install Ruby 3.2+ with rbenv
+rbenv install 3.2.0
+rbenv global 3.2.0
+
+# Or with RVM
+rvm install 3.2.0
+rvm use 3.2.0 --default
+</code></pre>
+<h4 id="gem-installation-failures">Gem Installation Failures</h4>
+<p><strong>Issue</strong>: Native extension compilation fails</p>
+<pre><code>ERROR: Failed to build gem native extension.
+</code></pre>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-bash"># macOS - Install Xcode command line tools
+xcode-select --install
+
+# Ubuntu/Debian
+sudo apt-get update
+sudo apt-get install build-essential libpq-dev
+
+# CentOS/RHEL
+sudo yum groupinstall &quot;Development Tools&quot;
+sudo yum install postgresql-devel
+</code></pre>
+<h4 id="system-library-requirements">System Library Requirements</h4>
+<p><strong>Issue</strong>: Missing system dependencies</p>
+<pre><code>ERROR: pg requires libpq-dev
+</code></pre>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-bash"># macOS with Homebrew
+brew install postgresql libpq
+
+# Ubuntu/Debian
+sudo apt-get install libpq-dev postgresql-client
+
+# Add to environment
+export PATH=&quot;/usr/local/opt/libpq/bin:$PATH&quot;
+</code></pre>
+<h3 id="database-setup-issues">Database Setup Issues</h3>
+<h4 id="postgresql-connection-problems">PostgreSQL Connection Problems</h4>
+<p><strong>Issue</strong>: Cannot connect to PostgreSQL</p>
+<pre><code>ERROR: connection to server on socket &quot;/tmp/.s.PGSQL.5432&quot; failed
+</code></pre>
+<p><strong>Diagnosis</strong>:</p>
+<pre><code class="language-ruby"># Test database connection
+begin
+  ActiveRecord::Base.establish_connection(
+    adapter: 'postgresql',
+    database: 'ragdoll_development',
+    username: 'ragdoll',
+    password: 'your_password',
+    host: 'localhost',
+    port: 5432
+  )
+  puts &quot;Connection successful&quot;
+rescue =&gt; e
+  puts &quot;Connection failed: #{e.message}&quot;
+end
+</code></pre>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-bash"># Start PostgreSQL service
+# macOS with Homebrew
+brew services start postgresql
+
+# Ubuntu/Debian
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+
+# Create database and user
+sudo -u postgres psql
+CREATE DATABASE ragdoll_development;
+CREATE USER ragdoll WITH PASSWORD 'secure_password';
+GRANT ALL PRIVILEGES ON DATABASE ragdoll_development TO ragdoll;
+\q
+</code></pre>
+<h4 id="pgvector-extension-installation">pgvector Extension Installation</h4>
+<p><strong>Issue</strong>: pgvector extension not available</p>
+<pre><code>ERROR: extension &quot;vector&quot; is not available
+</code></pre>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-bash"># Install pgvector
+# macOS with Homebrew
+brew install pgvector
+
+# Ubuntu/Debian
+sudo apt install postgresql-16-pgvector
+
+# Manual installation
+git clone https://github.com/pgvector/pgvector.git
+cd pgvector
+make
+sudo make install
+
+# Enable extension in database
+sudo -u postgres psql -d ragdoll_development
+CREATE EXTENSION vector;
+\q
+</code></pre>
+<h4 id="migration-failures">Migration Failures</h4>
+<p><strong>Issue</strong>: Database migrations fail</p>
+<pre><code>ERROR: relation &quot;ragdoll_documents&quot; already exists
+</code></pre>
+<p><strong>Diagnosis</strong>:</p>
+<pre><code class="language-ruby"># Check migration status
+Ragdoll::Core::Database.setup(auto_migrate: false)
+ActiveRecord::Base.connection.execute(
+  &quot;SELECT version FROM schema_migrations ORDER BY version&quot;
+)
+</code></pre>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-ruby"># Reset database (DESTRUCTIVE - development only)
+Ragdoll::Core::Database.reset!
+
+# Or manually fix migration state
+ActiveRecord::Base.connection.execute(
+  &quot;DELETE FROM schema_migrations WHERE version = '004'&quot;
+)
+Ragdoll::Core::Database.migrate!
+</code></pre>
+<h2 id="runtime-issues">Runtime Issues</h2>
+<h3 id="document-processing-errors">Document Processing Errors</h3>
+<h4 id="file-format-parsing-failures">File Format Parsing Failures</h4>
+<p><strong>Issue</strong>: Unsupported or corrupted file formats</p>
+<pre><code>ERROR: Unable to parse PDF file: Invalid PDF structure
+</code></pre>
+<p><strong>Diagnosis</strong>:</p>
+<pre><code class="language-ruby"># Test document parsing
+begin
+  result = Ragdoll::Core::DocumentProcessor.parse('/path/to/document.pdf')
+  puts &quot;Parsing successful: #{result[:document_type]}&quot;
+  puts &quot;Content length: #{result[:content]&amp;.length || 0}&quot;
+rescue =&gt; e
+  puts &quot;Parsing failed: #{e.message}&quot;
+  puts &quot;Error class: #{e.class}&quot;
+end
+</code></pre>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-ruby"># Check file integrity
+file_path = '/path/to/document.pdf'
+if File.exist?(file_path)
+  puts &quot;File size: #{File.size(file_path)} bytes&quot;
+  puts &quot;File readable: #{File.readable?(file_path)}&quot;
+
+  # Try alternative parsing approach
+  begin
+    content = File.read(file_path, encoding: 'binary')
+    puts &quot;File header: #{content[0..10].bytes.map(&amp;:to_s).join(' ')}&quot;
+  rescue =&gt; e
+    puts &quot;Cannot read file: #{e.message}&quot;
+  end
+else
+  puts &quot;File does not exist: #{file_path}&quot;
+end
+</code></pre>
+<h4 id="content-extraction-problems">Content Extraction Problems</h4>
+<p><strong>Issue</strong>: Empty or garbled content extraction</p>
+<pre><code>WARNING: Extracted content is empty or contains only whitespace
+</code></pre>
+<p><strong>Diagnosis</strong>:</p>
+<pre><code class="language-ruby"># Debug content extraction
+class DebugDocumentProcessor &lt; Ragdoll::Core::DocumentProcessor
+  def self.parse_with_debug(file_path)
+    puts &quot;Processing: #{file_path}&quot;
+    puts &quot;File size: #{File.size(file_path)}&quot;
+
+    result = parse(file_path)
+
+    puts &quot;Document type: #{result[:document_type]}&quot;
+    puts &quot;Content length: #{result[:content]&amp;.length || 0}&quot;
+    puts &quot;Content preview: #{result[:content]&amp;.[](0..200)}&quot;
+    puts &quot;Metadata keys: #{result[:metadata]&amp;.keys}&quot;
+
+    result
+  end
+end
+</code></pre>
+<h3 id="search-and-embedding-issues">Search and Embedding Issues</h3>
+<h4 id="vector-generation-failures">Vector Generation Failures</h4>
+<p><strong>Issue</strong>: Embedding service errors</p>
+<pre><code>ERROR: Failed to generate embedding: OpenAI API key not configured
+</code></pre>
+<p><strong>Diagnosis</strong>:</p>
+<pre><code class="language-ruby"># Test embedding generation
+service = Ragdoll::Core::EmbeddingService.new
+begin
+  embedding = service.generate_embedding(&quot;test text&quot;)
+  puts &quot;Embedding generated: #{embedding&amp;.length || 0} dimensions&quot;
+rescue =&gt; e
+  puts &quot;Embedding failed: #{e.message}&quot;
+  puts &quot;Configuration check:&quot;
+  puts &quot;OpenAI API Key: #{ENV['OPENAI_API_KEY'] ? 'Set' : 'Missing'}&quot;
+end
+</code></pre>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-ruby"># Check and fix configuration
+Ragdoll::Core.configure do |config|
+  # Verify API keys are set
+  config.ruby_llm_config[:openai][:api_key] = ENV['OPENAI_API_KEY']
+
+  if ENV['OPENAI_API_KEY'].nil? || ENV['OPENAI_API_KEY'].empty?
+    puts &quot;ERROR: OPENAI_API_KEY environment variable not set&quot;
+    puts &quot;Set it with: export OPENAI_API_KEY=your_api_key&quot;
+  end
+end
+</code></pre>
+<h4 id="similarity-search-problems">Similarity Search Problems</h4>
+<p><strong>Issue</strong>: Search returns no results despite having documents</p>
+<pre><code>INFO: Search query returned 0 results
+</code></pre>
+<p><strong>Diagnosis</strong>:</p>
+<pre><code class="language-ruby"># Debug search process
+client = Ragdoll::Core.client
+query = &quot;machine learning&quot;
+
+puts &quot;Documents in database: #{Ragdoll::Core::Models::Document.count}&quot;
+puts &quot;Embeddings in database: #{Ragdoll::Core::Models::Embedding.count}&quot;
+
+# Test embedding generation
+embedding_service = Ragdoll::Core::EmbeddingService.new
+query_embedding = embedding_service.generate_embedding(query)
+puts &quot;Query embedding dimensions: #{query_embedding&amp;.length || 0}&quot;
+
+# Test direct embedding search
+results = Ragdoll::Core::Models::Embedding.search_similar(
+  query_embedding,
+  limit: 10,
+  threshold: 0.1  # Lower threshold for debugging
+)
+puts &quot;Direct search results: #{results.length}&quot;
+</code></pre>
+<h3 id="database-problems">Database Problems</h3>
+<h4 id="connection-timeouts">Connection Timeouts</h4>
+<p><strong>Issue</strong>: Database operations timing out</p>
+<pre><code>ERROR: connection timed out
+</code></pre>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-ruby"># Increase connection timeout
+Ragdoll::Core.configure do |config|
+  config.database_config.merge!({
+    pool: 10,
+    timeout: 10000,  # 10 seconds
+    checkout_timeout: 5,
+    reaping_frequency: 10
+  })
+end
+
+# Monitor connection pool
+pool = ActiveRecord::Base.connection_pool
+puts &quot;Pool size: #{pool.size}&quot;
+puts &quot;Checked out: #{pool.checked_out_connections.size}&quot;
+puts &quot;Available: #{pool.available_connection_count}&quot;
+</code></pre>
+<h4 id="index-performance-issues">Index Performance Issues</h4>
+<p><strong>Issue</strong>: Slow vector similarity searches</p>
+<pre><code>WARNING: Vector search took 5.2 seconds
+</code></pre>
+<p><strong>Diagnosis</strong>:</p>
+<pre><code class="language-sql">-- Check index usage
+EXPLAIN (ANALYZE, BUFFERS) 
+SELECT * FROM ragdoll_embeddings 
+ORDER BY embedding_vector &lt;-&gt; '[0.1,0.2,0.3,...]'::vector 
+LIMIT 10;
+
+-- Check index statistics
+SELECT schemaname, tablename, indexname, idx_scan, idx_tup_read, idx_tup_fetch
+FROM pg_stat_user_indexes 
+WHERE tablename = 'ragdoll_embeddings';
+</code></pre>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-sql">-- Recreate vector index with better parameters
+DROP INDEX IF EXISTS ragdoll_embeddings_vector_idx;
+CREATE INDEX CONCURRENTLY ragdoll_embeddings_vector_idx 
+ON ragdoll_embeddings 
+USING ivfflat (embedding_vector vector_cosine_ops) 
+WITH (lists = 100);
+
+-- Or use HNSW for better performance
+CREATE INDEX CONCURRENTLY ragdoll_embeddings_hnsw_idx 
+ON ragdoll_embeddings 
+USING hnsw (embedding_vector vector_cosine_ops) 
+WITH (m = 16, ef_construction = 64);
+</code></pre>
+<h2 id="configuration-issues">Configuration Issues</h2>
+<h3 id="llm-provider-configuration">LLM Provider Configuration</h3>
+<h4 id="api-key-validation">API Key Validation</h4>
+<p><strong>Issue</strong>: Invalid or expired API keys</p>
+<pre><code>ERROR: Authentication failed for OpenAI API
+</code></pre>
+<p><strong>Validation Script</strong>:</p>
+<pre><code class="language-ruby"># Test API key validity
+class APIKeyValidator
+  def self.validate_openai_key(api_key)
+    require 'faraday'
+
+    conn = Faraday.new(url: 'https://api.openai.com')
+    response = conn.get('/v1/models') do |req|
+      req.headers['Authorization'] = &quot;Bearer #{api_key}&quot;
+    end
+
+    case response.status
+    when 200
+      puts &quot;✓ OpenAI API key is valid&quot;
+      true
+    when 401
+      puts &quot;✗ OpenAI API key is invalid or expired&quot;
+      false
+    else
+      puts &quot;? Unexpected response: #{response.status}&quot;
+      false
+    end
+  end
+end
+
+APIKeyValidator.validate_openai_key(ENV['OPENAI_API_KEY'])
+</code></pre>
+<h4 id="provider-specific-issues">Provider-Specific Issues</h4>
+<p><strong>Issue</strong>: Rate limiting errors</p>
+<pre><code>ERROR: Rate limit exceeded for OpenAI API
+</code></pre>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-ruby"># Implement exponential backoff
+class RateLimitHandler
+  def self.with_retry(max_retries: 3, base_delay: 1)
+    retries = 0
+
+    begin
+      yield
+    rescue =&gt; e
+      if e.message.include?('rate limit') &amp;&amp; retries &lt; max_retries
+        delay = base_delay * (2 ** retries)
+        puts &quot;Rate limited, retrying in #{delay} seconds...&quot;
+        sleep(delay)
+        retries += 1
+        retry
+      else
+        raise e
+      end
+    end
+  end
+end
+
+# Use with embedding generation
+RateLimitHandler.with_retry do
+  service.generate_embedding(text)
+end
+</code></pre>
+<h2 id="performance-issues">Performance Issues</h2>
+<h3 id="slow-search-performance">Slow Search Performance</h3>
+<p><strong>Diagnosis Tools</strong>:</p>
+<pre><code class="language-ruby"># Performance profiler
+class SearchProfiler
+  def self.profile_search(query, iterations: 10)
+    times = []
+
+    iterations.times do
+      start_time = Time.current
+      client = Ragdoll::Core.client
+      results = client.search(query: query)
+      end_time = Time.current
+
+      duration = (end_time - start_time) * 1000
+      times &lt;&lt; duration
+
+      puts &quot;Search #{iterations}: #{duration.round(2)}ms (#{results[:total_results]} results)&quot;
+    end
+
+    avg_time = times.sum / times.length
+    puts &quot;Average search time: #{avg_time.round(2)}ms&quot;
+    puts &quot;Min: #{times.min.round(2)}ms, Max: #{times.max.round(2)}ms&quot;
+  end
+end
+
+SearchProfiler.profile_search(&quot;machine learning&quot;)
+</code></pre>
+<h3 id="background-job-issues">Background Job Issues</h3>
+<h4 id="queue-backlog-problems">Queue Backlog Problems</h4>
+<p><strong>Diagnosis</strong>:</p>
+<pre><code class="language-ruby"># Monitor job queues
+if defined?(Sidekiq)
+  puts &quot;Queue sizes:&quot;
+  Sidekiq::Queue.all.each do |queue|
+    puts &quot;  #{queue.name}: #{queue.size} jobs&quot;
+  end
+
+  puts &quot;\nFailed jobs: #{Sidekiq::RetrySet.new.size}&quot;
+  puts &quot;Dead jobs: #{Sidekiq::DeadSet.new.size}&quot;
+else
+  puts &quot;Using inline job processing&quot;
+end
+</code></pre>
+<p><strong>Solutions</strong>:</p>
+<pre><code class="language-ruby"># Scale workers dynamically
+class JobQueueMonitor
+  def self.monitor_and_scale
+    queue = Sidekiq::Queue.new('embeddings')
+
+    if queue.size &gt; 100
+      puts &quot;High queue size detected: #{queue.size}&quot;
+      # Scale up workers (implementation depends on deployment)
+      scale_workers_up
+    elsif queue.size &lt; 10
+      puts &quot;Low queue size: #{queue.size}&quot;
+      # Scale down workers
+      scale_workers_down
+    end
+  end
+end
+</code></pre>
+<h2 id="debugging-tools">Debugging Tools</h2>
+<h3 id="logging-configuration">Logging Configuration</h3>
+<pre><code class="language-ruby"># Enhanced logging setup
+Ragdoll::Core.configure do |config|
+  config.logging_config[:level] = :debug
+
+  # Custom logger with detailed formatting
+  logger = Logger.new(STDOUT)
+  logger.formatter = proc do |severity, datetime, progname, msg|
+    &quot;[#{datetime.strftime('%Y-%m-%d %H:%M:%S')}] #{severity.ljust(5)} #{progname}: #{msg}\n&quot;
+  end
+
+  config.database_config[:logger] = logger
+end
+</code></pre>
+<h3 id="development-console">Development Console</h3>
+<pre><code class="language-ruby"># Debug console helpers
+class RagdollDebug
+  def self.system_info
+    {
+      ruby_version: RUBY_VERSION,
+      rails_version: defined?(Rails) ? Rails.version : 'N/A',
+      database_adapter: ActiveRecord::Base.connection.adapter_name,
+      total_documents: Ragdoll::Core::Models::Document.count,
+      total_embeddings: Ragdoll::Core::Models::Embedding.count,
+      last_document: Ragdoll::Core::Models::Document.last&amp;.title,
+      system_healthy: Ragdoll::Core.client.healthy?
+    }
+  end
+
+  def self.test_pipeline(text = &quot;Hello world&quot;)
+    puts &quot;Testing complete pipeline...&quot;
+
+    # Test embedding generation
+    service = Ragdoll::Core::EmbeddingService.new
+    embedding = service.generate_embedding(text)
+    puts &quot;✓ Embedding generated: #{embedding.length} dimensions&quot;
+
+    # Test search
+    client = Ragdoll::Core.client
+    results = client.search(query: text)
+    puts &quot;✓ Search completed: #{results[:total_results]} results&quot;
+
+    true
+  rescue =&gt; e
+    puts &quot;✗ Pipeline test failed: #{e.message}&quot;
+    false
+  end
+end
+
+# Usage in console
+RagdollDebug.system_info
+RagdollDebug.test_pipeline
+</code></pre>
+<h2 id="error-reference">Error Reference</h2>
+<h3 id="common-error-messages">Common Error Messages</h3>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ragdoll::Core::EmbeddingError</code></td>
+<td>LLM API issues</td>
+<td>Check API keys and network</td>
+</tr>
+<tr>
+<td><code>Ragdoll::Core::DocumentError</code></td>
+<td>File processing failure</td>
+<td>Verify file format and permissions</td>
+</tr>
+<tr>
+<td><code>Ragdoll::Core::SearchError</code></td>
+<td>Search operation failure</td>
+<td>Check database indexes</td>
+</tr>
+<tr>
+<td><code>Ragdoll::Core::ConfigurationError</code></td>
+<td>Invalid configuration</td>
+<td>Validate configuration settings</td>
+</tr>
+<tr>
+<td><code>ActiveRecord::ConnectionNotEstablished</code></td>
+<td>Database connection failure</td>
+<td>Check PostgreSQL service and credentials</td>
+</tr>
+</tbody>
+</table>
+<h2 id="support-resources">Support Resources</h2>
+<h3 id="self-diagnosis-checklist">Self-Diagnosis Checklist</h3>
+<ul>
+<li>[ ] Ruby version 3.0+ installed</li>
+<li>[ ] PostgreSQL service running</li>
+<li>[ ] pgvector extension installed</li>
+<li>[ ] Database user has proper permissions</li>
+<li>[ ] API keys configured in environment</li>
+<li>[ ] Required system libraries installed</li>
+<li>[ ] Network connectivity to LLM providers</li>
+<li>[ ] Sufficient disk space for embeddings</li>
+<li>[ ] Memory allocation adequate for workload</li>
+<li>[ ] Background job system functioning</li>
+</ul>
+<h3 id="getting-help">Getting Help</h3>
+<ol>
+<li><strong>Documentation</strong>: Check the <a href="../architecture/">Architecture Guide</a> and <a href="../configuration/">Configuration Guide</a></li>
+<li><strong>Logs</strong>: Enable debug logging and examine error messages</li>
+<li><strong>System Health</strong>: Run the diagnostic commands provided above  </li>
+<li><strong>Community</strong>: Search existing issues and discussions</li>
+<li><strong>Issue Reporting</strong>: Provide system info, error logs, and reproduction steps</li>
+</ol>
+<h3 id="emergency-recovery">Emergency Recovery</h3>
+<pre><code class="language-ruby"># Complete system reset (DEVELOPMENT ONLY)
+Ragdoll::Core::Database.reset!
+Ragdoll::Core.configure do |config|
+  # Restore minimal configuration
+  config.database_config[:auto_migrate] = true
+end
+
+# Verify system health
+client = Ragdoll::Core.client
+puts &quot;System recovered: #{client.healthy?}&quot;
+</code></pre>
+<hr />
+<p><em>This document is part of the Ragdoll documentation suite. For immediate help, see the <a href="../quick-start/">Quick Start Guide</a> or <a href="../api-client/">API Reference</a>.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

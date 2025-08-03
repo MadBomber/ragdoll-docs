@@ -1,0 +1,2400 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../environment-variables/">
+      
+      
+        <link rel="next" href="../file-uploads/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Extending the System - Ragdoll Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#extending-the-system" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ragdoll Documentation" class="md-header__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ragdoll Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Extending the System
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ragdoll Documentation" class="md-nav__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ragdoll Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ragdoll Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Client API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jobs Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Models Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Deployment Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../document-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embedding System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Variables Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Extending the System
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extending the System
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#adding-new-content-types-and-processors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding New Content Types and Processors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding New Content Types and Processors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension Architecture Overview
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-type-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Type Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Type Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-content-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Content Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-model-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Model Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-processor-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Processor Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Processor Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-file-processors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom File Processors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embedding-provider-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Provider Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Embedding Provider Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-embedding-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Embedding Providers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-engine-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search Engine Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Search Engine Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-search-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Search Algorithms
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-schema-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metadata Schema Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metadata Schema Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-schema-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Schema Types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plugin Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plugin-development-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plugin Development Framework
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-plugin-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Plugin Implementation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-development-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension Development Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Considerations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Extensions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-packaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension Packaging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-uploads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Upload System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation &amp; Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LLM Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metadata Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Modal Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Performance Tuning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Considerations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#adding-new-content-types-and-processors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding New Content Types and Processors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding New Content Types and Processors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension Architecture Overview
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-type-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Type Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Type Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-content-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Content Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-model-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Model Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-processor-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Processor Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Processor Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-file-processors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom File Processors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embedding-provider-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Provider Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Embedding Provider Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-embedding-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Embedding Providers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-engine-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search Engine Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Search Engine Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-search-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Search Algorithms
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-schema-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metadata Schema Extensions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metadata Schema Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-schema-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Schema Types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plugin Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plugin-development-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Plugin Development Framework
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-plugin-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Plugin Implementation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-development-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension Development Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Considerations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Extensions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-packaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extension Packaging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="extending-the-system">Extending the System</h1>
+<h2 id="adding-new-content-types-and-processors">Adding New Content Types and Processors</h2>
+<p>Ragdoll is designed for extensibility with clear patterns for adding new content types, document processors, embedding providers, and search algorithms. This guide shows how to extend the system while maintaining PostgreSQL-first architecture.</p>
+<h3 id="extension-architecture-overview">Extension Architecture Overview</h3>
+<pre><code class="language-mermaid">flowchart TD
+    A[Custom Extension] --&gt; B[Extension Registry]
+    B --&gt; C[Core System]
+
+    subgraph &quot;Extension Points&quot;
+        D[Document Processors]
+        E[Content Models]
+        F[Embedding Providers]
+        G[Search Algorithms]
+        H[Metadata Schemas]
+    end
+
+    C --&gt; D
+    C --&gt; E
+    C --&gt; F
+    C --&gt; G
+    C --&gt; H
+
+    subgraph &quot;Database Layer&quot;
+        I[PostgreSQL + pgvector]
+        J[STI Content Models]
+        K[Polymorphic Associations]
+    end
+
+    E --&gt; I
+    E --&gt; J
+    E --&gt; K
+</code></pre>
+<h2 id="content-type-extensions">Content Type Extensions</h2>
+<h3 id="custom-content-models">Custom Content Models</h3>
+<p>Extend the STI (Single Table Inheritance) content model system:</p>
+<pre><code class="language-ruby"># lib/ragdoll/core/models/video_content.rb
+module Ragdoll
+  module Core
+    module Models
+      class VideoContent &lt; Content
+        # STI automatically handled by ActiveRecord
+
+        validates :content, presence: true  # content field stores transcript
+
+        # Video-specific methods
+        def transcript
+          content  # STI content field stores transcript
+        end
+
+        def transcript=(value)
+          self.content = value
+        end
+
+        def duration
+          metadata['duration']
+        end
+
+        def resolution
+          &quot;#{metadata['width']}x#{metadata['height']}&quot;
+        end
+
+        def video_codec
+          metadata['codec']
+        end
+
+        # Override embedding generation for video-specific handling
+        def generate_embeddings!
+          return unless transcript.present?
+
+          # Use video-specific embedding model
+          service = EmbeddingService.new
+          chunks = TextChunker.chunk(transcript, 
+            chunk_size: Ragdoll.config.chunking[:audio][:max_tokens],
+            chunk_overlap: Ragdoll.config.chunking[:audio][:overlap]
+          )
+
+          chunks.each_with_index do |chunk, index|
+            embedding_vector = service.generate_embedding(chunk)
+            next unless embedding_vector
+
+            embeddings.create!(
+              chunk_index: index,
+              embedding_vector: embedding_vector,
+              content: chunk,
+              metadata: { content_type: 'video_transcript' }
+            )
+          end
+        end
+
+        # Custom search relevance for video content
+        def search_boost_factor
+          # Boost based on video quality and duration
+          duration_boost = [duration.to_f / 3600, 2.0].min  # Max 2x for longer videos
+          quality_boost = resolution.include?('1080') ? 1.2 : 1.0
+
+          duration_boost * quality_boost
+        end
+      end
+    end
+  end
+end
+</code></pre>
+<h3 id="document-model-integration">Document Model Integration</h3>
+<p>Extend the Document model to handle new content types:</p>
+<pre><code class="language-ruby"># Add to existing Document model
+module Ragdoll
+  module Core
+    module Models
+      class Document
+        # Add video content relationship
+        has_many :video_contents,
+                 -&gt; { where(type: &quot;Ragdoll::Core::Models::VideoContent&quot;) },
+                 class_name: &quot;Ragdoll::Core::Models::VideoContent&quot;,
+                 foreign_key: &quot;document_id&quot;
+
+        has_many :video_embeddings, through: :video_contents, source: :embeddings
+
+        # Update content_types method
+        def content_types
+          types = []
+          types &lt;&lt; &quot;text&quot; if text_contents.any?
+          types &lt;&lt; &quot;image&quot; if image_contents.any?
+          types &lt;&lt; &quot;audio&quot; if audio_contents.any?
+          types &lt;&lt; &quot;video&quot; if video_contents.any?  # Add this line
+          types
+        end
+
+        # Update content method for video support
+        def content
+          case primary_content_type
+          when &quot;text&quot;
+            text_contents.pluck(:content).compact.join(&quot;\n\n&quot;)
+          when &quot;image&quot;
+            image_contents.pluck(:content).compact.join(&quot;\n\n&quot;)
+          when &quot;audio&quot;
+            audio_contents.pluck(:content).compact.join(&quot;\n\n&quot;)
+          when &quot;video&quot;
+            video_contents.pluck(:content).compact.join(&quot;\n\n&quot;)  # Add this
+          else
+            contents.pluck(:content).compact.join(&quot;\n\n&quot;)
+          end
+        end
+
+        # Update all_embeddings method
+        def all_embeddings(content_type: nil)
+          content_ids = []
+
+          if content_type
+            case content_type.to_s
+            when 'text'
+              content_ids.concat(text_contents.pluck(:id))
+            when 'image'
+              content_ids.concat(image_contents.pluck(:id))
+            when 'audio'
+              content_ids.concat(audio_contents.pluck(:id))
+            when 'video'  # Add this
+              content_ids.concat(video_contents.pluck(:id))
+            end
+          else
+            content_ids.concat(text_contents.pluck(:id))
+            content_ids.concat(image_contents.pluck(:id))
+            content_ids.concat(audio_contents.pluck(:id))
+            content_ids.concat(video_contents.pluck(:id))  # Add this
+          end
+
+          return Embedding.none if content_ids.empty?
+
+          Embedding.where(
+            embeddable_type: 'Ragdoll::Core::Models::Content',
+            embeddable_id: content_ids
+          )
+        end
+      end
+    end
+  end
+end
+</code></pre>
+<h2 id="document-processor-extensions">Document Processor Extensions</h2>
+<h3 id="custom-file-processors">Custom File Processors</h3>
+<p>Extend DocumentProcessor to handle new file formats:</p>
+<pre><code class="language-ruby"># Extend DocumentProcessor class
+module Ragdoll
+  module Core
+    class DocumentProcessor
+      # Add video support to parse method
+      def parse
+        case @file_extension
+        when &quot;.pdf&quot;
+          parse_pdf
+        when &quot;.docx&quot;
+          parse_docx
+        when &quot;.txt&quot;, &quot;.md&quot;, &quot;.markdown&quot;
+          parse_text
+        when &quot;.html&quot;, &quot;.htm&quot;
+          parse_html
+        when &quot;.jpg&quot;, &quot;.jpeg&quot;, &quot;.png&quot;, &quot;.gif&quot;, &quot;.bmp&quot;, &quot;.webp&quot;, &quot;.svg&quot;, &quot;.ico&quot;, &quot;.tiff&quot;, &quot;.tif&quot;
+          parse_image
+        when &quot;.mp4&quot;, &quot;.avi&quot;, &quot;.mov&quot;, &quot;.wmv&quot;, &quot;.flv&quot;, &quot;.webm&quot;  # Add video formats
+          parse_video
+        when &quot;.xlsx&quot;, &quot;.xls&quot;  # Add Excel support
+          parse_excel
+        else
+          parse_text # Default fallback
+        end
+      rescue StandardError =&gt; e
+        raise ParseError, &quot;Failed to parse #{@file_path}: #{e.message}&quot;
+      end
+
+      private
+
+      # New video parser
+      def parse_video
+        require 'streamio-ffmpeg'  # Add to Gemfile
+
+        metadata = {
+          file_size: File.size(@file_path),
+          file_type: @file_extension.sub(&quot;.&quot;, &quot;&quot;),
+          original_filename: File.basename(@file_path)
+        }
+
+        begin
+          # Extract video metadata using FFmpeg
+          movie = FFMPEG::Movie.new(@file_path)
+
+          metadata.merge!({
+            duration: movie.duration,
+            width: movie.width,
+            height: movie.height,
+            frame_rate: movie.frame_rate,
+            codec: movie.video_codec,
+            audio_codec: movie.audio_codec,
+            bitrate: movie.bitrate
+          })
+
+          # Extract transcript if available (placeholder)
+          # In production, integrate with speech-to-text service
+          transcript = extract_video_transcript(movie)
+
+        rescue StandardError =&gt; e
+          puts &quot;Warning: Could not extract video metadata: #{e.message}&quot;
+          transcript = &quot;Video file: #{File.basename(@file_path)}&quot;
+        end
+
+        {
+          content: transcript,
+          metadata: metadata,
+          document_type: &quot;video&quot;
+        }
+      end
+
+      # New Excel parser
+      def parse_excel
+        require 'roo'  # Add to Gemfile
+
+        content = &quot;&quot;
+        metadata = {
+          file_size: File.size(@file_path),
+          file_type: @file_extension.sub(&quot;.&quot;, &quot;&quot;),
+          original_filename: File.basename(@file_path)
+        }
+
+        begin
+          workbook = Roo::Spreadsheet.open(@file_path)
+
+          # Process each sheet
+          workbook.sheets.each_with_index do |sheet_name, index|
+            workbook.sheet(sheet_name)
+
+            content += &quot;\n\n--- Sheet: #{sheet_name} ---\n\n&quot; if index &gt; 0
+
+            # Process rows
+            (workbook.first_row..workbook.last_row).each do |row_num|
+              row_data = (workbook.first_column..workbook.last_column).map do |col|
+                workbook.cell(row_num, col)&amp;.to_s&amp;.strip
+              end.compact.reject(&amp;:empty?)
+
+              next if row_data.empty?
+
+              content += row_data.join(&quot; | &quot;) + &quot;\n&quot;
+            end
+          end
+
+          metadata.merge!({
+            sheet_count: workbook.sheets.count,
+            sheets: workbook.sheets
+          })
+
+        rescue StandardError =&gt; e
+          raise ParseError, &quot;Failed to parse Excel file: #{e.message}&quot;
+        end
+
+        {
+          content: content.strip,
+          metadata: metadata,
+          document_type: &quot;excel&quot;
+        }
+      end
+
+      def extract_video_transcript(movie)
+        # Placeholder for speech-to-text integration
+        # In production, integrate with:
+        # - OpenAI Whisper API
+        # - Google Speech-to-Text
+        # - Azure Speech Services
+
+        &quot;Video transcript extraction not yet implemented. &quot;
+        &quot;Duration: #{movie.duration}s, Resolution: #{movie.width}x#{movie.height}&quot;
+      end
+
+      # Update helper methods
+      def self.determine_document_type(file_path)
+        case File.extname(file_path).downcase
+        when &quot;.pdf&quot; then &quot;pdf&quot;
+        when &quot;.docx&quot; then &quot;docx&quot;
+        when &quot;.txt&quot; then &quot;text&quot;
+        when &quot;.md&quot;, &quot;.markdown&quot; then &quot;markdown&quot;
+        when &quot;.html&quot;, &quot;.htm&quot; then &quot;html&quot;
+        when &quot;.jpg&quot;, &quot;.jpeg&quot;, &quot;.png&quot;, &quot;.gif&quot;, &quot;.bmp&quot;, &quot;.webp&quot;, &quot;.svg&quot;, &quot;.ico&quot;, &quot;.tiff&quot;, &quot;.tif&quot; then &quot;image&quot;
+        when &quot;.mp4&quot;, &quot;.avi&quot;, &quot;.mov&quot;, &quot;.wmv&quot;, &quot;.flv&quot;, &quot;.webm&quot; then &quot;video&quot;  # Add this
+        when &quot;.xlsx&quot;, &quot;.xls&quot; then &quot;excel&quot;  # Add this
+        else &quot;text&quot;
+        end
+      end
+    end
+  end
+end
+</code></pre>
+<h2 id="embedding-provider-extensions">Embedding Provider Extensions</h2>
+<h3 id="custom-embedding-providers">Custom Embedding Providers</h3>
+<p>Add support for new embedding providers:</p>
+<pre><code class="language-ruby"># lib/ragdoll/core/embedding_providers/custom_provider.rb
+module Ragdoll
+  module Core
+    module EmbeddingProviders
+      class CustomProvider
+        def initialize(config = {})
+          @api_key = config[:api_key] || ENV['CUSTOM_PROVIDER_API_KEY']
+          @endpoint = config[:endpoint] || 'https://api.customprovider.com'
+          @model = config[:model] || 'custom-embedding-v1'
+        end
+
+        def generate_embedding(text)
+          response = make_request('/embeddings', {
+            input: text,
+            model: @model
+          })
+
+          parse_embedding_response(response)
+        end
+
+        def generate_embeddings_batch(texts)
+          response = make_request('/embeddings/batch', {
+            inputs: texts,
+            model: @model
+          })
+
+          parse_batch_response(response)
+        end
+
+        def supports_batch?
+          true
+        end
+
+        def max_batch_size
+          100
+        end
+
+        def embedding_dimensions
+          1536  # Return the dimension count for this provider
+        end
+
+        private
+
+        def make_request(path, data)
+          require 'faraday'
+
+          conn = Faraday.new(url: @endpoint) do |f|
+            f.request :json
+            f.response :json
+          end
+
+          response = conn.post(path) do |req|
+            req.headers['Authorization'] = &quot;Bearer #{@api_key}&quot;
+            req.headers['Content-Type'] = 'application/json'
+            req.body = data
+          end
+
+          handle_response(response)
+        end
+
+        def handle_response(response)
+          case response.status
+          when 200..299
+            response.body
+          when 429
+            raise EmbeddingError, &quot;Rate limit exceeded for custom provider&quot;
+          when 401
+            raise EmbeddingError, &quot;Authentication failed for custom provider&quot;
+          else
+            raise EmbeddingError, &quot;Custom provider error: #{response.status}&quot;
+          end
+        end
+
+        def parse_embedding_response(response)
+          response.dig('data', 0, 'embedding') || 
+            response['embedding'] ||
+            raise(EmbeddingError, &quot;Invalid response format from custom provider&quot;)
+        end
+
+        def parse_batch_response(response)
+          if response['data']
+            response['data'].map { |item| item['embedding'] }
+          elsif response['embeddings']
+            response['embeddings']
+          else
+            raise EmbeddingError, &quot;Invalid batch response format from custom provider&quot;
+          end
+        end
+      end
+    end
+  end
+end
+</code></pre>
+<h3 id="provider-integration">Provider Integration</h3>
+<p>Integrate the custom provider with the main EmbeddingService:</p>
+<pre><code class="language-ruby"># Extend EmbeddingService configuration
+module Ragdoll
+  module Core
+    class EmbeddingService
+      private
+
+      def configure_ruby_llm
+        # Existing provider configuration...
+
+        # Add custom provider support
+        if Ragdoll.config.embedding_config[:provider] == :custom
+          @custom_provider = EmbeddingProviders::CustomProvider.new(
+            Ragdoll.config.ruby_llm_config[:custom] || {}
+          )
+          return
+        end
+
+        # Existing RubyLLM configuration...
+      end
+
+      def generate_embedding(text)
+        return nil if text.nil? || text.strip.empty?
+
+        cleaned_text = clean_text(text)
+
+        # Use custom provider if configured
+        if @custom_provider
+          return @custom_provider.generate_embedding(cleaned_text)
+        end
+
+        # Existing implementation...
+      end
+    end
+  end
+end
+</code></pre>
+<h2 id="search-engine-extensions">Search Engine Extensions</h2>
+<h3 id="custom-search-algorithms">Custom Search Algorithms</h3>
+<p>Implement specialized search algorithms:</p>
+<pre><code class="language-ruby"># lib/ragdoll/core/search_algorithms/semantic_hybrid.rb
+module Ragdoll
+  module Core
+    module SearchAlgorithms
+      class SemanticHybrid
+        def initialize(embedding_service, options = {})
+          @embedding_service = embedding_service
+          @semantic_weight = options[:semantic_weight] || 0.7
+          @keyword_weight = options[:keyword_weight] || 0.3
+          @boost_recent = options[:boost_recent] || false
+        end
+
+        def search(query, **options)
+          # Generate query embedding
+          query_embedding = @embedding_service.generate_embedding(query)
+
+          # Perform semantic search
+          semantic_results = semantic_search(query_embedding, options)
+
+          # Perform keyword search
+          keyword_results = keyword_search(query, options)
+
+          # Combine and rank results
+          combined_results = combine_results(semantic_results, keyword_results)
+
+          # Apply additional ranking factors
+          ranked_results = apply_ranking_factors(combined_results, options)
+
+          ranked_results.take(options[:limit] || 10)
+        end
+
+        private
+
+        def semantic_search(query_embedding, options)
+          Models::Embedding.search_similar(
+            query_embedding,
+            limit: options[:limit] || 50,
+            threshold: options[:threshold] || 0.5,
+            filters: options[:filters] || {}
+          ).map do |result|
+            result.merge(
+              search_type: 'semantic',
+              base_score: result[:similarity]
+            )
+          end
+        end
+
+        def keyword_search(query, options)
+          # Use PostgreSQL full-text search
+          documents = Models::Document.search_content(
+            query,
+            limit: options[:limit] || 50
+          )
+
+          documents.map.with_index do |doc, index|
+            # Calculate keyword relevance score
+            relevance = calculate_keyword_relevance(doc, query)
+
+            {
+              document_id: doc.id.to_s,
+              document_title: doc.title,
+              document_location: doc.location,
+              content: doc.content[0..500],
+              search_type: 'keyword',
+              base_score: relevance,
+              similarity: relevance
+            }
+          end
+        end
+
+        def combine_results(semantic_results, keyword_results)
+          # Merge results by document_id
+          combined = {}
+
+          semantic_results.each do |result|
+            doc_id = result[:document_id]
+            combined[doc_id] = result.merge(
+              semantic_score: result[:base_score] * @semantic_weight
+            )
+          end
+
+          keyword_results.each do |result|
+            doc_id = result[:document_id]
+
+            if combined[doc_id]
+              # Combine scores
+              combined[doc_id][:keyword_score] = result[:base_score] * @keyword_weight
+              combined[doc_id][:combined_score] = 
+                combined[doc_id][:semantic_score] + (result[:base_score] * @keyword_weight)
+              combined[doc_id][:search_types] = ['semantic', 'keyword']
+            else
+              # Keyword-only result
+              combined[doc_id] = result.merge(
+                keyword_score: result[:base_score] * @keyword_weight,
+                combined_score: result[:base_score] * @keyword_weight,
+                search_types: ['keyword']
+              )
+            end
+          end
+
+          combined.values
+        end
+
+        def apply_ranking_factors(results, options)
+          results.map do |result|
+            score = result[:combined_score] || result[:similarity]
+
+            # Apply recency boost if enabled
+            if @boost_recent
+              doc = Models::Document.find(result[:document_id])
+              days_old = (Time.current - doc.created_at) / 1.day
+              recency_boost = [1.0 - (days_old / 365), 0.1].max  # Decay over a year
+              score *= (1.0 + recency_boost * 0.2)  # Up to 20% boost for recent docs
+            end
+
+            # Apply content type boost
+            if options[:boost_content_types]
+              content_boost = calculate_content_type_boost(result, options[:boost_content_types])
+              score *= content_boost
+            end
+
+            result.merge(final_score: score)
+          end.sort_by { |r| -r[:final_score] }
+        end
+
+        def calculate_keyword_relevance(document, query)
+          # Simple TF-IDF-like calculation
+          query_terms = query.downcase.split(/\W+/).reject(&amp;:empty?)
+          content = document.content.downcase
+
+          term_frequencies = query_terms.map do |term|
+            content.scan(/\b#{Regexp.escape(term)}\b/).count
+          end
+
+          # Normalize by content length and query terms
+          total_matches = term_frequencies.sum
+          content_length = content.split(/\W+/).length
+
+          return 0.0 if content_length == 0
+
+          (total_matches.to_f / content_length) * query_terms.length
+        end
+
+        def calculate_content_type_boost(result, boost_config)
+          doc = Models::Document.find(result[:document_id])
+          boost_config[doc.document_type&amp;.to_sym] || 1.0
+        end
+      end
+    end
+  end
+end
+</code></pre>
+<h2 id="metadata-schema-extensions">Metadata Schema Extensions</h2>
+<h3 id="custom-schema-types">Custom Schema Types</h3>
+<p>Extend metadata schemas for new content types:</p>
+<pre><code class="language-ruby"># lib/ragdoll/core/metadata_schemas/video_schema.rb
+module Ragdoll
+  module Core
+    module MetadataSchemas
+      class VideoSchema &lt; BaseSchema
+        SCHEMA = {
+          type: 'object',
+          properties: {
+            # Basic video properties
+            duration: {
+              type: 'number',
+              description: 'Video duration in seconds',
+              minimum: 0
+            },
+            resolution: {
+              type: 'string',
+              description: 'Video resolution (e.g., 1920x1080)',
+              pattern: '^\\d+x\\d+$'
+            },
+            codec: {
+              type: 'string',
+              description: 'Video codec used',
+              enum: ['h264', 'h265', 'vp8', 'vp9', 'av1']
+            },
+
+            # Content classification
+            category: {
+              type: 'string',
+              description: 'Video category',
+              enum: ['educational', 'entertainment', 'documentary', 'tutorial', 'presentation']
+            },
+            topics: {
+              type: 'array',
+              description: 'Main topics covered in the video',
+              items: { type: 'string' },
+              maxItems: 10
+            },
+
+            # Quality indicators
+            transcript_quality: {
+              type: 'string',
+              description: 'Quality of extracted transcript',
+              enum: ['high', 'medium', 'low', 'none']
+            },
+            audio_quality: {
+              type: 'string',
+              description: 'Audio quality assessment',
+              enum: ['excellent', 'good', 'fair', 'poor']
+            },
+
+            # Accessibility
+            has_captions: {
+              type: 'boolean',
+              description: 'Whether video has captions/subtitles'
+            },
+            language: {
+              type: 'string',
+              description: 'Primary language of the video content'
+            }
+          },
+          required: ['duration']
+        }.freeze
+
+        def self.generate_metadata(document)
+          return {} unless document.document_type == 'video'
+
+          video_content = document.video_contents.first
+          return {} unless video_content
+
+          metadata = {
+            duration: video_content.duration,
+            resolution: video_content.resolution,
+            codec: video_content.video_codec
+          }
+
+          # AI-powered content analysis
+          if video_content.transcript.present?
+            ai_analysis = analyze_video_content(video_content.transcript)
+            metadata.merge!(ai_analysis)
+          end
+
+          metadata
+        end
+
+        private
+
+        def self.analyze_video_content(transcript)
+          # Use TextGenerationService for content analysis
+          generator = TextGenerationService.new
+
+          # Extract topics
+          topics = generator.extract_keywords(transcript, max_keywords: 5)
+
+          # Classify category (simplified)
+          category = classify_video_category(transcript)
+
+          # Assess transcript quality
+          transcript_quality = assess_transcript_quality(transcript)
+
+          {
+            topics: topics,
+            category: category,
+            transcript_quality: transcript_quality,
+            language: detect_language(transcript)
+          }
+        end
+
+        def self.classify_video_category(transcript)
+          # Simple keyword-based classification
+          case transcript.downcase
+          when /tutorial|how to|step by step/
+            'tutorial'
+          when /education|learn|study|course/
+            'educational'
+          when /documentary|history|science/
+            'documentary'
+          when /presentation|meeting|conference/
+            'presentation'
+          else
+            'entertainment'
+          end
+        end
+
+        def self.assess_transcript_quality(transcript)
+          # Assess quality based on various factors
+          return 'none' if transcript.blank?
+
+          word_count = transcript.split.length
+          return 'low' if word_count &lt; 50
+
+          # Check for transcript markers (poor quality indicators)
+          poor_quality_markers = ['[inaudible]', '[unclear]', '???', '[music]']
+          marker_count = poor_quality_markers.sum { |marker| transcript.scan(marker).count }
+
+          marker_ratio = marker_count.to_f / word_count
+
+          case marker_ratio
+          when 0..0.01
+            'high'
+          when 0.01..0.05
+            'medium'
+          else
+            'low'
+          end
+        end
+
+        def self.detect_language(transcript)
+          # Simplified language detection
+          # In production, use proper language detection library
+          'en'  # Default to English
+        end
+      end
+    end
+  end
+end
+</code></pre>
+<h2 id="plugin-architecture">Plugin Architecture</h2>
+<h3 id="plugin-development-framework">Plugin Development Framework</h3>
+<pre><code class="language-ruby"># lib/ragdoll/core/plugin_system.rb
+module Ragdoll
+  module Core
+    class PluginSystem
+      @plugins = {}
+      @hooks = Hash.new { |h, k| h[k] = [] }
+
+      class &lt;&lt; self
+        attr_reader :plugins, :hooks
+
+        def register_plugin(name, plugin_class)
+          @plugins[name] = plugin_class
+          plugin_class.new.setup if plugin_class.respond_to?(:setup)
+        end
+
+        def register_hook(event, callback)
+          @hooks[event] &lt;&lt; callback
+        end
+
+        def execute_hooks(event, *args)
+          @hooks[event].each do |callback|
+            callback.call(*args)
+          end
+        end
+
+        def load_plugin(plugin_path)
+          require plugin_path
+        end
+
+        def active_plugins
+          @plugins.keys
+        end
+      end
+    end
+
+    # Base plugin class
+    class BasePlugin
+      def setup
+        # Override in subclasses
+      end
+
+      def teardown
+        # Override in subclasses
+      end
+
+      protected
+
+      def register_hook(event, &amp;block)
+        PluginSystem.register_hook(event, block)
+      end
+    end
+  end
+end
+</code></pre>
+<h3 id="example-plugin-implementation">Example Plugin Implementation</h3>
+<pre><code class="language-ruby"># lib/ragdoll_plugins/content_analytics_plugin.rb
+class ContentAnalyticsPlugin &lt; Ragdoll::Core::BasePlugin
+  def setup
+    puts &quot;Setting up Content Analytics Plugin&quot;
+
+    # Register hooks for document processing events
+    register_hook(:document_processed) do |document|
+      track_document_metrics(document)
+    end
+
+    register_hook(:search_performed) do |query, results|
+      track_search_metrics(query, results)
+    end
+  end
+
+  private
+
+  def track_document_metrics(document)
+    # Collect document processing metrics
+    metrics = {
+      document_id: document.id,
+      document_type: document.document_type,
+      content_length: document.content&amp;.length || 0,
+      embedding_count: document.all_embeddings.count,
+      processed_at: Time.current
+    }
+
+    # Send to analytics service
+    send_to_analytics('document_processed', metrics)
+  end
+
+  def track_search_metrics(query, results)
+    metrics = {
+      query: query,
+      result_count: results.length,
+      average_similarity: results.map { |r| r[:similarity] }.sum / results.length,
+      searched_at: Time.current
+    }
+
+    send_to_analytics('search_performed', metrics)
+  end
+
+  def send_to_analytics(event, data)
+    # Implementation depends on your analytics service
+    puts &quot;Analytics: #{event} - #{data}&quot;
+  end
+end
+
+# Register the plugin
+Ragdoll::Core::PluginSystem.register_plugin(:content_analytics, ContentAnalyticsPlugin)
+</code></pre>
+<h2 id="integration-best-practices">Integration Best Practices</h2>
+<h3 id="extension-development-guidelines">Extension Development Guidelines</h3>
+<ol>
+<li><strong>Follow STI Patterns</strong>: Use Single Table Inheritance for content models</li>
+<li><strong>Maintain Database Compatibility</strong>: Ensure PostgreSQL + pgvector compatibility</li>
+<li><strong>Implement Proper Error Handling</strong>: Use Ragdoll's error classes</li>
+<li><strong>Add Comprehensive Tests</strong>: Follow existing test patterns</li>
+<li><strong>Document Extensions</strong>: Provide clear usage examples</li>
+</ol>
+<h3 id="performance-considerations">Performance Considerations</h3>
+<ul>
+<li><strong>Database Indexes</strong>: Add appropriate indexes for new queries</li>
+<li><strong>Embedding Dimensions</strong>: Ensure consistency across providers</li>
+<li><strong>Memory Usage</strong>: Monitor memory usage with large files</li>
+<li><strong>Batch Processing</strong>: Implement batch operations where possible</li>
+</ul>
+<h3 id="testing-extensions">Testing Extensions</h3>
+<pre><code class="language-ruby"># test/extensions/video_content_test.rb
+class VideoContentTest &lt; Minitest::Test
+  def test_video_content_creation
+    document = create_test_document
+
+    video_content = document.video_contents.create!(
+      content: &quot;This is a test video transcript&quot;,
+      embedding_model: &quot;test-model&quot;,
+      metadata: {
+        duration: 120,
+        width: 1920,
+        height: 1080,
+        codec: &quot;h264&quot;
+      }
+    )
+
+    assert_equal &quot;This is a test video transcript&quot;, video_content.transcript
+    assert_equal 120, video_content.duration
+    assert_equal &quot;1920x1080&quot;, video_content.resolution
+  end
+
+  def test_video_embedding_generation
+    document = create_test_document
+    video_content = document.video_contents.create!(
+      content: &quot;Test transcript content&quot;,
+      embedding_model: &quot;test-model&quot;
+    )
+
+    # Mock embedding service
+    mock_service = MockEmbeddingService.new
+    EmbeddingService.stub(:new, mock_service) do
+      video_content.generate_embeddings!
+    end
+
+    assert video_content.embeddings.any?
+    assert_equal &quot;Test transcript content&quot;, video_content.embeddings.first.content
+  end
+end
+</code></pre>
+<h3 id="extension-packaging">Extension Packaging</h3>
+<pre><code class="language-ruby"># ragdoll_video_extension.gemspec
+Gem::Specification.new do |spec|
+  spec.name          = &quot;ragdoll-video-extension&quot;
+  spec.version       = &quot;1.0.0&quot;
+  spec.authors       = [&quot;Your Name&quot;]
+  spec.email         = [&quot;your.email@example.com&quot;]
+
+  spec.summary       = &quot;Video content support for Ragdoll&quot;
+  spec.description   = &quot;Adds video processing and transcript extraction to Ragdoll&quot;
+  spec.homepage      = &quot;https://github.com/yourorg/ragdoll-video-extension&quot;
+
+  spec.files         = Dir[&quot;lib/**/*&quot;, &quot;README.md&quot;]
+  spec.require_paths = [&quot;lib&quot;]
+
+  spec.add_dependency &quot;ragdoll&quot;, &quot;~&gt; 1.0&quot;
+  spec.add_dependency &quot;streamio-ffmpeg&quot;, &quot;~&gt; 3.0&quot;
+
+  spec.add_development_dependency &quot;minitest&quot;, &quot;~&gt; 5.0&quot;
+  spec.add_development_dependency &quot;simplecov&quot;, &quot;~&gt; 0.21&quot;
+end
+</code></pre>
+<hr />
+<p><em>This document is part of the Ragdoll documentation suite. For immediate help, see the <a href="../quick-start/">Quick Start Guide</a> or <a href="../api-client/">API Reference</a>.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

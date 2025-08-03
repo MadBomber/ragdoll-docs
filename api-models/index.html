@@ -1,0 +1,3311 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../api-jobs/">
+      
+      
+        <link rel="next" href="../api-services/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Models Reference - Ragdoll Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#models-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ragdoll Documentation" class="md-header__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ragdoll Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Models Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ragdoll Documentation" class="md-nav__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ragdoll Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ragdoll Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Client API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jobs Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Models Reference
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Models Reference
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#activerecord-models-and-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      ActiveRecord Models and Relationships
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-models-sti-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Models (STI Architecture)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Models (STI Architecture)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#textcontent-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      TextContent Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imagecontent-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      ImageContent Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audiocontent-model-planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      AudioContent Model (Planned)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Model
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Relationships
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Relationships">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primary Relationships
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#association-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Association Details
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-constraints-and-foreign-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Constraints and Foreign Keys
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Index Strategy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instance Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instance Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#content-retrieval-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Retrieval Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-accessors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metadata Accessors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-status-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing Status Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-handling-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Handling Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedding-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing Callbacks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Embedding Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#similarity-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Similarity Search
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Tracking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analytics-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analytics Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Class Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-class-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Class Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Class Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scopes-and-query-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scopes and Query Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-and-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search and Filtering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statistics-and-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Statistics and Analytics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-class-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Class Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Class Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#content-type-specific-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content-Type Specific Queries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Statistics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-class-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Class Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Embedding Class Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-search-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Search Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Analytics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-operations_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Validations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Validations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-model-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Model Validations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Model Validations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Fields
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Format Validations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Validators
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-model-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Model Validations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Model Validations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-content-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base Content Validations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textcontent-specific-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      TextContent Specific Validations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imagecontent-specific-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      ImageContent Specific Validations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-model-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Model Validations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Embedding Model Validations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector-and-content-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector and Content Validations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validation-error-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation Error Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation Callbacks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Deployment Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../document-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embedding System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Variables Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extending the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-uploads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Upload System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation &amp; Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LLM Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metadata Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Modal Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Performance Tuning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Considerations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#activerecord-models-and-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      ActiveRecord Models and Relationships
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Models
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-models-sti-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Models (STI Architecture)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Models (STI Architecture)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#textcontent-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      TextContent Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imagecontent-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      ImageContent Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audiocontent-model-planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      AudioContent Model (Planned)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Model
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Relationships
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Relationships">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primary Relationships
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#association-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Association Details
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-constraints-and-foreign-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Constraints and Foreign Keys
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Index Strategy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instance Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instance Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#content-retrieval-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Retrieval Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-accessors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metadata Accessors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-status-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing Status Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-handling-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Handling Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedding-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Processing Callbacks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Embedding Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#similarity-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Similarity Search
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Tracking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analytics-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analytics Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Class Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-class-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Class Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Class Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scopes-and-query-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scopes and Query Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-and-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search and Filtering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statistics-and-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Statistics and Analytics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-class-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Class Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Class Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#content-type-specific-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content-Type Specific Queries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Statistics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-class-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Class Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Embedding Class Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-search-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Search Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Analytics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-operations_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Validations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Validations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-model-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Model Validations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Model Validations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Fields
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Format Validations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-validators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Validators
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-model-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Model Validations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Content Model Validations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-content-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base Content Validations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textcontent-specific-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      TextContent Specific Validations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imagecontent-specific-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      ImageContent Specific Validations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-model-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Model Validations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Embedding Model Validations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector-and-content-validations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector and Content Validations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#validation-error-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation Error Processing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validation-callbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation Callbacks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="models-reference">Models Reference</h1>
+<p>Ragdoll uses a sophisticated ActiveRecord model architecture with Single Table Inheritance (STI) for multi-modal content storage and polymorphic associations for flexible embeddings.</p>
+<h2 id="activerecord-models-and-relationships">ActiveRecord Models and Relationships</h2>
+<p>The model architecture provides:</p>
+<ul>
+<li><strong>Single Table Inheritance (STI)</strong>: Content models (<code>TextContent</code>, <code>ImageContent</code>, <code>AudioContent</code>) share a single table</li>
+<li><strong>Polymorphic Associations</strong>: Embeddings can belong to any content type through polymorphic relationships</li>
+<li><strong>PostgreSQL Optimizations</strong>: Native JSON columns, full-text search indexes, and pgvector integration</li>
+<li><strong>Rich Metadata Support</strong>: Flexible metadata storage with validation and type-specific schemas</li>
+<li><strong>Usage Analytics</strong>: Built-in tracking for search optimization and performance monitoring</li>
+<li><strong>Comprehensive Validations</strong>: Data integrity through extensive validation rules and callbacks</li>
+</ul>
+<h2 id="core-models">Core Models</h2>
+<h3 id="document-model">Document Model</h3>
+<p><strong>Class:</strong> <code>Ragdoll::Core::Models::Document</code></p>
+<p><strong>Table:</strong> <code>ragdoll_documents</code></p>
+<p><strong>Primary Attributes:</strong></p>
+<pre><code class="language-ruby"># Core document identification
+id                :bigint           # Primary key
+location          :string           # Source location (file path, URL, identifier)
+title             :string           # Human-readable document title
+document_type     :string           # Document format type (text, image, audio, pdf, etc.)
+status            :string           # Processing status (pending, processing, processed, error)
+file_modified_at  :datetime         # Source file modification timestamp
+
+# Metadata storage
+metadata          :json             # LLM-generated structured metadata
+file_metadata     :json             # File properties and processing metadata
+
+# Timestamps
+created_at        :datetime
+updated_at        :datetime
+</code></pre>
+<p><strong>Multi-Modal Content Associations:</strong></p>
+<pre><code class="language-ruby"># STI-based content relationships
+has_many :contents, class_name: &quot;Ragdoll::Core::Models::Content&quot;, dependent: :destroy
+has_many :text_contents, class_name: &quot;Ragdoll::Core::Models::TextContent&quot;
+has_many :image_contents, class_name: &quot;Ragdoll::Core::Models::ImageContent&quot;
+has_many :audio_contents, class_name: &quot;Ragdoll::Core::Models::AudioContent&quot;
+
+# Embedding relationships through content
+has_many :text_embeddings, through: :text_contents, source: :embeddings
+has_many :image_embeddings, through: :image_contents, source: :embeddings
+has_many :audio_embeddings, through: :audio_contents, source: :embeddings
+</code></pre>
+<p><strong>Key Instance Methods:</strong></p>
+<pre><code class="language-ruby"># Content access
+document.content                    # Returns combined content from all content types
+document.content = &quot;new content&quot;    # Creates appropriate content model
+
+# Multi-modal detection
+document.multi_modal?               # True if document has multiple content types
+document.content_types              # Array of content types: ['text', 'image', 'audio']
+document.primary_content_type       # Primary content type for the document
+
+# Statistics
+document.total_word_count           # Sum of words across all text content
+document.total_character_count      # Sum of characters across all text content
+document.total_embedding_count      # Total embeddings across all content types
+document.embeddings_by_type         # Hash: { text: 10, image: 5, audio: 2 }
+
+# Processing
+document.processed?                 # True if status == 'processed'
+document.process_content!           # Generate embeddings and metadata
+document.generate_metadata!         # Generate LLM-based metadata
+</code></pre>
+<p><strong>Search and Query Methods:</strong></p>
+<pre><code class="language-ruby"># PostgreSQL full-text search
+Document.search_content(&quot;machine learning&quot;)
+
+# Faceted search with metadata filters
+Document.faceted_search(
+  query: &quot;AI research&quot;,
+  keywords: [&quot;neural networks&quot;],
+  classification: &quot;academic_paper&quot;,
+  tags: [&quot;machine-learning&quot;]
+)
+
+# Hybrid search combining semantic and text search
+Document.hybrid_search(
+  &quot;deep learning applications&quot;,
+  query_embedding: embedding_vector,
+  semantic_weight: 0.7,
+  text_weight: 0.3
+)
+</code></pre>
+<h3 id="content-models-sti-architecture">Content Models (STI Architecture)</h3>
+<p><strong>Base Class:</strong> <code>Ragdoll::Core::Models::Content</code></p>
+<p><strong>Table:</strong> <code>ragdoll_contents</code> (shared by all content types)</p>
+<p><strong>STI Classes:</strong>
+- <code>Ragdoll::Core::Models::TextContent</code>
+- <code>Ragdoll::Core::Models::ImageContent</code> 
+- <code>Ragdoll::Core::Models::AudioContent</code></p>
+<p><strong>Shared Attributes:</strong></p>
+<pre><code class="language-ruby">id              :bigint           # Primary key
+type            :string           # STI discriminator (TextContent, ImageContent, etc.)
+document_id     :bigint           # Foreign key to document
+embedding_model :string           # Model used for embeddings
+content         :text             # Content text (text, description, transcript)
+data            :text             # Raw file data or metadata
+metadata        :json             # Content-specific metadata
+duration        :float            # Audio duration (audio content only)
+sample_rate     :integer          # Audio sample rate (audio content only)
+created_at      :datetime
+updated_at      :datetime
+</code></pre>
+<p><strong>Polymorphic Relationships:</strong></p>
+<pre><code class="language-ruby"># Each content model belongs to a document
+belongs_to :document, class_name: &quot;Ragdoll::Core::Models::Document&quot;
+
+# Each content model can have many embeddings
+has_many :embeddings, class_name: &quot;Ragdoll::Core::Models::Embedding&quot;, as: :embeddable
+</code></pre>
+<h4 id="textcontent-model">TextContent Model</h4>
+<p><strong>Specific Validations:</strong></p>
+<pre><code class="language-ruby">validates :content, presence: true  # Text content is required
+</code></pre>
+<p><strong>Text-Specific Methods:</strong></p>
+<pre><code class="language-ruby"># Content analysis
+text_content.word_count             # Number of words in content
+text_content.character_count        # Number of characters in content
+text_content.line_count             # Number of lines (from metadata)
+
+# Chunking configuration
+text_content.chunk_size             # Tokens per chunk (default: 1000)
+text_content.chunk_size = 1500      # Set custom chunk size
+text_content.overlap                # Token overlap (default: 200)
+text_content.overlap = 300          # Set custom overlap
+
+# Content processing
+text_content.chunks                 # Array of content chunks with positions
+text_content.generate_embeddings!   # Generate embeddings for all chunks
+</code></pre>
+<p><strong>Text Processing Example:</strong></p>
+<pre><code class="language-ruby">text_content = document.text_contents.create!(
+  content: &quot;Large document text...&quot;,
+  embedding_model: &quot;text-embedding-3-large&quot;,
+  metadata: {
+    encoding: &quot;UTF-8&quot;,
+    line_count: 150,
+    chunk_size: 1000,
+    overlap: 200
+  }
+)
+
+# Generate embeddings automatically
+text_content.generate_embeddings!
+
+# Access generated chunks and embeddings
+text_content.chunks.each do |chunk|
+  puts &quot;Chunk #{chunk[:chunk_index]}: #{chunk[:content][0..50]}...&quot;
+end
+
+text_content.embeddings.each do |embedding|
+  puts &quot;Embedding #{embedding.chunk_index}: #{embedding.embedding_vector.length} dimensions&quot;
+end
+</code></pre>
+<h4 id="imagecontent-model">ImageContent Model</h4>
+<p><strong>Image-Specific Attributes:</strong></p>
+<pre><code class="language-ruby"># content field stores AI-generated description
+# data field stores image binary data or file reference
+# metadata stores image properties
+</code></pre>
+<p><strong>Image-Specific Methods:</strong></p>
+<pre><code class="language-ruby"># Image properties (from metadata)
+image_content.width                 # Image width in pixels
+image_content.height                # Image height in pixels
+image_content.file_size             # File size in bytes
+image_content.format                # Image format (jpg, png, etc.)
+
+# AI-generated content
+image_content.description           # AI-generated description (stored in content field)
+image_content.objects_detected      # Detected objects (from metadata)
+image_content.scene_type            # Scene classification (from metadata)
+</code></pre>
+<h4 id="audiocontent-model-planned">AudioContent Model (Planned)</h4>
+<p><strong>Audio-Specific Attributes:</strong></p>
+<pre><code class="language-ruby">duration        :float            # Audio duration in seconds
+sample_rate     :integer          # Sample rate in Hz
+# content field stores transcript
+# data field stores audio binary data
+# metadata stores audio properties and timestamps
+</code></pre>
+<p><strong>Audio-Specific Methods (Planned):</strong></p>
+<pre><code class="language-ruby"># Audio properties
+audio_content.duration_formatted    # &quot;5:42&quot; format
+audio_content.bitrate               # Audio bitrate (from metadata)
+audio_content.channels              # Number of audio channels
+
+# Transcript and timestamps
+audio_content.transcript            # Full transcript (stored in content field)
+audio_content.timestamps            # Word-level timestamps (from metadata)
+audio_content.speakers             # Speaker identification (from metadata)
+</code></pre>
+<h3 id="embedding-model">Embedding Model</h3>
+<p><strong>Class:</strong> <code>Ragdoll::Core::Models::Embedding</code></p>
+<p><strong>Table:</strong> <code>ragdoll_embeddings</code></p>
+<p><strong>Attributes:</strong></p>
+<pre><code class="language-ruby">id                :bigint           # Primary key
+embeddable_type   :string           # Polymorphic type (Content class name)
+embeddable_id     :bigint           # Polymorphic ID (Content record ID)
+chunk_index       :integer          # Order within content
+content           :text             # Original text that was embedded
+embedding_vector  :vector(1536)     # pgvector column (configurable dimensions)
+usage_count       :integer          # Number of times used in searches
+returned_at       :datetime         # Last usage timestamp
+created_at        :datetime
+updated_at        :datetime
+</code></pre>
+<p><strong>Polymorphic Association:</strong></p>
+<pre><code class="language-ruby"># Belongs to any content type through polymorphic association
+belongs_to :embeddable, polymorphic: true
+
+# Can belong to TextContent, ImageContent, or AudioContent
+embedding.embeddable                # Returns the associated content object
+embedding.embeddable_type           # &quot;Ragdoll::Core::Models::TextContent&quot;
+embedding.embeddable_id             # Content record ID
+</code></pre>
+<p><strong>Vector Search Methods:</strong></p>
+<pre><code class="language-ruby"># pgvector similarity search
+Embedding.search_similar(
+  query_embedding,
+  limit: 20,
+  threshold: 0.7,
+  filters: {
+    embeddable_type: &quot;Ragdoll::Core::Models::TextContent&quot;,
+    document_type: &quot;pdf&quot;,
+    embedding_model: &quot;text-embedding-3-large&quot;
+  }
+)
+
+# Usage analytics
+embedding.mark_as_used!             # Increment usage_count and update returned_at
+embedding.usage_score               # Calculated usage score for ranking
+embedding.embedding_dimensions      # Number of vector dimensions
+</code></pre>
+<p><strong>Search Result Format:</strong></p>
+<pre><code class="language-ruby">[
+  {
+    embedding_id: &quot;123&quot;,
+    embeddable_id: &quot;456&quot;,
+    embeddable_type: &quot;Ragdoll::Core::Models::TextContent&quot;,
+    document_id: &quot;789&quot;,
+    document_title: &quot;AI Research Paper&quot;,
+    document_location: &quot;/path/to/document.pdf&quot;,
+    content: &quot;Machine learning algorithms...&quot;,
+    similarity: 0.85,
+    distance: 0.15,
+    chunk_index: 5,
+    embedding_dimensions: 1536,
+    embedding_model: &quot;text-embedding-3-large&quot;,
+    usage_count: 12,
+    returned_at: &quot;2025-01-15T10:30:00Z&quot;,
+    combined_score: 0.92
+  }
+]
+</code></pre>
+<h2 id="model-relationships">Model Relationships</h2>
+<p>Ragdoll uses a sophisticated relationship structure optimized for multi-modal content:</p>
+<h3 id="primary-relationships">Primary Relationships</h3>
+<pre><code class="language-mermaid">erDiagram
+    Document ||--o{ TextContent : &quot;has many&quot;
+    Document ||--o{ ImageContent : &quot;has many&quot;
+    Document ||--o{ AudioContent : &quot;has many&quot;
+    TextContent ||--o{ Embedding : &quot;has many (polymorphic)&quot;
+    ImageContent ||--o{ Embedding : &quot;has many (polymorphic)&quot;
+    AudioContent ||--o{ Embedding : &quot;has many (polymorphic)&quot;
+
+    Document {
+        bigint id PK
+        string location
+        string title
+        string document_type
+        string status
+        json metadata
+        json file_metadata
+        datetime file_modified_at
+    }
+
+    TextContent {
+        bigint id PK
+        string type &quot;'TextContent'&quot;
+        bigint document_id FK
+        string embedding_model
+        text content
+        text data
+        json metadata
+    }
+
+    ImageContent {
+        bigint id PK
+        string type &quot;'ImageContent'&quot;
+        bigint document_id FK
+        string embedding_model
+        text content &quot;AI description&quot;
+        text data &quot;Image data&quot;
+        json metadata
+    }
+
+    AudioContent {
+        bigint id PK
+        string type &quot;'AudioContent'&quot;
+        bigint document_id FK
+        string embedding_model
+        text content &quot;Transcript&quot;
+        text data &quot;Audio data&quot;
+        json metadata
+        float duration
+        integer sample_rate
+    }
+
+    Embedding {
+        bigint id PK
+        string embeddable_type FK
+        bigint embeddable_id FK
+        integer chunk_index
+        text content
+        vector embedding_vector
+        integer usage_count
+        datetime returned_at
+    }
+</code></pre>
+<h3 id="association-details">Association Details</h3>
+<p><strong>Document Associations:</strong></p>
+<pre><code class="language-ruby">class Document &lt; ActiveRecord::Base
+  # Content associations (STI)
+  has_many :contents, class_name: &quot;Content&quot;, dependent: :destroy
+  has_many :text_contents, -&gt; { where(type: &quot;TextContent&quot;) }
+  has_many :image_contents, -&gt; { where(type: &quot;ImageContent&quot;) }
+  has_many :audio_contents, -&gt; { where(type: &quot;AudioContent&quot;) }
+
+  # Embedding associations through content
+  has_many :text_embeddings, through: :text_contents, source: :embeddings
+  has_many :image_embeddings, through: :image_contents, source: :embeddings
+  has_many :audio_embeddings, through: :audio_contents, source: :embeddings
+
+  # Access all embeddings across content types
+  def all_embeddings(content_type: nil)
+    if content_type
+      case content_type.to_s
+      when 'text' then text_embeddings
+      when 'image' then image_embeddings
+      when 'audio' then audio_embeddings
+      end
+    else
+      Embedding.where(
+        embeddable_type: 'Ragdoll::Core::Models::Content',
+        embeddable_id: contents.pluck(:id)
+      )
+    end
+  end
+end
+</code></pre>
+<p><strong>Content Associations (STI Base):</strong></p>
+<pre><code class="language-ruby">class Content &lt; ActiveRecord::Base
+  # Parent document relationship
+  belongs_to :document, class_name: &quot;Document&quot;, foreign_key: &quot;document_id&quot;
+
+  # Polymorphic embedding relationship
+  has_many :embeddings, as: :embeddable, dependent: :destroy
+
+  # STI subclasses: TextContent, ImageContent, AudioContent
+end
+</code></pre>
+<p><strong>Embedding Associations (Polymorphic):</strong></p>
+<pre><code class="language-ruby">class Embedding &lt; ActiveRecord::Base
+  # Polymorphic association - can belong to any content type
+  belongs_to :embeddable, polymorphic: true
+
+  # Access parent document through content
+  def document
+    embeddable&amp;.document
+  end
+
+  # Scopes for different content types
+  scope :text_embeddings, -&gt; { where(embeddable_type: &quot;Ragdoll::Core::Models::TextContent&quot;) }
+  scope :image_embeddings, -&gt; { where(embeddable_type: &quot;Ragdoll::Core::Models::ImageContent&quot;) }
+  scope :audio_embeddings, -&gt; { where(embeddable_type: &quot;Ragdoll::Core::Models::AudioContent&quot;) }
+end
+</code></pre>
+<h3 id="database-constraints-and-foreign-keys">Database Constraints and Foreign Keys</h3>
+<p><strong>Foreign Key Constraints:</strong></p>
+<pre><code class="language-sql">-- Document to Content relationship
+ALTER TABLE ragdoll_contents 
+ADD CONSTRAINT fk_contents_document 
+FOREIGN KEY (document_id) REFERENCES ragdoll_documents(id) 
+ON DELETE CASCADE;
+
+-- Polymorphic embedding relationships (enforced by application)
+-- Note: PostgreSQL doesn't support polymorphic foreign key constraints
+-- These are enforced through ActiveRecord validations and callbacks
+</code></pre>
+<p><strong>Unique Constraints:</strong></p>
+<pre><code class="language-sql">-- Ensure unique document locations
+ALTER TABLE ragdoll_documents 
+ADD CONSTRAINT unique_document_location UNIQUE (location);
+
+-- Ensure unique chunk indexes per content
+ALTER TABLE ragdoll_embeddings 
+ADD CONSTRAINT unique_chunk_per_content 
+UNIQUE (embeddable_type, embeddable_id, chunk_index);
+</code></pre>
+<p><strong>Check Constraints:</strong></p>
+<pre><code class="language-sql">-- Ensure valid document types
+ALTER TABLE ragdoll_documents 
+ADD CONSTRAINT valid_document_type 
+CHECK (document_type IN ('text', 'image', 'audio', 'pdf', 'docx', 'html', 'markdown', 'mixed'));
+
+-- Ensure valid processing status
+ALTER TABLE ragdoll_documents 
+ADD CONSTRAINT valid_status 
+CHECK (status IN ('pending', 'processing', 'processed', 'error'));
+
+-- Ensure valid content types for STI
+ALTER TABLE ragdoll_contents 
+ADD CONSTRAINT valid_content_type 
+CHECK (type IN ('Ragdoll::Core::Models::TextContent', 
+                'Ragdoll::Core::Models::ImageContent', 
+                'Ragdoll::Core::Models::AudioContent'));
+</code></pre>
+<h3 id="index-strategy">Index Strategy</h3>
+<p><strong>Performance Indexes:</strong></p>
+<pre><code class="language-sql">-- Document indexes
+CREATE INDEX idx_documents_status ON ragdoll_documents(status);
+CREATE INDEX idx_documents_type ON ragdoll_documents(document_type);
+CREATE INDEX idx_documents_created_at ON ragdoll_documents(created_at);
+
+-- Content indexes (STI table)
+CREATE INDEX idx_contents_type ON ragdoll_contents(type);
+CREATE INDEX idx_contents_document_id ON ragdoll_contents(document_id);
+CREATE INDEX idx_contents_embedding_model ON ragdoll_contents(embedding_model);
+
+-- Embedding indexes
+CREATE INDEX idx_embeddings_embeddable ON ragdoll_embeddings(embeddable_type, embeddable_id);
+CREATE INDEX idx_embeddings_usage_count ON ragdoll_embeddings(usage_count);
+CREATE INDEX idx_embeddings_returned_at ON ragdoll_embeddings(returned_at);
+
+-- pgvector similarity search index
+CREATE INDEX idx_embeddings_vector_cosine ON ragdoll_embeddings 
+USING ivfflat (embedding_vector vector_cosine_ops) WITH (lists = 100);
+</code></pre>
+<p><strong>Full-Text Search Indexes:</strong></p>
+<pre><code class="language-sql">-- Document full-text search
+CREATE INDEX idx_documents_fulltext ON ragdoll_documents 
+USING gin(to_tsvector('english', 
+  title || ' ' || 
+  COALESCE(metadata-&gt;&gt;'summary', '') || ' ' || 
+  COALESCE(metadata-&gt;&gt;'keywords', '') || ' ' || 
+  COALESCE(metadata-&gt;&gt;'description', '')
+));
+
+-- Content full-text search
+CREATE INDEX idx_contents_fulltext ON ragdoll_contents 
+USING gin(to_tsvector('english', COALESCE(content, '')));
+</code></pre>
+<h2 id="instance-methods">Instance Methods</h2>
+<h3 id="document-methods">Document Methods</h3>
+<h4 id="content-retrieval-methods">Content Retrieval Methods</h4>
+<pre><code class="language-ruby"># Dynamic content access based on primary content type
+document.content                    
+# Returns combined content from all content types
+# For text: concatenated text from all text_contents
+# For image: concatenated descriptions from all image_contents
+# For audio: concatenated transcripts from all audio_contents
+
+# Content type detection
+document.content_types              # =&gt; ['text', 'image']
+document.primary_content_type       # =&gt; 'text'
+document.multi_modal?               # =&gt; true (if multiple content types)
+
+# Content statistics
+document.total_word_count           # Sum across all text content
+document.total_character_count      # Sum across all text content
+document.total_embedding_count      # Sum across all content types
+document.embeddings_by_type         # =&gt; { text: 15, image: 3, audio: 0 }
+
+# Content access by type
+document.text_contents.each { |tc| puts tc.content }
+document.image_contents.each { |ic| puts ic.content }  # AI descriptions
+document.audio_contents.each { |ac| puts ac.content }  # Transcripts
+</code></pre>
+<h4 id="metadata-accessors">Metadata Accessors</h4>
+<pre><code class="language-ruby"># LLM-generated metadata (stored in metadata JSON column)
+document.metadata                   # Full metadata hash
+document.description                # metadata['description']
+document.description = &quot;New desc&quot;   # Updates metadata hash
+document.classification             # metadata['classification']
+document.classification = &quot;technical&quot;
+document.tags                       # metadata['tags'] (array)
+document.tags = ['ai', 'research']
+
+# Metadata utility methods
+document.has_summary?               # Check if summary exists
+document.has_keywords?              # Check if keywords exist
+document.keywords_array             # Parse keywords into array
+document.add_keyword('machine-learning')
+document.remove_keyword('outdated')
+
+# File metadata (stored in file_metadata JSON column)
+document.file_metadata              # File processing metadata
+document.total_file_size            # Sum of all content file sizes
+document.primary_file_type          # Document's primary file type
+</code></pre>
+<h4 id="processing-status-methods">Processing Status Methods</h4>
+<pre><code class="language-ruby"># Status checking
+document.processed?                 # status == 'processed'
+document.status                     # 'pending', 'processing', 'processed', 'error'
+
+# Content processing
+document.process_content!           # Full processing pipeline:
+                                    # 1. Generate embeddings for all content
+                                    # 2. Generate LLM metadata
+                                    # 3. Update status to 'processed'
+
+document.generate_embeddings_for_all_content!
+                                    # Generate embeddings only
+
+document.generate_metadata!         # Generate LLM metadata only
+
+# Processing validation
+document.has_files?                 # Check if content has associated files
+document.has_pending_content?       # Check for content awaiting processing
+</code></pre>
+<h4 id="file-handling-methods">File Handling Methods</h4>
+<pre><code class="language-ruby"># File association (through content models)
+document.has_files?                 # Any content has file data
+document.total_file_size            # Sum of all file sizes
+document.primary_file_type          # Main file type
+
+# File metadata access
+document.file_modified_at           # Source file modification time
+document.location                   # Source file path or URL
+
+# Content creation from files
+document.content = &quot;new text&quot;       # Creates TextContent automatically
+# For images/audio, use specific content models:
+document.image_contents.create!(data: image_data, embedding_model: 'clip')
+</code></pre>
+<h3 id="content-methods">Content Methods</h3>
+<h4 id="embedding-generation">Embedding Generation</h4>
+<pre><code class="language-ruby"># Base Content methods (inherited by all content types)
+content.generate_embeddings!        # Generate embeddings for this content
+content.should_generate_embeddings? # Check if embeddings needed
+content.content_for_embedding       # Text to use for embedding (overrideable)
+
+# TextContent specific
+text_content.generate_embeddings!   # Chunks text and generates embeddings
+text_content.chunks                 # Array of content chunks with metadata
+text_content.chunk_size             # Tokens per chunk
+text_content.overlap                # Token overlap between chunks
+
+# Embedding management
+content.embeddings.count            # Number of embeddings
+content.embedding_count             # Alias for count
+content.embeddings.destroy_all      # Remove all embeddings
+</code></pre>
+<h4 id="content-validation">Content Validation</h4>
+<pre><code class="language-ruby"># Base validations (all content types)
+content.valid?                      # ActiveRecord validation
+content.errors.full_messages        # Validation error messages
+
+# Content-specific validations
+text_content.content.present?       # TextContent requires content
+image_content.data.present?         # ImageContent requires data
+
+# Custom validation methods
+content.validate_embedding_model    # Ensure model is supported
+content.validate_content_size       # Check content size limits
+</code></pre>
+<h4 id="processing-callbacks">Processing Callbacks</h4>
+<pre><code class="language-ruby"># Automatic processing callbacks
+# after_create: Generate embeddings if content is ready
+# after_update: Regenerate embeddings if content changed
+# before_destroy: Clean up associated embeddings
+
+# Manual callback triggering
+content.run_callbacks(:create)      # Trigger create callbacks
+content.run_callbacks(:update)      # Trigger update callbacks
+
+# Callback status checking
+content.embeddings_generated?       # Check if embeddings exist
+content.metadata['embeddings_generated_at']  # Generation timestamp
+</code></pre>
+<h3 id="embedding-methods">Embedding Methods</h3>
+<h4 id="similarity-search">Similarity Search</h4>
+<pre><code class="language-ruby"># Instance-level similarity (compare with other embeddings)
+embedding.similarity_to(other_embedding)     # Cosine similarity score
+embedding.distance_to(other_embedding)       # Distance (1 - similarity)
+
+# Class-level similarity search
+Embedding.search_similar(
+  query_embedding,
+  limit: 20,
+  threshold: 0.7,
+  filters: {
+    embeddable_type: 'Ragdoll::Core::Models::TextContent',
+    document_type: 'pdf'
+  }
+)
+
+# Specialized search methods
+embedding.find_similar(limit: 10)           # Find similar embeddings
+embedding.find_related_in_document(limit: 5) # Similar chunks in same document
+</code></pre>
+<h4 id="usage-tracking">Usage Tracking</h4>
+<pre><code class="language-ruby"># Usage analytics
+embedding.mark_as_used!             # Increment usage_count, update returned_at
+embedding.usage_count               # Number of times used in searches
+embedding.returned_at               # Last usage timestamp
+embedding.last_used_days_ago        # Days since last use
+
+# Usage scoring
+embedding.usage_score               # Calculated usage score for ranking
+embedding.frequency_score           # Frequency-based component
+embedding.recency_score             # Recency-based component
+
+# Usage statistics
+embedding.is_popular?               # usage_count &gt; threshold
+embedding.is_recent?                # used within recent timeframe
+embedding.is_trending?              # increasing usage pattern
+</code></pre>
+<h4 id="analytics-methods">Analytics Methods</h4>
+<pre><code class="language-ruby"># Embedding metadata
+embedding.embedding_dimensions      # Vector dimensionality
+embedding.embedding_model           # Model used (via content relationship)
+embedding.chunk_index               # Position within content
+
+# Content access
+embedding.embeddable                # Associated content object
+embedding.document                  # Parent document (through content)
+embedding.content_preview(length: 100)  # Truncated content preview
+
+# Search result formatting
+embedding.to_search_result(similarity: 0.85)
+# Returns formatted hash for search APIs
+
+# Performance metrics
+embedding.vector_magnitude          # Vector magnitude (for normalization)
+embedding.vector_norm               # L2 norm of the vector
+embedding.vector_sparsity           # Percentage of zero values
+</code></pre>
+<h2 id="class-methods">Class Methods</h2>
+<h3 id="document-class-methods">Document Class Methods</h3>
+<h4 id="scopes-and-query-methods">Scopes and Query Methods</h4>
+<pre><code class="language-ruby"># Status-based scopes
+Document.processed                  # WHERE status = 'processed'
+Document.pending                    # WHERE status = 'pending'
+Document.processing                 # WHERE status = 'processing'
+Document.with_errors                # WHERE status = 'error'
+
+# Content-based scopes
+Document.by_type('pdf')             # WHERE document_type = 'pdf'
+Document.multi_modal                # Documents with multiple content types
+Document.text_only                  # Documents with only text content
+Document.with_content               # Documents that have content models
+Document.without_content            # Documents missing content models
+
+# Time-based scopes
+Document.recent                     # ORDER BY created_at DESC
+Document.created_since(1.week.ago)  # WHERE created_at &gt; ?
+Document.modified_since(1.day.ago)  # WHERE file_modified_at &gt; ?
+
+# Advanced queries
+Document.with_embeddings_count      # Includes embedding count
+Document.by_content_length(min: 1000)  # Filter by content length
+Document.by_file_size(max: 10.megabytes)  # Filter by file size
+</code></pre>
+<h4 id="search-and-filtering">Search and Filtering</h4>
+<pre><code class="language-ruby"># PostgreSQL full-text search
+Document.search_content(
+  &quot;machine learning algorithms&quot;,
+  limit: 20
+)
+
+# Faceted search with metadata filters
+Document.faceted_search(
+  query: &quot;neural networks&quot;,
+  keywords: [&quot;deep learning&quot;, &quot;AI&quot;],
+  classification: &quot;research_paper&quot;,
+  tags: [&quot;computer-science&quot;],
+  limit: 50
+)
+
+# Hybrid search (semantic + full-text)
+Document.hybrid_search(
+  &quot;artificial intelligence applications&quot;,
+  query_embedding: embedding_vector,
+  semantic_weight: 0.7,
+  text_weight: 0.3,
+  limit: 25
+)
+
+# Metadata-based filtering
+Document.with_classification('technical_manual')
+Document.with_keywords(['api', 'documentation'])
+Document.with_tags(['development', 'guide'])
+Document.by_metadata_field('complexity', 'advanced')
+</code></pre>
+<h4 id="statistics-and-analytics">Statistics and Analytics</h4>
+<pre><code class="language-ruby"># Comprehensive statistics
+Document.stats
+# Returns:
+# {
+#   total_documents: 1250,
+#   by_status: { processed: 1100, pending: 50, processing: 75, error: 25 },
+#   by_type: { pdf: 600, docx: 300, text: 200, image: 100, mixed: 50 },
+#   multi_modal_documents: 75,
+#   total_text_contents: 1000,
+#   total_image_contents: 125,
+#   total_audio_contents: 25,
+#   total_embeddings: { text: 15000, image: 500, audio: 100 },
+#   storage_type: &quot;activerecord_polymorphic&quot;
+# }
+
+# Usage analytics
+Document.popular(limit: 10)         # Most searched documents
+Document.trending(timeframe: 1.week) # Recently popular documents
+Document.usage_summary(period: 1.month)  # Usage statistics
+
+# Content analysis
+Document.average_word_count          # Average words per document
+Document.total_storage_size          # Total storage used
+Document.embedding_coverage          # Percentage with embeddings
+
+# Performance metrics
+Document.processing_time_stats       # Processing time statistics
+Document.error_rate(period: 1.day)   # Error rate percentage
+Document.throughput_stats            # Documents processed per hour
+</code></pre>
+<h4 id="batch-operations">Batch Operations</h4>
+<pre><code class="language-ruby"># Batch processing
+Document.process_pending!            # Process all pending documents
+Document.regenerate_embeddings!(model: 'text-embedding-3-large')
+Document.bulk_update_metadata(classification: 'archived')
+
+# Batch import
+Document.import_from_directory(
+  '/path/to/documents',
+  file_patterns: ['*.pdf', '*.docx'],
+  recursive: true,
+  batch_size: 100
+)
+
+# Batch cleanup
+Document.cleanup_orphaned_content!   # Remove content without documents
+Document.remove_old_embeddings!(older_than: 6.months)
+Document.vacuum_unused_storage!      # Cleanup unused file storage
+</code></pre>
+<h3 id="content-class-methods">Content Class Methods</h3>
+<h4 id="content-type-specific-queries">Content-Type Specific Queries</h4>
+<pre><code class="language-ruby"># Base Content class methods
+Content.by_type('TextContent')       # Filter by STI type
+Content.with_embeddings              # Content that has embeddings
+Content.without_embeddings           # Content missing embeddings
+Content.by_embedding_model('text-embedding-3-large')
+
+# TextContent specific
+TextContent.by_word_count(min: 500, max: 5000)
+TextContent.by_character_count(min: 2000)
+TextContent.with_long_content        # Content over threshold
+TextContent.recently_processed       # Recently generated embeddings
+
+# ImageContent specific
+ImageContent.by_dimensions(min_width: 800, min_height: 600)
+ImageContent.by_file_size(max: 5.megabytes)
+ImageContent.with_descriptions       # Has AI-generated descriptions
+ImageContent.by_format(['jpg', 'png'])
+
+# AudioContent specific (planned)
+AudioContent.by_duration(min: 30.seconds, max: 10.minutes)
+AudioContent.by_sample_rate(44100)
+AudioContent.with_transcripts        # Has speech-to-text transcripts
+</code></pre>
+<h4 id="content-statistics">Content Statistics</h4>
+<pre><code class="language-ruby"># TextContent statistics
+TextContent.stats
+# Returns:
+# {
+#   total_text_contents: 1000,
+#   by_model: { 'text-embedding-3-large': 600, 'text-embedding-3-small': 400 },
+#   total_embeddings: 15000,
+#   average_word_count: 1250,
+#   average_chunk_size: 1000
+# }
+
+# Processing statistics
+Content.processing_stats             # Embedding generation statistics
+Content.model_usage_stats            # Usage by embedding model
+Content.error_rate_by_type           # Error rates by content type
+</code></pre>
+<h3 id="embedding-class-methods">Embedding Class Methods</h3>
+<h4 id="advanced-search-methods">Advanced Search Methods</h4>
+<pre><code class="language-ruby"># Vector similarity search with filters
+Embedding.search_similar(
+  query_embedding,
+  limit: 20,
+  threshold: 0.75,
+  filters: {
+    embeddable_type: 'Ragdoll::Core::Models::TextContent',
+    embedding_model: 'text-embedding-3-large',
+    document_type: 'pdf',
+    created_after: 1.month.ago
+  }
+)
+
+# Batch similarity search
+Embedding.batch_search_similar(
+  [embedding1, embedding2, embedding3],
+  limit: 10,
+  aggregate_results: true
+)
+
+# Specialized search methods
+Embedding.find_duplicates(threshold: 0.95)  # Near-duplicate detection
+Embedding.find_outliers(threshold: 0.3)     # Low-similarity outliers
+Embedding.cluster_similar(max_clusters: 10) # K-means clustering
+</code></pre>
+<h4 id="usage-analytics">Usage Analytics</h4>
+<pre><code class="language-ruby"># Usage tracking
+Embedding.most_used(limit: 100)     # Highest usage_count
+Embedding.recently_used(since: 1.hour.ago)
+Embedding.trending(period: 1.day)   # Increasing usage pattern
+Embedding.popular_content_types     # Usage by content type
+
+# Performance analytics
+Embedding.search_performance_stats  # Search timing statistics
+Embedding.model_performance_comparison  # Compare model effectiveness
+Embedding.quality_metrics           # Embedding quality assessment
+
+# Cache optimization
+Embedding.precompute_popular!       # Cache popular embeddings
+Embedding.optimize_indexes!         # Rebuild vector indexes
+</code></pre>
+<h4 id="batch-operations_1">Batch Operations</h4>
+<pre><code class="language-ruby"># Batch embedding operations
+Embedding.regenerate_for_model!(
+  old_model: 'text-embedding-ada-002',
+  new_model: 'text-embedding-3-large'
+)
+
+Embedding.update_usage_analytics!   # Recalculate usage scores
+Embedding.cleanup_orphaned!         # Remove embeddings without content
+Embedding.normalize_vectors!        # L2 normalize all vectors
+
+# Database maintenance
+Embedding.rebuild_vector_indexes!   # Rebuild pgvector indexes
+Embedding.vacuum_embeddings_table!  # PostgreSQL VACUUM operation
+Embedding.analyze_vector_distribution!  # Update query planner statistics
+</code></pre>
+<h2 id="model-validations">Model Validations</h2>
+<p>Ragdoll implements comprehensive validation rules to ensure data integrity:</p>
+<h3 id="document-model-validations">Document Model Validations</h3>
+<h4 id="required-fields">Required Fields</h4>
+<pre><code class="language-ruby">class Document &lt; ActiveRecord::Base
+  validates :location, presence: true
+  validates :title, presence: true
+  validates :document_type, presence: true
+  validates :status, presence: true
+  validates :file_modified_at, presence: true
+end
+</code></pre>
+<h4 id="format-validations">Format Validations</h4>
+<pre><code class="language-ruby"># Document type validation
+validates :document_type, 
+  inclusion: { 
+    in: %w[text image audio pdf docx html markdown mixed],
+    message: &quot;must be a valid document type&quot;
+  }
+
+# Status validation
+validates :status,
+  inclusion: {
+    in: %w[pending processing processed error],
+    message: &quot;must be a valid processing status&quot;
+  }
+
+# Location format validation
+validates :location, format: {
+  with: /\A(https?:\/\/|\/).*\z/,
+  message: &quot;must be a valid URL or absolute file path&quot;
+}
+
+# Metadata JSON validation
+validate :validate_metadata_structure
+
+private
+
+def validate_metadata_structure
+  return unless metadata.present?
+
+  # Validate metadata against document type schema
+  schema_errors = MetadataSchemas.validate_metadata(document_type, metadata)
+  schema_errors.each { |error| errors.add(:metadata, error) }
+end
+</code></pre>
+<h4 id="custom-validators">Custom Validators</h4>
+<pre><code class="language-ruby"># Custom location validator
+validate :validate_location_accessibility
+
+def validate_location_accessibility
+  return unless location.present?
+
+  # For file paths, check if file exists and is readable
+  if location.start_with?('/')
+    unless File.exist?(location) &amp;&amp; File.readable?(location)
+      errors.add(:location, &quot;file does not exist or is not readable&quot;)
+    end
+  end
+
+  # For URLs, validate format more strictly
+  if location.start_with?('http')
+    begin
+      uri = URI.parse(location)
+      unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
+        errors.add(:location, &quot;must be a valid HTTP or HTTPS URL&quot;)
+      end
+    rescue URI::InvalidURIError
+      errors.add(:location, &quot;is not a valid URL&quot;)
+    end
+  end
+end
+
+# File size validation
+validate :validate_reasonable_file_size
+
+def validate_reasonable_file_size
+  if location.present? &amp;&amp; File.exist?(location)
+    file_size = File.size(location)
+    max_size = 100.megabytes  # Configurable limit
+
+    if file_size &gt; max_size
+      errors.add(:location, &quot;file size (#{file_size} bytes) exceeds maximum (#{max_size} bytes)&quot;)
+    end
+  end
+end
+</code></pre>
+<h3 id="content-model-validations">Content Model Validations</h3>
+<h4 id="base-content-validations">Base Content Validations</h4>
+<pre><code class="language-ruby">class Content &lt; ActiveRecord::Base
+  validates :type, presence: true
+  validates :embedding_model, presence: true
+  validates :document_id, presence: true
+
+  # Ensure valid STI type
+  validates :type, inclusion: {
+    in: %w[
+      Ragdoll::Core::Models::TextContent
+      Ragdoll::Core::Models::ImageContent
+      Ragdoll::Core::Models::AudioContent
+    ],
+    message: &quot;must be a valid content type&quot;
+  }
+
+  # Validate embedding model exists
+  validate :validate_embedding_model_exists
+
+  private
+
+  def validate_embedding_model_exists
+    return unless embedding_model.present?
+
+    valid_models = Ragdoll.config.embedding_config.keys.map(&amp;:to_s)
+    unless valid_models.include?(embedding_model)
+      errors.add(:embedding_model, &quot;'#{embedding_model}' is not a configured embedding model&quot;)
+    end
+  end
+end
+</code></pre>
+<h4 id="textcontent-specific-validations">TextContent Specific Validations</h4>
+<pre><code class="language-ruby">class TextContent &lt; Content
+  validates :content, presence: true
+  validates :content, length: {
+    minimum: 10,
+    maximum: 1_000_000,  # 1MB text limit
+    message: &quot;must be between 10 and 1,000,000 characters&quot;
+  }
+
+  # Validate chunk configuration
+  validate :validate_chunk_configuration
+
+  private
+
+  def validate_chunk_configuration
+    chunk_size_val = chunk_size
+    overlap_val = overlap
+
+    if chunk_size_val &lt;= 0
+      errors.add(:chunk_size, &quot;must be greater than 0&quot;)
+    end
+
+    if overlap_val &lt; 0
+      errors.add(:overlap, &quot;cannot be negative&quot;)
+    end
+
+    if overlap_val &gt;= chunk_size_val
+      errors.add(:overlap, &quot;must be less than chunk_size&quot;)
+    end
+  end
+end
+</code></pre>
+<h4 id="imagecontent-specific-validations">ImageContent Specific Validations</h4>
+<pre><code class="language-ruby">class ImageContent &lt; Content
+  validates :data, presence: true
+
+  # Validate image metadata
+  validate :validate_image_metadata
+
+  private
+
+  def validate_image_metadata
+    return unless metadata.present?
+
+    # Validate dimensions if present
+    if metadata['width'] &amp;&amp; metadata['height']
+      width = metadata['width'].to_i
+      height = metadata['height'].to_i
+
+      if width &lt;= 0 || height &lt;= 0
+        errors.add(:metadata, &quot;image dimensions must be positive integers&quot;)
+      end
+
+      # Reasonable size limits
+      if width &gt; 50000 || height &gt; 50000
+        errors.add(:metadata, &quot;image dimensions are unreasonably large&quot;)
+      end
+    end
+
+    # Validate file format
+    if metadata['file_type']
+      valid_formats = %w[jpg jpeg png gif bmp webp svg ico tiff tif]
+      unless valid_formats.include?(metadata['file_type'].downcase)
+        errors.add(:metadata, &quot;unsupported image format: #{metadata['file_type']}&quot;)
+      end
+    end
+  end
+end
+</code></pre>
+<h3 id="embedding-model-validations">Embedding Model Validations</h3>
+<h4 id="vector-and-content-validations">Vector and Content Validations</h4>
+<pre><code class="language-ruby">class Embedding &lt; ActiveRecord::Base
+  validates :embeddable_id, presence: true
+  validates :embeddable_type, presence: true
+  validates :chunk_index, presence: true
+  validates :content, presence: true
+  validates :embedding_vector, presence: true
+
+  # Unique chunk index per content
+  validates :chunk_index, uniqueness: {
+    scope: [:embeddable_id, :embeddable_type],
+    message: &quot;must be unique within the same content&quot;
+  }
+
+  # Vector dimension validation
+  validate :validate_embedding_dimensions
+
+  # Content length validation
+  validates :content, length: {
+    minimum: 1,
+    maximum: 10000,  # Reasonable chunk size limit
+    message: &quot;must be between 1 and 10,000 characters&quot;
+  }
+
+  # Usage count validation
+  validates :usage_count, numericality: {
+    greater_than_or_equal_to: 0,
+    message: &quot;cannot be negative&quot;
+  }
+
+  private
+
+  def validate_embedding_dimensions
+    return unless embedding_vector.present?
+
+    # Get expected dimensions for the model
+    expected_dimensions = get_expected_dimensions
+    actual_dimensions = embedding_vector.length
+
+    if actual_dimensions != expected_dimensions
+      errors.add(
+        :embedding_vector,
+        &quot;has #{actual_dimensions} dimensions, expected #{expected_dimensions}&quot;
+      )
+    end
+
+    # Validate vector values
+    if embedding_vector.any? { |val| !val.is_a?(Numeric) }
+      errors.add(:embedding_vector, &quot;must contain only numeric values&quot;)
+    end
+
+    # Check for NaN or infinite values
+    if embedding_vector.any? { |val| val.nan? || val.infinite? }
+      errors.add(:embedding_vector, &quot;cannot contain NaN or infinite values&quot;)
+    end
+  end
+
+  def get_expected_dimensions
+    model_name = embeddable&amp;.embedding_model
+    return 1536 unless model_name  # Default OpenAI dimension
+
+    # Look up dimensions from configuration
+    config = Ragdoll.config.embedding_config
+    config.dig(model_name.to_sym, :dimensions) || 1536
+  end
+end
+</code></pre>
+<h3 id="error-handling">Error Handling</h3>
+<h4 id="validation-error-processing">Validation Error Processing</h4>
+<pre><code class="language-ruby"># Custom error handling for validation failures
+class ValidationErrorHandler
+  def self.handle_document_errors(document)
+    return { success: true } if document.valid?
+
+    {
+      success: false,
+      errors: {
+        validation_errors: document.errors.full_messages,
+        field_errors: document.errors.messages,
+        error_count: document.errors.count
+      }
+    }
+  end
+
+  def self.handle_content_errors(content)
+    return { success: true } if content.valid?
+
+    {
+      success: false,
+      content_type: content.class.name,
+      errors: {
+        validation_errors: content.errors.full_messages,
+        field_errors: content.errors.messages,
+        suggested_fixes: generate_fix_suggestions(content.errors)
+      }
+    }
+  end
+
+  private
+
+  def self.generate_fix_suggestions(errors)
+    suggestions = []
+
+    errors.each do |field, messages|
+      case field
+      when :content
+        if messages.any? { |m| m.include?('too short') }
+          suggestions &lt;&lt; &quot;Ensure content has at least 10 characters&quot;
+        end
+      when :embedding_model
+        suggestions &lt;&lt; &quot;Use a configured embedding model: #{available_models.join(', ')}&quot;
+      when :chunk_size
+        suggestions &lt;&lt; &quot;Set chunk_size to a positive integer (recommended: 1000)&quot;
+      end
+    end
+
+    suggestions
+  end
+
+  def self.available_models
+    Ragdoll.config.embedding_config.keys.map(&amp;:to_s)
+  end
+end
+</code></pre>
+<h4 id="validation-callbacks">Validation Callbacks</h4>
+<pre><code class="language-ruby"># Before validation callbacks for cleanup
+class Document &lt; ActiveRecord::Base
+  before_validation :normalize_location
+  before_validation :set_default_file_modified_at
+  before_validation :sanitize_metadata
+
+  private
+
+  def normalize_location
+    return unless location.present?
+
+    # Convert relative paths to absolute paths
+    if location.start_with?('./')
+      self.location = File.expand_path(location)
+    end
+
+    # Normalize URL protocols
+    if location.match?(/^https?:\/\//i)
+      self.location = location.downcase.gsub(/^http:/i, 'https:')
+    end
+  end
+
+  def sanitize_metadata
+    return unless metadata.present?
+
+    # Remove nil values and empty strings
+    self.metadata = metadata.reject { |k, v| v.nil? || v == '' }
+
+    # Ensure arrays are actually arrays
+    ['tags', 'keywords'].each do |field|
+      if metadata[field].is_a?(String)
+        metadata[field] = metadata[field].split(',').map(&amp;:strip)
+      end
+    end
+  end
+end
+</code></pre>
+<hr />
+<p><em>This document is part of the Ragdoll documentation suite. For immediate help, see the <a href="../quick-start/">Quick Start Guide</a> or <a href="../api-client/">API Reference</a>.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

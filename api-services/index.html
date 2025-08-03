@@ -1,0 +1,1967 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../api-models/">
+      
+      
+        <link rel="next" href="../architecture/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Services Reference - Ragdoll Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#services-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ragdoll Documentation" class="md-header__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ragdoll Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Services Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ragdoll Documentation" class="md-nav__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ragdoll Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ragdoll Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Client API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jobs Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Models Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Services Reference
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services Reference
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#business-logic-and-processing-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Business Logic and Processing Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Business Logic and Processing Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Architecture Overview
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documentprocessor" class="md-nav__link">
+    <span class="md-ellipsis">
+      DocumentProcessor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentmanagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      DocumentManagement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embeddingservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      EmbeddingService
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searchengine" class="md-nav__link">
+    <span class="md-ellipsis">
+      SearchEngine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textgenerationservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      TextGenerationService
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textchunker" class="md-nav__link">
+    <span class="md-ellipsis">
+      TextChunker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specialized-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specialized Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Specialized Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadatagenerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      MetadataGenerator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imagedescriptionservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      ImageDescriptionService
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provider-selection-and-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider Selection and Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling Strategies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Composition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-testing-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Testing Patterns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-job-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background Job Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-service-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Service Health
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Deployment Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../document-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embedding System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Variables Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extending the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-uploads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Upload System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation &amp; Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LLM Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metadata Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Modal Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Performance Tuning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Considerations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#business-logic-and-processing-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Business Logic and Processing Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Business Logic and Processing Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Architecture Overview
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documentprocessor" class="md-nav__link">
+    <span class="md-ellipsis">
+      DocumentProcessor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentmanagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      DocumentManagement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embeddingservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      EmbeddingService
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#searchengine" class="md-nav__link">
+    <span class="md-ellipsis">
+      SearchEngine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textgenerationservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      TextGenerationService
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textchunker" class="md-nav__link">
+    <span class="md-ellipsis">
+      TextChunker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specialized-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specialized Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Specialized Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadatagenerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      MetadataGenerator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imagedescriptionservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      ImageDescriptionService
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provider-selection-and-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provider Selection and Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Handling Strategies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Composition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-testing-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Testing Patterns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-job-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background Job Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-service-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring Service Health
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="services-reference">Services Reference</h1>
+<h2 id="business-logic-and-processing-services">Business Logic and Processing Services</h2>
+<p>Ragdoll implements a comprehensive service layer architecture that handles document processing, content analysis, vector generation, and search operations. All services are designed for production use with PostgreSQL and pgvector.</p>
+<h3 id="service-architecture-overview">Service Architecture Overview</h3>
+<pre><code class="language-mermaid">flowchart TD
+    A[Client] --&gt; B[DocumentProcessor]
+    A --&gt; C[SearchEngine]
+    A --&gt; D[DocumentManagement]
+
+    B --&gt; E[EmbeddingService]
+    B --&gt; F[TextGenerationService]
+    B --&gt; G[TextChunker]
+
+    C --&gt; E
+    C --&gt; H[Models::Embedding]
+
+    D --&gt; I[Models::Document]
+    D --&gt; J[Models::Content]
+
+    E --&gt; K[RubyLLM]
+    F --&gt; K
+
+    I --&gt; L[PostgreSQL + pgvector]
+    H --&gt; L
+    J --&gt; L
+</code></pre>
+<h2 id="core-services">Core Services</h2>
+<h3 id="documentprocessor">DocumentProcessor</h3>
+<p><strong>Responsibility</strong>: Multi-format document parsing and content extraction with metadata</p>
+<p><strong>Implementation</strong>: <code>/lib/ragdoll/core/document_processor.rb</code></p>
+<pre><code class="language-ruby">class DocumentProcessor
+  class ParseError &lt; DocumentError; end
+  class UnsupportedFormatError &lt; ParseError; end
+
+  # Parse document from file path
+  def self.parse(file_path)
+    new(file_path).parse
+    # Returns: { content:, metadata:, document_type: }
+  end
+
+  # Parse from Shrine attached file
+  def self.parse_attachment(attached_file)
+    attached_file.open { |tempfile| new(tempfile.path, attached_file).parse }
+  end
+
+  # Create document with file processing
+  def self.create_document_from_file(file_path, **options)
+    # Returns: Document model instance with content extracted
+  end
+end
+</code></pre>
+<p><strong>Supported Formats</strong>:
+- <strong>PDF</strong>: Uses <code>pdf-reader</code> gem for text extraction and metadata
+- <strong>DOCX</strong>: Uses <code>docx</code> gem for Office document processing
+- <strong>HTML</strong>: Strip tags and extract clean text content
+- <strong>Text/Markdown</strong>: Direct file reading with encoding detection
+- <strong>Images</strong>: Uses <code>ImageMagick</code> for metadata and AI description via <code>ImageDescriptionService</code></p>
+<p><strong>Usage Examples</strong>:</p>
+<pre><code class="language-ruby"># Basic document parsing
+result = DocumentProcessor.parse('/path/to/document.pdf')
+puts result[:content]      # Extracted text content
+puts result[:metadata]     # Document properties (title, author, etc.)
+puts result[:document_type] # &quot;pdf&quot;
+
+# Error handling
+begin
+  result = DocumentProcessor.parse('/path/to/corrupted.pdf')
+rescue DocumentProcessor::ParseError =&gt; e
+  puts &quot;Failed to parse document: #{e.message}&quot;
+end
+
+# Image processing with AI description
+result = DocumentProcessor.parse('/path/to/image.jpg')
+puts result[:content]  # AI-generated description
+puts result[:metadata][:width]   # Image dimensions
+puts result[:metadata][:height]  # Image dimensions
+</code></pre>
+<h3 id="documentmanagement">DocumentManagement</h3>
+<p><strong>Responsibility</strong>: High-level document CRUD operations and database persistence</p>
+<p><strong>Implementation</strong>: <code>/lib/ragdoll/core/document_management.rb</code></p>
+<pre><code class="language-ruby">class DocumentManagement
+  class &lt;&lt; self
+    # Create document with duplicate detection
+    def add_document(location, content, metadata = {})
+      # Returns: document_id (string)
+    end
+
+    # Retrieve document with full content
+    def get_document(id)
+      # Returns: document hash with content and metadata
+    end
+
+    # Update document properties
+    def update_document(id, **updates)
+      # Returns: updated document hash
+    end
+
+    # Delete document and all associated data
+    def delete_document(id)
+      # Returns: true on success, nil if not found
+    end
+
+    # Paginated document listing
+    def list_documents(options = {})
+      # Returns: array of document hashes
+    end
+
+    # System-wide statistics
+    def get_document_stats
+      # Returns: comprehensive statistics hash
+    end
+
+    # Direct embedding creation (advanced usage)
+    def add_embedding(embeddable_id, chunk_index, embedding_vector, metadata = {})
+      # Returns: embedding_id (string)
+    end
+  end
+end
+</code></pre>
+<p><strong>Features</strong>:
+- <strong>Duplicate Prevention</strong>: Detects existing documents by location and modification time
+- <strong>Path Normalization</strong>: Converts relative paths to absolute paths automatically
+- <strong>Multi-modal Content</strong>: Handles text, image, and audio content via STI models
+- <strong>Background Integration</strong>: Triggers embedding generation jobs automatically</p>
+<p><strong>Usage Examples</strong>:</p>
+<pre><code class="language-ruby"># Add document with metadata
+doc_id = DocumentManagement.add_document(
+  '/path/to/document.pdf',
+  'Document content here',
+  {
+    title: 'Research Paper',
+    author: 'John Doe',
+    document_type: 'pdf',
+    tags: ['research', 'ai']
+  }
+)
+
+# Retrieve with full content
+document = DocumentManagement.get_document(doc_id)
+puts document[:title]
+puts document[:content]
+puts document[:metadata][:author]
+
+# Update metadata
+DocumentManagement.update_document(doc_id, 
+  metadata: { classification: 'academic' }
+)
+
+# Get system statistics
+stats = DocumentManagement.get_document_stats
+puts &quot;Total documents: #{stats[:total_documents]}&quot;
+puts &quot;By type: #{stats[:by_type]}&quot;
+puts &quot;Multi-modal: #{stats[:multi_modal_documents]}&quot;
+</code></pre>
+<h3 id="embeddingservice">EmbeddingService</h3>
+<p><strong>Responsibility</strong>: Vector embedding generation using multiple LLM providers</p>
+<p><strong>Implementation</strong>: <code>/lib/ragdoll/core/embedding_service.rb</code></p>
+<pre><code class="language-ruby">class EmbeddingService
+  class EmbeddingError &lt; Error; end
+
+  def initialize(client: nil)
+    @client = client
+    configure_ruby_llm unless @client
+  end
+
+  # Generate single embedding
+  def generate_embedding(text)
+    # Returns: Array of floats (embedding vector) or nil
+  end
+
+  # Batch processing for efficiency
+  def generate_embeddings_batch(texts)
+    # Returns: Array of embedding vectors
+  end
+
+  # Vector similarity calculation
+  def cosine_similarity(embedding1, embedding2)
+    # Returns: Float similarity score (0.0 to 1.0)
+  end
+end
+</code></pre>
+<p><strong>Provider Support</strong>:
+- <strong>OpenAI</strong>: <code>text-embedding-3-small</code>, <code>text-embedding-3-large</code>
+- <strong>Anthropic</strong>: Via API compatibility
+- <strong>Google</strong>: Vertex AI embedding models
+- <strong>Azure OpenAI</strong>: Enterprise deployment support
+- <strong>Ollama</strong>: Local embedding models
+- <strong>HuggingFace</strong>: Custom model deployment</p>
+<p><strong>Usage Examples</strong>:</p>
+<pre><code class="language-ruby"># Initialize service
+service = EmbeddingService.new
+
+# Generate single embedding
+embedding = service.generate_embedding(&quot;This is sample text&quot;)
+puts &quot;Embedding dimensions: #{embedding.length}&quot;
+
+# Batch processing for efficiency
+texts = [&quot;Text 1&quot;, &quot;Text 2&quot;, &quot;Text 3&quot;]
+embeddings = service.generate_embeddings_batch(texts)
+puts &quot;Generated #{embeddings.length} embeddings&quot;
+
+# Calculate similarity
+similarity = service.cosine_similarity(embedding1, embedding2)
+puts &quot;Similarity: #{similarity.round(3)}&quot;
+
+# Error handling
+begin
+  embedding = service.generate_embedding(&quot;&quot;)
+rescue EmbeddingService::EmbeddingError =&gt; e
+  puts &quot;Embedding failed: #{e.message}&quot;
+end
+</code></pre>
+<h3 id="searchengine">SearchEngine</h3>
+<p><strong>Responsibility</strong>: Semantic search operations using pgvector similarity</p>
+<p><strong>Implementation</strong>: <code>/lib/ragdoll/core/search_engine.rb</code></p>
+<pre><code class="language-ruby">class SearchEngine
+  def initialize(embedding_service)
+    @embedding_service = embedding_service
+  end
+
+  # Document-level semantic search
+  def search_documents(query, options = {})
+    # Returns: Array of document results with similarity scores
+  end
+
+  # Content chunk-level search
+  def search_similar_content(query_or_embedding, options = {})
+    # Returns: Array of content chunk matches
+  end
+end
+</code></pre>
+<p><strong>Search Options</strong>:
+- <code>limit</code>: Maximum results (default: configured max_results)
+- <code>threshold</code>: Minimum similarity score (default: configured threshold) 
+- <code>filters</code>: Document type, embedding model, date range filters
+- <code>embeddable_type</code>: Filter by content type (text, image, audio)</p>
+<p><strong>Usage Examples</strong>:</p>
+<pre><code class="language-ruby"># Initialize with embedding service
+embedding_service = EmbeddingService.new
+search_engine = SearchEngine.new(embedding_service)
+
+# Basic semantic search
+results = search_engine.search_documents(
+  &quot;machine learning algorithms&quot;,
+  limit: 10,
+  threshold: 0.7
+)
+
+results.each do |result|
+  puts &quot;Document: #{result[:document_title]}&quot;
+  puts &quot;Similarity: #{result[:similarity].round(3)}&quot;
+  puts &quot;Content: #{result[:content][0..200]}...&quot;
+end
+
+# Search with filters
+results = search_engine.search_similar_content(
+  &quot;neural networks&quot;,
+  filters: {
+    document_type: 'pdf',
+    embeddable_type: 'Ragdoll::Core::Models::TextContent'
+  }
+)
+
+# Direct embedding search
+query_embedding = embedding_service.generate_embedding(&quot;query text&quot;)
+results = search_engine.search_similar_content(query_embedding)
+</code></pre>
+<h3 id="textgenerationservice">TextGenerationService</h3>
+<p><strong>Responsibility</strong>: LLM-powered content analysis including summarization and keyword extraction</p>
+<p><strong>Implementation</strong>: <code>/lib/ragdoll/core/text_generation_service.rb</code></p>
+<pre><code class="language-ruby">class TextGenerationService
+  class GenerationError &lt; StandardError; end
+
+  def initialize(client: nil)
+    @configuration = Ragdoll.config
+    @client = client
+    configure_ruby_llm_if_possible unless @client
+  end
+
+  # Generate document summary
+  def generate_summary(text, max_length: nil)
+    # Returns: String summary or fallback extraction
+  end
+
+  # Extract important keywords
+  def extract_keywords(text, max_keywords: 20)
+    # Returns: Array of keyword strings
+  end
+end
+</code></pre>
+<p><strong>Features</strong>:
+- <strong>Intelligent Fallbacks</strong>: Uses rule-based extraction when LLM APIs fail
+- <strong>Configurable Models</strong>: Supports different models for summaries vs keywords
+- <strong>Content-Length Aware</strong>: Skips processing for very short content
+- <strong>Error Recovery</strong>: Graceful degradation with informative logging</p>
+<p><strong>Usage Examples</strong>:</p>
+<pre><code class="language-ruby"># Initialize service
+service = TextGenerationService.new
+
+# Generate summary
+long_text = File.read('long_document.txt')
+summary = service.generate_summary(long_text, max_length: 300)
+puts &quot;Summary: #{summary}&quot;
+
+# Extract keywords
+keywords = service.extract_keywords(long_text, max_keywords: 15)
+puts &quot;Keywords: #{keywords.join(', ')}&quot;
+
+# Handle configuration-disabled scenarios
+Ragdoll::Core.configure do |config|
+  config.summarization_config[:enable] = false
+end
+
+# Will use fallback extraction
+summary = service.generate_summary(text)  # Returns first 500 chars
+</code></pre>
+<h3 id="textchunker">TextChunker</h3>
+<p><strong>Responsibility</strong>: Intelligent text segmentation for optimal embedding generation</p>
+<p><strong>Implementation</strong>: <code>/lib/ragdoll/core/text_chunker.rb</code></p>
+<pre><code class="language-ruby">class TextChunker
+  # Basic chunking with overlap
+  def self.chunk(text, chunk_size: 1000, chunk_overlap: 200)
+    # Returns: Array of text chunks with metadata
+  end
+
+  # Structure-aware chunking (preserves paragraphs, sections)
+  def self.chunk_by_structure(text, options = {})
+    # Returns: Chunks respecting document structure
+  end
+
+  # Programming language-aware chunking
+  def self.chunk_code(text, language: nil)
+    # Returns: Chunks respecting code boundaries (functions, classes)
+  end
+end
+</code></pre>
+<p><strong>Chunking Strategies</strong>:
+- <strong>Token-based</strong>: Splits based on approximate token counts
+- <strong>Sentence-aware</strong>: Preserves sentence boundaries
+- <strong>Paragraph-aware</strong>: Maintains paragraph structure
+- <strong>Code-aware</strong>: Respects programming language syntax</p>
+<p><strong>Usage Examples</strong>:</p>
+<pre><code class="language-ruby"># Basic chunking
+text = File.read('large_document.txt')
+chunks = TextChunker.chunk(text, chunk_size: 1500, chunk_overlap: 300)
+
+chunks.each_with_index do |chunk, index|
+  puts &quot;Chunk #{index + 1}: #{chunk.length} characters&quot;
+end
+
+# Structure-aware chunking
+chunks = TextChunker.chunk_by_structure(text, 
+  preserve_paragraphs: true,
+  min_chunk_size: 500
+)
+
+# Code chunking
+code_text = File.read('source_code.rb')
+code_chunks = TextChunker.chunk_code(code_text, language: 'ruby')
+</code></pre>
+<h2 id="specialized-services">Specialized Services</h2>
+<h3 id="metadatagenerator">MetadataGenerator</h3>
+<p><strong>Responsibility</strong>: AI-powered structured metadata creation</p>
+<p><strong>Implementation</strong>: <code>/lib/ragdoll/core/services/metadata_generator.rb</code></p>
+<pre><code class="language-ruby">class Services::MetadataGenerator
+  def generate_for_document(document)
+    # Returns: Hash of structured metadata following document-type schemas
+  end
+
+  private
+
+  def generate_text_metadata(content)
+    # Generates classification, topics, difficulty_level, etc.
+  end
+
+  def generate_image_metadata(description, image_metadata)
+    # Generates scene_type, objects, colors, mood, etc.
+  end
+end
+</code></pre>
+<p><strong>Metadata Schemas</strong>:
+- <strong>Text Documents</strong>: classification, topics, difficulty_level, audience, language
+- <strong>Images</strong>: scene_type, objects, colors, mood, artistic_style
+- <strong>PDFs</strong>: academic_level, document_structure, reference_count
+- <strong>Code</strong>: programming_language, complexity, patterns</p>
+<h3 id="imagedescriptionservice">ImageDescriptionService</h3>
+<p><strong>Responsibility</strong>: AI-powered image content description</p>
+<p><strong>Implementation</strong>: <code>/lib/ragdoll/core/services/image_description_service.rb</code></p>
+<pre><code class="language-ruby">class Services::ImageDescriptionService
+  def generate_description(image_path)
+    # Returns: String description of image content for embedding
+  end
+end
+</code></pre>
+<h2 id="service-configuration">Service Configuration</h2>
+<h3 id="provider-selection-and-setup">Provider Selection and Setup</h3>
+<pre><code class="language-ruby">Ragdoll::Core.configure do |config|
+  # LLM Provider Configuration
+  config.ruby_llm_config[:openai][:api_key] = ENV['OPENAI_API_KEY']
+  config.ruby_llm_config[:anthropic][:api_key] = ENV['ANTHROPIC_API_KEY']
+
+  # Model Selection by Task
+  config.models[:default] = 'openai/gpt-4o-mini'    # General purpose
+  config.models[:summary] = 'openai/gpt-4o'         # High-quality summarization
+  config.models[:keywords] = 'openai/gpt-4o-mini'   # Fast keyword extraction
+
+  # Embedding Models by Content Type
+  config.models[:embedding][:text] = 'text-embedding-3-small'
+  config.models[:embedding][:image] = 'clip-vit-large-patch14'
+  config.models[:embedding][:audio] = 'whisper-embedding-v1'
+
+  # Performance Tuning
+  config.embedding_config[:cache_embeddings] = true
+  config.embedding_config[:max_embedding_dimensions] = 3072
+
+  # Chunking Configuration  
+  config.chunking[:text][:max_tokens] = 1000
+  config.chunking[:text][:overlap] = 200
+end
+</code></pre>
+<h3 id="error-handling-strategies">Error Handling Strategies</h3>
+<pre><code class="language-ruby"># Service-level error handling
+begin
+  result = DocumentProcessor.parse(file_path)
+rescue DocumentProcessor::UnsupportedFormatError =&gt; e
+  # Handle unsupported file format
+  logger.warn &quot;Unsupported format: #{e.message}&quot;
+  fallback_to_text_extraction(file_path)
+rescue DocumentProcessor::ParseError =&gt; e
+  # Handle parsing errors
+  logger.error &quot;Parse failed: #{e.message}&quot;
+  create_error_document(file_path, e.message)
+end
+
+# Embedding service with retries
+service = EmbeddingService.new
+begin
+  embedding = service.generate_embedding(text)
+rescue EmbeddingService::EmbeddingError =&gt; e
+  if e.message.include?('rate limit')
+    sleep(2)
+    retry
+  else
+    raise e
+  end
+end
+</code></pre>
+<h2 id="usage-patterns">Usage Patterns</h2>
+<h3 id="service-composition">Service Composition</h3>
+<pre><code class="language-ruby"># Complete document processing pipeline
+class DocumentPipeline
+  def self.process_document(file_path)
+    # 1. Parse document
+    parsed = DocumentProcessor.parse(file_path)
+
+    # 2. Create database record
+    doc_id = DocumentManagement.add_document(
+      file_path, 
+      parsed[:content], 
+      parsed[:metadata]
+    )
+
+    # 3. Generate embeddings (via background job)
+    document = Models::Document.find(doc_id)
+    document.generate_embeddings_for_all_content!
+
+    # 4. Generate metadata (via background job)
+    document.generate_metadata!
+
+    doc_id
+  end
+end
+</code></pre>
+<h3 id="service-testing-patterns">Service Testing Patterns</h3>
+<pre><code class="language-ruby"># Mock LLM services for testing
+class MockEmbeddingService &lt; EmbeddingService
+  def initialize
+    @client = MockLLMClient.new
+  end
+
+  def generate_embedding(text)
+    # Return consistent mock embedding for testing
+    Array.new(1536) { rand }
+  end
+end
+
+# Test with mock service
+RSpec.describe DocumentProcessor do
+  let(:embedding_service) { MockEmbeddingService.new }
+  let(:search_engine) { SearchEngine.new(embedding_service) }
+
+  it 'processes documents correctly' do
+    result = DocumentProcessor.parse('test/fixtures/sample.pdf')
+    expect(result[:content]).to be_present
+    expect(result[:document_type]).to eq('pdf')
+  end
+end
+</code></pre>
+<h3 id="background-job-integration">Background Job Integration</h3>
+<pre><code class="language-ruby"># Services work seamlessly with ActiveJob
+class GenerateEmbeddings &lt; ActiveJob::Base
+  def perform(document_id)
+    document = Models::Document.find(document_id)
+
+    # Use services within jobs
+    chunker = TextChunker
+    embedding_service = EmbeddingService.new
+
+    chunks = chunker.chunk(document.content)
+    embeddings = embedding_service.generate_embeddings_batch(chunks)
+
+    # Store embeddings
+    chunks.zip(embeddings).each_with_index do |(chunk, embedding), index|
+      DocumentManagement.add_embedding(
+        document.id, index, embedding, 
+        { content: chunk }
+      )
+    end
+  end
+end
+</code></pre>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<h3 id="service-optimization">Service Optimization</h3>
+<ul>
+<li><strong>Batch Processing</strong>: Use <code>generate_embeddings_batch()</code> for multiple texts</li>
+<li><strong>Caching</strong>: Enable embedding caching for repeated content</li>
+<li><strong>Connection Pooling</strong>: Configure database pools for concurrent operations</li>
+<li><strong>Background Jobs</strong>: Offload expensive operations to background processing</li>
+<li><strong>Error Recovery</strong>: Implement exponential backoff for API rate limits</li>
+</ul>
+<h3 id="monitoring-service-health">Monitoring Service Health</h3>
+<pre><code class="language-ruby"># Service health check
+class ServiceHealth
+  def self.check_all_services
+    {
+      database: Database.connected?,
+      embedding_api: test_embedding_service,
+      text_generation: test_text_generation,
+      document_parsing: test_document_parsing
+    }
+  end
+
+  private
+
+  def self.test_embedding_service
+    service = EmbeddingService.new
+    service.generate_embedding(&quot;test&quot;).present?
+  rescue =&gt; e
+    false
+  end
+end
+</code></pre>
+<hr />
+<p><em>This document is part of the Ragdoll documentation suite. For immediate help, see the <a href="../quick-start/">Quick Start Guide</a> or <a href="../api-client/">API Reference</a>.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

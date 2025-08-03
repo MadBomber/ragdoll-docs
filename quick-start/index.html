@@ -1,0 +1,1981 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../performance/">
+      
+      
+        <link rel="next" href="../search-analytics/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Quick Start Guide - Ragdoll Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quick-start-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ragdoll Documentation" class="md-header__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ragdoll Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quick Start Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ragdoll Documentation" class="md-nav__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ragdoll Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ragdoll Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Client API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jobs Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Models Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Deployment Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../document-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embedding System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Variables Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extending the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-uploads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Upload System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation &amp; Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LLM Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metadata Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Modal Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Performance Tuning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Quick Start Guide
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start Guide
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-gem-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 1: Gem Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-bundler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 2: Bundler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-3-development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 3: Development Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-postgresql-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production PostgreSQL Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      First Steps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="First Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-add-your-first-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Add Your First Document
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-check-processing-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Check Processing Status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-search-your-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Search Your Document
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-use-rag-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Use RAG Enhancement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Use Cases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Use Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-intelligence-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Intelligence Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-modal-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Modal Content
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#knowledge-base-qa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knowledge Base Q&amp;A
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-llm-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple LLM Providers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Tuning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-and-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Debugging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring and Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-system-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check System Health
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-system-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get System Statistics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-recent-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      View Recent Activity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-key-not-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Key Not Set
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-connection-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Connection Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-processing-stuck" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Processing Stuck
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-debug-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Debug Logging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Next Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Applications
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#community-and-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Community and Support
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Considerations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-gem-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 1: Gem Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-bundler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 2: Bundler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-3-development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Option 3: Development Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-postgresql-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production PostgreSQL Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      First Steps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="First Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-add-your-first-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Add Your First Document
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-check-processing-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Check Processing Status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-search-your-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Search Your Document
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-use-rag-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Use RAG Enhancement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Use Cases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Use Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-intelligence-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Intelligence Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-modal-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-Modal Content
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#knowledge-base-qa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knowledge Base Q&amp;A
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-llm-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple LLM Providers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Tuning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-and-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Debugging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring and Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-system-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check System Health
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-system-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get System Statistics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-recent-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      View Recent Activity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-key-not-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Key Not Set
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-connection-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Connection Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-processing-stuck" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Processing Stuck
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-debug-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Debug Logging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Next Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Applications
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#community-and-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Community and Support
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="quick-start-guide">Quick Start Guide</h1>
+<p>Get up and running with Ragdoll in 5 minutes. This guide covers installation, basic configuration, and essential operations to demonstrate the powerful document intelligence capabilities.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Ruby 3.2+</li>
+<li>PostgreSQL database with pgvector extension</li>
+<li>An OpenAI API key (or other supported LLM provider)</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<h3 id="option-1-gem-installation">Option 1: Gem Installation</h3>
+<pre><code class="language-bash">gem install ragdoll
+</code></pre>
+<h3 id="option-2-bundler">Option 2: Bundler</h3>
+<p>Add to your Gemfile:</p>
+<pre><code class="language-ruby">gem 'ragdoll'
+</code></pre>
+<p>Then run:</p>
+<pre><code class="language-bash">bundle install
+</code></pre>
+<h3 id="option-3-development-setup">Option 3: Development Setup</h3>
+<pre><code class="language-bash">git clone https://github.com/madbomber/ragdoll.git
+cd ragdoll
+bundle install
+</code></pre>
+<h2 id="basic-configuration">Basic Configuration</h2>
+<h3 id="postgresql-setup">PostgreSQL Setup</h3>
+<pre><code class="language-ruby">require 'ragdoll'
+
+Ragdoll::Core.configure do |config|
+  # Configure Ruby LLM providers
+  config.ruby_llm_config[:openai][:api_key] = ENV['OPENAI_API_KEY']  # Set your OpenAI API key
+
+  # Configure models
+  config.embedding_config[:text][:model] = 'openai/text-embedding-3-small'
+  config.embedding_config[:default][:model] = 'openai/gpt-4o-mini'
+
+  # PostgreSQL database
+  config.database_config = {
+    adapter: 'postgresql',
+    database: 'ragdoll_development',
+    username: 'ragdoll',
+    password: ENV['DATABASE_PASSWORD'],
+    host: 'localhost',
+    port: 5432,
+    auto_migrate: true  # Automatically create schema
+  }
+
+  # Basic settings
+  config.logging_config[:log_level] = :info
+  config.chunking[:text][:max_tokens] = 1000
+  config.chunking[:text][:overlap] = 200
+end
+</code></pre>
+<h3 id="production-postgresql-setup">Production PostgreSQL Setup</h3>
+<pre><code class="language-ruby">Ragdoll::Core.configure do |config|
+  # Configure Ruby LLM providers
+  config.ruby_llm_config[:openai][:api_key] = ENV['OPENAI_API_KEY']
+
+  # Configure models
+  config.embedding_config[:text][:model] = 'openai/text-embedding-3-small'
+  config.embedding_config[:default][:model] = 'openai/gpt-4o-mini'
+
+  # PostgreSQL with pgvector
+  config.database_config = {
+    adapter: 'postgresql',
+    database: 'ragdoll_production',
+    username: 'ragdoll',
+    password: ENV['DATABASE_PASSWORD'],
+    host: 'localhost',
+    port: 5432,
+    auto_migrate: true
+  }
+end
+</code></pre>
+<h2 id="first-steps">First Steps</h2>
+<h3 id="1-add-your-first-document">1. Add Your First Document</h3>
+<pre><code class="language-ruby"># Add a PDF document
+result = Ragdoll::Core.add_document(path: 'research_paper.pdf')
+puts result[:message]
+# =&gt; &quot;Document 'research_paper' added successfully with ID 123&quot;
+
+# Store the document ID for later use
+doc_id = result[:document_id]
+</code></pre>
+<h3 id="2-check-processing-status">2. Check Processing Status</h3>
+<pre><code class="language-ruby"># Check if document processing is complete
+status = Ragdoll::Core.document_status(id: doc_id)
+puts &quot;Status: #{status[:status]}&quot;
+puts &quot;Progress: #{status[:progress]}%&quot;
+puts &quot;Embeddings: #{status[:embeddings_count]} ready&quot;
+
+# Wait for processing to complete (in real applications, use background monitoring)
+while status[:status] == 'processing'
+  sleep(2)
+  status = Ragdoll::Core.document_status(id: doc_id)
+  puts &quot;Processing... #{status[:progress]}%&quot;
+end
+</code></pre>
+<h3 id="3-search-your-document">3. Search Your Document</h3>
+<pre><code class="language-ruby"># Search for content
+results = Ragdoll::Core.search(query: 'machine learning algorithms')
+
+results.each do |result|
+  puts &quot;Score: #{result[:similarity_score]}&quot;
+  puts &quot;Content: #{result[:content]}&quot;
+  puts &quot;Document: #{result[:document_title]}&quot;
+  puts &quot;---&quot;
+end
+</code></pre>
+<h3 id="4-use-rag-enhancement">4. Use RAG Enhancement</h3>
+<pre><code class="language-ruby"># Get relevant context for a question
+context = Ragdoll::Core.get_context(
+  query: 'What are the key benefits of neural networks?',
+  limit: 3
+)
+
+puts &quot;Found #{context[:context_items].size} relevant passages&quot;
+
+# Enhance a prompt with context
+enhanced = Ragdoll::Core.enhance_prompt(
+  prompt: 'Explain neural networks',
+  context_limit: 3
+)
+
+puts &quot;Enhanced prompt:&quot;
+puts enhanced[:enhanced_prompt]
+</code></pre>
+<h2 id="common-use-cases">Common Use Cases</h2>
+<h3 id="document-intelligence-pipeline">Document Intelligence Pipeline</h3>
+<pre><code class="language-ruby"># Process a collection of research papers
+documents_dir = '/path/to/research/papers'
+
+# Add all PDFs in directory
+result = Ragdoll::Core.add_directory(
+  path: documents_dir,
+  file_patterns: ['*.pdf'],
+  recursive: true
+)
+
+puts &quot;Processing #{result[:processed_files]} documents...&quot;
+
+# Wait for processing to complete
+sleep(30)  # In production, use proper background job monitoring
+
+# Search across all documents
+results = Ragdoll::Core.search(
+  query: 'deep learning optimization techniques',
+  limit: 10
+)
+
+puts &quot;Found #{results.size} relevant passages across your research library&quot;
+</code></pre>
+<h3 id="multi-modal-content">Multi-Modal Content</h3>
+<pre><code class="language-ruby"># Add different types of content
+text_result = Ragdoll::Core.add_text(
+  content: &quot;This is important information about AI safety...&quot;,
+  title: &quot;AI Safety Notes&quot;
+)
+
+# Add an image with description
+image_result = Ragdoll::Core.add_image(
+  image_path: 'neural_network_diagram.png',
+  description: 'Diagram showing the architecture of a convolutional neural network'
+)
+
+# Search across all content types
+mixed_results = Ragdoll::Core.search(
+  query: 'neural network architecture',
+  content_types: ['text', 'image']
+)
+
+mixed_results.each do |result|
+  puts &quot;Type: #{result[:content_type]}&quot;
+  puts &quot;Content: #{result[:content]}&quot;
+  puts &quot;---&quot;
+end
+</code></pre>
+<h3 id="knowledge-base-qa">Knowledge Base Q&amp;A</h3>
+<pre><code class="language-ruby"># Build a knowledge base
+knowledge_files = [
+  'company_handbook.pdf',
+  'technical_documentation.docx',
+  'meeting_notes.txt',
+  'presentation_slides.pdf'
+]
+
+knowledge_files.each do |file|
+  result = Ragdoll::Core.add_document(path: file)
+  puts &quot;Added: #{result[:message]}&quot;
+end
+
+# Wait for processing
+sleep(60)
+
+# Answer questions using RAG
+def answer_question(question)
+  enhanced = Ragdoll::Core.enhance_prompt(
+    prompt: question,
+    context_limit: 5,
+    include_sources: true
+  )
+
+  puts &quot;Question: #{question}&quot;
+  puts &quot;Context sources: #{enhanced[:sources].join(', ')}&quot;
+  puts &quot;Enhanced prompt ready for LLM&quot;
+  puts enhanced[:enhanced_prompt]
+end
+
+answer_question(&quot;What is our company's policy on remote work?&quot;)
+answer_question(&quot;How do I configure the authentication system?&quot;)
+</code></pre>
+<h2 id="configuration-examples">Configuration Examples</h2>
+<h3 id="multiple-llm-providers">Multiple LLM Providers</h3>
+<pre><code class="language-ruby"># Use different providers for different tasks
+Ragdoll::Core.configure do |config|
+  # Configure multiple Ruby LLM providers
+  config.ruby_llm_config[:openai][:api_key] = ENV['OPENAI_API_KEY']
+  config.ruby_llm_config[:anthropic][:api_key] = ENV['ANTHROPIC_API_KEY']
+  config.ruby_llm_config[:ollama][:endpoint] = 'http://localhost:11434/v1'
+
+  # Configure models for different tasks
+  config.embedding_config[:text][:model] = 'openai/text-embedding-3-small'  # OpenAI embeddings
+  config.embedding_config[:default][:model] = 'openai/gpt-4o-mini'          # OpenAI for general tasks
+  config.summarization_config[:model] = 'anthropic/claude-3-sonnet-20240229'  # Claude for summarization
+  config.keywords_config[:model] = 'ollama/llama3:8b'                         # Local Ollama for keywords
+end
+</code></pre>
+<h3 id="performance-tuning">Performance Tuning</h3>
+<pre><code class="language-ruby">Ragdoll::Core.configure do |config|
+  # Optimize for your content
+  config.chunking[:text][:max_tokens] = 1500         # Larger chunks for technical documents
+  config.chunking[:text][:overlap] = 300             # More overlap for better context
+  config.search[:similarity_threshold] = 0.8         # Higher threshold for precision
+  config.search[:max_results] = 20                   # More results for comprehensive search
+
+  # Enable advanced features
+  config.analytics_config[:enable] = true
+  config.summarization_config[:enable] = true
+  config.keywords_config[:enable] = true
+end
+</code></pre>
+<h2 id="monitoring-and-debugging">Monitoring and Debugging</h2>
+<h3 id="check-system-health">Check System Health</h3>
+<pre><code class="language-ruby"># System health check
+health = Ragdoll::Core.health_check
+puts &quot;System status: #{health[:status]}&quot;
+puts &quot;Components:&quot;
+health[:components].each do |component, status|
+  puts &quot;  #{component}: #{status}&quot;
+end
+</code></pre>
+<h3 id="get-system-statistics">Get System Statistics</h3>
+<pre><code class="language-ruby"># Comprehensive statistics
+stats = Ragdoll::Core.stats
+
+puts &quot;Documents: #{stats[:documents][:total]}&quot;
+puts &quot;Embeddings: #{stats[:embeddings][:total]}&quot;
+puts &quot;Searches today: #{stats[:usage][:searches_today]}&quot;
+puts &quot;Storage used: #{stats[:usage][:storage_used]}&quot;
+</code></pre>
+<h3 id="view-recent-activity">View Recent Activity</h3>
+<pre><code class="language-ruby"># List recent documents
+recent_docs = Ragdoll::Core.list_documents(
+  limit: 10,
+  sort: 'created_at',
+  order: 'desc'
+)
+
+puts &quot;Recent documents:&quot;
+recent_docs[:documents].each do |doc|
+  puts &quot;  #{doc[:title]} (#{doc[:status]}) - #{doc[:created_at]}&quot;
+end
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<h4 id="api-key-not-set">API Key Not Set</h4>
+<pre><code class="language-ruby"># Error: Missing OpenAI API key
+# Solution: Set your API key
+ENV['OPENAI_API_KEY'] = 'sk-your-actual-api-key'
+</code></pre>
+<h4 id="database-connection-issues">Database Connection Issues</h4>
+<pre><code class="language-ruby"># Error: Database connection failed
+# Solution: Check database configuration
+config.database_config = {
+  adapter: 'postgresql',
+  database: 'ragdoll_development',
+  username: 'ragdoll',
+  password: ENV['DATABASE_PASSWORD'],
+  host: 'localhost',
+  port: 5432,
+  auto_migrate: true
+}
+</code></pre>
+<h4 id="document-processing-stuck">Document Processing Stuck</h4>
+<pre><code class="language-ruby"># Check document status
+status = Ragdoll::Core.document_status(id: doc_id)
+puts status
+
+# Check background job status
+job_status = Ragdoll::Core.job_status
+puts &quot;Active jobs: #{job_status[:active_jobs]}&quot;
+puts &quot;Failed jobs: #{job_status[:failed_jobs]}&quot;
+</code></pre>
+<h3 id="enable-debug-logging">Enable Debug Logging</h3>
+<pre><code class="language-ruby">Ragdoll::Core.configure do |config|
+  config.logging_config[:log_level] = :debug
+  config.logging_config[:log_filepath] = nil  # Log to stdout for development
+end
+</code></pre>
+<h2 id="next-steps">Next Steps</h2>
+<p>Now that you have Ragdoll running:</p>
+<ol>
+<li><strong>Explore Advanced Features</strong>: Read the <a href="../multi-modal/">Multi-Modal Architecture</a> guide</li>
+<li><strong>Optimize Performance</strong>: Check the <a href="../configuration/">Configuration Guide</a></li>
+<li><strong>Scale to Production</strong>: Follow the <a href="../deployment/">Deployment Guide</a></li>
+<li><strong>Build Applications</strong>: Review the <a href="../api-client/">API Reference</a></li>
+</ol>
+<h3 id="example-applications">Example Applications</h3>
+<p>Try building these common applications:</p>
+<ul>
+<li><strong>Document Q&amp;A System</strong>: Upload PDFs and ask questions</li>
+<li><strong>Research Assistant</strong>: Search across academic papers</li>
+<li><strong>Knowledge Base</strong>: Company documentation with smart search</li>
+<li><strong>Content Analyzer</strong>: Extract insights from large document collections</li>
+<li><strong>Multi-Modal Search</strong>: Find content across text, images, and audio</li>
+</ul>
+<h3 id="community-and-support">Community and Support</h3>
+<ul>
+<li><strong>Documentation</strong>: Complete guides in the <code>docs/</code> directory</li>
+<li><strong>Examples</strong>: Working examples for common use cases</li>
+<li><strong>Issues</strong>: Report issues on GitHub</li>
+<li><strong>Discussions</strong>: Join community discussions</li>
+</ul>
+<p>Ragdoll provides enterprise-grade document intelligence capabilities out of the box. This quick start barely scratches the surface of what's possible with the full feature set!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

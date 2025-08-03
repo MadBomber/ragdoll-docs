@@ -1,0 +1,2610 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../security/">
+      
+      
+        <link rel="next" href="../troubleshooting/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Testing Guide - Ragdoll Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#testing-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ragdoll Documentation" class="md-header__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ragdoll Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Testing Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ragdoll Documentation" class="md-nav__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ragdoll Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ragdoll Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Client API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jobs Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Models Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Deployment Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../document-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embedding System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Variables Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extending the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-uploads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Upload System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation &amp; Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LLM Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metadata Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Modal Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Performance Tuning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Considerations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Testing Guide
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing Guide
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-tests-and-coverage-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Tests and Coverage Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Tests and Coverage Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-test-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Test Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Framework
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minitest-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minitest Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-database-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Database Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-test-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Test Helpers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Categories
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Categories">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unit Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Tests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Execution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-specific-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Specific Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mock-service-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mock Service Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coverage Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Coverage Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplecov-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      SimpleCov Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coverage-metrics-and-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coverage Metrics and Reporting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coverage-analysis-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coverage Analysis Tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mocking-and-stubbing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mocking and Stubbing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mocking and Stubbing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external-service-mocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      External Service Mocking
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="External Service Mocking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm-provider-mocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Provider Mocking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-mocking-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Mocking (Advanced)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-doubles-and-stubs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Doubles and Stubs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benchmark-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benchmark Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-usage-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Usage Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuous-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continuous Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Continuous Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github-actions-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Actions Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ci-specific-test-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      CI-Specific Test Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Organization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-naming-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Naming Conventions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-assurance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quality Assurance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quality Assurance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Coverage Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-quality-in-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Quality in Tests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Debugging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Checklist
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before-committing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before Committing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      For New Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-tests-and-coverage-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Tests and Coverage Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Tests and Coverage Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-test-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Test Commands
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Framework
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minitest-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minitest Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-database-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Database Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-test-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Test Helpers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Categories
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Categories">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unit Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Tests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Execution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-specific-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Specific Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mock-service-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mock Service Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coverage-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coverage Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Coverage Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplecov-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      SimpleCov Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coverage-metrics-and-reporting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coverage Metrics and Reporting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coverage-analysis-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coverage Analysis Tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mocking-and-stubbing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mocking and Stubbing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mocking and Stubbing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external-service-mocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      External Service Mocking
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="External Service Mocking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm-provider-mocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Provider Mocking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-mocking-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Mocking (Advanced)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-doubles-and-stubs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Doubles and Stubs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benchmark-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Benchmark Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-usage-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory Usage Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuous-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continuous Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Continuous Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github-actions-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Actions Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ci-specific-test-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      CI-Specific Test Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing Best Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Organization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-naming-conventions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Naming Conventions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-assurance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quality Assurance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quality Assurance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Coverage Goals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-quality-in-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Quality in Tests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Debugging
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Checklist
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before-committing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before Committing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      For New Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="testing-guide">Testing Guide</h1>
+<h2 id="running-tests-and-coverage-analysis">Running Tests and Coverage Analysis</h2>
+<p>Ragdoll uses <strong>Minitest</strong> as its primary testing framework with comprehensive coverage analysis via SimpleCov. All tests require PostgreSQL with pgvector extension and focus on real database integration rather than mocking.</p>
+<h3 id="quick-test-commands">Quick Test Commands</h3>
+<pre><code class="language-bash"># Run all tests
+bundle exec rake test
+
+# Run specific test file
+bundle exec rake test test/core/client_test.rb
+
+# Run with coverage report
+RAILS_ENV=test bundle exec rake test
+open coverage/index.html
+
+# Run tests with verbose output
+bundle exec rake test TESTOPTS=&quot;-v&quot;
+
+# Run specific test method
+bundle exec rake test TESTOPTS=&quot;--name test_method_name&quot;
+</code></pre>
+<h2 id="test-framework">Test Framework</h2>
+<h3 id="minitest-configuration">Minitest Configuration</h3>
+<p>Ragdoll uses Minitest with custom reporting and database management:</p>
+<pre><code class="language-ruby"># test/test_helper.rb highlights
+require &quot;simplecov&quot;
+require &quot;minitest/autorun&quot;
+require &quot;minitest/reporters&quot;
+
+# Custom reporter for better test output
+class CompactTestReporter &lt; Minitest::Reporters::BaseReporter
+  def record(result)
+    status = case result.result_code
+             when &quot;.&quot; then &quot;\e[32mPASS\e[0m&quot;
+             when &quot;F&quot; then &quot;\e[31mFAIL\e[0m&quot;
+             when &quot;E&quot; then &quot;\e[31mERROR\e[0m&quot;
+             when &quot;S&quot; then &quot;\e[33mSKIP\e[0m&quot;
+             end
+
+    time_str = result.time &gt;= 1.0 ? 
+      &quot;\e[31m(#{result.time.round(2)}s)\e[0m&quot; : 
+      &quot;(#{result.time.round(3)}s)&quot;
+
+    puts &quot;#{result.klass}##{result.name} ... #{status} #{time_str}&quot;
+  end
+end
+</code></pre>
+<h3 id="test-database-configuration">Test Database Configuration</h3>
+<p>Each test gets a clean PostgreSQL database state:</p>
+<pre><code class="language-ruby">module Minitest
+  class Test
+    def setup
+      Ragdoll::Core.reset_configuration!
+
+      # Setup PostgreSQL test database
+      Ragdoll::Core::Database.setup({
+        adapter: &quot;postgresql&quot;,
+        database: &quot;ragdoll_test&quot;,
+        username: ENV[&quot;POSTGRES_USER&quot;] || &quot;postgres&quot;,
+        password: ENV[&quot;POSTGRES_PASSWORD&quot;] || &quot;&quot;,
+        host: ENV[&quot;POSTGRES_HOST&quot;] || &quot;localhost&quot;,
+        port: ENV[&quot;POSTGRES_PORT&quot;] || 5432,
+        auto_migrate: true,
+        logger: nil
+      })
+    end
+
+    def teardown
+      # Clean database in foreign key order
+      %w[ragdoll_embeddings ragdoll_contents ragdoll_documents].each do |table|
+        ActiveRecord::Base.connection.execute(&quot;DELETE FROM #{table}&quot;)
+      end
+
+      Ragdoll::Core.reset_configuration!
+    end
+  end
+end
+</code></pre>
+<h3 id="custom-test-helpers">Custom Test Helpers</h3>
+<pre><code class="language-ruby"># Custom assertions for Ragdoll-specific testing
+module RagdollTestHelpers
+  def assert_embedding_generated(text)
+    service = Ragdoll::Core::EmbeddingService.new
+    embedding = service.generate_embedding(text)
+    assert embedding.is_a?(Array), &quot;Expected array, got #{embedding.class}&quot;
+    assert embedding.length &gt; 0, &quot;Expected non-empty embedding&quot;
+    assert embedding.all?(Numeric), &quot;All embedding values must be numeric&quot;
+  end
+
+  def assert_document_processed(document_id)
+    document = Ragdoll::Core::Models::Document.find(document_id)
+    assert_equal 'processed', document.status
+    assert document.content.present?
+    refute_empty document.all_embeddings
+  end
+
+  def assert_search_results_valid(results)
+    assert_instance_of Array, results
+    results.each do |result|
+      assert result.key?(:similarity)
+      assert result.key?(:content)
+      assert result.key?(:document_id)
+      assert result[:similarity].between?(0.0, 1.0)
+    end
+  end
+
+  def create_test_document(content: &quot;Test content&quot;, title: &quot;Test Document&quot;)
+    doc_id = Ragdoll::Core::DocumentManagement.add_document(
+      &quot;test://#{title}&quot;, content, { title: title }
+    )
+
+    # Process immediately for tests (no background jobs)
+    document = Ragdoll::Core::Models::Document.find(doc_id)
+    document.update!(status: 'processed')
+    doc_id
+  end
+end
+
+# Include helpers in all tests
+Minitest::Test.include(RagdollTestHelpers)
+</code></pre>
+<h2 id="test-categories">Test Categories</h2>
+<h3 id="unit-tests">Unit Tests</h3>
+<p>Unit tests focus on individual classes and methods:</p>
+<pre><code class="language-ruby"># test/core/embedding_service_test.rb
+class EmbeddingServiceTest &lt; Minitest::Test
+  def setup
+    super
+    @service = Ragdoll::Core::EmbeddingService.new
+  end
+
+  def test_generates_embedding_for_text
+    # Mock LLM API to avoid external dependencies
+    mock_client = Minitest::Mock.new
+    mock_client.expect(:embed, 
+      { &quot;embeddings&quot; =&gt; [Array.new(1536) { rand }] },
+      [Hash]
+    )
+
+    service = Ragdoll::Core::EmbeddingService.new(client: mock_client)
+    embedding = service.generate_embedding(&quot;test text&quot;)
+
+    assert_instance_of Array, embedding
+    assert_equal 1536, embedding.length
+    assert embedding.all?(Numeric)
+
+    mock_client.verify
+  end
+
+  def test_handles_empty_text
+    embedding = @service.generate_embedding(&quot;&quot;)
+    assert_nil embedding
+  end
+
+  def test_handles_very_long_text
+    long_text = &quot;word &quot; * 10_000
+    embedding = @service.generate_embedding(long_text)
+
+    # Should truncate and still generate embedding
+    assert_instance_of Array, embedding
+  end
+end
+</code></pre>
+<pre><code class="language-ruby"># test/core/models/document_test.rb
+class DocumentTest &lt; Minitest::Test
+  def test_creates_document_with_required_fields
+    document = Ragdoll::Core::Models::Document.create!(
+      location: &quot;/test/path.txt&quot;,
+      title: &quot;Test Document&quot;,
+      document_type: &quot;text&quot;,
+      status: &quot;pending&quot;,
+      file_modified_at: Time.current
+    )
+
+    assert document.persisted?
+    assert_equal &quot;text&quot;, document.document_type
+    assert_equal &quot;pending&quot;, document.status
+  end
+
+  def test_validates_required_fields
+    document = Ragdoll::Core::Models::Document.new
+
+    refute document.valid?
+    assert document.errors[:location].present?
+    assert document.errors[:title].present?
+  end
+
+  def test_normalizes_file_paths
+    document = Ragdoll::Core::Models::Document.create!(
+      location: &quot;relative/path.txt&quot;,
+      title: &quot;Test&quot;,
+      document_type: &quot;text&quot;,
+      status: &quot;pending&quot;,
+      file_modified_at: Time.current
+    )
+
+    # Should convert to absolute path
+    assert document.location.start_with?(&quot;/&quot;)
+    assert document.location.include?(&quot;relative/path.txt&quot;)
+  end
+end
+</code></pre>
+<h3 id="integration-tests">Integration Tests</h3>
+<p>Integration tests verify component interactions:</p>
+<pre><code class="language-ruby"># test/core/client_integration_test.rb
+class ClientIntegrationTest &lt; Minitest::Test
+  def setup
+    super
+    @client = Ragdoll::Core.client
+  end
+
+  def test_complete_document_workflow
+    # Create temporary test file
+    Tempfile.create(['test', '.txt']) do |file|
+      file.write(&quot;This is test content about machine learning algorithms.&quot;)
+      file.rewind
+
+      # Add document
+      result = @client.add_document(path: file.path)
+      assert result[:success]
+
+      document_id = result[:document_id]
+      assert document_id.present?
+
+      # Verify document was created
+      document = Ragdoll::Core::Models::Document.find(document_id)
+      assert_equal &quot;text&quot;, document.document_type
+
+      # Simulate background job processing
+      document.generate_embeddings_for_all_content!
+
+      # Verify embeddings were created
+      assert document.all_embeddings.any?
+
+      # Test search functionality
+      search_results = @client.search(query: &quot;machine learning&quot;)
+      assert search_results[:results].any?
+
+      # Verify search result structure
+      result = search_results[:results].first
+      assert result[:document_id] == document_id
+      assert result[:similarity] &gt; 0.5
+    end
+  end
+
+  def test_document_management_operations
+    # Add document
+    doc_id = create_test_document(
+      content: &quot;Integration test content&quot;,
+      title: &quot;Integration Test Doc&quot;
+    )
+
+    # Test retrieval
+    document = @client.get_document(id: doc_id)
+    assert_equal &quot;Integration Test Doc&quot;, document[:title]
+    assert_equal &quot;Integration test content&quot;, document[:content]
+
+    # Test update
+    updated = @client.update_document(
+      id: doc_id,
+      metadata: { category: &quot;test&quot; }
+    )
+    assert_equal &quot;test&quot;, updated[:metadata][&quot;category&quot;]
+
+    # Test deletion
+    assert @client.delete_document(id: doc_id)
+    assert_nil @client.get_document(id: doc_id)
+  end
+end
+</code></pre>
+<h3 id="system-tests">System Tests</h3>
+<p>System tests verify end-to-end workflows:</p>
+<pre><code class="language-ruby"># test/system/rag_workflow_test.rb
+class RAGWorkflowTest &lt; Minitest::Test
+  def test_complete_rag_system
+    client = Ragdoll::Core.client
+
+    # Add multiple documents
+    documents = [
+      { content: &quot;Ruby is a programming language&quot;, title: &quot;Ruby Intro&quot; },
+      { content: &quot;Python is used for data science&quot;, title: &quot;Python Guide&quot; },
+      { content: &quot;JavaScript runs in browsers&quot;, title: &quot;JS Basics&quot; }
+    ]
+
+    doc_ids = documents.map do |doc|
+      create_test_document(content: doc[:content], title: doc[:title])
+    end
+
+    # Process all documents
+    doc_ids.each do |doc_id|
+      document = Ragdoll::Core::Models::Document.find(doc_id)
+      document.generate_embeddings_for_all_content!
+    end
+
+    # Test semantic search
+    results = client.search(query: &quot;programming languages&quot;)
+    assert results[:results].length &gt;= 2
+
+    # Results should be ordered by relevance
+    first_result = results[:results].first
+    assert first_result[:similarity] &gt; 0.3
+
+    # Test context enhancement
+    enhanced = client.enhance_prompt(
+      prompt: &quot;What programming languages are mentioned?&quot;,
+      context_limit: 3
+    )
+
+    assert enhanced[:context_count] &gt; 0
+    assert enhanced[:enhanced_prompt].include?(&quot;programming&quot;)
+    assert enhanced[:context_sources].any?
+  end
+end
+</code></pre>
+<h2 id="test-execution">Test Execution</h2>
+<h3 id="running-specific-tests">Running Specific Tests</h3>
+<pre><code class="language-bash"># Run all tests in a directory
+bundle exec rake test test/core/
+
+# Run specific test class
+bundle exec rake test test/core/client_test.rb
+
+# Run specific test method
+bundle exec rake test TESTOPTS=&quot;--name test_specific_method&quot;
+
+# Run tests matching pattern
+bundle exec rake test TESTOPTS=&quot;--name /embedding/&quot;
+
+# Run with seed for reproducible randomization
+bundle exec rake test TESTOPTS=&quot;--seed 12345&quot;
+</code></pre>
+<h3 id="test-configuration">Test Configuration</h3>
+<h4 id="environment-variables">Environment Variables</h4>
+<pre><code class="language-bash"># Database configuration
+export POSTGRES_USER=ragdoll_test
+export POSTGRES_PASSWORD=test_password
+export POSTGRES_HOST=localhost
+export POSTGRES_PORT=5432
+
+# Test-specific settings
+export RAGDOLL_LOG_LEVEL=error
+export COVERAGE_UNDERCOVER=true
+
+# LLM API keys for integration tests
+export OPENAI_API_KEY=test_key
+export ANTHROPIC_API_KEY=test_key
+</code></pre>
+<h4 id="mock-service-setup">Mock Service Setup</h4>
+<pre><code class="language-ruby"># test/support/mock_services.rb
+class MockLLMClient
+  def embed(input:, model:)
+    # Return consistent mock embeddings
+    embeddings = Array.new(input.is_a?(Array) ? input.length : 1) do
+      Array.new(1536) { rand(-1.0..1.0) }
+    end
+
+    { &quot;embeddings&quot; =&gt; embeddings }
+  end
+
+  def chat(model:, messages:, **options)
+    # Return mock chat completion
+    {
+      &quot;choices&quot; =&gt; [{
+        &quot;message&quot; =&gt; {
+          &quot;content&quot; =&gt; &quot;This is a mock response to: #{messages.last[:content][0..50]}...&quot;
+        }
+      }]
+    }
+  end
+end
+
+# Use in tests
+class ServiceTest &lt; Minitest::Test
+  def setup
+    super
+    @mock_client = MockLLMClient.new
+    @service = Ragdoll::Core::EmbeddingService.new(client: @mock_client)
+  end
+end
+</code></pre>
+<h2 id="coverage-analysis">Coverage Analysis</h2>
+<h3 id="simplecov-configuration">SimpleCov Configuration</h3>
+<pre><code class="language-ruby"># test/test_helper.rb - SimpleCov setup
+SimpleCov.start do
+  add_filter &quot;/test/&quot;
+  track_files &quot;lib/**/*.rb&quot;
+
+  # Coverage groups for better reporting
+  add_group &quot;Core&quot;, &quot;lib/ragdoll/core&quot;
+  add_group &quot;Models&quot;, &quot;lib/ragdoll/core/models&quot;
+  add_group &quot;Services&quot;, &quot;lib/ragdoll/core/services&quot;
+  add_group &quot;Jobs&quot;, &quot;lib/ragdoll/core/jobs&quot;
+
+  # Coverage thresholds
+  minimum_coverage 85
+  minimum_coverage_by_file 70
+
+  # Exclude version file and generated files
+  add_filter &quot;version.rb&quot;
+  add_filter &quot;migrate/&quot;
+end
+</code></pre>
+<h3 id="coverage-metrics-and-reporting">Coverage Metrics and Reporting</h3>
+<pre><code class="language-bash"># Generate coverage report
+bundle exec rake test
+
+# View HTML coverage report
+open coverage/index.html
+
+# Check coverage percentage
+grep -A 5 &quot;covered at&quot; coverage/index.html
+
+# Coverage by file type
+grep &quot;LOC:&quot; coverage/.resultset.json
+</code></pre>
+<h3 id="coverage-analysis-tools">Coverage Analysis Tools</h3>
+<pre><code class="language-ruby"># Custom coverage analysis
+class CoverageAnalyzer
+  def self.analyze_uncovered_lines
+    if defined?(SimpleCov)
+      SimpleCov.result.files.each do |file|
+        uncovered = file.missed_lines
+        if uncovered.any?
+          puts &quot;#{file.filename}: #{uncovered.length} uncovered lines&quot;
+          uncovered.first(5).each do |line_num|
+            puts &quot;  Line #{line_num}: #{file.src[line_num - 1].strip}&quot;
+          end
+        end
+      end
+    end
+  end
+end
+
+# Run after tests
+CoverageAnalyzer.analyze_uncovered_lines
+</code></pre>
+<h2 id="mocking-and-stubbing">Mocking and Stubbing</h2>
+<h3 id="external-service-mocking">External Service Mocking</h3>
+<h4 id="llm-provider-mocking">LLM Provider Mocking</h4>
+<pre><code class="language-ruby"># Mock OpenAI API responses
+class MockOpenAIService
+  def initialize(responses = {})
+    @responses = responses
+    @call_count = Hash.new(0)
+  end
+
+  def embed(input:, model:)
+    @call_count[:embed] += 1
+
+    if @responses[:embed_error]
+      raise StandardError, @responses[:embed_error]
+    end
+
+    # Return mock embedding
+    {
+      &quot;embeddings&quot; =&gt; [Array.new(1536) { rand(-1.0..1.0) }]
+    }
+  end
+
+  def call_count(method)
+    @call_count[method]
+  end
+end
+
+# Use in tests
+def test_handles_api_failures
+  mock_service = MockOpenAIService.new(embed_error: &quot;Rate limit exceeded&quot;)
+  service = Ragdoll::Core::EmbeddingService.new(client: mock_service)
+
+  assert_raises(Ragdoll::Core::EmbeddingError) do
+    service.generate_embedding(&quot;test text&quot;)
+  end
+
+  assert_equal 1, mock_service.call_count(:embed)
+end
+</code></pre>
+<h4 id="database-mocking-advanced">Database Mocking (Advanced)</h4>
+<pre><code class="language-ruby"># Mock specific database operations
+class DatabaseMockTest &lt; Minitest::Test
+  def test_handles_database_connection_failure
+    # Temporarily break database connection
+    original_connection = ActiveRecord::Base.connection
+
+    ActiveRecord::Base.stub(:connection, nil) do
+      client = Ragdoll::Core.client
+
+      assert_raises(ActiveRecord::ConnectionNotEstablished) do
+        client.add_document(path: &quot;test.txt&quot;)
+      end
+    end
+  end
+end
+</code></pre>
+<h3 id="test-doubles-and-stubs">Test Doubles and Stubs</h3>
+<pre><code class="language-ruby"># Minitest stub examples
+def test_file_processing_with_stub
+  # Stub File.read to return controlled content
+  File.stub(:read, &quot;mocked file content&quot;) do
+    result = Ragdoll::Core::DocumentProcessor.parse(&quot;any_path.txt&quot;)
+    assert_equal &quot;mocked file content&quot;, result[:content]
+  end
+end
+
+# Class method stubbing
+def test_with_time_stub
+  fixed_time = Time.parse(&quot;2024-01-01 00:00:00 UTC&quot;)
+
+  Time.stub(:current, fixed_time) do
+    document = create_test_document
+    doc = Ragdoll::Core::Models::Document.find(document)
+    assert_equal fixed_time.to_i, doc.created_at.to_i
+  end
+end
+</code></pre>
+<h2 id="performance-testing">Performance Testing</h2>
+<h3 id="benchmark-tests">Benchmark Tests</h3>
+<pre><code class="language-ruby"># test/performance/embedding_benchmark_test.rb
+require 'benchmark'
+
+class EmbeddingBenchmarkTest &lt; Minitest::Test
+  def test_embedding_generation_performance
+    service = Ragdoll::Core::EmbeddingService.new
+    texts = Array.new(100) { &quot;Sample text #{rand(1000)}&quot; }
+
+    time = Benchmark.measure do
+      service.generate_embeddings_batch(texts)
+    end
+
+    # Should process 100 embeddings in under 30 seconds
+    assert time.real &lt; 30, &quot;Batch embedding too slow: #{time.real}s&quot;
+
+    puts &quot;Processed #{texts.length} embeddings in #{time.real.round(2)}s&quot;
+    puts &quot;Average: #{(time.real / texts.length * 1000).round(2)}ms per embedding&quot;
+  end
+
+  def test_search_performance
+    # Create test dataset
+    10.times do |i|
+      create_test_document(
+        content: &quot;Test document #{i} with unique content about topic #{i}&quot;,
+        title: &quot;Doc #{i}&quot;
+      )
+    end
+
+    client = Ragdoll::Core.client
+
+    # Benchmark search performance
+    time = Benchmark.measure do
+      100.times do
+        client.search(query: &quot;test content&quot;)
+      end
+    end
+
+    avg_time = time.real / 100
+    assert avg_time &lt; 0.5, &quot;Search too slow: #{avg_time}s per query&quot;
+
+    puts &quot;Average search time: #{(avg_time * 1000).round(2)}ms&quot;
+  end
+end
+</code></pre>
+<h3 id="memory-usage-testing">Memory Usage Testing</h3>
+<pre><code class="language-ruby"># test/performance/memory_test.rb
+class MemoryTest &lt; Minitest::Test
+  def test_memory_usage_during_processing
+    start_memory = get_memory_usage
+
+    # Process multiple large documents
+    10.times do |i|
+      large_content = &quot;Large content &quot; * 10_000
+      create_test_document(
+        content: large_content,
+        title: &quot;Large Doc #{i}&quot;
+      )
+    end
+
+    end_memory = get_memory_usage
+    memory_increase = end_memory - start_memory
+
+    # Should not use more than 500MB
+    assert memory_increase &lt; 500, &quot;Memory usage too high: #{memory_increase}MB&quot;
+
+    puts &quot;Memory usage increased by #{memory_increase}MB&quot;
+  end
+
+  private
+
+  def get_memory_usage
+    `ps -o rss= -p #{Process.pid}`.to_i / 1024.0  # Convert to MB
+  end
+end
+</code></pre>
+<h2 id="continuous-integration">Continuous Integration</h2>
+<h3 id="github-actions-configuration">GitHub Actions Configuration</h3>
+<pre><code class="language-yaml"># .github/workflows/test.yml
+name: Test Suite
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: pgvector/pgvector:pg14
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ragdoll_test
+        options: &gt;
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    strategy:
+      matrix:
+        ruby-version: ['3.0', '3.1', '3.2']
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true
+
+    - name: Set up database
+      env:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: 5432
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y postgresql-client
+        createdb -h localhost -U postgres ragdoll_test
+        psql -h localhost -U postgres -d ragdoll_test -c &quot;CREATE EXTENSION IF NOT EXISTS vector;&quot;
+
+    - name: Run tests
+      env:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: 5432
+      run: bundle exec rake test
+
+    - name: Upload coverage reports
+      uses: codecov/codecov-action@v3
+      with:
+        files: ./coverage/.resultset.json
+        flags: unittests
+        name: codecov-umbrella
+</code></pre>
+<h3 id="ci-specific-test-configuration">CI-Specific Test Configuration</h3>
+<pre><code class="language-ruby"># test/support/ci_configuration.rb
+module CIConfiguration
+  def self.setup
+    if ENV['CI']
+      # CI-specific settings
+      Ragdoll::Core.configure do |config|
+        config.logging_config[:level] = :error
+        config.embedding_config[:cache_embeddings] = false
+      end
+
+      # Use faster, less accurate models for CI
+      ENV['OPENAI_API_KEY'] = 'test_key_for_ci'
+    end
+  end
+end
+
+# Include in test_helper.rb
+CIConfiguration.setup if ENV['CI']
+</code></pre>
+<h2 id="testing-best-practices">Testing Best Practices</h2>
+<h3 id="test-organization">Test Organization</h3>
+<pre><code>test/
+├── test_helper.rb         # Global test setup
+├── support/               # Test utilities
+│   ├── mock_services.rb
+│   ┗── test_helpers.rb
+├── core/                  # Unit tests
+│   ├── client_test.rb
+│   ├── models/
+│   └── services/
+├── integration/           # Integration tests
+│   ┗── workflow_test.rb
+├── performance/           # Performance tests
+│   ┗── benchmark_test.rb
+├── system/                # End-to-end tests
+│   ┗── rag_system_test.rb
+└── fixtures/              # Test data
+    ├── sample.pdf
+    ├── test_image.png
+    └── documents/
+</code></pre>
+<h3 id="test-naming-conventions">Test Naming Conventions</h3>
+<pre><code class="language-ruby"># Test class naming: [ClassName]Test
+class DocumentProcessorTest &lt; Minitest::Test
+  # Test method naming: test_[action]_[condition]_[expected_result]
+  def test_parse_pdf_with_valid_file_returns_content
+    # Test implementation
+  end
+
+  def test_parse_pdf_with_corrupted_file_raises_error
+    # Test implementation
+  end
+
+  def test_parse_pdf_with_empty_file_returns_empty_content
+    # Test implementation
+  end
+end
+</code></pre>
+<h3 id="quality-assurance">Quality Assurance</h3>
+<h4 id="test-coverage-goals">Test Coverage Goals</h4>
+<ul>
+<li><strong>Overall Coverage</strong>: ≥ 85%</li>
+<li><strong>Critical Paths</strong>: ≥ 95% (search, embedding, document processing)</li>
+<li><strong>New Code</strong>: 100% (enforced in CI)</li>
+<li><strong>Integration Points</strong>: ≥ 90%</li>
+</ul>
+<h4 id="code-quality-in-tests">Code Quality in Tests</h4>
+<pre><code class="language-ruby"># Good test structure
+class WellStructuredTest &lt; Minitest::Test
+  def test_descriptive_name_following_convention
+    # Arrange - Set up test data
+    document = create_test_document(content: &quot;test content&quot;)
+    client = Ragdoll::Core.client
+
+    # Act - Perform the action being tested
+    result = client.search(query: &quot;test&quot;)
+
+    # Assert - Verify the expected outcome
+    assert result[:results].any?
+    assert_search_results_valid(result[:results])
+
+    # Cleanup (if needed beyond teardown)
+    # Usually handled by teardown method
+  end
+end
+</code></pre>
+<h3 id="test-debugging">Test Debugging</h3>
+<pre><code class="language-ruby"># Debug failing tests
+class DebugTest &lt; Minitest::Test
+  def test_with_debugging
+    # Use pry for interactive debugging
+    require 'pry'; binding.pry if ENV['DEBUG']
+
+    # Add detailed logging
+    puts &quot;Starting test with data: #{@test_data.inspect}&quot; if ENV['VERBOSE']
+
+    # Your test code here
+  end
+end
+</code></pre>
+<pre><code class="language-bash"># Run tests with debugging
+DEBUG=true VERBOSE=true bundle exec rake test TESTOPTS=&quot;--name test_specific_method&quot;
+</code></pre>
+<h2 id="test-checklist">Test Checklist</h2>
+<h3 id="before-committing">Before Committing</h3>
+<ul>
+<li>[ ] All tests pass locally</li>
+<li>[ ] Coverage is ≥ 85%</li>
+<li>[ ] New code has 100% test coverage</li>
+<li>[ ] Tests follow naming conventions</li>
+<li>[ ] No hardcoded values or paths</li>
+<li>[ ] Tests are isolated and repeatable</li>
+<li>[ ] Performance tests run within limits</li>
+<li>[ ] Integration tests cover happy path and error cases</li>
+<li>[ ] Mock services are used appropriately</li>
+<li>[ ] Database is properly cleaned between tests</li>
+</ul>
+<h3 id="for-new-features">For New Features</h3>
+<ul>
+<li>[ ] Unit tests for all new classes/methods</li>
+<li>[ ] Integration tests for feature workflows</li>
+<li>[ ] Error handling tests for edge cases</li>
+<li>[ ] Performance tests for critical paths</li>
+<li>[ ] Documentation tests for examples</li>
+<li>[ ] Backward compatibility tests</li>
+</ul>
+<hr />
+<p><em>This document is part of the Ragdoll documentation suite. For immediate help, see the <a href="../quick-start/">Quick Start Guide</a> or <a href="../api-client/">API Reference</a>.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

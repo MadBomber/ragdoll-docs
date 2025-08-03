@@ -1,0 +1,1813 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../embedding-system/">
+      
+      
+        <link rel="next" href="../extending/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Environment Variables Reference - Ragdoll Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#environment-variables-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ragdoll Documentation" class="md-header__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ragdoll Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Environment Variables Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ragdoll Documentation" class="md-nav__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ragdoll Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ragdoll Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Client API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jobs Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Models Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Deployment Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../document-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embedding System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Environment Variables Reference
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Variables Reference
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-generation-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Generation Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Models
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm-provider-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Provider Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LLM Provider Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenAI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anthropic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anthropic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure-openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure OpenAI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ollama" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ollama
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Providers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy Environment Variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Environment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variable-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variable Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment Variable Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#naming-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Naming Convention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-value-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Value Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Considerations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extending the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-uploads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Upload System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation &amp; Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LLM Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metadata Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Modal Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Performance Tuning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Considerations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#text-generation-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Text Generation Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Models
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm-provider-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      LLM Provider Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LLM Provider Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenAI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anthropic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anthropic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure-openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      Azure OpenAI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ollama" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ollama
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Providers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy Environment Variables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Environment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variable-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variable Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment Variable Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#naming-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Naming Convention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-value-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Value Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Considerations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Issues
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Validation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="environment-variables-reference">Environment Variables Reference</h1>
+<p>This document provides a comprehensive reference for all environment variables used in the Ragdoll Core system, organized by category with their default values and usage examples.</p>
+<h2 id="model-configuration">Model Configuration</h2>
+<p>These environment variables control which LLM models are used for different purposes in the Ragdoll system.</p>
+<h3 id="text-generation-models">Text Generation Models</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RAGDOLL_DEFAULT_TEXT_MODEL</code></td>
+<td><code>openai/gpt-4o</code></td>
+<td>Default model for general text generation tasks</td>
+</tr>
+<tr>
+<td><code>RAGDOLL_SUMMARY_MODEL</code></td>
+<td><code>openai/gpt-4o</code></td>
+<td>Model used for document summarization</td>
+</tr>
+<tr>
+<td><code>RAGDOLL_KEYWORDS_MODEL</code></td>
+<td><code>openai/gpt-4o</code></td>
+<td>Model used for keyword extraction</td>
+</tr>
+</tbody>
+</table>
+<h3 id="embedding-models">Embedding Models</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RAGDOLL_TEXT_EMBEDDING_MODEL</code></td>
+<td><code>openai/text-embedding-3-small</code></td>
+<td>Model for generating text embeddings</td>
+</tr>
+<tr>
+<td><code>RAGDOLL_IMAGE_EMBEDDING_MODEL</code></td>
+<td><code>openai/clip-vit-base-patch32</code></td>
+<td>Model for generating image embeddings</td>
+</tr>
+<tr>
+<td><code>RAGDOLL_AUDIO_EMBEDDING_MODEL</code></td>
+<td><code>openai/whisper-1</code></td>
+<td>Model for generating audio embeddings</td>
+</tr>
+</tbody>
+</table>
+<h2 id="database-configuration">Database Configuration</h2>
+<p>These environment variables configure the PostgreSQL database connection.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RAGDOLL_DATABASE_PASSWORD</code></td>
+<td><em>(none)</em></td>
+<td>Password for database authentication</td>
+</tr>
+<tr>
+<td><code>POSTGRES_SUPERUSER</code></td>
+<td><code>postgres</code></td>
+<td>Superuser for database setup operations</td>
+</tr>
+<tr>
+<td><code>POSTGRES_SUPERUSER_PASSWORD</code></td>
+<td><em>(none)</em></td>
+<td>Password for the PostgreSQL superuser</td>
+</tr>
+</tbody>
+</table>
+<h2 id="llm-provider-configuration">LLM Provider Configuration</h2>
+<p>These environment variables configure access to various LLM providers.</p>
+<h3 id="openai">OpenAI</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OPENAI_API_KEY</code></td>
+<td><em>(none)</em></td>
+<td>API key for OpenAI services</td>
+</tr>
+<tr>
+<td><code>OPENAI_ORGANIZATION</code></td>
+<td><em>(none)</em></td>
+<td>OpenAI organization ID</td>
+</tr>
+<tr>
+<td><code>OPENAI_PROJECT</code></td>
+<td><em>(none)</em></td>
+<td>OpenAI project ID</td>
+</tr>
+<tr>
+<td><code>OPENAI_API_BASE</code></td>
+<td><em>(none)</em></td>
+<td>Custom OpenAI API base URL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="anthropic">Anthropic</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ANTHROPIC_API_KEY</code></td>
+<td><em>(none)</em></td>
+<td>API key for Anthropic Claude services</td>
+</tr>
+</tbody>
+</table>
+<h3 id="google">Google</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GOOGLE_API_KEY</code></td>
+<td><em>(none)</em></td>
+<td>API key for Google AI services</td>
+</tr>
+<tr>
+<td><code>GOOGLE_PROJECT_ID</code></td>
+<td><em>(none)</em></td>
+<td>Google Cloud project ID</td>
+</tr>
+<tr>
+<td><code>GEMINI_API_KEY</code></td>
+<td><em>(none)</em></td>
+<td>API key for Google Gemini services</td>
+</tr>
+</tbody>
+</table>
+<h3 id="azure-openai">Azure OpenAI</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AZURE_OPENAI_API_KEY</code></td>
+<td><em>(none)</em></td>
+<td>API key for Azure OpenAI services</td>
+</tr>
+<tr>
+<td><code>AZURE_OPENAI_ENDPOINT</code></td>
+<td><em>(none)</em></td>
+<td>Azure OpenAI endpoint URL</td>
+</tr>
+<tr>
+<td><code>AZURE_OPENAI_API_VERSION</code></td>
+<td><code>2024-02-01</code></td>
+<td>Azure OpenAI API version</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ollama">Ollama</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OLLAMA_ENDPOINT</code></td>
+<td><code>http://localhost:11434</code></td>
+<td>Ollama server endpoint</td>
+</tr>
+<tr>
+<td><code>OLLAMA_API_BASE</code></td>
+<td><code>http://localhost:11434</code></td>
+<td>Alternative Ollama API base (used in image service)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="other-providers">Other Providers</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default Value</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HUGGINGFACE_API_KEY</code></td>
+<td><em>(none)</em></td>
+<td>API key for Hugging Face services</td>
+</tr>
+<tr>
+<td><code>OPENROUTER_API_KEY</code></td>
+<td><em>(none)</em></td>
+<td>API key for OpenRouter services</td>
+</tr>
+<tr>
+<td><code>DEEPSEEK_API_KEY</code></td>
+<td><em>(none)</em></td>
+<td>API key for DeepSeek services</td>
+</tr>
+<tr>
+<td><code>BEDROCK_ACCESS_KEY_ID</code></td>
+<td><em>(none)</em></td>
+<td>AWS Bedrock access key ID</td>
+</tr>
+<tr>
+<td><code>BEDROCK_SECRET_ACCESS_KEY</code></td>
+<td><em>(none)</em></td>
+<td>AWS Bedrock secret access key</td>
+</tr>
+<tr>
+<td><code>BEDROCK_REGION</code></td>
+<td><em>(none)</em></td>
+<td>AWS Bedrock region</td>
+</tr>
+<tr>
+<td><code>BEDROCK_SESSION_TOKEN</code></td>
+<td><em>(none)</em></td>
+<td>AWS Bedrock session token</td>
+</tr>
+</tbody>
+</table>
+<h2 id="legacy-environment-variables">Legacy Environment Variables</h2>
+<p>These environment variables are deprecated but may still be referenced in older code:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Status</th>
+<th>Replacement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DATABASE_PASSWORD</code></td>
+<td>Deprecated</td>
+<td>Use <code>RAGDOLL_DATABASE_PASSWORD</code></td>
+</tr>
+<tr>
+<td><code>OPENAI_ORGANIZATION_ID</code></td>
+<td>Legacy alias</td>
+<td>Use <code>OPENAI_ORGANIZATION</code></td>
+</tr>
+<tr>
+<td><code>OPENAI_PROJECT_ID</code></td>
+<td>Legacy alias</td>
+<td>Use <code>OPENAI_PROJECT</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="basic-configuration">Basic Configuration</h3>
+<pre><code class="language-bash"># Required for OpenAI integration
+export OPENAI_API_KEY=&quot;sk-...&quot;
+
+# Database configuration
+export RAGDOLL_DATABASE_PASSWORD=&quot;your_password&quot;
+
+# Optional: Use different models
+export RAGDOLL_DEFAULT_TEXT_MODEL=&quot;openai/gpt-3.5-turbo&quot;
+export RAGDOLL_TEXT_EMBEDDING_MODEL=&quot;openai/text-embedding-ada-002&quot;
+</code></pre>
+<h3 id="development-setup">Development Setup</h3>
+<pre><code class="language-bash"># Development database
+export RAGDOLL_DATABASE_PASSWORD=&quot;dev_password&quot;
+export POSTGRES_SUPERUSER=&quot;postgres&quot;
+export POSTGRES_SUPERUSER_PASSWORD=&quot;postgres&quot;
+
+# Local Ollama setup
+export OLLAMA_ENDPOINT=&quot;http://localhost:11434&quot;
+</code></pre>
+<h3 id="production-environment">Production Environment</h3>
+<pre><code class="language-bash"># Production OpenAI configuration
+export OPENAI_API_KEY=&quot;sk-prod-...&quot;
+export OPENAI_ORGANIZATION=&quot;org-...&quot;
+export OPENAI_PROJECT=&quot;proj_...&quot;
+
+# Production database
+export RAGDOLL_DATABASE_PASSWORD=&quot;$(cat /secrets/db-password)&quot;
+
+# Azure OpenAI for enterprise
+export AZURE_OPENAI_API_KEY=&quot;...&quot;
+export AZURE_OPENAI_ENDPOINT=&quot;https://your-resource.openai.azure.com/&quot;
+export AZURE_OPENAI_API_VERSION=&quot;2024-02-01&quot;
+</code></pre>
+<h2 id="environment-variable-patterns">Environment Variable Patterns</h2>
+<h3 id="naming-convention">Naming Convention</h3>
+<ul>
+<li>All Ragdoll-specific variables use the <code>RAGDOLL_</code> prefix</li>
+<li>Provider-specific variables follow the provider's standard naming</li>
+<li>Database variables use the <code>RAGDOLL_DATABASE_</code> prefix for clarity</li>
+</ul>
+<h3 id="default-value-handling">Default Value Handling</h3>
+<p>The codebase uses a consistent pattern for environment variable handling:</p>
+<p><strong>ENV.fetch pattern</strong>: All environment variable access uses <code>ENV.fetch("VAR_NAME", default_value)</code> for consistency and explicit default handling:</p>
+<ol>
+<li><strong>Variables with defaults</strong>: <code>ENV.fetch("AZURE_OPENAI_API_VERSION", "2024-02-01")</code></li>
+<li><strong>Variables without defaults</strong>: <code>ENV.fetch("OPENAI_API_KEY", nil)</code> (for secrets that shouldn't have fallback values)</li>
+</ol>
+<p>This approach provides:
+- <strong>Explicit defaults</strong>: Clear indication of what happens when a variable is unset
+- <strong>Consistent behavior</strong>: Same pattern throughout the codebase
+- <strong>Better debugging</strong>: Easier to track environment variable usage
+- <strong>Security</strong>: Secrets explicitly default to <code>nil</code> rather than having fallback values</p>
+<h3 id="security-considerations">Security Considerations</h3>
+<ul>
+<li>API keys and secrets use <code>ENV.fetch("KEY", nil)</code> to explicitly return <code>nil</code> when unset</li>
+<li>Database passwords are handled securely with the RAGDOLL_ prefix</li>
+<li>Never commit actual API keys or passwords to version control</li>
+<li>Use environment-specific configuration files or secret management systems</li>
+<li>The proc-based lazy evaluation (<code>-&gt; { ENV.fetch("KEY", nil) }</code>) ensures credentials are only accessed when needed</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<ol>
+<li><strong>Missing API Key</strong>: Ensure the required provider API key is set</li>
+<li><strong>Database Connection</strong>: Verify <code>RAGDOLL_DATABASE_PASSWORD</code> is set correctly</li>
+<li><strong>Model Not Found</strong>: Check that the model name in the environment variable is correct</li>
+<li><strong>Ollama Connection</strong>: Ensure Ollama is running and <code>OLLAMA_ENDPOINT</code> points to the correct URL</li>
+</ol>
+<h3 id="debug-environment-variables">Debug Environment Variables</h3>
+<p>To check which environment variables are currently set:</p>
+<pre><code class="language-bash"># Show all Ragdoll-related variables
+env | grep RAGDOLL
+
+# Show all LLM provider variables
+env | grep -E &quot;(OPENAI|ANTHROPIC|GOOGLE|GEMINI|AZURE|OLLAMA|HUGGINGFACE|OPENROUTER|DEEPSEEK|BEDROCK)&quot;
+</code></pre>
+<h3 id="configuration-validation">Configuration Validation</h3>
+<p>Use the Ragdoll configuration system to validate your environment setup:</p>
+<pre><code class="language-ruby"># Check if configuration loads correctly
+config = Ragdoll::Core.configuration
+puts &quot;Configuration loaded successfully!&quot;
+
+# Test database connection
+Ragdoll::Core::Database.setup(config.database_config)
+puts &quot;Database connection successful!&quot;
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

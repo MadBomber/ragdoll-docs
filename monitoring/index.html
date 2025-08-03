@@ -1,0 +1,3513 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../metadata-schemas/">
+      
+      
+        <link rel="next" href="../multi-modal/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Monitoring & Analytics - Ragdoll Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#monitoring-analytics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ragdoll Documentation" class="md-header__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ragdoll Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Monitoring &amp; Analytics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ragdoll Documentation" class="md-nav__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ragdoll Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ragdoll Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Client API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jobs Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Models Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Deployment Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../document-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embedding System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Variables Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extending the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-uploads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Upload System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation &amp; Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LLM Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metadata Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Monitoring &amp; Analytics
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage-tracking-and-system-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Tracking and System Health
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Analytics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Analytics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#search-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search Analytics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Analytics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Analytics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-health-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Health Monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Health Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Health
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-job-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background Job Health
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-and-cpu-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory and CPU Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metrics Collection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metrics Collection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#built-in-metrics-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Metrics Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-metrics-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Metrics Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-export-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Export Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#historical-data-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historical Data Retention
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Dashboards
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Dashboards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-time-performance-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time Performance Views
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#historical-trend-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historical Trend Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-dashboard-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Dashboard Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alert Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alerting-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alerting System
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alerting System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#threshold-based-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Threshold-based Alerts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anomaly-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anomaly Detection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notification-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification Channels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alert Escalation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-external-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with External Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration with External Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prometheus-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prometheus Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grafana-dashboard-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grafana Dashboard Templates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-relic-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Relic Compatibility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-monitoring-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Monitoring Solutions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting Guides
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Guides">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-performance-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Performance Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Performance Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slow-search-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slow Search Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-memory-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      High Memory Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-processing-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Processing Failures
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnostic Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnostic Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-health-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Health Check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-profiling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Profiling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prevention-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prevention Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prevention Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proactive-monitoring-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proactive Monitoring Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Modal Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Performance Tuning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Considerations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#usage-tracking-and-system-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Tracking and System Health
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Analytics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Analytics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#search-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search Analytics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embedding-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Embedding Analytics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Analytics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-health-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Health Monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Health Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Health
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-job-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background Job Health
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-and-cpu-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory and CPU Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metrics Collection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metrics Collection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#built-in-metrics-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built-in Metrics Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-metrics-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Metrics Definition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-export-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Export Capabilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#historical-data-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historical Data Retention
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Dashboards
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Dashboards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-time-performance-views" class="md-nav__link">
+    <span class="md-ellipsis">
+      Real-time Performance Views
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#historical-trend-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historical Trend Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-dashboard-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Dashboard Creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alert Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alerting-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alerting System
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alerting System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#threshold-based-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Threshold-based Alerts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anomaly-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anomaly Detection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notification-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification Channels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alert Escalation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-external-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with External Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration with External Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prometheus-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prometheus Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grafana-dashboard-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grafana Dashboard Templates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-relic-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Relic Compatibility
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-monitoring-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Monitoring Solutions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting Guides
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Guides">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-performance-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Performance Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Performance Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slow-search-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slow Search Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-memory-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      High Memory Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-processing-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Document Processing Failures
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostic-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnostic Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnostic Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-health-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Health Check
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-profiling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Profiling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prevention-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prevention Techniques
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prevention Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proactive-monitoring-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proactive Monitoring Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Best Practices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="monitoring-analytics">Monitoring &amp; Analytics</h1>
+<p>Ragdoll provides comprehensive monitoring and analytics capabilities built directly into the PostgreSQL database schema. The system tracks usage patterns, performance metrics, and system health through ActiveRecord models and native PostgreSQL features.</p>
+<h2 id="usage-tracking-and-system-health">Usage Tracking and System Health</h2>
+<p>The monitoring system is built around PostgreSQL's native capabilities and pgvector optimization, providing real-time insights into system performance, usage patterns, and content analytics. All monitoring data is stored in the same database as your content, ensuring consistency and reducing infrastructure complexity.</p>
+<h2 id="usage-analytics">Usage Analytics</h2>
+<p>Ragdoll automatically tracks usage patterns through the embedding model's built-in analytics fields. This data drives both performance optimization and business intelligence.</p>
+<h3 id="search-analytics">Search Analytics</h3>
+<p>Every search operation is tracked through the <code>usage_count</code> and <code>returned_at</code> fields in the embeddings table:</p>
+<pre><code class="language-ruby"># Get search frequency data
+freq_data = Ragdoll::Core::Models::Embedding
+  .frequently_used
+  .group(:embeddable_id)
+  .sum(:usage_count)
+
+# Popular content identification
+popular_embeddings = Ragdoll::Core::Models::Embedding
+  .where('usage_count &gt; ?', 10)
+  .joins(:embeddable)
+  .includes(embeddable: :document)
+  .order(usage_count: :desc)
+
+# Recent search patterns
+recent_activity = Ragdoll::Core::Models::Embedding
+  .where('returned_at &gt; ?', 7.days.ago)
+  .group_by_day(:returned_at)
+  .count
+
+# Query performance metrics
+search_performance = {
+  avg_results_per_query: popular_embeddings.average(:usage_count),
+  total_searches: Ragdoll::Core::Models::Embedding.sum(:usage_count),
+  unique_content_accessed: Ragdoll::Core::Models::Embedding.where('usage_count &gt; 0').count
+}
+</code></pre>
+<h3 id="embedding-analytics">Embedding Analytics</h3>
+<p>Track embedding model performance and usage patterns:</p>
+<pre><code class="language-ruby"># Embedding usage by model type
+usage_by_model = Ragdoll::Core::Models::Embedding
+  .joins(:embeddable)
+  .group('ragdoll_contents.embedding_model')
+  .count
+
+# Vector quality metrics through similarity distribution
+similarity_stats = {
+  high_quality: Ragdoll::Core::Models::Embedding.where('usage_count &gt; 5').count,
+  medium_quality: Ragdoll::Core::Models::Embedding.where('usage_count BETWEEN 1 AND 5').count,
+  unused: Ragdoll::Core::Models::Embedding.where(usage_count: 0).count
+}
+
+# Cache effectiveness (usage-based ranking)
+cache_metrics = {
+  frequently_accessed: Ragdoll::Core::Models::Embedding
+    .where('returned_at &gt; ?', 24.hours.ago)
+    .average(:usage_count),
+  recency_distribution: Ragdoll::Core::Models::Embedding
+    .where('returned_at IS NOT NULL')
+    .group_by_day(:returned_at, last: 30)
+    .count
+}
+</code></pre>
+<h3 id="document-analytics">Document Analytics</h3>
+<p>Monitor document processing and access patterns:</p>
+<pre><code class="language-ruby"># Document processing success rates
+processing_stats = Ragdoll::Core::Models::Document.group(:status).count
+# =&gt; {&quot;processed&quot;=&gt;45, &quot;pending&quot;=&gt;3, &quot;error&quot;=&gt;2}
+
+# Content type distribution
+content_distribution = Ragdoll::Core::Models::Document.group(:document_type).count
+# =&gt; {&quot;text&quot;=&gt;25, &quot;pdf&quot;=&gt;15, &quot;image&quot;=&gt;8, &quot;audio&quot;=&gt;2}
+
+# Comprehensive document statistics
+doc_stats = Ragdoll::Core::Models::Document.stats
+# Returns detailed hash with processing metrics, content counts, etc.
+
+# Storage utilization by content type
+storage_metrics = {
+  text_content_count: Ragdoll::Core::Models::TextContent.count,
+  image_content_count: Ragdoll::Core::Models::ImageContent.count,
+  audio_content_count: Ragdoll::Core::Models::AudioContent.count,
+  total_embeddings: Ragdoll::Core::Models::Embedding.count,
+  avg_embeddings_per_document: Ragdoll::Core::Models::Document
+    .joins(:text_embeddings, :image_embeddings, :audio_embeddings)
+    .average('COUNT(*)')
+}
+</code></pre>
+<h2 id="system-health-monitoring">System Health Monitoring</h2>
+<p>Monitor system health through PostgreSQL native features and ActiveRecord connection management.</p>
+<h3 id="database-health">Database Health</h3>
+<p>Utilize PostgreSQL's built-in statistics and monitoring capabilities:</p>
+<pre><code class="language-ruby"># Connection pool status
+pool_status = ActiveRecord::Base.connection_pool.stat
+# =&gt; {size: 20, checked_out: 3, checked_in: 17, ...}
+
+# Query performance metrics using PostgreSQL pg_stat_statements
+ActiveRecord::Base.connection.execute(&quot;
+  SELECT query, calls, total_time, mean_time, rows
+  FROM pg_stat_statements
+  WHERE query LIKE '%ragdoll%'
+  ORDER BY mean_time DESC;
+&quot;)
+
+# Index usage statistics
+index_stats = ActiveRecord::Base.connection.execute(&quot;
+  SELECT schemaname, tablename, indexname, idx_tup_read, idx_tup_fetch
+  FROM pg_stat_user_indexes
+  WHERE schemaname = 'public'
+  AND tablename LIKE 'ragdoll_%';
+&quot;)
+
+# Storage utilization
+table_sizes = ActiveRecord::Base.connection.execute(&quot;
+  SELECT
+    tablename,
+    pg_size_pretty(pg_total_relation_size('ragdoll_'||tablename)) as size
+  FROM pg_tables
+  WHERE tablename LIKE 'ragdoll_%';
+&quot;)
+</code></pre>
+<h3 id="background-job-health">Background Job Health</h3>
+<p>Monitor ActiveJob performance through document status tracking:</p>
+<pre><code class="language-ruby"># Job success/failure tracking through document status
+job_health = {
+  successful_processing: Ragdoll::Core::Models::Document.where(status: 'processed').count,
+  failed_processing: Ragdoll::Core::Models::Document.where(status: 'error').count,
+  pending_jobs: Ragdoll::Core::Models::Document.where(status: 'pending').count,
+  currently_processing: Ragdoll::Core::Models::Document.where(status: 'processing').count
+}
+
+# Processing time analysis
+recent_docs = Ragdoll::Core::Models::Document
+  .where('created_at &gt; ?', 24.hours.ago)
+  .where(status: 'processed')
+
+processing_times = recent_docs.map do |doc|
+  (doc.updated_at - doc.created_at).to_i
+end
+
+performance_metrics = {
+  avg_processing_time: processing_times.sum / processing_times.length,
+  median_processing_time: processing_times.sort[processing_times.length / 2],
+  max_processing_time: processing_times.max,
+  success_rate: (job_health[:successful_processing].to_f /
+                (job_health[:successful_processing] + job_health[:failed_processing])) * 100
+}
+</code></pre>
+<h3 id="memory-and-cpu-monitoring">Memory and CPU Monitoring</h3>
+<p>Integrate with system monitoring tools and PostgreSQL process information:</p>
+<pre><code class="language-ruby"># PostgreSQL process monitoring
+process_info = ActiveRecord::Base.connection.execute(&quot;
+  SELECT
+    pid,
+    usename,
+    application_name,
+    state,
+    query_start,
+    query
+  FROM pg_stat_activity
+  WHERE application_name LIKE '%ragdoll%';
+&quot;)
+
+# Memory usage through Ruby process monitoring
+memory_usage = {
+  process_memory: `ps -o rss= -p #{Process.pid}`.to_i * 1024, # bytes
+  gc_stats: GC.stat,
+  object_space: ObjectSpace.count_objects
+}
+
+# Connection monitoring
+connection_health = {
+  active_connections: ActiveRecord::Base.connection_pool.connections.size,
+  checked_out: ActiveRecord::Base.connection_pool.stat[:checked_out],
+  available: ActiveRecord::Base.connection_pool.stat[:size] -
+             ActiveRecord::Base.connection_pool.stat[:checked_out]
+}
+</code></pre>
+<h2 id="metrics-collection">Metrics Collection</h2>
+<p>Ragdoll provides built-in metrics collection through ActiveRecord queries and PostgreSQL native features.</p>
+<h3 id="built-in-metrics-endpoints">Built-in Metrics Endpoints</h3>
+<p>Create monitoring endpoints using the comprehensive statistics methods:</p>
+<pre><code class="language-ruby"># Complete system metrics collection
+def collect_system_metrics
+  {
+    timestamp: Time.current.iso8601,
+    documents: Ragdoll::Core::Models::Document.stats,
+    embeddings: {
+      total: Ragdoll::Core::Models::Embedding.count,
+      by_type: {
+        text: Ragdoll::Core::Models::Embedding.text_embeddings.count,
+        image: Ragdoll::Core::Models::Embedding.image_embeddings.count,
+        audio: Ragdoll::Core::Models::Embedding.audio_embeddings.count
+      },
+      usage_stats: {
+        total_searches: Ragdoll::Core::Models::Embedding.sum(:usage_count),
+        active_last_24h: Ragdoll::Core::Models::Embedding
+          .where('returned_at &gt; ?', 24.hours.ago).count,
+        never_used: Ragdoll::Core::Models::Embedding.where(usage_count: 0).count
+      }
+    },
+    performance: {
+      avg_similarity_threshold: Ragdoll.config.search[:similarity_threshold],
+      max_results_configured: Ragdoll.config.search[:max_results],
+      analytics_enabled: Ragdoll.config.search[:enable_analytics]
+    }
+  }
+end
+
+# Usage pattern metrics
+def collect_usage_metrics
+  {
+    popular_content: Ragdoll::Core::Models::Embedding
+      .frequently_used
+      .limit(10)
+      .includes(embeddable: :document)
+      .map { |e| {
+        document_title: e.embeddable.document.title,
+        usage_count: e.usage_count,
+        last_accessed: e.returned_at
+      }},
+    search_patterns: {
+      daily_searches: Ragdoll::Core::Models::Embedding
+        .where('returned_at &gt; ?', 30.days.ago)
+        .group_by_day(:returned_at)
+        .sum(:usage_count),
+      content_type_preferences: Ragdoll::Core::Models::Embedding
+        .joins(:embeddable)
+        .group('ragdoll_contents.type')
+        .sum(:usage_count)
+    }
+  }
+end
+</code></pre>
+<h3 id="custom-metrics-definition">Custom Metrics Definition</h3>
+<p>Extend the monitoring system with custom business metrics:</p>
+<pre><code class="language-ruby">class CustomMetrics
+  def self.document_processing_velocity
+    # Documents processed per hour over last 24 hours
+    Ragdoll::Core::Models::Document
+      .where('updated_at &gt; ?', 24.hours.ago)
+      .where(status: 'processed')
+      .group_by_hour(:updated_at)
+      .count
+  end
+
+  def self.embedding_quality_distribution
+    # Distribution of embedding usage as quality indicator
+    {
+      high_quality: Ragdoll::Core::Models::Embedding.where('usage_count &gt;= 10').count,
+      medium_quality: Ragdoll::Core::Models::Embedding.where('usage_count BETWEEN 3 AND 9').count,
+      low_quality: Ragdoll::Core::Models::Embedding.where('usage_count BETWEEN 1 AND 2').count,
+      unused: Ragdoll::Core::Models::Embedding.where(usage_count: 0).count
+    }
+  end
+
+  def self.multi_modal_adoption
+    # Track multi-modal document usage
+    {
+      text_only: Ragdoll::Core::Models::Document.joins(:text_contents)
+        .where.not(id: Ragdoll::Core::Models::Document.joins(:image_contents).select(:id))
+        .where.not(id: Ragdoll::Core::Models::Document.joins(:audio_contents).select(:id))
+        .count,
+      multi_modal: Ragdoll::Core::Models::Document
+        .where(id: Ragdoll::Core::Models::Document.joins(:text_contents, :image_contents).select(:id))
+        .or(Ragdoll::Core::Models::Document.where(id: Ragdoll::Core::Models::Document.joins(:text_contents, :audio_contents).select(:id)))
+        .count
+    }
+  end
+end
+</code></pre>
+<h3 id="data-export-capabilities">Data Export Capabilities</h3>
+<p>Export metrics data for external analysis:</p>
+<pre><code class="language-ruby"># Export to JSON for external monitoring systems
+def export_metrics_json(start_date: 30.days.ago, end_date: Time.current)
+  {
+    export_info: {
+      generated_at: Time.current.iso8601,
+      period: { start: start_date.iso8601, end: end_date.iso8601 },
+      ragdoll_version: Ragdoll::Core::VERSION
+    },
+    documents: {
+      created: Ragdoll::Core::Models::Document
+        .where(created_at: start_date..end_date)
+        .group(:status, :document_type)
+        .count,
+      processing_times: Ragdoll::Core::Models::Document
+        .where(created_at: start_date..end_date, status: 'processed')
+        .pluck(:created_at, :updated_at)
+        .map { |created, updated| (updated - created).to_i }
+    },
+    search_analytics: {
+      total_searches: Ragdoll::Core::Models::Embedding
+        .where(returned_at: start_date..end_date)
+        .sum(:usage_count),
+      unique_content_accessed: Ragdoll::Core::Models::Embedding
+        .where(returned_at: start_date..end_date)
+        .distinct
+        .count(:embeddable_id)
+    }
+  }.to_json
+end
+
+# Export to CSV for spreadsheet analysis
+def export_usage_csv
+  require 'csv'
+
+  CSV.generate(headers: true) do |csv|
+    csv &lt;&lt; ['Document Title', 'Document Type', 'Embedding Count', 'Total Usage', 'Last Accessed']
+
+    Ragdoll::Core::Models::Document.includes(:contents, :text_embeddings).find_each do |doc|
+      csv &lt;&lt; [
+        doc.title,
+        doc.document_type,
+        doc.total_embedding_count,
+        doc.text_embeddings.sum(:usage_count),
+        doc.text_embeddings.maximum(:returned_at)
+      ]
+    end
+  end
+end
+</code></pre>
+<h3 id="historical-data-retention">Historical Data Retention</h3>
+<p>Manage historical metrics data with PostgreSQL partitioning and cleanup:</p>
+<pre><code class="language-ruby"># Data retention policies
+class MetricsRetention
+  def self.cleanup_old_usage_data(retention_days: 365)
+    # Clear old returned_at timestamps but keep usage_count
+    old_threshold = retention_days.days.ago
+
+    Ragdoll::Core::Models::Embedding
+      .where('returned_at &lt; ?', old_threshold)
+      .update_all(returned_at: nil)
+  end
+
+  def self.archive_document_metrics(archive_after_days: 180)
+    # Archive processed documents older than threshold
+    archive_threshold = archive_after_days.days.ago
+
+    old_docs = Ragdoll::Core::Models::Document
+      .where('created_at &lt; ? AND status = ?', archive_threshold, 'processed')
+
+    # Could export to JSON before cleanup
+    archive_data = old_docs.map(&amp;:to_hash)
+
+    # Store archive data or remove based on retention policy
+    # This is application-specific implementation
+  end
+
+  def self.metrics_summary_for_period(days: 30)
+    period_start = days.days.ago
+
+    {
+      period: &quot;#{days} days&quot;,
+      documents_processed: Ragdoll::Core::Models::Document
+        .where('created_at &gt; ? AND status = ?', period_start, 'processed')
+        .count,
+      total_searches: Ragdoll::Core::Models::Embedding
+        .where('returned_at &gt; ?', period_start)
+        .sum(:usage_count),
+      new_embeddings: Ragdoll::Core::Models::Embedding
+        .where('created_at &gt; ?', period_start)
+        .count
+    }
+  end
+end
+</code></pre>
+<h2 id="performance-dashboards">Performance Dashboards</h2>
+<p>Create comprehensive dashboards using the built-in metrics collection and PostgreSQL analytics capabilities.</p>
+<h3 id="real-time-performance-views">Real-time Performance Views</h3>
+<p>Build live monitoring dashboards with ActiveRecord queries:</p>
+<pre><code class="language-ruby">class PerformanceDashboard
+  def self.realtime_stats
+    {
+      current_time: Time.current.iso8601,
+      system_status: {
+        total_documents: Ragdoll::Core::Models::Document.count,
+        processing_queue: Ragdoll::Core::Models::Document.where(status: 'pending').count,
+        currently_processing: Ragdoll::Core::Models::Document.where(status: 'processing').count,
+        failed_jobs: Ragdoll::Core::Models::Document.where(status: 'error').count
+      },
+      recent_activity: {
+        documents_added_today: Ragdoll::Core::Models::Document
+          .where('created_at &gt; ?', Date.current)
+          .count,
+        searches_last_hour: Ragdoll::Core::Models::Embedding
+          .where('returned_at &gt; ?', 1.hour.ago)
+          .sum(:usage_count),
+        embeddings_created_today: Ragdoll::Core::Models::Embedding
+          .where('created_at &gt; ?', Date.current)
+          .count
+      },
+      performance_indicators: {
+        avg_search_quality: Ragdoll::Core::Models::Embedding
+          .where('returned_at &gt; ?', 24.hours.ago)
+          .average(:usage_count) || 0,
+        content_utilization: (Ragdoll::Core::Models::Embedding.where('usage_count &gt; 0').count.to_f /
+                             Ragdoll::Core::Models::Embedding.count * 100).round(2),
+        processing_success_rate: calculate_success_rate
+      }
+    }
+  end
+
+  def self.calculate_success_rate
+    total = Ragdoll::Core::Models::Document.count
+    return 0 if total == 0
+
+    successful = Ragdoll::Core::Models::Document.where(status: 'processed').count
+    (successful.to_f / total * 100).round(2)
+  end
+end
+
+# Usage in a web dashboard
+def dashboard_data
+  {
+    realtime: PerformanceDashboard.realtime_stats,
+    queue_health: {
+      processing_velocity: documents_per_hour,
+      error_rate: error_percentage_last_24h,
+      average_processing_time: avg_processing_time_minutes
+    }
+  }
+end
+</code></pre>
+<h3 id="historical-trend-analysis">Historical Trend Analysis</h3>
+<p>Analyze trends over time using PostgreSQL date functions:</p>
+<pre><code class="language-ruby">class TrendAnalysis
+  def self.document_processing_trends(days: 30)
+    end_date = Date.current
+    start_date = end_date - days.days
+
+    {
+      daily_processing: Ragdoll::Core::Models::Document
+        .where(created_at: start_date..end_date)
+        .where(status: 'processed')
+        .group_by_day(:updated_at, range: start_date..end_date)
+        .count,
+      daily_failures: Ragdoll::Core::Models::Document
+        .where(created_at: start_date..end_date)
+        .where(status: 'error')
+        .group_by_day(:updated_at, range: start_date..end_date)
+        .count,
+      content_type_trends: Ragdoll::Core::Models::Document
+        .where(created_at: start_date..end_date)
+        .group_by_week(:created_at, range: start_date..end_date)
+        .group(:document_type)
+        .count
+    }
+  end
+
+  def self.search_usage_trends(days: 30)
+    end_date = Date.current
+    start_date = end_date - days.days
+
+    {
+      daily_searches: Ragdoll::Core::Models::Embedding
+        .where(returned_at: start_date..end_date)
+        .group_by_day(:returned_at, range: start_date..end_date)
+        .sum(:usage_count),
+      popular_content_over_time: Ragdoll::Core::Models::Embedding
+        .joins(embeddable: :document)
+        .where(returned_at: start_date..end_date)
+        .group('ragdoll_documents.document_type')
+        .group_by_week(:returned_at, range: start_date..end_date)
+        .sum(:usage_count),
+      embedding_efficiency: Ragdoll::Core::Models::Embedding
+        .where('created_at &gt; ?', start_date)
+        .group_by_week(:created_at, range: start_date..end_date)
+        .average(:usage_count)
+    }
+  end
+end
+</code></pre>
+<h3 id="custom-dashboard-creation">Custom Dashboard Creation</h3>
+<p>Framework for building custom monitoring dashboards:</p>
+<pre><code class="language-ruby">class CustomDashboard
+  attr_reader :widgets, :refresh_interval
+
+  def initialize(name:, refresh_interval: 30)
+    @name = name
+    @refresh_interval = refresh_interval
+    @widgets = []
+  end
+
+  def add_widget(type:, title:, query_method:, **options)
+    @widgets &lt;&lt; {
+      type: type, # :counter, :chart, :table, :gauge
+      title: title,
+      query_method: query_method,
+      options: options
+    }
+  end
+
+  def render_data
+    @widgets.map do |widget|
+      {
+        type: widget[:type],
+        title: widget[:title],
+        data: send(widget[:query_method]),
+        options: widget[:options],
+        last_updated: Time.current.iso8601
+      }
+    end
+  end
+
+  # Example widget methods
+  def document_count_by_type
+    Ragdoll::Core::Models::Document.group(:document_type).count
+  end
+
+  def embedding_usage_distribution
+    {
+      'Never Used' =&gt; Ragdoll::Core::Models::Embedding.where(usage_count: 0).count,
+      'Low Usage (1-5)' =&gt; Ragdoll::Core::Models::Embedding.where(usage_count: 1..5).count,
+      'Medium Usage (6-20)' =&gt; Ragdoll::Core::Models::Embedding.where(usage_count: 6..20).count,
+      'High Usage (21+)' =&gt; Ragdoll::Core::Models::Embedding.where('usage_count &gt; 20').count
+    }
+  end
+
+  def recent_processing_times
+    Ragdoll::Core::Models::Document
+      .where('created_at &gt; ?', 24.hours.ago)
+      .where(status: 'processed')
+      .limit(50)
+      .pluck(:created_at, :updated_at)
+      .map { |created, updated|
+        {
+          document_id: created.to_i,
+          processing_time: ((updated - created) / 60).round(2) # minutes
+        }
+      }
+  end
+end
+
+# Usage example
+dashboard = CustomDashboard.new(name: &quot;Ragdoll System Health&quot;, refresh_interval: 60)
+dashboard.add_widget(type: :counter, title: &quot;Total Documents&quot;,
+                    query_method: :document_count_by_type)
+dashboard.add_widget(type: :chart, title: &quot;Embedding Usage&quot;,
+                    query_method: :embedding_usage_distribution)
+dashboard.add_widget(type: :table, title: &quot;Recent Processing Times&quot;,
+                    query_method: :recent_processing_times)
+</code></pre>
+<h3 id="alert-configuration">Alert Configuration</h3>
+<p>Set up monitoring alerts based on system thresholds:</p>
+<pre><code class="language-ruby">class AlertSystem
+  ALERT_THRESHOLDS = {
+    error_rate_percentage: 5.0,
+    queue_length: 100,
+    processing_time_minutes: 30,
+    disk_usage_percentage: 80.0,
+    connection_pool_usage: 80.0
+  }
+
+  def self.check_system_health
+    alerts = []
+
+    # Check error rate
+    error_rate = calculate_error_rate
+    if error_rate &gt; ALERT_THRESHOLDS[:error_rate_percentage]
+      alerts &lt;&lt; create_alert(
+        severity: :high,
+        type: :error_rate,
+        message: &quot;Error rate #{error_rate}% exceeds threshold #{ALERT_THRESHOLDS[:error_rate_percentage]}%&quot;,
+        current_value: error_rate
+      )
+    end
+
+    # Check queue length
+    queue_length = Ragdoll::Core::Models::Document.where(status: 'pending').count
+    if queue_length &gt; ALERT_THRESHOLDS[:queue_length]
+      alerts &lt;&lt; create_alert(
+        severity: :medium,
+        type: :queue_length,
+        message: &quot;Processing queue length #{queue_length} exceeds threshold #{ALERT_THRESHOLDS[:queue_length]}&quot;,
+        current_value: queue_length
+      )
+    end
+
+    # Check connection pool usage
+    pool_usage = connection_pool_usage_percentage
+    if pool_usage &gt; ALERT_THRESHOLDS[:connection_pool_usage]
+      alerts &lt;&lt; create_alert(
+        severity: :high,
+        type: :connection_pool,
+        message: &quot;Connection pool usage #{pool_usage}% exceeds threshold #{ALERT_THRESHOLDS[:connection_pool_usage]}%&quot;,
+        current_value: pool_usage
+      )
+    end
+
+    alerts
+  end
+
+  private
+
+  def self.calculate_error_rate
+    total_docs = Ragdoll::Core::Models::Document.where('created_at &gt; ?', 24.hours.ago).count
+    return 0 if total_docs == 0
+
+    error_docs = Ragdoll::Core::Models::Document.where('created_at &gt; ?', 24.hours.ago)
+                                               .where(status: 'error').count
+    (error_docs.to_f / total_docs * 100).round(2)
+  end
+
+  def self.connection_pool_usage_percentage
+    pool = ActiveRecord::Base.connection_pool
+    (pool.stat[:checked_out].to_f / pool.stat[:size] * 100).round(2)
+  end
+
+  def self.create_alert(severity:, type:, message:, current_value:)
+    {
+      id: SecureRandom.uuid,
+      timestamp: Time.current.iso8601,
+      severity: severity,
+      type: type,
+      message: message,
+      current_value: current_value,
+      threshold: ALERT_THRESHOLDS[type],
+      system: 'ragdoll'
+    }
+  end
+end
+</code></pre>
+<h2 id="alerting-system">Alerting System</h2>
+<p>Implement comprehensive alerting based on system thresholds and anomaly detection using PostgreSQL and ActiveRecord.</p>
+<h3 id="threshold-based-alerts">Threshold-based Alerts</h3>
+<p>Define and monitor system thresholds:</p>
+<pre><code class="language-ruby">class ThresholdAlerts
+  THRESHOLDS = {
+    # Processing performance
+    error_rate: { warning: 2.0, critical: 5.0 }, # percentage
+    queue_length: { warning: 50, critical: 100 },
+    avg_processing_time: { warning: 300, critical: 600 }, # seconds
+
+    # System resources
+    connection_pool_usage: { warning: 70.0, critical: 85.0 }, # percentage
+    disk_usage: { warning: 75.0, critical: 90.0 }, # percentage
+
+    # Content metrics
+    unused_embeddings: { warning: 50.0, critical: 70.0 }, # percentage
+    search_volume_drop: { warning: 30.0, critical: 50.0 } # percentage decrease
+  }
+
+  def self.check_all_thresholds
+    alerts = []
+
+    THRESHOLDS.each do |metric, thresholds|
+      current_value = send(&quot;get_#{metric}&quot;)
+
+      if current_value &gt;= thresholds[:critical]
+        alerts &lt;&lt; create_threshold_alert(metric, :critical, current_value, thresholds[:critical])
+      elsif current_value &gt;= thresholds[:warning]
+        alerts &lt;&lt; create_threshold_alert(metric, :warning, current_value, thresholds[:warning])
+      end
+    end
+
+    alerts
+  end
+
+  private
+
+  def self.get_error_rate
+    total = Ragdoll::Core::Models::Document.where('created_at &gt; ?', 24.hours.ago).count
+    return 0 if total == 0
+
+    errors = Ragdoll::Core::Models::Document.where('created_at &gt; ?', 24.hours.ago)
+                                           .where(status: 'error').count
+    (errors.to_f / total * 100).round(2)
+  end
+
+  def self.get_queue_length
+    Ragdoll::Core::Models::Document.where(status: 'pending').count
+  end
+
+  def self.get_avg_processing_time
+    recent_docs = Ragdoll::Core::Models::Document
+      .where('created_at &gt; ?', 24.hours.ago)
+      .where(status: 'processed')
+      .pluck(:created_at, :updated_at)
+
+    return 0 if recent_docs.empty?
+
+    times = recent_docs.map { |created, updated| (updated - created).to_i }
+    times.sum / times.length
+  end
+
+  def self.get_unused_embeddings
+    total = Ragdoll::Core::Models::Embedding.count
+    return 0 if total == 0
+
+    unused = Ragdoll::Core::Models::Embedding.where(usage_count: 0).count
+    (unused.to_f / total * 100).round(2)
+  end
+
+  def self.create_threshold_alert(metric, severity, current_value, threshold)
+    {
+      id: SecureRandom.uuid,
+      type: :threshold,
+      metric: metric,
+      severity: severity,
+      current_value: current_value,
+      threshold: threshold,
+      message: &quot;#{metric.to_s.humanize} #{current_value} exceeds #{severity} threshold #{threshold}&quot;,
+      timestamp: Time.current.iso8601
+    }
+  end
+end
+</code></pre>
+<h3 id="anomaly-detection">Anomaly Detection</h3>
+<p>Detect unusual patterns in system behavior:</p>
+<pre><code class="language-ruby">class AnomalyDetection
+  def self.detect_search_anomalies(lookback_days: 7)
+    anomalies = []
+
+    # Get baseline search volume
+    baseline_searches = daily_search_volume(lookback_days)
+    return anomalies if baseline_searches.empty?
+
+    baseline_avg = baseline_searches.values.sum / baseline_searches.length
+    baseline_std = calculate_standard_deviation(baseline_searches.values)
+
+    # Check today's volume
+    today_volume = daily_search_volume(1).values.first || 0
+
+    # Detect significant deviations (2 standard deviations)
+    if (today_volume - baseline_avg).abs &gt; (2 * baseline_std)
+      severity = today_volume &lt; baseline_avg ? :warning : :info
+      anomalies &lt;&lt; {
+        type: :search_volume_anomaly,
+        severity: severity,
+        current_value: today_volume,
+        baseline_average: baseline_avg.round(2),
+        deviation: ((today_volume - baseline_avg) / baseline_avg * 100).round(2),
+        message: &quot;Search volume #{today_volume} deviates significantly from baseline #{baseline_avg.round(2)}&quot;
+      }
+    end
+
+    anomalies
+  end
+
+  def self.detect_processing_anomalies
+    anomalies = []
+
+    # Check for unusual processing patterns
+    recent_times = Ragdoll::Core::Models::Document
+      .where('created_at &gt; ?', 24.hours.ago)
+      .where(status: 'processed')
+      .pluck(:created_at, :updated_at)
+      .map { |created, updated| (updated - created).to_i }
+
+    return anomalies if recent_times.length &lt; 10
+
+    avg_time = recent_times.sum / recent_times.length
+    std_dev = calculate_standard_deviation(recent_times)
+
+    # Find outliers (processing times &gt; 3 standard deviations)
+    outliers = recent_times.select { |time| (time - avg_time).abs &gt; (3 * std_dev) }
+
+    if outliers.any?
+      anomalies &lt;&lt; {
+        type: :processing_time_outliers,
+        severity: :warning,
+        outlier_count: outliers.length,
+        max_outlier_time: outliers.max,
+        baseline_average: avg_time.round(2),
+        message: &quot;#{outliers.length} documents had unusual processing times (max: #{outliers.max}s)&quot;
+      }
+    end
+
+    anomalies
+  end
+
+  private
+
+  def self.daily_search_volume(days)
+    Ragdoll::Core::Models::Embedding
+      .where('returned_at &gt; ?', days.days.ago)
+      .group_by_day(:returned_at, last: days)
+      .sum(:usage_count)
+  end
+
+  def self.calculate_standard_deviation(values)
+    return 0 if values.empty?
+
+    mean = values.sum / values.length
+    variance = values.sum { |v| (v - mean) ** 2 } / values.length
+    Math.sqrt(variance)
+  end
+end
+</code></pre>
+<h3 id="notification-channels">Notification Channels</h3>
+<p>Integrate with various notification systems:</p>
+<pre><code class="language-ruby">class NotificationManager
+  def self.send_alert(alert, channels: [:log, :webhook])
+    channels.each do |channel|
+      case channel
+      when :log
+        log_alert(alert)
+      when :webhook
+        send_webhook_alert(alert)
+      when :email
+        send_email_alert(alert)
+      when :slack
+        send_slack_alert(alert)
+      end
+    end
+  end
+
+  private
+
+  def self.log_alert(alert)
+    logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
+
+    case alert[:severity]
+    when :critical
+      logger.error &quot;[RAGDOLL CRITICAL] #{alert[:message]}&quot;
+    when :warning
+      logger.warn &quot;[RAGDOLL WARNING] #{alert[:message]}&quot;
+    else
+      logger.info &quot;[RAGDOLL INFO] #{alert[:message]}&quot;
+    end
+  end
+
+  def self.send_webhook_alert(alert)
+    webhook_url = ENV['RAGDOLL_WEBHOOK_URL']
+    return unless webhook_url
+
+    payload = {
+      service: 'ragdoll',
+      alert: alert,
+      timestamp: Time.current.iso8601,
+      environment: ENV['RAILS_ENV'] || 'development'
+    }
+
+    # Use Faraday or Net::HTTP to send webhook
+    require 'net/http'
+    require 'json'
+
+    uri = URI(webhook_url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = uri.scheme == 'https'
+
+    request = Net::HTTP::Post.new(uri)
+    request['Content-Type'] = 'application/json'
+    request.body = payload.to_json
+
+    response = http.request(request)
+    puts &quot;Webhook sent: #{response.code}&quot; if response.code != '200'
+  end
+
+  def self.send_slack_alert(alert)
+    slack_webhook = ENV['SLACK_WEBHOOK_URL']
+    return unless slack_webhook
+
+    color = case alert[:severity]
+            when :critical then '#FF0000'
+            when :warning then '#FFA500'
+            else '#36A64F'
+            end
+
+    payload = {
+      attachments: [{
+        color: color,
+        title: &quot;Ragdoll #{alert[:severity].to_s.upcase} Alert&quot;,
+        text: alert[:message],
+        fields: [
+          { title: &quot;Metric&quot;, value: alert[:metric], short: true },
+          { title: &quot;Current Value&quot;, value: alert[:current_value], short: true },
+          { title: &quot;Timestamp&quot;, value: alert[:timestamp], short: false }
+        ]
+      }]
+    }
+
+    # Send to Slack webhook
+    # Implementation similar to webhook above
+  end
+end
+</code></pre>
+<h3 id="alert-escalation">Alert Escalation</h3>
+<p>Implement alert escalation policies:</p>
+<pre><code class="language-ruby">class AlertEscalation
+  ESCALATION_RULES = {
+    critical: {
+      immediate: [:log, :webhook, :slack],
+      after_5_minutes: [:email],
+      after_15_minutes: [:sms] # if configured
+    },
+    warning: {
+      immediate: [:log],
+      after_10_minutes: [:webhook],
+      after_30_minutes: [:email]
+    }
+  }
+
+  def self.process_alert(alert)
+    # Store alert for tracking
+    alert_record = store_alert(alert)
+
+    # Send immediate notifications
+    immediate_channels = ESCALATION_RULES.dig(alert[:severity], :immediate) || [:log]
+    NotificationManager.send_alert(alert, channels: immediate_channels)
+
+    # Schedule escalation if needed
+    schedule_escalation(alert_record) if alert[:severity] == :critical
+  end
+
+  def self.check_escalations
+    # This would typically be called by a background job
+    unresolved_alerts = get_unresolved_alerts
+
+    unresolved_alerts.each do |alert_record|
+      escalate_if_needed(alert_record)
+    end
+  end
+
+  private
+
+  def self.store_alert(alert)
+    # Store in database or memory store for tracking
+    {
+      id: alert[:id],
+      created_at: Time.current,
+      alert_data: alert,
+      escalation_level: 0,
+      resolved_at: nil
+    }
+  end
+
+  def self.escalate_if_needed(alert_record)
+    minutes_since_creation = (Time.current - alert_record[:created_at]) / 60
+    severity = alert_record[:alert_data][:severity]
+
+    escalation_rules = ESCALATION_RULES[severity] || {}
+
+    escalation_rules.each do |time_key, channels|
+      next unless time_key.to_s.include?('after_')
+
+      threshold_minutes = time_key.to_s.match(/after_(\d+)_minutes/)&amp;.captures&amp;.first.to_i
+      next unless threshold_minutes
+
+      if minutes_since_creation &gt;= threshold_minutes &amp;&amp;
+         alert_record[:escalation_level] &lt; threshold_minutes
+
+        NotificationManager.send_alert(alert_record[:alert_data], channels: channels)
+        alert_record[:escalation_level] = threshold_minutes
+      end
+    end
+  end
+end
+</code></pre>
+<h2 id="integration-with-external-tools">Integration with External Tools</h2>
+<p>Ragdoll integrates seamlessly with popular monitoring and observability platforms through standardized metrics and APIs.</p>
+<h3 id="prometheus-integration">Prometheus Integration</h3>
+<p>Expose metrics in Prometheus format for scraping:</p>
+<pre><code class="language-ruby"># Prometheus metrics exporter
+class PrometheusExporter
+  def self.metrics
+    output = []
+
+    # Document metrics
+    doc_stats = Ragdoll::Core::Models::Document.group(:status).count
+    doc_stats.each do |status, count|
+      output &lt;&lt; &quot;ragdoll_documents_total{status=\&quot;#{status}\&quot;} #{count}&quot;
+    end
+
+    # Embedding metrics
+    output &lt;&lt; &quot;ragdoll_embeddings_total #{Ragdoll::Core::Models::Embedding.count}&quot;
+    output &lt;&lt; &quot;ragdoll_embeddings_used_total #{Ragdoll::Core::Models::Embedding.where('usage_count &gt; 0').count}&quot;
+    output &lt;&lt; &quot;ragdoll_searches_total #{Ragdoll::Core::Models::Embedding.sum(:usage_count)}&quot;
+
+    # Processing metrics
+    recent_processing_times = Ragdoll::Core::Models::Document
+      .where('created_at &gt; ?', 24.hours.ago)
+      .where(status: 'processed')
+      .pluck(:created_at, :updated_at)
+      .map { |created, updated| (updated - created).to_i }
+
+    if recent_processing_times.any?
+      avg_time = recent_processing_times.sum / recent_processing_times.length
+      output &lt;&lt; &quot;ragdoll_avg_processing_time_seconds #{avg_time}&quot;
+    end
+
+    # Connection pool metrics
+    pool = ActiveRecord::Base.connection_pool
+    output &lt;&lt; &quot;ragdoll_connection_pool_size #{pool.stat[:size]}&quot;
+    output &lt;&lt; &quot;ragdoll_connection_pool_checked_out #{pool.stat[:checked_out]}&quot;
+    output &lt;&lt; &quot;ragdoll_connection_pool_checked_in #{pool.stat[:checked_in]}&quot;
+
+    # Content type distribution
+    content_types = Ragdoll::Core::Models::Document.group(:document_type).count
+    content_types.each do |type, count|
+      output &lt;&lt; &quot;ragdoll_documents_by_type{type=\&quot;#{type}\&quot;} #{count}&quot;
+    end
+
+    output.join(&quot;\n&quot;) + &quot;\n&quot;
+  end
+
+  # Rack middleware for serving metrics
+  class Middleware
+    def initialize(app)
+      @app = app
+    end
+
+    def call(env)
+      if env['PATH_INFO'] == '/metrics' &amp;&amp; env['REQUEST_METHOD'] == 'GET'
+        metrics_response
+      else
+        @app.call(env)
+      end
+    end
+
+    private
+
+    def metrics_response
+      metrics = PrometheusExporter.metrics
+      [
+        200,
+        {
+          'Content-Type' =&gt; 'text/plain; version=0.0.4; charset=utf-8',
+          'Content-Length' =&gt; metrics.bytesize.to_s
+        },
+        [metrics]
+      ]
+    end
+  end
+end
+
+# Rails integration
+# In config/application.rb:
+# config.middleware.use PrometheusExporter::Middleware
+</code></pre>
+<h3 id="grafana-dashboard-templates">Grafana Dashboard Templates</h3>
+<p>JSON dashboard configuration for Grafana:</p>
+<pre><code class="language-ruby"># Grafana dashboard generator
+class GrafanaDashboard
+  def self.generate_dashboard_json
+    {
+      &quot;dashboard&quot; =&gt; {
+        &quot;id&quot; =&gt; nil,
+        &quot;title&quot; =&gt; &quot;Ragdoll Core Monitoring&quot;,
+        &quot;tags&quot; =&gt; [&quot;ragdoll&quot;, &quot;rag&quot;, &quot;search&quot;],
+        &quot;timezone&quot; =&gt; &quot;browser&quot;,
+        &quot;panels&quot; =&gt; [
+          {
+            &quot;id&quot; =&gt; 1,
+            &quot;title&quot; =&gt; &quot;Document Processing Status&quot;,
+            &quot;type&quot; =&gt; &quot;stat&quot;,
+            &quot;targets&quot; =&gt; [
+              {
+                &quot;expr&quot; =&gt; &quot;ragdoll_documents_total&quot;,
+                &quot;legendFormat&quot; =&gt; &quot;{{status}}&quot;
+              }
+            ],
+            &quot;gridPos&quot; =&gt; { &quot;h&quot; =&gt; 8, &quot;w&quot; =&gt; 12, &quot;x&quot; =&gt; 0, &quot;y&quot; =&gt; 0 }
+          },
+          {
+            &quot;id&quot; =&gt; 2,
+            &quot;title&quot; =&gt; &quot;Search Volume Over Time&quot;,
+            &quot;type&quot; =&gt; &quot;graph&quot;,
+            &quot;targets&quot; =&gt; [
+              {
+                &quot;expr&quot; =&gt; &quot;rate(ragdoll_searches_total[5m])&quot;,
+                &quot;legendFormat&quot; =&gt; &quot;Searches per second&quot;
+              }
+            ],
+            &quot;gridPos&quot; =&gt; { &quot;h&quot; =&gt; 8, &quot;w&quot; =&gt; 12, &quot;x&quot; =&gt; 12, &quot;y&quot; =&gt; 0 }
+          },
+          {
+            &quot;id&quot; =&gt; 3,
+            &quot;title&quot; =&gt; &quot;Average Processing Time&quot;,
+            &quot;type&quot; =&gt; &quot;singlestat&quot;,
+            &quot;targets&quot; =&gt; [
+              {
+                &quot;expr&quot; =&gt; &quot;ragdoll_avg_processing_time_seconds&quot;,
+                &quot;legendFormat&quot; =&gt; &quot;Seconds&quot;
+              }
+            ],
+            &quot;gridPos&quot; =&gt; { &quot;h&quot; =&gt; 4, &quot;w&quot; =&gt; 6, &quot;x&quot; =&gt; 0, &quot;y&quot; =&gt; 8 }
+          },
+          {
+            &quot;id&quot; =&gt; 4,
+            &quot;title&quot; =&gt; &quot;Connection Pool Usage&quot;,
+            &quot;type&quot; =&gt; &quot;gauge&quot;,
+            &quot;targets&quot; =&gt; [
+              {
+                &quot;expr&quot; =&gt; &quot;(ragdoll_connection_pool_checked_out / ragdoll_connection_pool_size) * 100&quot;,
+                &quot;legendFormat&quot; =&gt; &quot;Pool Usage %&quot;
+              }
+            ],
+            &quot;gridPos&quot; =&gt; { &quot;h&quot; =&gt; 4, &quot;w&quot; =&gt; 6, &quot;x&quot; =&gt; 6, &quot;y&quot; =&gt; 8 }
+          }
+        ],
+        &quot;time&quot; =&gt; {
+          &quot;from&quot; =&gt; &quot;now-1h&quot;,
+          &quot;to&quot; =&gt; &quot;now&quot;
+        },
+        &quot;refresh&quot; =&gt; &quot;30s&quot;
+      },
+      &quot;folderId&quot; =&gt; 0,
+      &quot;overwrite&quot; =&gt; true
+    }.to_json
+  }
+end
+</code></pre>
+<h3 id="new-relic-compatibility">New Relic Compatibility</h3>
+<p>Integrate with New Relic APM and custom metrics:</p>
+<pre><code class="language-ruby"># New Relic custom metrics
+class NewRelicIntegration
+  def self.record_custom_metrics
+    return unless defined?(NewRelic)
+
+    # Document processing metrics
+    doc_stats = Ragdoll::Core::Models::Document.group(:status).count
+    doc_stats.each do |status, count|
+      NewRelic::Agent.record_metric(&quot;Custom/Ragdoll/Documents/#{status}&quot;, count)
+    end
+
+    # Search metrics
+    total_searches = Ragdoll::Core::Models::Embedding.sum(:usage_count)
+    NewRelic::Agent.record_metric(&quot;Custom/Ragdoll/Searches/Total&quot;, total_searches)
+
+    # Processing performance
+    recent_times = calculate_recent_processing_times
+    if recent_times.any?
+      avg_time = recent_times.sum / recent_times.length
+      NewRelic::Agent.record_metric(&quot;Custom/Ragdoll/Processing/AverageTime&quot;, avg_time)
+    end
+
+    # Embedding efficiency
+    used_embeddings = Ragdoll::Core::Models::Embedding.where('usage_count &gt; 0').count
+    total_embeddings = Ragdoll::Core::Models::Embedding.count
+    efficiency = total_embeddings &gt; 0 ? (used_embeddings.to_f / total_embeddings * 100) : 0
+    NewRelic::Agent.record_metric(&quot;Custom/Ragdoll/Embeddings/EfficiencyPercent&quot;, efficiency)
+  end
+
+  # New Relic custom events
+  def self.track_search_event(query:, results_count:, processing_time:)
+    return unless defined?(NewRelic)
+
+    NewRelic::Agent.record_custom_event('RagdollSearch', {
+      query_length: query.length,
+      results_count: results_count,
+      processing_time_ms: processing_time,
+      timestamp: Time.current.to_i
+    })
+  end
+
+  def self.track_document_processing_event(document:, processing_time:, success:)
+    return unless defined?(NewRelic)
+
+    NewRelic::Agent.record_custom_event('RagdollDocumentProcessing', {
+      document_type: document.document_type,
+      document_size: document.content&amp;.length || 0,
+      processing_time_seconds: processing_time,
+      success: success,
+      embedding_count: document.total_embedding_count,
+      timestamp: Time.current.to_i
+    })
+  end
+
+  private
+
+  def self.calculate_recent_processing_times
+    Ragdoll::Core::Models::Document
+      .where('created_at &gt; ?', 24.hours.ago)
+      .where(status: 'processed')
+      .pluck(:created_at, :updated_at)
+      .map { |created, updated| (updated - created).to_i }
+  end
+end
+
+# Background job to send metrics
+class MetricsReportingJob &lt; ActiveJob::Base
+  queue_as :default
+
+  def perform
+    NewRelicIntegration.record_custom_metrics
+  end
+end
+
+# Schedule regular metrics reporting
+# In Rails initializer or similar:
+# MetricsReportingJob.set(wait: 5.minutes).perform_later
+</code></pre>
+<h3 id="custom-monitoring-solutions">Custom Monitoring Solutions</h3>
+<p>Framework for building custom monitoring integrations:</p>
+<pre><code class="language-ruby">class CustomMonitoringAdapter
+  attr_reader :config, :client
+
+  def initialize(config = {})
+    @config = config
+    @client = initialize_client
+  end
+
+  def send_metrics(metrics)
+    case config[:type]
+    when :datadog
+      send_datadog_metrics(metrics)
+    when :statsd
+      send_statsd_metrics(metrics)
+    when :influxdb
+      send_influxdb_metrics(metrics)
+    when :custom_api
+      send_custom_api_metrics(metrics)
+    else
+      Rails.logger.info &quot;Custom metrics: #{metrics.to_json}&quot; if defined?(Rails)
+    end
+  end
+
+  def collect_all_metrics
+    {
+      timestamp: Time.current.to_i,
+      documents: document_metrics,
+      embeddings: embedding_metrics,
+      performance: performance_metrics,
+      system: system_metrics
+    }
+  end
+
+  private
+
+  def document_metrics
+    {
+      total: Ragdoll::Core::Models::Document.count,
+      by_status: Ragdoll::Core::Models::Document.group(:status).count,
+      by_type: Ragdoll::Core::Models::Document.group(:document_type).count,
+      processing_queue_length: Ragdoll::Core::Models::Document.where(status: 'pending').count
+    }
+  end
+
+  def embedding_metrics
+    {
+      total: Ragdoll::Core::Models::Embedding.count,
+      total_searches: Ragdoll::Core::Models::Embedding.sum(:usage_count),
+      used_embeddings: Ragdoll::Core::Models::Embedding.where('usage_count &gt; 0').count,
+      recent_searches: Ragdoll::Core::Models::Embedding
+        .where('returned_at &gt; ?', 1.hour.ago)
+        .sum(:usage_count)
+    }
+  end
+
+  def performance_metrics
+    recent_times = Ragdoll::Core::Models::Document
+      .where('created_at &gt; ?', 24.hours.ago)
+      .where(status: 'processed')
+      .pluck(:created_at, :updated_at)
+      .map { |created, updated| (updated - created).to_i }
+
+    {
+      avg_processing_time: recent_times.any? ? recent_times.sum / recent_times.length : 0,
+      processed_documents_24h: recent_times.length,
+      error_rate: calculate_error_rate,
+      embedding_efficiency: calculate_embedding_efficiency
+    }
+  end
+
+  def system_metrics
+    pool = ActiveRecord::Base.connection_pool
+    {
+      connection_pool_size: pool.stat[:size],
+      connection_pool_used: pool.stat[:checked_out],
+      connection_pool_available: pool.stat[:size] - pool.stat[:checked_out]
+    }
+  end
+
+  def send_datadog_metrics(metrics)
+    # Datadog StatsD format
+    metrics.each do |key, value|
+      if value.is_a?(Hash)
+        value.each do |subkey, subvalue|
+          send_metric(&quot;ragdoll.#{key}.#{subkey}&quot;, subvalue, type: :gauge)
+        end
+      else
+        send_metric(&quot;ragdoll.#{key}&quot;, value, type: :gauge)
+      end
+    end
+  end
+
+  def send_statsd_metrics(metrics)
+    # StatsD protocol implementation
+    # Similar to Datadog but with different format
+  end
+
+  def send_custom_api_metrics(metrics)
+    # Custom HTTP API endpoint
+    require 'net/http'
+    require 'json'
+
+    uri = URI(config[:endpoint])
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = uri.scheme == 'https'
+
+    request = Net::HTTP::Post.new(uri)
+    request['Content-Type'] = 'application/json'
+    request['Authorization'] = &quot;Bearer #{config[:api_key]}&quot; if config[:api_key]
+    request.body = metrics.to_json
+
+    response = http.request(request)
+    Rails.logger.info &quot;Metrics sent: #{response.code}&quot; if defined?(Rails)
+  end
+end
+
+# Usage
+monitoring = CustomMonitoringAdapter.new(
+  type: :datadog,
+  api_key: ENV['DATADOG_API_KEY'],
+  endpoint: 'https://api.datadoghq.com/api/v1/series'
+)
+
+# Collect and send metrics
+metrics = monitoring.collect_all_metrics
+monitoring.send_metrics(metrics)
+</code></pre>
+<h2 id="troubleshooting-guides">Troubleshooting Guides</h2>
+<p>Comprehensive troubleshooting workflows for common Ragdoll issues, focusing on PostgreSQL and pgvector performance optimization.</p>
+<h3 id="common-performance-issues">Common Performance Issues</h3>
+<h4 id="slow-search-performance">Slow Search Performance</h4>
+<p><strong>Symptoms:</strong>
+- Search queries taking &gt; 2 seconds
+- High CPU usage during searches
+- Connection pool exhaustion</p>
+<p><strong>Diagnostic Commands:</strong></p>
+<pre><code class="language-ruby"># Check pgvector index usage
+ActiveRecord::Base.connection.execute(&quot;
+  EXPLAIN ANALYZE
+  SELECT * FROM ragdoll_embeddings
+  ORDER BY embedding_vector &lt;=&gt; '[0.1,0.2,...]'
+  LIMIT 10;
+&quot;)
+
+# Check index statistics
+ActiveRecord::Base.connection.execute(&quot;
+  SELECT schemaname, tablename, indexname, idx_scan, idx_tup_read
+  FROM pg_stat_user_indexes
+  WHERE tablename = 'ragdoll_embeddings';
+&quot;)
+
+# Monitor connection pool
+pool_stats = ActiveRecord::Base.connection_pool.stat
+puts &quot;Pool usage: #{pool_stats[:checked_out]}/#{pool_stats[:size]}&quot;
+</code></pre>
+<p><strong>Resolution Steps:</strong>
+1. <strong>Optimize pgvector index:</strong> Ensure IVFFlat index is properly configured
+2. <strong>Increase connection pool:</strong> Adjust <code>pool</code> setting in database.yml
+3. <strong>Enable connection pooling:</strong> Use pgbouncer for high-load scenarios
+4. <strong>Query optimization:</strong> Review embedding search filters and limits</p>
+<pre><code class="language-ruby"># Optimize search queries
+class SearchOptimizer
+  def self.optimize_embedding_search
+    # Use index hints for better performance
+    Ragdoll::Core::Models::Embedding.connection.execute(&quot;
+      SET enable_seqscan = OFF;
+      SET work_mem = '256MB';
+    &quot;)
+  end
+
+  def self.batch_similar_searches(query_embeddings, batch_size: 100)
+    # Process multiple searches in batches to reduce overhead
+    query_embeddings.each_slice(batch_size) do |batch|
+      # Process batch of searches
+      yield batch
+    end
+  end
+end
+</code></pre>
+<h4 id="high-memory-usage">High Memory Usage</h4>
+<p><strong>Symptoms:</strong>
+- Ruby process memory growth
+- PostgreSQL memory pressure
+- Frequent garbage collection</p>
+<p><strong>Diagnostic Procedures:</strong></p>
+<pre><code class="language-ruby"># Memory usage analysis
+def analyze_memory_usage
+  {
+    ruby_process_mb: `ps -o rss= -p #{Process.pid}`.to_i / 1024,
+    gc_stats: GC.stat,
+    object_counts: ObjectSpace.count_objects,
+    connection_pool: ActiveRecord::Base.connection_pool.stat
+  }
+end
+
+# PostgreSQL memory analysis
+ActiveRecord::Base.connection.execute(&quot;
+  SELECT
+    setting AS shared_buffers_mb,
+    pg_size_pretty(pg_database_size(current_database())) AS db_size
+  FROM pg_settings
+  WHERE name = 'shared_buffers';
+&quot;)
+</code></pre>
+<p><strong>Resolution Strategies:</strong>
+1. <strong>Optimize embeddings loading:</strong> Use <code>select</code> to load only needed columns
+2. <strong>Implement connection pooling:</strong> Use pgbouncer or similar
+3. <strong>Tune PostgreSQL memory:</strong> Adjust shared_buffers and work_mem
+4. <strong>Regular cleanup:</strong> Implement data retention policies</p>
+<h4 id="document-processing-failures">Document Processing Failures</h4>
+<p><strong>Symptoms:</strong>
+- Documents stuck in 'processing' status
+- High error rates
+- Background job failures</p>
+<p><strong>Diagnostic Commands:</strong></p>
+<pre><code class="language-ruby"># Check processing status distribution
+processing_status = Ragdoll::Core::Models::Document.group(:status).count
+puts &quot;Status distribution: #{processing_status}&quot;
+
+# Find stuck documents
+stuck_docs = Ragdoll::Core::Models::Document
+  .where(status: 'processing')
+  .where('updated_at &lt; ?', 1.hour.ago)
+
+puts &quot;Stuck documents: #{stuck_docs.count}&quot;
+
+# Check recent errors
+error_docs = Ragdoll::Core::Models::Document
+  .where(status: 'error')
+  .where('updated_at &gt; ?', 24.hours.ago)
+  .includes(:contents)
+</code></pre>
+<p><strong>Resolution Steps:</strong>
+1. <strong>Reset stuck documents:</strong> Change status back to 'pending'
+2. <strong>Check job queue:</strong> Ensure ActiveJob backend is running
+3. <strong>Review error logs:</strong> Identify common failure patterns
+4. <strong>Validate file access:</strong> Ensure file permissions and availability</p>
+<pre><code class="language-ruby"># Recovery procedures
+class DocumentRecovery
+  def self.reset_stuck_documents
+    stuck_docs = Ragdoll::Core::Models::Document
+      .where(status: 'processing')
+      .where('updated_at &lt; ?', 1.hour.ago)
+
+    stuck_docs.update_all(status: 'pending')
+    puts &quot;Reset #{stuck_docs.count} stuck documents&quot;
+  end
+
+  def self.retry_failed_documents
+    failed_docs = Ragdoll::Core::Models::Document
+      .where(status: 'error')
+      .where('updated_at &gt; ?', 24.hours.ago)
+
+    failed_docs.each do |doc|
+      begin
+        doc.update!(status: 'pending')
+        # Trigger reprocessing
+        Ragdoll::Core::Jobs::ExtractText.perform_later(doc.id)
+      rescue =&gt; e
+        puts &quot;Failed to retry document #{doc.id}: #{e.message}&quot;
+      end
+    end
+  end
+end
+</code></pre>
+<h3 id="diagnostic-procedures">Diagnostic Procedures</h3>
+<h4 id="system-health-check">System Health Check</h4>
+<pre><code class="language-ruby">class SystemHealthCheck
+  def self.run_full_diagnostic
+    results = {
+      timestamp: Time.current.iso8601,
+      database: check_database_health,
+      models: check_model_integrity,
+      performance: check_performance_metrics,
+      storage: check_storage_health,
+      jobs: check_job_health
+    }
+
+    generate_health_report(results)
+  end
+
+  private
+
+  def self.check_database_health
+    {
+      connection_status: ActiveRecord::Base.connected?,
+      pool_status: ActiveRecord::Base.connection_pool.stat,
+      table_sizes: get_table_sizes,
+      index_usage: get_index_usage_stats,
+      slow_queries: get_slow_queries
+    }
+  end
+
+  def self.check_model_integrity
+    {
+      total_documents: Ragdoll::Core::Models::Document.count,
+      orphaned_embeddings: find_orphaned_embeddings,
+      missing_content: find_documents_without_content,
+      invalid_embeddings: find_invalid_embeddings
+    }
+  end
+
+  def self.check_performance_metrics
+    recent_searches = Ragdoll::Core::Models::Embedding
+      .where('returned_at &gt; ?', 1.hour.ago)
+
+    {
+      searches_last_hour: recent_searches.sum(:usage_count),
+      avg_search_time: calculate_avg_search_time,
+      cache_hit_rate: calculate_cache_hit_rate,
+      processing_backlog: Ragdoll::Core::Models::Document.where(status: 'pending').count
+    }
+  end
+
+  def self.get_table_sizes
+    ActiveRecord::Base.connection.execute(&quot;
+      SELECT
+        tablename,
+        pg_size_pretty(pg_total_relation_size('ragdoll_'||tablename)) as size,
+        pg_total_relation_size('ragdoll_'||tablename) as bytes
+      FROM pg_tables
+      WHERE tablename LIKE 'ragdoll_%'
+      ORDER BY pg_total_relation_size('ragdoll_'||tablename) DESC;
+    &quot;).to_a
+  end
+
+  def self.find_orphaned_embeddings
+    # Find embeddings without valid embeddable references
+    Ragdoll::Core::Models::Embedding.left_joins(:embeddable)
+      .where(ragdoll_contents: { id: nil })
+      .count
+  end
+end
+</code></pre>
+<h4 id="performance-profiling">Performance Profiling</h4>
+<pre><code class="language-ruby">class PerformanceProfiler
+  def self.profile_search_operation(query, iterations: 100)
+    require 'benchmark'
+
+    results = []
+    embedding_service = Ragdoll::Core::EmbeddingService.new
+    search_engine = Ragdoll::Core::SearchEngine.new(embedding_service)
+
+    # Warm up
+    3.times { search_engine.search_documents(query, limit: 10) }
+
+    # Profile multiple iterations
+    iterations.times do |i|
+      start_time = Time.current
+
+      begin
+        search_results = search_engine.search_documents(query, limit: 10)
+        end_time = Time.current
+
+        results &lt;&lt; {
+          iteration: i + 1,
+          duration_ms: ((end_time - start_time) * 1000).round(2),
+          results_count: search_results.length,
+          success: true
+        }
+      rescue =&gt; e
+        results &lt;&lt; {
+          iteration: i + 1,
+          error: e.message,
+          success: false
+        }
+      end
+    end
+
+    analyze_profile_results(results)
+  end
+
+  private
+
+  def self.analyze_profile_results(results)
+    successful_results = results.select { |r| r[:success] }
+
+    return { error: &quot;No successful iterations&quot; } if successful_results.empty?
+
+    durations = successful_results.map { |r| r[:duration_ms] }
+
+    {
+      total_iterations: results.length,
+      successful_iterations: successful_results.length,
+      success_rate: (successful_results.length.to_f / results.length * 100).round(2),
+      performance: {
+        min_ms: durations.min,
+        max_ms: durations.max,
+        avg_ms: (durations.sum / durations.length).round(2),
+        median_ms: durations.sort[durations.length / 2],
+        std_dev_ms: calculate_std_dev(durations).round(2)
+      },
+      percentiles: {
+        p50: percentile(durations, 50),
+        p90: percentile(durations, 90),
+        p95: percentile(durations, 95),
+        p99: percentile(durations, 99)
+      }
+    }
+  end
+end
+</code></pre>
+<h3 id="prevention-techniques">Prevention Techniques</h3>
+<h4 id="proactive-monitoring-setup">Proactive Monitoring Setup</h4>
+<pre><code class="language-ruby">class PreventiveMaintenance
+  def self.setup_monitoring_jobs
+    # Schedule regular health checks
+    HealthCheckJob.set(cron: '*/15 * * * *').perform_later # Every 15 minutes
+
+    # Schedule daily cleanup
+    CleanupJob.set(cron: '0 2 * * *').perform_later # Daily at 2 AM
+
+    # Schedule weekly analytics
+    WeeklyReportJob.set(cron: '0 8 * * 1').perform_later # Monday at 8 AM
+  end
+
+  def self.optimize_database_settings
+    # PostgreSQL optimization for pgvector
+    settings = {
+      'shared_buffers' =&gt; '256MB',
+      'work_mem' =&gt; '64MB',
+      'maintenance_work_mem' =&gt; '256MB',
+      'effective_cache_size' =&gt; '1GB',
+      'random_page_cost' =&gt; '1.1' # Optimized for SSD
+    }
+
+    settings.each do |setting, value|
+      ActiveRecord::Base.connection.execute(
+        &quot;ALTER SYSTEM SET #{setting} = '#{value}';&quot;
+      )
+    end
+
+    # Reload configuration
+    ActiveRecord::Base.connection.execute(&quot;SELECT pg_reload_conf();&quot;)
+  end
+
+  def self.setup_automated_backups
+    # Database backup strategy
+    backup_script = &lt;&lt;~SCRIPT
+      #!/bin/bash
+      # Automated Ragdoll database backup
+
+      DB_NAME=&quot;ragdoll_production&quot;
+      BACKUP_DIR=&quot;/var/backups/ragdoll&quot;
+      DATE=$(date +%Y%m%d_%H%M%S)
+
+      # Create backup directory
+      mkdir -p $BACKUP_DIR
+
+      # Full database backup
+      pg_dump $DB_NAME | gzip &gt; $BACKUP_DIR/ragdoll_$DATE.sql.gz
+
+      # Cleanup old backups (keep 30 days)
+      find $BACKUP_DIR -name &quot;ragdoll_*.sql.gz&quot; -mtime +30 -delete
+
+      # Verify backup integrity
+      if [ $? -eq 0 ]; then
+        echo &quot;Backup completed successfully: ragdoll_$DATE.sql.gz&quot;
+      else
+        echo &quot;Backup failed!&quot; | mail -s &quot;Ragdoll Backup Failure&quot; admin@example.com
+      fi
+    SCRIPT
+
+    puts &quot;Add this script to crontab for daily backups:&quot;
+    puts &quot;0 3 * * * /path/to/ragdoll_backup.sh&quot;
+  end
+end
+</code></pre>
+<h4 id="configuration-best-practices">Configuration Best Practices</h4>
+<pre><code class="language-ruby">class ConfigurationValidator
+  def self.validate_production_config
+    issues = []
+    config = Ragdoll.config
+
+    # Database configuration validation
+    if config.database_config[:pool] &lt; 20
+      issues &lt;&lt; &quot;Connection pool size (#{config.database_config[:pool]}) may be too small for production&quot;
+    end
+
+    # Search configuration validation
+    if config.search[:max_results] &gt; 100
+      issues &lt;&lt; &quot;max_results (#{config.search[:max_results]}) may impact performance&quot;
+    end
+
+    if config.search[:similarity_threshold] &lt; 0.5
+      issues &lt;&lt; &quot;similarity_threshold (#{config.search[:similarity_threshold]}) may return too many irrelevant results&quot;
+    end
+
+    # Analytics configuration
+    unless config.search[:enable_analytics]
+      issues &lt;&lt; &quot;Analytics disabled - monitoring capabilities will be limited&quot;
+    end
+
+    # Memory settings validation
+    if config.chunking[:text][:max_tokens] &gt; 2000
+      issues &lt;&lt; &quot;text chunk size (#{config.chunking[:text][:max_tokens]}) may cause memory issues&quot;
+    end
+
+    display_validation_results(issues)
+  end
+
+  private
+
+  def self.display_validation_results(issues)
+    if issues.empty?
+      puts &quot;✅ Configuration validation passed&quot;
+    else
+      puts &quot;⚠️ Configuration issues found:&quot;
+      issues.each_with_index do |issue, index|
+        puts &quot;#{index + 1}. #{issue}&quot;
+      end
+    end
+  end
+end
+</code></pre>
+<hr />
+<h2 id="summary">Summary</h2>
+<p>Ragdoll's monitoring and analytics system provides comprehensive insights into system performance, usage patterns, and health metrics through PostgreSQL-native features and ActiveRecord integration. The built-in analytics track embedding usage for intelligent caching, while the flexible alerting system ensures proactive issue detection.</p>
+<p>Key monitoring capabilities include:
+- <strong>Usage Analytics</strong>: Search patterns, content popularity, embedding efficiency
+- <strong>Performance Metrics</strong>: Processing times, error rates, system resource usage
+- <strong>Health Monitoring</strong>: Database status, connection pools, job queue health
+- <strong>External Integrations</strong>: Prometheus, Grafana, New Relic, and custom solutions
+- <strong>Proactive Alerting</strong>: Threshold-based alerts with escalation policies
+- <strong>Troubleshooting Tools</strong>: Diagnostic procedures and automated recovery</p>
+<p>All monitoring data leverages PostgreSQL's built-in statistics and pgvector optimization for minimal performance impact while providing maximum visibility into system behavior.</p>
+<p><em>This document is part of the Ragdoll documentation suite. For immediate help, see the <a href="../quick-start/">Quick Start Guide</a> or <a href="../api-client/">API Reference</a>.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>

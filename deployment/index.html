@@ -1,0 +1,2630 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../database-schema/">
+      
+      
+        <link rel="next" href="../development/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Production Deployment Guide - Ragdoll Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#production-deployment-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Ragdoll Documentation" class="md-header__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ragdoll Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Production Deployment Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Ragdoll Documentation" class="md-nav__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ragdoll Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ragdoll Documentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Client API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jobs Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Models Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Services Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../background-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Production Deployment Guide
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Production Deployment Guide
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#infrastructure-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infrastructure Requirements
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Infrastructure Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimum-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimum Requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-production-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended Production Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql-pgvector-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL + pgvector Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PostgreSQL + pgvector Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntudebian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ubuntu/Debian
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rhelcentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      RHEL/CentOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postgresqlconf-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      postgresql.conf Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Index Optimization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Application Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#production-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#background-processing-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background Processing Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Background Processing Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sidekiq-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sidekiq Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Compose Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-balancing-and-high-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load Balancing and High Availability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Load Balancing and High Availability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nginx-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      nginx Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Health Checks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Observability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring and Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prometheus-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prometheus Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grafana-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grafana Dashboard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-aggregation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Aggregation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#application-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Security
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-and-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup and Recovery
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backup and Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recovery Procedures
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Tuning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Optimization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment Checklist
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Post-Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ongoing-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ongoing Maintenance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../document-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../embedding-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embedding System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Variables Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extending the System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-uploads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Upload System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation &amp; Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LLM Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metadata Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Modal Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Performance Tuning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search &amp; Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security Considerations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#infrastructure-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Infrastructure Requirements
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Infrastructure Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimum-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimum Requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-production-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended Production Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgresql-pgvector-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      PostgreSQL + pgvector Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PostgreSQL + pgvector Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntudebian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ubuntu/Debian
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rhelcentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      RHEL/CentOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postgresqlconf-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      postgresql.conf Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Index Optimization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Application Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#production-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Production Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#background-processing-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background Processing Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Background Processing Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sidekiq-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sidekiq Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-compose-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Compose Setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-balancing-and-high-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load Balancing and High Availability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Load Balancing and High Availability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nginx-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      nginx Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Health Checks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Observability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring and Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prometheus-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prometheus Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grafana-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grafana Dashboard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-aggregation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Aggregation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#application-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Security
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-and-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backup and Recovery
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backup and Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Backup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recovery Procedures
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Tuning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application Optimization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment Checklist
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Post-Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ongoing-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ongoing Maintenance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="production-deployment-guide">Production Deployment Guide</h1>
+<p>This guide covers deploying Ragdoll in production environments with PostgreSQL + pgvector, focusing on performance, scalability, reliability, and security considerations for enterprise workloads.</p>
+<h2 id="overview">Overview</h2>
+<p>Ragdoll is designed for production deployment with:</p>
+<ul>
+<li><strong>PostgreSQL + pgvector</strong>: Production-grade vector search capabilities</li>
+<li><strong>Background Processing</strong>: Scalable document processing with ActiveJob</li>
+<li><strong>Multi-Modal Support</strong>: Text, image, and audio content handling</li>
+<li><strong>Enterprise Features</strong>: Comprehensive logging, monitoring, and analytics</li>
+<li><strong>High Availability</strong>: Connection pooling, error handling, and failover support</li>
+</ul>
+<h2 id="infrastructure-requirements">Infrastructure Requirements</h2>
+<h3 id="minimum-requirements">Minimum Requirements</h3>
+<pre><code class="language-yaml"># Production minimum specifications
+Database Server:
+  CPU: 4 cores
+  RAM: 8 GB
+  Storage: 100 GB SSD
+  PostgreSQL: 12+ with pgvector extension
+
+Application Server:
+  CPU: 2 cores  
+  RAM: 4 GB
+  Storage: 20 GB
+
+Background Workers:
+  CPU: 2 cores per worker
+  RAM: 2 GB per worker
+  Recommended: 2-4 worker processes
+</code></pre>
+<h3 id="recommended-production-setup">Recommended Production Setup</h3>
+<pre><code class="language-yaml"># High-performance production setup
+Database Server:
+  CPU: 8-16 cores
+  RAM: 32-64 GB
+  Storage: 500 GB+ NVMe SSD
+  Network: 10 Gbps
+  PostgreSQL: 14+ with pgvector extension
+
+Application Servers (2+ instances):
+  CPU: 4-8 cores
+  RAM: 8-16 GB  
+  Storage: 50 GB SSD
+
+Background Workers (4-8 instances):
+  CPU: 4 cores
+  RAM: 4 GB
+  Specialized by job type (embeddings, processing, analysis)
+
+Load Balancer:
+  HAProxy, nginx, or cloud load balancer
+  SSL termination
+  Health checks
+
+Monitoring:
+  Prometheus + Grafana
+  Application metrics
+  Database monitoring
+</code></pre>
+<h2 id="postgresql-pgvector-setup">PostgreSQL + pgvector Setup</h2>
+<h3 id="installation">Installation</h3>
+<h4 id="ubuntudebian">Ubuntu/Debian</h4>
+<pre><code class="language-bash"># Install PostgreSQL 14+
+sudo apt update
+sudo apt install postgresql-14 postgresql-contrib-14
+
+# Install pgvector extension
+sudo apt install postgresql-14-pgvector
+
+# Or compile from source
+git clone --branch v0.5.1 https://github.com/pgvector/pgvector.git
+cd pgvector
+make
+sudo make install
+</code></pre>
+<h4 id="rhelcentos">RHEL/CentOS</h4>
+<pre><code class="language-bash"># Install PostgreSQL
+sudo dnf install postgresql14-server postgresql14-contrib
+
+# Install pgvector
+sudo dnf install postgresql14-pgvector
+
+# Or compile from source (requires development packages)
+sudo dnf groupinstall &quot;Development Tools&quot;
+sudo dnf install postgresql14-devel
+git clone --branch v0.5.1 https://github.com/pgvector/pgvector.git
+cd pgvector
+make
+sudo make install
+</code></pre>
+<h4 id="docker-setup">Docker Setup</h4>
+<pre><code class="language-dockerfile"># Dockerfile for PostgreSQL + pgvector
+FROM postgres:14
+
+# Install pgvector
+RUN apt-get update &amp;&amp; \
+    apt-get install -y postgresql-14-pgvector &amp;&amp; \
+    rm -rf /var/lib/apt/lists/*
+
+# Custom initialization
+COPY init-scripts/ /docker-entrypoint-initdb.d/
+</code></pre>
+<h3 id="database-configuration">Database Configuration</h3>
+<h4 id="postgresqlconf-optimization">postgresql.conf Optimization</h4>
+<pre><code class="language-ini"># postgresql.conf optimizations for Ragdoll
+
+# Memory settings
+shared_buffers = 2GB                    # 25% of system RAM
+effective_cache_size = 6GB              # 75% of system RAM
+work_mem = 256MB                        # For sorting/hashing operations
+maintenance_work_mem = 1GB              # For index creation
+
+# Connection settings
+max_connections = 200
+shared_preload_libraries = 'vector'     # Enable pgvector
+
+# Write performance
+wal_buffers = 64MB
+checkpoint_completion_target = 0.9
+max_wal_size = 2GB
+min_wal_size = 512MB
+
+# Query optimization
+default_statistics_target = 1000        # Better query planning
+random_page_cost = 1.1                  # SSD optimization
+effective_io_concurrency = 200          # SSD optimization
+
+# Logging
+log_destination = 'stderr'
+logging_collector = on
+log_directory = '/var/log/postgresql'
+log_filename = 'postgresql-%Y-%m-%d.log'
+log_min_duration_statement = 1000      # Log slow queries
+log_line_prefix = '%t [%p]: [%l-1] user=%u,db=%d,app=%a,client=%h '
+</code></pre>
+<h4 id="database-initialization">Database Initialization</h4>
+<pre><code class="language-sql">-- Create database and user
+CREATE DATABASE ragdoll_production;
+CREATE USER ragdoll_user WITH PASSWORD 'secure_password';
+GRANT ALL PRIVILEGES ON DATABASE ragdoll_production TO ragdoll_user;
+
+-- Connect to ragdoll database
+\c ragdoll_production
+
+-- Enable pgvector extension
+CREATE EXTENSION IF NOT EXISTS vector;
+
+-- Grant usage to ragdoll user
+GRANT USAGE ON SCHEMA public TO ragdoll_user;
+GRANT CREATE ON SCHEMA public TO ragdoll_user;
+</code></pre>
+<h4 id="index-optimization">Index Optimization</h4>
+<pre><code class="language-sql">-- Optimized indexes for production performance
+
+-- Vector similarity search (IVFFlat)
+CREATE INDEX CONCURRENTLY idx_embeddings_vector_ivfflat 
+ON ragdoll_embeddings 
+USING ivfflat (embedding_vector vector_cosine_ops) 
+WITH (lists = 1000);
+
+-- Usage analytics indexes
+CREATE INDEX CONCURRENTLY idx_embeddings_usage_analytics 
+ON ragdoll_embeddings (usage_count DESC, returned_at DESC);
+
+-- Polymorphic content indexes
+CREATE INDEX CONCURRENTLY idx_embeddings_content_type 
+ON ragdoll_embeddings (embeddable_type, embeddable_id);
+
+-- Document status and type indexes
+CREATE INDEX CONCURRENTLY idx_documents_status_type 
+ON ragdoll_documents (status, document_type);
+
+-- Full-text search indexes
+CREATE INDEX CONCURRENTLY idx_embeddings_content_fulltext 
+ON ragdoll_embeddings 
+USING GIN (to_tsvector('english', content));
+
+-- Metadata search indexes (JSONB)
+CREATE INDEX CONCURRENTLY idx_documents_metadata_gin 
+ON ragdoll_documents 
+USING GIN (metadata);
+
+-- Composite indexes for common queries
+CREATE INDEX CONCURRENTLY idx_embeddings_search_composite
+ON ragdoll_embeddings (embeddable_type, usage_count DESC, returned_at DESC);
+
+-- Analyze tables for accurate statistics
+ANALYZE ragdoll_documents;
+ANALYZE ragdoll_embeddings;
+ANALYZE ragdoll_text_contents;
+ANALYZE ragdoll_image_contents;
+ANALYZE ragdoll_audio_contents;
+</code></pre>
+<h2 id="application-configuration">Application Configuration</h2>
+<h3 id="production-configuration">Production Configuration</h3>
+<pre><code class="language-ruby"># config/environments/production.rb
+Ragdoll::Core.configure do |config|
+  # LLM Provider
+  config.llm_provider = :openai
+  config.openai_api_key = ENV['OPENAI_API_KEY']
+  config.embedding_model = 'text-embedding-3-small'
+  config.summary_model = 'gpt-4'
+  config.keywords_model = 'gpt-3.5-turbo'
+
+  # Production database
+  config.database_config = {
+    adapter: 'postgresql',
+    host: ENV['DATABASE_HOST'] || 'localhost',
+    port: ENV['DATABASE_PORT'] || 5432,
+    database: ENV['DATABASE_NAME'] || 'ragdoll_production',
+    username: ENV['DATABASE_USERNAME'] || 'ragdoll_user',
+    password: ENV['DATABASE_PASSWORD'],
+    pool: ENV.fetch('RAILS_MAX_THREADS', 25).to_i,
+    timeout: 5000,
+    checkout_timeout: 5,
+    reaping_frequency: 10,
+    idle_timeout: 300,
+    auto_migrate: false,  # Handle migrations separately
+
+    # SSL configuration
+    sslmode: ENV['DATABASE_SSL_MODE'] || 'require',
+    sslcert: ENV['DATABASE_SSL_CERT'],
+    sslkey: ENV['DATABASE_SSL_KEY'],
+    sslrootcert: ENV['DATABASE_SSL_CA'],
+
+    # Performance settings
+    prepared_statements: true,
+    advisory_locks: true
+  }
+
+  # Production logging
+  config.log_level = :info
+  config.log_file = ENV['RAGDOLL_LOG_FILE'] || '/var/log/ragdoll/ragdoll.log'
+  config.log_format = :json
+  config.log_rotation = 'daily'
+  config.log_max_size = 100.megabytes
+
+  # Background processing
+  config.enable_background_processing = true
+  config.job_queue_prefix = ENV['RAGDOLL_QUEUE_PREFIX'] || 'ragdoll_production'
+  config.job_timeout = 600.seconds
+  config.max_retry_attempts = 3
+
+  # Performance settings
+  config.chunk_size = 1000
+  config.chunk_overlap = 200
+  config.search_similarity_threshold = 0.75
+  config.max_search_results = 50
+
+  # Enable production features
+  config.enable_usage_analytics = true
+  config.enable_document_summarization = true
+  config.enable_keyword_extraction = true
+  config.enable_performance_monitoring = true
+
+  # Cache settings
+  config.search_cache_ttl = 300.seconds
+  config.embedding_cache_ttl = 3600.seconds
+  config.metadata_cache_ttl = 1800.seconds
+
+  # Security settings
+  config.enable_request_logging = false    # May contain sensitive data
+  config.log_embedding_content = false     # Don't log actual content
+  config.sanitize_error_messages = true
+end
+</code></pre>
+<h3 id="environment-variables">Environment Variables</h3>
+<pre><code class="language-bash"># .env.production
+# Database configuration
+DATABASE_HOST=postgres.example.com
+DATABASE_PORT=5432
+DATABASE_NAME=ragdoll_production
+DATABASE_USERNAME=ragdoll_user
+DATABASE_PASSWORD=your_secure_password
+DATABASE_SSL_MODE=require
+DATABASE_POOL=25
+
+# LLM API keys
+OPENAI_API_KEY=sk-your-openai-key
+ANTHROPIC_API_KEY=sk-ant-your-anthropic-key
+GOOGLE_API_KEY=your-google-api-key
+
+# Application settings
+RAILS_ENV=production
+RAILS_MAX_THREADS=25
+RAGDOLL_LOG_FILE=/var/log/ragdoll/ragdoll.log
+RAGDOLL_QUEUE_PREFIX=ragdoll_production
+
+# Redis (for Sidekiq)
+REDIS_URL=redis://redis.example.com:6379/0
+
+# Monitoring
+PROMETHEUS_METRICS_PORT=9394
+HEALTH_CHECK_PORT=8080
+
+# File storage
+RAGDOLL_STORAGE_PATH=/var/lib/ragdoll/storage
+RAGDOLL_CACHE_PATH=/var/lib/ragdoll/cache
+</code></pre>
+<h2 id="background-processing-setup">Background Processing Setup</h2>
+<h3 id="sidekiq-configuration">Sidekiq Configuration</h3>
+<pre><code class="language-ruby"># config/initializers/sidekiq.rb
+Sidekiq.configure_server do |config|
+  config.redis = { url: ENV['REDIS_URL'] || 'redis://localhost:6379/0' }
+
+  # Queue configuration
+  config.queues = %w[
+    embeddings:3
+    processing:2  
+    analysis:1
+    default:1
+  ]
+
+  # Concurrency settings
+  config.concurrency = ENV.fetch('SIDEKIQ_CONCURRENCY', 10).to_i
+
+  # Error handling
+  config.death_handlers &lt;&lt; lambda do |job, exception|
+    # Custom error handling for failed jobs
+    RagdollErrorHandler.handle_job_death(job, exception)
+  end
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = { url: ENV['REDIS_URL'] || 'redis://localhost:6379/0' }
+end
+</code></pre>
+<h3 id="docker-compose-setup">Docker Compose Setup</h3>
+<pre><code class="language-yaml"># docker-compose.production.yml
+version: '3.8'
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg14
+    environment:
+      POSTGRES_DB: ragdoll_production
+      POSTGRES_USER: ragdoll_user
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./config/postgresql.conf:/etc/postgresql/postgresql.conf
+    ports:
+      - &quot;5432:5432&quot;
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+    ports:
+      - &quot;6379:6379&quot;
+
+  ragdoll-app:
+    build: .
+    environment:
+      - DATABASE_URL=postgresql://ragdoll_user:${DATABASE_PASSWORD}@postgres:5432/ragdoll_production
+      - REDIS_URL=redis://redis:6379/0
+      - RAILS_ENV=production
+    volumes:
+      - storage_data:/var/lib/ragdoll/storage
+      - log_data:/var/log/ragdoll
+    ports:
+      - &quot;3000:3000&quot;
+    depends_on:
+      - postgres
+      - redis
+
+  ragdoll-embeddings:
+    build: .
+    command: bundle exec sidekiq -q embeddings -c 3
+    environment:
+      - DATABASE_URL=postgresql://ragdoll_user:${DATABASE_PASSWORD}@postgres:5432/ragdoll_production
+      - REDIS_URL=redis://redis:6379/0
+      - RAILS_ENV=production
+    volumes:
+      - storage_data:/var/lib/ragdoll/storage
+      - log_data:/var/log/ragdoll
+    depends_on:
+      - postgres
+      - redis
+
+  ragdoll-processing:
+    build: .
+    command: bundle exec sidekiq -q processing -c 2
+    environment:
+      - DATABASE_URL=postgresql://ragdoll_user:${DATABASE_PASSWORD}@postgres:5432/ragdoll_production
+      - REDIS_URL=redis://redis:6379/0
+      - RAILS_ENV=production
+    volumes:
+      - storage_data:/var/lib/ragdoll/storage
+      - log_data:/var/log/ragdoll
+    depends_on:
+      - postgres
+      - redis
+
+  ragdoll-analysis:
+    build: .
+    command: bundle exec sidekiq -q analysis -c 1
+    environment:
+      - DATABASE_URL=postgresql://ragdoll_user:${DATABASE_PASSWORD}@postgres:5432/ragdoll_production
+      - REDIS_URL=redis://redis:6379/0
+      - RAILS_ENV=production
+    volumes:
+      - storage_data:/var/lib/ragdoll/storage
+      - log_data:/var/log/ragdoll
+    depends_on:
+      - postgres
+      - redis
+
+volumes:
+  postgres_data:
+  redis_data:
+  storage_data:
+  log_data:
+</code></pre>
+<h2 id="load-balancing-and-high-availability">Load Balancing and High Availability</h2>
+<h3 id="nginx-configuration">nginx Configuration</h3>
+<pre><code class="language-nginx"># /etc/nginx/sites-available/ragdoll
+upstream ragdoll_app {
+    server app1.example.com:3000 max_fails=3 fail_timeout=30s;
+    server app2.example.com:3000 max_fails=3 fail_timeout=30s;
+    server app3.example.com:3000 max_fails=3 fail_timeout=30s backup;
+}
+
+server {
+    listen 80;
+    listen 443 ssl http2;
+    server_name ragdoll.example.com;
+
+    # SSL configuration
+    ssl_certificate /etc/ssl/certs/ragdoll.example.com.pem;
+    ssl_certificate_key /etc/ssl/private/ragdoll.example.com.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512;
+    ssl_prefer_server_ciphers off;
+
+    # Security headers
+    add_header X-Frame-Options DENY;
+    add_header X-Content-Type-Options nosniff;
+    add_header X-XSS-Protection &quot;1; mode=block&quot;;
+    add_header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot;;
+
+    # File upload size
+    client_max_body_size 100M;
+
+    # Proxy settings
+    location / {
+        proxy_pass http://ragdoll_app;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # Timeouts
+        proxy_connect_timeout 60s;
+        proxy_send_timeout 60s;
+        proxy_read_timeout 60s;
+
+        # Health checks
+        proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+    }
+
+    # Health check endpoint
+    location /health {
+        proxy_pass http://ragdoll_app/health;
+        access_log off;
+    }
+
+    # Static files
+    location /assets {
+        root /var/www/ragdoll/public;
+        expires 1y;
+        add_header Cache-Control &quot;public, immutable&quot;;
+    }
+}
+</code></pre>
+<h3 id="health-checks">Health Checks</h3>
+<pre><code class="language-ruby"># config/routes.rb
+Rails.application.routes.draw do
+  get '/health', to: 'health#check'
+  get '/health/detailed', to: 'health#detailed'
+end
+
+# app/controllers/health_controller.rb
+class HealthController &lt; ApplicationController
+  def check
+    health_status = Ragdoll::Core.client.health_check
+
+    if health_status[:status] == 'healthy'
+      render json: { status: 'ok', timestamp: Time.current }, status: :ok
+    else
+      render json: { 
+        status: 'error', 
+        details: health_status, 
+        timestamp: Time.current 
+      }, status: :service_unavailable
+    end
+  end
+
+  def detailed
+    render json: Ragdoll::Core.client.detailed_health_check
+  end
+end
+</code></pre>
+<h2 id="monitoring-and-observability">Monitoring and Observability</h2>
+<h3 id="prometheus-metrics">Prometheus Metrics</h3>
+<pre><code class="language-ruby"># config/initializers/prometheus.rb
+require 'prometheus/client'
+require 'prometheus/client/rack/collector'
+require 'prometheus/client/rack/exporter'
+
+# Custom metrics for Ragdoll
+module RagdollMetrics
+  PROMETHEUS = Prometheus::Client.registry
+
+  SEARCH_DURATION = PROMETHEUS.histogram(
+    :ragdoll_search_duration_seconds,
+    docstring: 'Time spent on search operations',
+    labels: [:query_type, :content_type]
+  )
+
+  DOCUMENT_PROCESSING = PROMETHEUS.counter(
+    :ragdoll_documents_processed_total,
+    docstring: 'Total number of documents processed',
+    labels: [:document_type, :status]
+  )
+
+  EMBEDDING_GENERATION = PROMETHEUS.histogram(
+    :ragdoll_embedding_generation_seconds,
+    docstring: 'Time spent generating embeddings',
+    labels: [:model, :content_type]
+  )
+
+  BACKGROUND_JOBS = PROMETHEUS.counter(
+    :ragdoll_background_jobs_total,
+    docstring: 'Total background jobs processed',
+    labels: [:job_type, :status]
+  )
+end
+
+# Instrument search operations
+module SearchInstrumentation
+  def search_similar_content(query, options = {})
+    start_time = Time.current
+    result = super
+
+    RagdollMetrics::SEARCH_DURATION.observe(
+      Time.current - start_time,
+      labels: { 
+        query_type: 'semantic',
+        content_type: options[:content_types]&amp;.join(',') || 'all'
+      }
+    )
+
+    result
+  end
+end
+
+Ragdoll::Core::SearchEngine.prepend(SearchInstrumentation)
+</code></pre>
+<h3 id="grafana-dashboard">Grafana Dashboard</h3>
+<pre><code class="language-json">{
+  &quot;dashboard&quot;: {
+    &quot;title&quot;: &quot;Ragdoll Production Dashboard&quot;,
+    &quot;panels&quot;: [
+      {
+        &quot;title&quot;: &quot;Search Performance&quot;,
+        &quot;type&quot;: &quot;graph&quot;,
+        &quot;targets&quot;: [
+          {
+            &quot;expr&quot;: &quot;rate(ragdoll_search_duration_seconds[5m])&quot;,
+            &quot;legendFormat&quot;: &quot;Search Rate&quot;
+          },
+          {
+            &quot;expr&quot;: &quot;histogram_quantile(0.95, ragdoll_search_duration_seconds)&quot;,
+            &quot;legendFormat&quot;: &quot;95th Percentile&quot;
+          }
+        ]
+      },
+      {
+        &quot;title&quot;: &quot;Document Processing&quot;,
+        &quot;type&quot;: &quot;graph&quot;, 
+        &quot;targets&quot;: [
+          {
+            &quot;expr&quot;: &quot;rate(ragdoll_documents_processed_total[5m])&quot;,
+            &quot;legendFormat&quot;: &quot;Processing Rate&quot;
+          }
+        ]
+      },
+      {
+        &quot;title&quot;: &quot;Background Jobs&quot;,
+        &quot;type&quot;: &quot;singlestat&quot;,
+        &quot;targets&quot;: [
+          {
+            &quot;expr&quot;: &quot;sidekiq_queue_size&quot;,
+            &quot;legendFormat&quot;: &quot;Queue Depth&quot;
+          }
+        ]
+      },
+      {
+        &quot;title&quot;: &quot;Database Performance&quot;,
+        &quot;type&quot;: &quot;graph&quot;,
+        &quot;targets&quot;: [
+          {
+            &quot;expr&quot;: &quot;postgresql_stat_database_tup_returned&quot;,
+            &quot;legendFormat&quot;: &quot;Rows Returned&quot;
+          },
+          {
+            &quot;expr&quot;: &quot;postgresql_stat_database_tup_fetched&quot;, 
+            &quot;legendFormat&quot;: &quot;Rows Fetched&quot;
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<h3 id="log-aggregation">Log Aggregation</h3>
+<pre><code class="language-yaml"># docker-compose.logging.yml
+version: '3.8'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+    environment:
+      - discovery.type=single-node
+      - &quot;ES_JAVA_OPTS=-Xms2g -Xmx2g&quot;
+    ports:
+      - &quot;9200:9200&quot;
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.8.0
+    volumes:
+      - ./config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    ports:
+      - &quot;5044:5044&quot;
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.8.0
+    ports:
+      - &quot;5601:5601&quot;
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+
+volumes:
+  elasticsearch_data:
+</code></pre>
+<h2 id="security-configuration">Security Configuration</h2>
+<h3 id="application-security">Application Security</h3>
+<pre><code class="language-ruby"># Security configuration
+Ragdoll::Core.configure do |config|
+  # API key encryption
+  config.encrypt_api_keys = true
+  config.encryption_key = ENV['RAGDOLL_ENCRYPTION_KEY']
+
+  # Request validation
+  config.validate_request_origin = true
+  config.allowed_origins = ENV['ALLOWED_ORIGINS']&amp;.split(',') || []
+
+  # Content filtering
+  config.content_filtering = {
+    max_file_size: 100.megabytes,
+    allowed_file_types: %w[pdf docx txt html md mp3 wav jpg png],
+    scan_for_malware: true,
+    sanitize_content: true
+  }
+
+  # Access logging
+  config.audit_logging = true
+  config.log_access_patterns = true
+  config.sensitive_data_masking = true
+end
+</code></pre>
+<h3 id="database-security">Database Security</h3>
+<pre><code class="language-sql">-- Row-level security example
+ALTER TABLE ragdoll_documents ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY documents_access_policy ON ragdoll_documents
+FOR ALL TO ragdoll_user
+USING (
+  -- Add your access control logic here
+  tenant_id = current_setting('app.current_tenant_id')::uuid
+);
+
+-- Audit logging
+CREATE EXTENSION IF NOT EXISTS pgaudit;
+ALTER SYSTEM SET pgaudit.log = 'all';
+</code></pre>
+<h2 id="backup-and-recovery">Backup and Recovery</h2>
+<h3 id="database-backup">Database Backup</h3>
+<pre><code class="language-bash">#!/bin/bash
+# backup_ragdoll.sh
+
+# Configuration
+DB_HOST=&quot;${DATABASE_HOST:-localhost}&quot;
+DB_NAME=&quot;${DATABASE_NAME:-ragdoll_production}&quot;
+DB_USER=&quot;${DATABASE_USERNAME:-ragdoll_user}&quot;
+BACKUP_DIR=&quot;/var/backups/ragdoll&quot;
+RETENTION_DAYS=30
+
+# Create backup directory
+mkdir -p &quot;$BACKUP_DIR&quot;
+
+# Generate backup filename
+BACKUP_FILE=&quot;$BACKUP_DIR/ragdoll_$(date +%Y%m%d_%H%M%S).sql.gz&quot;
+
+# Create backup
+pg_dump -h &quot;$DB_HOST&quot; -U &quot;$DB_USER&quot; -d &quot;$DB_NAME&quot; \
+  --verbose \
+  --no-password \
+  --format=custom \
+  --compress=9 \
+  | gzip &gt; &quot;$BACKUP_FILE&quot;
+
+# Verify backup
+if [ $? -eq 0 ]; then
+  echo &quot;Backup completed successfully: $BACKUP_FILE&quot;
+
+  # Remove old backups
+  find &quot;$BACKUP_DIR&quot; -name &quot;ragdoll_*.sql.gz&quot; -mtime +$RETENTION_DAYS -delete
+else
+  echo &quot;Backup failed!&quot; &gt;&amp;2
+  exit 1
+fi
+</code></pre>
+<h3 id="recovery-procedures">Recovery Procedures</h3>
+<pre><code class="language-bash">#!/bin/bash
+# restore_ragdoll.sh
+
+BACKUP_FILE=&quot;$1&quot;
+DB_HOST=&quot;${DATABASE_HOST:-localhost}&quot;
+DB_NAME=&quot;${DATABASE_NAME:-ragdoll_production}&quot;
+DB_USER=&quot;${DATABASE_USERNAME:-ragdoll_user}&quot;
+
+if [ -z &quot;$BACKUP_FILE&quot; ]; then
+  echo &quot;Usage: $0 &lt;backup_file.sql.gz&gt;&quot;
+  exit 1
+fi
+
+# Stop application services
+docker-compose stop ragdoll-app ragdoll-embeddings ragdoll-processing ragdoll-analysis
+
+# Restore database
+gunzip -c &quot;$BACKUP_FILE&quot; | pg_restore -h &quot;$DB_HOST&quot; -U &quot;$DB_USER&quot; -d &quot;$DB_NAME&quot; --clean --if-exists
+
+# Restart services
+docker-compose start ragdoll-app ragdoll-embeddings ragdoll-processing ragdoll-analysis
+
+echo &quot;Database restore completed&quot;
+</code></pre>
+<h2 id="performance-tuning">Performance Tuning</h2>
+<h3 id="database-optimization">Database Optimization</h3>
+<pre><code class="language-sql">-- Maintenance tasks
+VACUUM ANALYZE ragdoll_documents;
+VACUUM ANALYZE ragdoll_embeddings;
+REINDEX INDEX CONCURRENTLY idx_embeddings_vector_ivfflat;
+
+-- Statistics update
+ANALYZE ragdoll_documents;
+ANALYZE ragdoll_embeddings;
+
+-- Index maintenance
+SELECT schemaname, tablename, indexname, idx_scan, idx_tup_read, idx_tup_fetch
+FROM pg_stat_user_indexes
+WHERE schemaname = 'public'
+ORDER BY idx_scan ASC;
+</code></pre>
+<h3 id="application-optimization">Application Optimization</h3>
+<pre><code class="language-ruby"># Connection pooling optimization
+Ragdoll::Core.configure do |config|
+  config.database_config = {
+    # ... other settings
+    pool: ENV.fetch('DATABASE_POOL', 25).to_i,
+    checkout_timeout: 5,
+    reaping_frequency: 10,
+    idle_timeout: 300,
+
+    # Query optimization
+    prepared_statements: true,
+    statement_timeout: 30000,  # 30 seconds
+    advisory_locks: true
+  }
+
+  # Cache optimization
+  config.search_cache_ttl = 300.seconds
+  config.embedding_cache_ttl = 3600.seconds
+  config.enable_query_cache = true
+
+  # Batch processing optimization
+  config.batch_processing_size = 100
+  config.parallel_processing = true
+  config.worker_concurrency = 4
+end
+</code></pre>
+<h2 id="deployment-checklist">Deployment Checklist</h2>
+<h3 id="pre-deployment">Pre-Deployment</h3>
+<ul>
+<li>[ ] Database server provisioned with adequate resources</li>
+<li>[ ] pgvector extension installed and tested</li>
+<li>[ ] Application servers configured with proper resource limits</li>
+<li>[ ] Background worker processes planned and configured</li>
+<li>[ ] Load balancer configured with health checks</li>
+<li>[ ] SSL certificates installed and configured</li>
+<li>[ ] Environment variables securely configured</li>
+<li>[ ] Database migrations tested in staging</li>
+<li>[ ] Backup and recovery procedures tested</li>
+<li>[ ] Monitoring and alerting configured</li>
+</ul>
+<h3 id="post-deployment">Post-Deployment</h3>
+<ul>
+<li>[ ] Health checks passing</li>
+<li>[ ] Database performance metrics within acceptable ranges</li>
+<li>[ ] Background job processing functioning correctly</li>
+<li>[ ] Search operations performing within SLA</li>
+<li>[ ] Log aggregation and monitoring operational</li>
+<li>[ ] Backup procedures validated</li>
+<li>[ ] Security scanning completed</li>
+<li>[ ] Performance baseline established</li>
+<li>[ ] Documentation updated with production specifics</li>
+<li>[ ] Team trained on operational procedures</li>
+</ul>
+<h3 id="ongoing-maintenance">Ongoing Maintenance</h3>
+<ul>
+<li>[ ] Regular database maintenance (VACUUM, ANALYZE)</li>
+<li>[ ] Index performance monitoring and optimization</li>
+<li>[ ] Log rotation and cleanup</li>
+<li>[ ] Security updates and patches</li>
+<li>[ ] Performance monitoring and tuning</li>
+<li>[ ] Backup validation and recovery testing</li>
+<li>[ ] Capacity planning and scaling decisions</li>
+<li>[ ] Configuration optimization based on usage patterns</li>
+</ul>
+<p>This deployment guide provides a comprehensive foundation for running Ragdoll in production environments, ensuring high performance, reliability, and maintainability for enterprise document intelligence applications.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>
