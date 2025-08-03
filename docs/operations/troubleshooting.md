@@ -621,7 +621,7 @@ RagdollDebug.test_pipeline
 
 ### Getting Help
 
-1. **Documentation**: Check the [Architecture Guide](architecture.md) and [Configuration Guide](configuration.md)
+1. **Documentation**: Check the [Architecture Guide](../development/architecture.md) and [Configuration Guide](../getting-started/configuration.md)
 2. **Logs**: Enable debug logging and examine error messages
 3. **System Health**: Run the diagnostic commands provided above  
 4. **Community**: Search existing issues and discussions
@@ -644,4 +644,4 @@ puts "System recovered: #{client.healthy?}"
 
 ---
 
-*This document is part of the Ragdoll documentation suite. For immediate help, see the [Quick Start Guide](quick-start.md) or [API Reference](api-client.md).*
+*This document is part of the Ragdoll documentation suite. For immediate help, see the [Quick Start Guide](../getting-started/quick-start.md) or [API Reference](../api-reference/api-client.md).*

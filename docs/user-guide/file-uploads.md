@@ -3188,4 +3188,4 @@ Ragdoll's file upload system provides enterprise-grade file handling through Shr
 
 The system seamlessly integrates with Ragdoll's document processing pipeline, ensuring secure, efficient file handling from upload through AI-powered content analysis and embedding generation.
 
-*This document is part of the Ragdoll documentation suite. For immediate help, see the [Quick Start Guide](quick-start.md) or [API Reference](api-client.md).*
+*This document is part of the Ragdoll documentation suite. For immediate help, see the [Quick Start Guide](../getting-started/quick-start.md) or [API Reference](../api-reference/api-client.md).*

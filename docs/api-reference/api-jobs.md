@@ -2310,4 +2310,4 @@ Ragdoll's background job system provides a robust, scalable foundation for async
 
 The job system seamlessly integrates with Ragdoll's document processing pipeline, ensuring reliable and efficient handling of AI operations at scale.
 
-*This document is part of the Ragdoll documentation suite. For immediate help, see the [Quick Start Guide](quick-start.md) or [API Reference](api-client.md).*
+*This document is part of the Ragdoll documentation suite. For immediate help, see the [Quick Start Guide](../getting-started/quick-start.md) or [API Reference](../api-reference/api-client.md).*

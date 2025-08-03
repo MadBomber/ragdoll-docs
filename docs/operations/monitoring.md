@@ -1852,4 +1852,4 @@ Key monitoring capabilities include:
 
 All monitoring data leverages PostgreSQL's built-in statistics and pgvector optimization for minimal performance impact while providing maximum visibility into system behavior.
 
-*This document is part of the Ragdoll documentation suite. For immediate help, see the [Quick Start Guide](quick-start.md) or [API Reference](api-client.md).*
+*This document is part of the Ragdoll documentation suite. For immediate help, see the [Quick Start Guide](../getting-started/quick-start.md) or [API Reference](../api-reference/api-client.md).*

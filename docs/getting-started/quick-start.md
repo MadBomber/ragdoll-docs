@@ -385,10 +385,10 @@ end
 
 Now that you have Ragdoll running:
 
-1. **Explore Advanced Features**: Read the [Multi-Modal Architecture](multi-modal.md) guide
-2. **Optimize Performance**: Check the [Configuration Guide](configuration.md)
-3. **Scale to Production**: Follow the [Deployment Guide](deployment.md)
-4. **Build Applications**: Review the [API Reference](api-client.md)
+1. **Explore Advanced Features**: Read the [Multi-Modal Architecture](../user-guide/multi-modal.md) guide
+2. **Optimize Performance**: Check the [Configuration Guide](../getting-started/configuration.md)
+3. **Scale to Production**: Follow the [Deployment Guide](../deployment/deployment.md)
+4. **Build Applications**: Review the [API Reference](../api-reference/api-client.md)
 
 ### Example Applications
 

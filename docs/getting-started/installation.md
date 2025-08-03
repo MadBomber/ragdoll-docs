@@ -645,9 +645,9 @@ ANALYZE ragdoll_embeddings;
 
 After successful installation:
 
-1. **Quick Start**: Follow the [Quick Start Guide](quick-start.md) for basic usage
-2. **Configuration**: Read the [Configuration Guide](configuration.md) for advanced setup
-3. **API Reference**: Explore the [Client API Reference](api-client.md)
-4. **Production Deployment**: Plan your [Production Deployment](deployment.md)
+1. **Quick Start**: Follow the [Quick Start Guide](../getting-started/quick-start.md) for basic usage
+2. **Configuration**: Read the [Configuration Guide](../getting-started/configuration.md) for advanced setup
+3. **API Reference**: Explore the [Client API Reference](../api-reference/api-client.md)
+4. **Production Deployment**: Plan your [Production Deployment](../deployment/deployment.md)
 
 Congratulations! You now have Ragdoll installed and ready to build sophisticated document intelligence applications.
