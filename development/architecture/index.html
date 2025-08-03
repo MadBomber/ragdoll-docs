@@ -1,0 +1,2628 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Advanced RAG system with PostgreSQL + pgvector, supporting multi-modal content, semantic search, and LLM integration">
+      
+      
+        <meta name="author" content="madbomber">
+      
+      
+        <link rel="canonical" href="https://madbomber.github.io/ragdoll-docs/development/architecture/">
+      
+      
+        <link rel="prev" href="../../api-reference/api-services/">
+      
+      
+        <link rel="next" href="../contributing/">
+      
+      
+      <link rel="icon" href="../../assets/ragdoll-logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Architecture - Ragdoll Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture-overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Ragdoll Documentation" class="md-header__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  <img src="../../assets/ragdoll-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ragdoll Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/madbomber/ragdoll" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    madbomber/ragdoll
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/installation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🚀 Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guide/document-processing/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📖 User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api-reference/api-client/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔌 API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ⚙️ Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../deployment/deployment/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🚀 Deployment
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../operations/background-processing/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🛠️ Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reference/llm-integration/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📚 Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Ragdoll Documentation" class="md-nav__button md-logo" aria-label="Ragdoll Documentation" data-md-component="logo">
+      
+  <img src="../../assets/ragdoll-logo.png" alt="logo">
+
+    </a>
+    Ragdoll Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/madbomber/ragdoll" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    madbomber/ragdoll
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🚀 Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            🚀 Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    📖 User Guide
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            📖 User Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/document-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/embedding-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embedding System
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/file-uploads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    File Uploads
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/multi-modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Modal
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/search-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Search Analytics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔌 API Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            🔌 API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/api-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Client
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/api-jobs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Jobs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/api-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-reference/api-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Services
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    ⚙️ Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ⚙️ Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#system-design-and-component-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Design and Component Relationships
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Design and Component Relationships">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#high-level-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-Level Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-flow-through-the-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Flow Through the System
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Flow Through the System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-document-ingestion-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Document Ingestion Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-search-and-retrieval-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Search and Retrieval Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-rag-enhancement-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. RAG Enhancement Flow
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-points-with-external-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration Points with External Services
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Components
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-client-interface-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Client Interface Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-document-processing-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Document Processing Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-embedding-generation-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Embedding Generation System
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-search-and-retrieval-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Search and Retrieval Engine
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-database-abstraction-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Database Abstraction Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-background-job-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Background Job System
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Decisions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture Decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choice-of-activerecord-for-orm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choice of ActiveRecord for ORM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#polymorphic-multi-modal-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Polymorphic Multi-Modal Design
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dual-metadata-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dual Metadata Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-processing-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background Processing Approach
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector-database-integration-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector Database Integration Strategy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-indexing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Indexing Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-processing-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Async Processing Design
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caching-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monitoring and Observability
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extending
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Testing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🚀 Deployment
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            🚀 Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/environment-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environment Variables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Performance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🛠️ Operations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            🛠️ Operations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/background-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Database Schema
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monitoring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    📚 Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            📚 Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/llm-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LLM Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/metadata-schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Metadata Schemas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/madbomber/ragdoll/edit/main/docs/docs/development/architecture.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/madbomber/ragdoll/raw/main/docs/docs/development/architecture.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="architecture-overview">Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h1>
+<p>Ragdoll Core is a <strong>database-oriented RAG (Retrieval-Augmented Generation) framework</strong> built on ActiveRecord with PostgreSQL as the primary data store. The architecture follows a layered service-oriented design with clear separation of concerns, optimized for performance and extensibility.</p>
+<h2 id="system-design-and-component-relationships">System Design and Component Relationships<a class="headerlink" href="#system-design-and-component-relationships" title="Permanent link">&para;</a></h2>
+<h3 id="high-level-architecture">High-Level Architecture<a class="headerlink" href="#high-level-architecture" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>graph TB
+    subgraph "Client Interface Layer"
+        Client[Ragdoll::Core::Client&lt;br/&gt;🏗️ Facade Pattern]
+        API[Public API Methods&lt;br/&gt;🔌 High-level Interface]
+        Delegation[Module Delegation&lt;br/&gt;📡 Method Forwarding]
+    end
+
+    subgraph "Service Layer"
+        DocProc[Document Processor&lt;br/&gt;📄 Multi-format Parsing]
+        DocMgmt[Document Management&lt;br/&gt;🗂️ CRUD Operations]
+        EmbedSvc[Embedding Service&lt;br/&gt;🧠 Vector Generation]
+        SearchEng[Search Engine&lt;br/&gt;🔍 Semantic &amp; Hybrid Search]
+        TextChunk[Text Chunker&lt;br/&gt;✂️ Content Segmentation]
+        TextGen[Text Generation Service&lt;br/&gt;💬 LLM Integration]
+        Config[Configuration Manager&lt;br/&gt;⚙️ Settings &amp; Providers]
+    end
+
+    subgraph "Background Processing Layer"
+        ActiveJob[ActiveJob Integration&lt;br/&gt;⚡ Queue Management]
+        EmbedJob[Generate Embeddings Job&lt;br/&gt;🔄 Async Processing]
+        MetaJob[Metadata Generation Job&lt;br/&gt;📊 LLM Enhancement]
+    end
+
+    subgraph "Data Layer"
+        DocModel[Document Model&lt;br/&gt;📑 Central Entity]
+        TextContent[Text Content&lt;br/&gt;📝 Text Processing]
+        ImageContent[Image Content&lt;br/&gt;🖼️ Image Analysis]
+        AudioContent[Audio Content&lt;br/&gt;🎵 Audio Processing]
+        EmbedModel[Embedding Model&lt;br/&gt;🎯 Vector Storage]
+    end
+
+    subgraph "Infrastructure Layer"
+        PostgreSQL[(PostgreSQL + pgvector&lt;br/&gt;🐘 Vector Database)]
+        Shrine[Shrine File Storage&lt;br/&gt;📁 Upload Management]
+        FullText[Full-text Search&lt;br/&gt;🔎 GIN Indexes]
+        VectorSearch[Vector Similarity&lt;br/&gt;📐 IVFFlat Indexes]
+    end
+
+    subgraph "External Services"
+        LLMProviders[LLM Providers&lt;br/&gt;🤖 OpenAI, Anthropic, etc.]
+        FileStorage[File Storage Backends&lt;br/&gt;☁️ Local, S3, etc.]
+    end
+
+    %% Client Layer Connections
+    Client --&gt; DocProc
+    Client --&gt; DocMgmt
+    Client --&gt; SearchEng
+    Client --&gt; EmbedSvc
+    API --&gt; Client
+    Delegation --&gt; Client
+
+    %% Service Layer Connections
+    DocProc --&gt; TextChunk
+    DocMgmt --&gt; DocProc
+    DocMgmt --&gt; EmbedJob
+    SearchEng --&gt; EmbedSvc
+    EmbedSvc --&gt; LLMProviders
+    TextGen --&gt; LLMProviders
+
+    %% Background Processing
+    EmbedJob --&gt; EmbedSvc
+    EmbedJob --&gt; TextChunk
+    MetaJob --&gt; TextGen
+    ActiveJob --&gt; EmbedJob
+    ActiveJob --&gt; MetaJob
+
+    %% Data Layer Connections
+    DocModel --&gt; TextContent
+    DocModel --&gt; ImageContent
+    DocModel --&gt; AudioContent
+    TextContent --&gt; EmbedModel
+    ImageContent --&gt; EmbedModel
+    AudioContent --&gt; EmbedModel
+
+    %% Infrastructure Connections
+    DocModel --&gt; PostgreSQL
+    EmbedModel --&gt; PostgreSQL
+    EmbedModel --&gt; VectorSearch
+    DocModel --&gt; FullText
+    DocProc --&gt; Shrine
+    Shrine --&gt; FileStorage
+    VectorSearch --&gt; PostgreSQL
+    FullText --&gt; PostgreSQL
+
+    %% Styling
+    classDef clientLayer fill:#e1f5fe
+    classDef serviceLayer fill:#f3e5f5
+    classDef processLayer fill:#fff3e0
+    classDef dataLayer fill:#e8f5e8
+    classDef infraLayer fill:#fce4ec
+    classDef externalLayer fill:#f1f8e9
+
+    class Client,API,Delegation clientLayer
+    class DocProc,DocMgmt,EmbedSvc,SearchEng,TextChunk,TextGen,Config serviceLayer
+    class ActiveJob,EmbedJob,MetaJob processLayer
+    class DocModel,TextContent,ImageContent,AudioContent,EmbedModel dataLayer
+    class PostgreSQL,Shrine,FullText,VectorSearch infraLayer
+    class LLMProviders,FileStorage externalLayer</code></pre>
+<h3 id="data-flow-through-the-system">Data Flow Through the System<a class="headerlink" href="#data-flow-through-the-system" title="Permanent link">&para;</a></h3>
+<h4 id="1-document-ingestion-flow">1. Document Ingestion Flow<a class="headerlink" href="#1-document-ingestion-flow" title="Permanent link">&para;</a></h4>
+<pre class="mermaid"><code>sequenceDiagram
+    participant User
+    participant Client as Ragdoll::Core::Client
+    participant DocProc as Document Processor
+    participant Shrine as File Storage
+    participant DB as PostgreSQL
+    participant Job as Background Job
+    participant EmbedSvc as Embedding Service
+    participant LLM as LLM Provider
+
+    User-&gt;&gt;Client: add_document(path)
+    Client-&gt;&gt;DocProc: parse(file_path)
+    Client-&gt;&gt;DocMgmt: add_document(path, content, metadata)
+    DocMgmt-&gt;&gt;DB: store_document()
+    DocMgmt--&gt;&gt;Client: return document_id
+    Client--&gt;&gt;User: success response
+
+    Client-&gt;&gt;Job: queue GenerateEmbeddings
+    Job-&gt;&gt;EmbedSvc: process_document()
+    EmbedSvc-&gt;&gt;LLM: generate_embeddings()
+    LLM--&gt;&gt;EmbedSvc: vector_embeddings
+    EmbedSvc-&gt;&gt;DB: store_embeddings()
+    Job-&gt;&gt;DB: update_status(processed)</code></pre>
+<h4 id="2-search-and-retrieval-flow">2. Search and Retrieval Flow<a class="headerlink" href="#2-search-and-retrieval-flow" title="Permanent link">&para;</a></h4>
+<pre class="mermaid"><code>flowchart TD
+    A[Query Input] --&gt; B{Search Type?}
+
+    B --&gt;|Semantic| C[Generate Query Embedding]
+    B --&gt;|Full-text| D[PostgreSQL Text Search]
+    B --&gt;|Hybrid| E[Both Semantic + Text]
+
+    C --&gt; F[pgvector Similarity Search]
+    D --&gt; G[GIN Index Search]
+    E --&gt; H[Weighted Result Combination]
+
+    F --&gt; I[Result Ranking]
+    G --&gt; I
+    H --&gt; I
+
+    I --&gt; J[Usage Analytics Update]
+    J --&gt; K[Context Assembly]
+    K --&gt; L[Return Results]
+
+    style A fill:#e1f5fe
+    style L fill:#e8f5e8
+    style I fill:#fff3e0</code></pre>
+<h4 id="3-rag-enhancement-flow">3. RAG Enhancement Flow<a class="headerlink" href="#3-rag-enhancement-flow" title="Permanent link">&para;</a></h4>
+<pre class="mermaid"><code>graph LR
+    subgraph "Context Retrieval"
+        A[User Prompt] --&gt; B[get_context]
+        B --&gt; C[search_similar_content]
+        C --&gt; D[Similarity Search]
+        D --&gt; E[Top K Results]
+    end
+
+    subgraph "Prompt Enhancement"
+        E --&gt; F[build_enhanced_prompt]
+        F --&gt; G[Template Application]
+        G --&gt; H[Context Integration]
+    end
+
+    subgraph "Output Generation"
+        H --&gt; I[Enhanced Prompt]
+        I --&gt; J[LLM Processing]
+        J --&gt; K[Contextual Response]
+    end
+
+    style A fill:#e1f5fe
+    style I fill:#fff3e0
+    style K fill:#e8f5e8</code></pre>
+<h3 id="integration-points-with-external-services">Integration Points with External Services<a class="headerlink" href="#integration-points-with-external-services" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>LLM Providers</strong>: OpenAI, Anthropic, Google, Azure, Ollama via <code>ruby_llm</code> gem</li>
+<li><strong>File Storage</strong>: Shrine gem with configurable backends (filesystem, cloud storage)</li>
+<li><strong>Background Processing</strong>: ActiveJob with multiple adapter support</li>
+<li><strong>Search Extensions</strong>: Optional OpenSearch/Elasticsearch integration</li>
+<li><strong>Monitoring</strong>: Built-in analytics and optional external monitoring tools</li>
+</ul>
+<h2 id="core-components">Core Components<a class="headerlink" href="#core-components" title="Permanent link">&para;</a></h2>
+<h3 id="1-client-interface-layer">1. Client Interface Layer<a class="headerlink" href="#1-client-interface-layer" title="Permanent link">&para;</a></h3>
+<p><strong>Primary Component</strong>: <code>Ragdoll::Core::Client</code></p>
+<p><strong>Responsibilities</strong>:
+- High-level API facade for all RAG operations
+- Document lifecycle management (add, update, delete, list)
+- Context retrieval and prompt enhancement
+- Multi-modal search capabilities (semantic, hybrid, full-text)
+- Health monitoring and system analytics</p>
+<p><strong>Key Methods</strong>:
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Document Management</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">add_document</span><span class="p">(</span><span class="ss">path</span><span class="p">:)</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">result_hash</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">add_text</span><span class="p">(</span><span class="ss">content</span><span class="p">:,</span><span class="w"> </span><span class="ss">title</span><span class="p">:,</span><span class="w"> </span><span class="o">**</span><span class="n">options</span><span class="p">)</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">document_id</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">add_directory</span><span class="p">(</span><span class="ss">path</span><span class="p">:,</span><span class="w"> </span><span class="ss">recursive</span><span class="p">:</span><span class="w"> </span><span class="kp">false</span><span class="p">)</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">results_array</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Search &amp; Retrieval</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">search</span><span class="p">(</span><span class="ss">query</span><span class="p">:,</span><span class="w"> </span><span class="o">**</span><span class="n">options</span><span class="p">)</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">search_results</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">hybrid_search</span><span class="p">(</span><span class="ss">query</span><span class="p">:,</span><span class="w"> </span><span class="o">**</span><span class="n">options</span><span class="p">)</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">weighted_results</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">get_context</span><span class="p">(</span><span class="ss">query</span><span class="p">:,</span><span class="w"> </span><span class="ss">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">options</span><span class="p">)</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">context_hash</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">enhance_prompt</span><span class="p">(</span><span class="ss">prompt</span><span class="p">:,</span><span class="w"> </span><span class="ss">context_limit</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">options</span><span class="p">)</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">enhanced_prompt</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># Analytics &amp; Health</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">stats</span><span class="p">()</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">system_statistics</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">healthy?</span><span class="p">()</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">boolean</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">search_analytics</span><span class="p">(</span><span class="ss">days</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">analytics_data</span>
+</span></code></pre></div></p>
+<p><strong>Design Pattern</strong>: <strong>Facade Pattern</strong> - Simplifies complex subsystem interactions</p>
+<h3 id="2-document-processing-pipeline">2. Document Processing Pipeline<a class="headerlink" href="#2-document-processing-pipeline" title="Permanent link">&para;</a></h3>
+<p><strong>Primary Component</strong>: <code>Ragdoll::Core::DocumentProcessor</code></p>
+<p><strong>Responsibilities</strong>:
+- Multi-format document parsing (PDF, DOCX, HTML, Markdown, Text)
+- Content extraction and normalization
+- Format-specific handling and validation
+- Error handling for malformed documents</p>
+<p><strong>Related Component</strong>: <code>Ragdoll::Core::DocumentManagement</code></p>
+<p><strong>Responsibilities</strong>:
+- Document CRUD operations (create, read, update, delete)
+- Database persistence and retrieval
+- Document metadata management
+- Integration with background job processing</p>
+<p><strong>Architecture Details</strong>:
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">DocumentProcessor</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="c1"># Strategy pattern for format-specific parsing</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="no">PARSERS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="s1">&#39;.pdf&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="ss">:parse_pdf</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="s1">&#39;.docx&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="ss">:parse_docx</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="s1">&#39;.html&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="ss">:parse_html</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="s1">&#39;.md&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="ss">:parse_markdown</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="p">}</span><span class="o">.</span><span class="n">freeze</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="c1"># Returns structured result with content, metadata, and document_type</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">      </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="n">extracted_text</span><span class="p">,</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">      </span><span class="ss">metadata</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="ss">title</span><span class="p">:,</span><span class="w"> </span><span class="ss">author</span><span class="p">:,</span><span class="w"> </span><span class="ss">creation_date</span><span class="p">:,</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">      </span><span class="ss">document_type</span><span class="p">:</span><span class="w"> </span><span class="n">mime_type</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="k">end</span>
+</span></code></pre></div></p>
+<p><strong>Architecture Details</strong>:
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">DocumentManagement</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="c1"># Handles all document database operations</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nc">self</span><span class="o">.</span><span class="nf">add_document</span><span class="p">(</span><span class="n">location</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="n">metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="c1"># Create document record with metadata</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="c1"># Returns document ID for further processing</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nc">self</span><span class="o">.</span><span class="nf">get_document</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="c1"># Retrieve document with all associated content</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nc">self</span><span class="o">.</span><span class="nf">update_document</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">updates</span><span class="p">)</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="c1"># Update document metadata and properties</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="k">end</span>
+</span></code></pre></div></p>
+<p><strong>Integration Points</strong>:
+- DocumentProcessor for content parsing
+- Background jobs for asynchronous processing
+- ActiveRecord models for data persistence</p>
+<h3 id="3-embedding-generation-system">3. Embedding Generation System<a class="headerlink" href="#3-embedding-generation-system" title="Permanent link">&para;</a></h3>
+<p><strong>Primary Component</strong>: <code>Ragdoll::Core::EmbeddingService</code></p>
+<p><strong>Responsibilities</strong>:
+- Vector embedding generation using multiple LLM providers
+- Text preprocessing and normalization
+- Batch processing for efficiency
+- Cosine similarity calculations
+- Provider failover and error handling</p>
+<p><strong>Provider Integration</strong>:
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">EmbeddingService</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="no">SUPPORTED_PROVIDERS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="ss">:openai</span><span class="p">,</span><span class="w"> </span><span class="ss">:anthropic</span><span class="p">,</span><span class="w"> </span><span class="ss">:google</span><span class="p">,</span><span class="w"> </span><span class="ss">:azure</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="ss">:ollama</span><span class="p">,</span><span class="w"> </span><span class="ss">:huggingface</span><span class="p">,</span><span class="w"> </span><span class="ss">:openrouter</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="o">].</span><span class="n">freeze</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">generate_embedding</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="c1"># Unified interface to multiple providers via ruby_llm</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="vi">@client</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="ss">text</span><span class="p">:</span><span class="w"> </span><span class="n">clean_text</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">generate_embeddings_batch</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="c1"># Optimized batch processing</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="n">texts</span><span class="o">.</span><span class="n">each_slice</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span><span class="o">.</span><span class="n">flat_map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">|</span><span class="n">batch</span><span class="o">|</span><span class="w"> </span><span class="n">process_batch</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="k">end</span>
+</span></code></pre></div></p>
+<p><strong>Design Pattern</strong>: <strong>Adapter Pattern</strong> - Unifies diverse LLM provider APIs</p>
+<h3 id="4-search-and-retrieval-engine">4. Search and Retrieval Engine<a class="headerlink" href="#4-search-and-retrieval-engine" title="Permanent link">&para;</a></h3>
+<p><strong>Primary Component</strong>: <code>Ragdoll::Core::SearchEngine</code></p>
+<p><strong>Responsibilities</strong>:
+- Semantic search using vector embeddings and pgvector
+- Hybrid search combining semantic and full-text approaches
+- Multi-modal content search across text, image, and audio
+- Query embedding generation and similarity matching
+- Search result ranking and relevance scoring</p>
+<p><strong>Search Types</strong>:</p>
+<ol>
+<li><strong>Semantic Search</strong>: Vector similarity using cosine distance</li>
+<li><strong>Hybrid Search</strong>: Combines semantic search with keyword extraction and filtering</li>
+<li><strong>Content-Type Search</strong>: Specialized search for text, image, or audio content</li>
+<li><strong>Filtered Search</strong>: Document-type and metadata-based filtering</li>
+</ol>
+<p><strong>Performance Optimizations</strong>:
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SearchEngine</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">search_similar_content</span><span class="p">(</span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">options</span><span class="p">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="c1"># Generate query embedding for semantic search</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">embedding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="vi">@embedding_service</span><span class="o">.</span><span class="n">generate_embedding</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="c1"># Use pgvector for efficient similarity search</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="no">Models</span><span class="o">::</span><span class="no">Embedding</span><span class="o">.</span><span class="n">search_similar</span><span class="p">(</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">      </span><span class="n">embedding</span><span class="p">,</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">      </span><span class="ss">limit</span><span class="p">:</span><span class="w"> </span><span class="n">options</span><span class="o">[</span><span class="ss">:limit</span><span class="o">]</span><span class="p">,</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">      </span><span class="ss">threshold</span><span class="p">:</span><span class="w"> </span><span class="n">options</span><span class="o">[</span><span class="ss">:threshold</span><span class="o">]</span><span class="p">,</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">      </span><span class="ss">filters</span><span class="p">:</span><span class="w"> </span><span class="n">options</span><span class="o">[</span><span class="ss">:filters</span><span class="o">]</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="p">)</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">search_documents</span><span class="p">(</span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="c1"># High-level search interface with filtering</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span><span class="n">search_similar_content</span><span class="p">(</span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="p">)</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="k">end</span>
+</span></code></pre></div></p>
+<h3 id="5-database-abstraction-layer">5. Database Abstraction Layer<a class="headerlink" href="#5-database-abstraction-layer" title="Permanent link">&para;</a></h3>
+<p><strong>Primary Component</strong>: <code>Ragdoll::Core::Database</code></p>
+<p><strong>Responsibilities</strong>:
+- Database connection management and health monitoring
+- Automatic migration execution on startup
+- Schema versioning and compatibility checks
+- Development database reset capabilities
+- Connection pooling optimization</p>
+<p><strong>Key Features</strong>:
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Database</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nc">self</span><span class="o">.</span><span class="nf">setup</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">establish_connection</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="n">run_migrations</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">config</span><span class="o">[</span><span class="ss">:auto_migrate</span><span class="o">]</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="n">verify_extensions</span><span class="w">  </span><span class="c1"># Ensure pgvector is available</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nc">self</span><span class="o">.</span><span class="nf">healthy?</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="n">connection</span><span class="o">.</span><span class="n">active?</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">verify_schema_version</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="k">rescue</span><span class="w"> </span><span class="no">StandardError</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="kp">false</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="k">end</span>
+</span></code></pre></div></p>
+<h3 id="6-background-job-system">6. Background Job System<a class="headerlink" href="#6-background-job-system" title="Permanent link">&para;</a></h3>
+<p><strong>Primary Component</strong>: <code>Ragdoll::Core::Jobs::GenerateEmbeddings</code></p>
+<p><strong>Responsibilities</strong>:
+- Asynchronous embedding generation for new content
+- LLM-powered metadata enhancement
+- Text extraction and chunking for large documents
+- Error handling and retry logic
+- Progress tracking and status updates</p>
+<p><strong>Job Architecture</strong>:
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">GenerateEmbeddings</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ActiveJob</span><span class="o">::</span><span class="no">Base</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">perform</span><span class="p">(</span><span class="n">document_id</span><span class="p">)</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">document</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Models</span><span class="o">::</span><span class="no">Document</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">document_id</span><span class="p">)</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="c1"># Process each content type polymorphically</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="n">document</span><span class="o">.</span><span class="n">content_items</span><span class="o">.</span><span class="n">each</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">content</span><span class="o">|</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">      </span><span class="n">generate_embeddings_for_content</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="k">end</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="n">document</span><span class="o">.</span><span class="n">update!</span><span class="p">(</span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;processed&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">processed_at</span><span class="p">:</span><span class="w"> </span><span class="no">Time</span><span class="o">.</span><span class="n">current</span><span class="p">)</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="k">end</span>
+</span></code></pre></div></p>
+<p><strong>Design Pattern</strong>: <strong>Observer Pattern</strong> - Jobs triggered by model lifecycle events</p>
+<h2 id="architecture-decisions">Architecture Decisions<a class="headerlink" href="#architecture-decisions" title="Permanent link">&para;</a></h2>
+<h3 id="choice-of-activerecord-for-orm">Choice of ActiveRecord for ORM<a class="headerlink" href="#choice-of-activerecord-for-orm" title="Permanent link">&para;</a></h3>
+<p><strong>Decision</strong>: Use ActiveRecord as the primary ORM with PostgreSQL</p>
+<p><strong>Rationale</strong>:
+- <strong>Performance</strong>: Direct SQL generation with optimization capabilities
+- <strong>Ecosystem</strong>: Rich plugin ecosystem (pgvector, full-text search)
+- <strong>Migrations</strong>: Built-in schema versioning and migration management
+- <strong>Associations</strong>: Powerful polymorphic associations for multi-modal content
+- <strong>Connection Management</strong>: Built-in pooling and health monitoring</p>
+<p><strong>Trade-offs</strong>:
+- ✅ Familiar Rails conventions and patterns
+- ✅ Excellent PostgreSQL integration
+- ✅ Rich querying capabilities with Arel
+- ❌ Not database-agnostic (PostgreSQL-specific features used)
+- ❌ Potential N+1 query issues (mitigated with careful includes)</p>
+<h3 id="polymorphic-multi-modal-design">Polymorphic Multi-Modal Design<a class="headerlink" href="#polymorphic-multi-modal-design" title="Permanent link">&para;</a></h3>
+<p><strong>Decision</strong>: Use polymorphic associations for content types (text, image, audio)</p>
+<p><strong>Rationale</strong>:
+- <strong>Extensibility</strong>: Easy addition of new content types without schema changes
+- <strong>Consistency</strong>: Unified embedding storage across all content types
+- <strong>Performance</strong>: Single embedding table with efficient indexing
+- <strong>Flexibility</strong>: Content-type specific processing while maintaining common interfaces</p>
+<p><strong>Implementation</strong>:
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Document</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="n">has_many</span><span class="w"> </span><span class="ss">:text_contents</span><span class="p">,</span><span class="w"> </span><span class="ss">dependent</span><span class="p">:</span><span class="w"> </span><span class="ss">:destroy</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="n">has_many</span><span class="w"> </span><span class="ss">:image_contents</span><span class="p">,</span><span class="w"> </span><span class="ss">dependent</span><span class="p">:</span><span class="w"> </span><span class="ss">:destroy</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="n">has_many</span><span class="w"> </span><span class="ss">:audio_contents</span><span class="p">,</span><span class="w"> </span><span class="ss">dependent</span><span class="p">:</span><span class="w"> </span><span class="ss">:destroy</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">end</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">Embedding</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="n">belongs_to</span><span class="w"> </span><span class="ss">:embeddable</span><span class="p">,</span><span class="w"> </span><span class="ss">polymorphic</span><span class="p">:</span><span class="w"> </span><span class="kp">true</span><span class="w">  </span><span class="c1"># Text, Image, or Audio content</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="k">end</span>
+</span></code></pre></div></p>
+<p><strong>Database Schema Relationships</strong>:</p>
+<pre class="mermaid"><code>erDiagram
+    DOCUMENTS {
+        uuid id PK
+        string title
+        string status
+        jsonb metadata "LLM-generated content analysis"
+        jsonb file_metadata "System file properties"
+        text content "Extracted text content"
+        string document_type
+        timestamp created_at
+        timestamp updated_at
+        timestamp processed_at
+    }
+
+    TEXT_CONTENTS {
+        uuid id PK
+        uuid document_id FK
+        text content
+        integer chunk_index
+        integer start_position
+        integer end_position
+        jsonb metadata
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    IMAGE_CONTENTS {
+        uuid id PK
+        uuid document_id FK
+        string file_data "Shrine attachment"
+        string alt_text
+        jsonb metadata "Image analysis"
+        integer width
+        integer height
+        string format
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    AUDIO_CONTENTS {
+        uuid id PK
+        uuid document_id FK
+        string file_data "Shrine attachment"
+        text transcript
+        integer duration_seconds
+        string format
+        jsonb metadata "Audio analysis"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    EMBEDDINGS {
+        uuid id PK
+        uuid embeddable_id FK
+        string embeddable_type "Polymorphic type"
+        vector vector "pgvector embedding"
+        string model_name
+        integer vector_dimensions
+        integer usage_count
+        timestamp last_used_at
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    %% Relationships
+    DOCUMENTS ||--o{ TEXT_CONTENTS : "has_many"
+    DOCUMENTS ||--o{ IMAGE_CONTENTS : "has_many"
+    DOCUMENTS ||--o{ AUDIO_CONTENTS : "has_many"
+
+    TEXT_CONTENTS ||--o{ EMBEDDINGS : "embeddable (polymorphic)"
+    IMAGE_CONTENTS ||--o{ EMBEDDINGS : "embeddable (polymorphic)"
+    AUDIO_CONTENTS ||--o{ EMBEDDINGS : "embeddable (polymorphic)"</code></pre>
+<h3 id="dual-metadata-architecture">Dual Metadata Architecture<a class="headerlink" href="#dual-metadata-architecture" title="Permanent link">&para;</a></h3>
+<p><strong>Decision</strong>: Separate LLM-generated content metadata from file metadata</p>
+<p><strong>Rationale</strong>:
+- <strong>Separation of Concerns</strong>: Technical file properties vs. semantic content analysis
+- <strong>Search Optimization</strong>: Different indexing strategies for different metadata types
+- <strong>Cost Management</strong>: LLM metadata generation only when needed
+- <strong>Extensibility</strong>: Easy addition of domain-specific metadata schemas</p>
+<p><strong>Schema Design</strong>:
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Document</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="c1"># System-generated file properties</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="n">store</span><span class="w"> </span><span class="ss">:file_metadata</span><span class="p">,</span><span class="w"> </span><span class="ss">accessors</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="ss">:file_size</span><span class="p">,</span><span class="w"> </span><span class="ss">:mime_type</span><span class="p">,</span><span class="w"> </span><span class="ss">:dimensions</span><span class="p">,</span><span class="w"> </span><span class="ss">:processing_params</span><span class="o">]</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="c1"># LLM-generated content analysis</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="n">store</span><span class="w"> </span><span class="ss">:metadata</span><span class="p">,</span><span class="w"> </span><span class="ss">accessors</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="ss">:summary</span><span class="p">,</span><span class="w"> </span><span class="ss">:keywords</span><span class="p">,</span><span class="w"> </span><span class="ss">:classification</span><span class="p">,</span><span class="w"> </span><span class="ss">:topics</span><span class="p">,</span><span class="w"> </span><span class="ss">:sentiment</span><span class="o">]</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="k">end</span>
+</span></code></pre></div></p>
+<h3 id="background-processing-approach">Background Processing Approach<a class="headerlink" href="#background-processing-approach" title="Permanent link">&para;</a></h3>
+<p><strong>Decision</strong>: Use ActiveJob with asynchronous embedding generation</p>
+<p><strong>Rationale</strong>:
+- <strong>User Experience</strong>: Non-blocking document upload and immediate response
+- <strong>Resource Management</strong>: Controlled concurrency for expensive LLM operations
+- <strong>Reliability</strong>: Retry logic and error handling for API failures
+- <strong>Scalability</strong>: Horizontal scaling through job queue workers</p>
+<p><strong>Error Handling Strategy</strong>:
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">GenerateEmbeddings</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ActiveJob</span><span class="o">::</span><span class="no">Base</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="n">retry_on</span><span class="w"> </span><span class="no">EmbeddingService</span><span class="o">::</span><span class="no">APIError</span><span class="p">,</span><span class="w"> </span><span class="ss">wait</span><span class="p">:</span><span class="w"> </span><span class="ss">:exponentially_longer</span><span class="p">,</span><span class="w"> </span><span class="ss">attempts</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="n">discard_on</span><span class="w"> </span><span class="no">EmbeddingService</span><span class="o">::</span><span class="no">InvalidInputError</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">perform</span><span class="p">(</span><span class="n">document_id</span><span class="p">)</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="c1"># Robust error handling with fallback strategies</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="k">end</span>
+</span></code></pre></div></p>
+<h3 id="vector-database-integration-strategy">Vector Database Integration Strategy<a class="headerlink" href="#vector-database-integration-strategy" title="Permanent link">&para;</a></h3>
+<p><strong>Decision</strong>: Use PostgreSQL + pgvector instead of dedicated vector databases</p>
+<p><strong>Rationale</strong>:
+- <strong>Simplicity</strong>: Single database system reduces operational complexity
+- <strong>Performance</strong>: Native PostgreSQL optimizations with pgvector extension
+- <strong>ACID Compliance</strong>: Transactional consistency between documents and embeddings
+- <strong>Ecosystem</strong>: Leverages existing PostgreSQL tooling and expertise</p>
+<p><strong>Performance Characteristics</strong>:
+- <strong>IVFFlat Indexing</strong>: Sub-linear search performance O(log n)
+- <strong>Concurrent Access</strong>: PostgreSQL's MVCC for high concurrency
+- <strong>Memory Efficiency</strong>: Configurable vector dimensions and precision
+- <strong>Backup/Recovery</strong>: Standard PostgreSQL tools work seamlessly</p>
+<h2 id="performance-considerations">Performance Considerations<a class="headerlink" href="#performance-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="database-indexing-strategy">Database Indexing Strategy<a class="headerlink" href="#database-indexing-strategy" title="Permanent link">&para;</a></h3>
+<p><strong>Vector Indexes</strong>:
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">-- IVFFlat index for similarity search</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_embeddings_vector</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">ragdoll_embeddings</span><span class="w"> </span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">USING</span><span class="w"> </span><span class="n">ivfflat</span><span class="w"> </span><span class="p">(</span><span class="n">vector</span><span class="w"> </span><span class="n">vector_cosine_ops</span><span class="p">)</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="n">lists</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1">-- Composite index for filtered searches</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_embeddings_content_vector</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">ragdoll_embeddings</span><span class="w"> </span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="k">USING</span><span class="w"> </span><span class="n">ivfflat</span><span class="w"> </span><span class="p">(</span><span class="n">embeddable_type</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="n">vector_cosine_ops</span><span class="p">);</span>
+</span></code></pre></div></p>
+<p><strong>Text Search Indexes</strong>:
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">-- GIN index for full-text search</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_documents_content_gin</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">ragdoll_documents</span><span class="w"> </span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">USING</span><span class="w"> </span><span class="n">gin</span><span class="p">(</span><span class="n">to_tsvector</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="k">coalesce</span><span class="p">(</span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)));</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1">-- Metadata search optimization</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_documents_metadata_gin</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">ragdoll_documents</span><span class="w"> </span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="k">USING</span><span class="w"> </span><span class="n">gin</span><span class="p">(</span><span class="n">metadata</span><span class="p">);</span>
+</span></code></pre></div></p>
+<p><strong>Performance Optimizations</strong>:</p>
+<pre class="mermaid"><code>graph TD
+    subgraph "Query Optimization"
+        A[Query Input] --&gt; B{Query Type}
+        B --&gt;|Vector Similarity| C[IVFFlat Index]
+        B --&gt;|Full-text Search| D[GIN Index]
+        B --&gt;|Metadata Filter| E[JSON Index]
+
+        C --&gt; F[pgvector Cosine Distance]
+        D --&gt; G[PostgreSQL Text Ranking]
+        E --&gt; H[JSON Path Queries]
+    end
+
+    subgraph "Caching Strategy"
+        I[Frequently Used Embeddings] --&gt; J[In-Memory Cache]
+        K[Search Results] --&gt; L[TTL-based Cache]
+        M[Configuration] --&gt; N[Memoization]
+    end
+
+    subgraph "Connection Management"
+        O[Multiple Clients] --&gt; P[Connection Pool]
+        P --&gt; Q[Load Balancing]
+        Q --&gt; R[Health Monitoring]
+    end
+
+    F --&gt; S[Result Ranking]
+    G --&gt; S
+    H --&gt; S
+    S --&gt; T[Analytics Update]
+    T --&gt; U[Optimized Results]
+
+    style A fill:#e1f5fe
+    style U fill:#e8f5e8
+    style J fill:#fff3e0
+    style P fill:#f3e5f5</code></pre>
+<p><strong>Implementation Details</strong>:
+- <strong>Query Planning</strong>: Use of <code>EXPLAIN ANALYZE</code> for query optimization
+- <strong>Index Maintenance</strong>: Regular <code>VACUUM</code> and <code>ANALYZE</code> operations
+- <strong>Connection Pooling</strong>: ActiveRecord pool configuration for concurrency
+- <strong>Prepared Statements</strong>: Automatic statement caching for repeated queries</p>
+<h3 id="async-processing-design">Async Processing Design<a class="headerlink" href="#async-processing-design" title="Permanent link">&para;</a></h3>
+<p><strong>Batch Processing</strong>:
+- Embedding generation in configurable batch sizes (default: 10)
+- Parallel processing of independent content items
+- Memory management for large document processing</p>
+<p><strong>Queue Management</strong>:
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Configuration for different job priorities</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">GenerateEmbeddings</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ActiveJob</span><span class="o">::</span><span class="no">Base</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="n">queue_as</span><span class="w"> </span><span class="ss">:embeddings</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="c1"># High priority for interactive operations</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nc">self</span><span class="o">.</span><span class="nf">perform_now_if_small</span><span class="p">(</span><span class="n">document_id</span><span class="p">)</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="n">document</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Models</span><span class="o">::</span><span class="no">Document</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">document_id</span><span class="p">)</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">document</span><span class="o">.</span><span class="n">estimated_processing_time</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="o">.</span><span class="n">seconds</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">      </span><span class="n">perform_now</span><span class="p">(</span><span class="n">document_id</span><span class="p">)</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">      </span><span class="n">perform_later</span><span class="p">(</span><span class="n">document_id</span><span class="p">)</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">    </span><span class="k">end</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="k">end</span>
+</span></code></pre></div></p>
+<h3 id="caching-strategy">Caching Strategy<a class="headerlink" href="#caching-strategy" title="Permanent link">&para;</a></h3>
+<p><strong>Application-Level Caching</strong>:
+- Configuration memoization for frequently accessed settings
+- Embedding result caching for repeated queries
+- Search result caching with TTL-based invalidation</p>
+<p><strong>Database-Level Optimization</strong>:
+- Query result caching through PostgreSQL's shared buffers
+- Materialized views for complex analytics queries
+- Partial indexes for status-based filtering</p>
+<p><strong>Memory Management</strong>:
+- Streaming file processing for large documents
+- Configurable chunk sizes balancing quality vs. performance
+- Connection pool sizing based on concurrency requirements</p>
+<h3 id="monitoring-and-observability">Monitoring and Observability<a class="headerlink" href="#monitoring-and-observability" title="Permanent link">&para;</a></h3>
+<p><strong>Built-in Analytics</strong>:
+- Search frequency and result quality tracking
+- Embedding generation performance metrics
+- Document processing success/failure rates
+- API response time monitoring</p>
+<p><strong>Health Checks</strong>:
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">healthy?</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="n">checks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="ss">database</span><span class="p">:</span><span class="w"> </span><span class="no">Database</span><span class="o">.</span><span class="n">healthy?</span><span class="p">,</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="ss">embedding_service</span><span class="p">:</span><span class="w"> </span><span class="vi">@embedding_service</span><span class="o">.</span><span class="n">healthy?</span><span class="p">,</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="ss">job_queue</span><span class="p">:</span><span class="w"> </span><span class="no">ActiveJob</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">queue_adapter</span><span class="o">.</span><span class="n">healthy?</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">  </span><span class="n">checks</span><span class="o">.</span><span class="n">all?</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">|</span><span class="n">_name</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">|</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="k">end</span>
+</span></code></pre></div></p>
+<p><strong>Performance Monitoring</strong>:
+- Query execution time tracking
+- Memory usage monitoring during document processing
+- Background job queue depth monitoring
+- LLM API latency and error rate tracking</p>
+<hr />
+<p><em>This document is part of the Ragdoll documentation suite. For immediate help, see the <a href="../../getting-started/quick-start/">Quick Start Guide</a> or <a href="../../api-reference/api-client/">API Reference</a>.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 madbomber
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/madbomber/ragdoll" target="_blank" rel="noopener" title="GitHub Repository" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.indexes", "navigation.top", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "search.share", "header.autohide", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+        <script src="../../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
