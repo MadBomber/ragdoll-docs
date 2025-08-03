@@ -57,3 +57,6 @@ build-iPhoneSimulator/
 
 # MkDocs build output
 site/
+
+# Ignore AIGCM message files
+.aigcm_msg
