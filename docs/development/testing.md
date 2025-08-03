@@ -703,7 +703,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: ${{ matrix.ruby-version }}
+        ruby-version: ${{ '{{' }} matrix.ruby-version {{ '}}' }}
         bundler-cache: true
     
     - name: Set up database
