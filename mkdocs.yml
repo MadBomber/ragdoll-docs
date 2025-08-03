@@ -1,20 +1,20 @@
 site_name: Ragdoll Documentation
-site_description: 'Advanced RAG system with PostgreSQL + pgvector, supporting multi-modal content, semantic search, and LLM integration'
-site_author: 'madbomber'
-site_url: 'https://madbomber.github.io/ragdoll-docs/'
+site_description: "Advanced RAG system with PostgreSQL + pgvector, supporting multi-modal content, semantic search, and LLM integration"
+site_author: "madbomber"
+site_url: "https://madbomber.github.io/ragdoll-docs/"
 
-repo_name: 'madbomber/ragdoll'
-repo_url: 'https://github.com/madbomber/ragdoll'
-edit_uri: 'edit/main/docs/docs/'
+repo_name: "madbomber/ragdoll"
+repo_url: "https://github.com/madbomber/ragdoll"
+edit_uri: "edit/main/docs/docs/"
 
 theme:
   name: material
   language: en
-  
+
   # Logo and favicon
   logo: assets/ragdoll-logo.png
   favicon: assets/ragdoll-logo.png
-  
+
   # Color palette
   palette:
     # Light mode
@@ -25,8 +25,8 @@ theme:
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-    
-    # Dark mode  
+
+    # Dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: red
@@ -34,12 +34,12 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-  
+
   # Font configuration
   font:
     text: Roboto
     code: Roboto Mono
-  
+
   # Theme features
   features:
     # Navigation
@@ -52,19 +52,19 @@ theme:
     - navigation.path
     - navigation.indexes
     - navigation.top
-    
+
     # Table of contents
     - toc.follow
     - toc.integrate
-    
+
     # Search
     - search.suggest
     - search.highlight
     - search.share
-    
+
     # Header
     - header.autohide
-    
+
     # Content
     - content.code.copy
     - content.code.annotate
@@ -90,7 +90,7 @@ markdown_extensions:
   - toc:
       permalink: true
       title: On this page
-  
+
   # Python Markdown Extensions
   - pymdownx.arithmatex:
       generic: true
@@ -140,53 +140,59 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/madbomber/ragdoll
       name: GitHub Repository
-  
+
   # Version info
   version:
     provider: mike
     default: latest
-  
+
   # Generator notice
   generator: false
 
 # Navigation with icons
 nav:
-  - Home: 
-    - index.md
+  - Home:
+      - index.md
   - 🚀 Getting Started:
-    - Installation: getting-started/installation.md
-    - Quick Start: getting-started/quick-start.md
-    - Configuration: getting-started/configuration.md
+      - Installation: getting-started/installation.md
+      - Quick Start: getting-started/quick-start.md
+      - Configuration: getting-started/configuration.md
   - 📖 User Guide:
-    - Document Processing: user-guide/document-processing.md
-    - Embedding System: user-guide/embedding-system.md
-    - File Uploads: user-guide/file-uploads.md
-    - Multi-Modal: user-guide/multi-modal.md
-    - Search Analytics: user-guide/search-analytics.md
+      - Document Processing: user-guide/document-processing.md
+      - Embedding System: user-guide/embedding-system.md
+      - File Uploads: user-guide/file-uploads.md
+      - Multi-Modal: user-guide/multi-modal.md
+      - Search Analytics: user-guide/search-analytics.md
+  - 💻 Command Line:
+      - CLI Overview: cli/index.md
+      - Installation: cli/installation.md
+      - Commands: cli/commands.md
+      - Configuration: cli/configuration.md
+      - Examples: cli/examples.md
   - 🔌 API Reference:
-    - API Client: api-reference/api-client.md
-    - API Jobs: api-reference/api-jobs.md
-    - API Models: api-reference/api-models.md
-    - API Services: api-reference/api-services.md
+      - API Client: api-reference/api-client.md
+      - API Jobs: api-reference/api-jobs.md
+      - API Models: api-reference/api-models.md
+      - API Services: api-reference/api-services.md
   - ⚙️ Development:
-    - Architecture: development/architecture.md
-    - Contributing: development/contributing.md
-    - Development: development/development.md
-    - Extending: development/extending.md
-    - Testing: development/testing.md
+      - Architecture: development/architecture.md
+      - Contributing: development/contributing.md
+      - Development: development/development.md
+      - Extending: development/extending.md
+      - Testing: development/testing.md
   - 🚀 Deployment:
-    - Deployment: deployment/deployment.md
-    - Environment Variables: deployment/environment-variables.md
-    - Performance: deployment/performance.md
-    - Security: deployment/security.md
+      - Deployment: deployment/deployment.md
+      - Environment Variables: deployment/environment-variables.md
+      - Performance: deployment/performance.md
+      - Security: deployment/security.md
   - 🛠️ Operations:
-    - Background Processing: operations/background-processing.md
-    - Database Schema: operations/database-schema.md
-    - Monitoring: operations/monitoring.md
-    - Troubleshooting: operations/troubleshooting.md
+      - Background Processing: operations/background-processing.md
+      - Database Schema: operations/database-schema.md
+      - Monitoring: operations/monitoring.md
+      - Troubleshooting: operations/troubleshooting.md
   - 📚 Reference:
-    - LLM Integration: reference/llm-integration.md
-    - Metadata Schemas: reference/metadata-schemas.md
+      - LLM Integration: reference/llm-integration.md
+      - Metadata Schemas: reference/metadata-schemas.md
 
 # Copyright
 copyright: Copyright &copy; 2025 madbomber
