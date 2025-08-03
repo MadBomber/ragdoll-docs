@@ -3,9 +3,9 @@ site_description: "Advanced RAG system with PostgreSQL + pgvector, supporting mu
 site_author: "madbomber"
 site_url: "https://madbomber.github.io/ragdoll-docs/"
 
-repo_name: "madbomber/ragdoll"
-repo_url: "https://github.com/madbomber/ragdoll"
-edit_uri: "edit/main/docs/docs/"
+repo_name: "madbomber/ragdoll-docs"
+repo_url: "https://github.com/madbomber/ragdoll-docs"
+edit_uri: "edit/main/docs/"
 
 theme:
   name: material
@@ -48,14 +48,12 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
-    - navigation.expand
     - navigation.path
     - navigation.indexes
     - navigation.top
 
     # Table of contents
     - toc.follow
-    - toc.integrate
 
     # Search
     - search.suggest
@@ -77,6 +75,7 @@ theme:
 plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - macros
 
 # Extensions
 markdown_extensions:
@@ -135,16 +134,14 @@ extra_javascript:
 
 # Extra content
 extra:
+  # Version string
+  version: 0.1.3
+
   # Social media links
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/madbomber/ragdoll
       name: GitHub Repository
-
-  # Version info
-  version:
-    provider: mike
-    default: latest
 
   # Generator notice
   generator: false
@@ -169,6 +166,15 @@ nav:
       - Commands: cli/commands.md
       - Configuration: cli/configuration.md
       - Examples: cli/examples.md
+  - 🚂 Rails Integration:
+      - Rails Overview: rails/index.md
+      - Installation: rails/installation.md
+      - Configuration: rails/configuration.md
+      - Models: rails/models.md
+      - Controllers: rails/controllers.md
+      - Views & Helpers: rails/views-helpers.md
+      - Generators: rails/generators.md
+      - Examples: rails/examples.md
   - 🔌 API Reference:
       - API Client: api-reference/api-client.md
       - API Jobs: api-reference/api-jobs.md

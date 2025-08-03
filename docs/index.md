@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 <div class="hero-banner">
   <h1>🎪 Ragdoll Documentation</h1>
   <p>Advanced multi-modal document intelligence platform built on ActiveRecord with PostgreSQL + pgvector</p>
@@ -19,27 +24,27 @@
     <h3><span class="feature-icon">🎯</span> Multi-Modal First</h3>
     <p>Designed from the ground up to handle text, image, and audio content as first-class citizens through a sophisticated polymorphic architecture.</p>
   </div>
-  
+
   <div class="feature-card">
     <h3><span class="feature-icon">🏗️</span> Production Ready</h3>
     <p>Enterprise-grade features including 7 LLM providers, PostgreSQL + pgvector, background processing, and comprehensive error handling.</p>
   </div>
-  
+
   <div class="feature-card">
     <h3><span class="feature-icon">⚡</span> Performance Optimized</h3>
     <p>Hardware-accelerated vector operations, intelligent indexing, and connection pooling for scalable deployments.</p>
   </div>
-  
+
   <div class="feature-card">
     <h3><span class="feature-icon">📊</span> Advanced Analytics</h3>
     <p>Sophisticated ranking algorithms, usage tracking, and performance monitoring with smart search result optimization.</p>
   </div>
-  
+
   <div class="feature-card">
     <h3><span class="feature-icon">🔧</span> Extensible</h3>
     <p>Clear patterns for adding new content types, document processors, embedding providers, and search algorithms.</p>
   </div>
-  
+
   <div class="feature-card">
     <h3><span class="feature-icon">🛡️</span> Secure</h3>
     <p>Production security best practices, API key management, file validation, and comprehensive audit logging.</p>
@@ -182,4 +187,4 @@ Ragdoll has many undocumented capabilities. Before requesting a feature, check i
 
 ---
 
-*This documentation is intended to reflect the actual implementation of Ragdoll v0.0.2 and should be updated with each release to maintain accuracy.*
+*This documentation is intended to reflect the actual implementation of Ragdoll v{{ extra.version }} and should be updated with each release to maintain accuracy.*
