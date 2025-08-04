@@ -16,20 +16,20 @@ Every search operation is tracked through the `usage_count` and `returned_at` fi
 
 ```ruby
 # Get search frequency data
-freq_data = Ragdoll::Core::Models::Embedding
+freq_data = Ragdoll::Embedding
   .frequently_used
   .group(:embeddable_id)
   .sum(:usage_count)
 
 # Popular content identification
-popular_embeddings = Ragdoll::Core::Models::Embedding
+popular_embeddings = Ragdoll::Embedding
   .where('usage_count > ?', 10)
   .joins(:embeddable)
   .includes(embeddable: :document)
   .order(usage_count: :desc)
 
 # Recent search patterns
-recent_activity = Ragdoll::Core::Models::Embedding
+recent_activity = Ragdoll::Embedding
   .where('returned_at > ?', 7.days.ago)
   .group_by_day(:returned_at)
   .count
@@ -37,8 +37,8 @@ recent_activity = Ragdoll::Core::Models::Embedding
 # Query performance metrics
 search_performance = {
   avg_results_per_query: popular_embeddings.average(:usage_count),
-  total_searches: Ragdoll::Core::Models::Embedding.sum(:usage_count),
-  unique_content_accessed: Ragdoll::Core::Models::Embedding.where('usage_count > 0').count
+  total_searches: Ragdoll::Embedding.sum(:usage_count),
+  unique_content_accessed: Ragdoll::Embedding.where('usage_count > 0').count
 }
 ```
 
@@ -48,24 +48,24 @@ Track embedding model performance and usage patterns:
 
 ```ruby
 # Embedding usage by model type
-usage_by_model = Ragdoll::Core::Models::Embedding
+usage_by_model = Ragdoll::Embedding
   .joins(:embeddable)
   .group('ragdoll_contents.embedding_model')
   .count
 
 # Vector quality metrics through similarity distribution
 similarity_stats = {
-  high_quality: Ragdoll::Core::Models::Embedding.where('usage_count > 5').count,
-  medium_quality: Ragdoll::Core::Models::Embedding.where('usage_count BETWEEN 1 AND 5').count,
-  unused: Ragdoll::Core::Models::Embedding.where(usage_count: 0).count
+  high_quality: Ragdoll::Embedding.where('usage_count > 5').count,
+  medium_quality: Ragdoll::Embedding.where('usage_count BETWEEN 1 AND 5').count,
+  unused: Ragdoll::Embedding.where(usage_count: 0).count
 }
 
 # Cache effectiveness (usage-based ranking)
 cache_metrics = {
-  frequently_accessed: Ragdoll::Core::Models::Embedding
+  frequently_accessed: Ragdoll::Embedding
     .where('returned_at > ?', 24.hours.ago)
     .average(:usage_count),
-  recency_distribution: Ragdoll::Core::Models::Embedding
+  recency_distribution: Ragdoll::Embedding
     .where('returned_at IS NOT NULL')
     .group_by_day(:returned_at, last: 30)
     .count
@@ -78,24 +78,24 @@ Monitor document processing and access patterns:
 
 ```ruby
 # Document processing success rates
-processing_stats = Ragdoll::Core::Models::Document.group(:status).count
+processing_stats = Ragdoll::Document.group(:status).count
 # => {"processed"=>45, "pending"=>3, "error"=>2}
 
 # Content type distribution
-content_distribution = Ragdoll::Core::Models::Document.group(:document_type).count
+content_distribution = Ragdoll::Document.group(:document_type).count
 # => {"text"=>25, "pdf"=>15, "image"=>8, "audio"=>2}
 
 # Comprehensive document statistics
-doc_stats = Ragdoll::Core::Models::Document.stats
+doc_stats = Ragdoll::Document.stats
 # Returns detailed hash with processing metrics, content counts, etc.
 
 # Storage utilization by content type
 storage_metrics = {
-  text_content_count: Ragdoll::Core::Models::TextContent.count,
-  image_content_count: Ragdoll::Core::Models::ImageContent.count,
-  audio_content_count: Ragdoll::Core::Models::AudioContent.count,
-  total_embeddings: Ragdoll::Core::Models::Embedding.count,
-  avg_embeddings_per_document: Ragdoll::Core::Models::Document
+  text_content_count: Ragdoll::TextContent.count,
+  image_content_count: Ragdoll::ImageContent.count,
+  audio_content_count: Ragdoll::AudioContent.count,
+  total_embeddings: Ragdoll::Embedding.count,
+  avg_embeddings_per_document: Ragdoll::Document
     .joins(:text_embeddings, :image_embeddings, :audio_embeddings)
     .average('COUNT(*)')
 }
@@ -147,14 +147,14 @@ Monitor ActiveJob performance through document status tracking:
 ```ruby
 # Job success/failure tracking through document status
 job_health = {
-  successful_processing: Ragdoll::Core::Models::Document.where(status: 'processed').count,
-  failed_processing: Ragdoll::Core::Models::Document.where(status: 'error').count,
-  pending_jobs: Ragdoll::Core::Models::Document.where(status: 'pending').count,
-  currently_processing: Ragdoll::Core::Models::Document.where(status: 'processing').count
+  successful_processing: Ragdoll::Document.where(status: 'processed').count,
+  failed_processing: Ragdoll::Document.where(status: 'error').count,
+  pending_jobs: Ragdoll::Document.where(status: 'pending').count,
+  currently_processing: Ragdoll::Document.where(status: 'processing').count
 }
 
 # Processing time analysis
-recent_docs = Ragdoll::Core::Models::Document
+recent_docs = Ragdoll::Document
   .where('created_at > ?', 24.hours.ago)
   .where(status: 'processed')
 
@@ -218,19 +218,19 @@ Create monitoring endpoints using the comprehensive statistics methods:
 def collect_system_metrics
   {
     timestamp: Time.current.iso8601,
-    documents: Ragdoll::Core::Models::Document.stats,
+    documents: Ragdoll::Document.stats,
     embeddings: {
-      total: Ragdoll::Core::Models::Embedding.count,
+      total: Ragdoll::Embedding.count,
       by_type: {
-        text: Ragdoll::Core::Models::Embedding.text_embeddings.count,
-        image: Ragdoll::Core::Models::Embedding.image_embeddings.count,
-        audio: Ragdoll::Core::Models::Embedding.audio_embeddings.count
+        text: Ragdoll::Embedding.text_embeddings.count,
+        image: Ragdoll::Embedding.image_embeddings.count,
+        audio: Ragdoll::Embedding.audio_embeddings.count
       },
       usage_stats: {
-        total_searches: Ragdoll::Core::Models::Embedding.sum(:usage_count),
-        active_last_24h: Ragdoll::Core::Models::Embedding
+        total_searches: Ragdoll::Embedding.sum(:usage_count),
+        active_last_24h: Ragdoll::Embedding
           .where('returned_at > ?', 24.hours.ago).count,
-        never_used: Ragdoll::Core::Models::Embedding.where(usage_count: 0).count
+        never_used: Ragdoll::Embedding.where(usage_count: 0).count
       }
     },
     performance: {
@@ -244,7 +244,7 @@ end
 # Usage pattern metrics
 def collect_usage_metrics
   {
-    popular_content: Ragdoll::Core::Models::Embedding
+    popular_content: Ragdoll::Embedding
       .frequently_used
       .limit(10)
       .includes(embeddable: :document)
@@ -254,11 +254,11 @@ def collect_usage_metrics
         last_accessed: e.returned_at
       }},
     search_patterns: {
-      daily_searches: Ragdoll::Core::Models::Embedding
+      daily_searches: Ragdoll::Embedding
         .where('returned_at > ?', 30.days.ago)
         .group_by_day(:returned_at)
         .sum(:usage_count),
-      content_type_preferences: Ragdoll::Core::Models::Embedding
+      content_type_preferences: Ragdoll::Embedding
         .joins(:embeddable)
         .group('ragdoll_contents.type')
         .sum(:usage_count)
@@ -275,7 +275,7 @@ Extend the monitoring system with custom business metrics:
 class CustomMetrics
   def self.document_processing_velocity
     # Documents processed per hour over last 24 hours
-    Ragdoll::Core::Models::Document
+    Ragdoll::Document
       .where('updated_at > ?', 24.hours.ago)
       .where(status: 'processed')
       .group_by_hour(:updated_at)
@@ -285,23 +285,23 @@ class CustomMetrics
   def self.embedding_quality_distribution
     # Distribution of embedding usage as quality indicator
     {
-      high_quality: Ragdoll::Core::Models::Embedding.where('usage_count >= 10').count,
-      medium_quality: Ragdoll::Core::Models::Embedding.where('usage_count BETWEEN 3 AND 9').count,
-      low_quality: Ragdoll::Core::Models::Embedding.where('usage_count BETWEEN 1 AND 2').count,
-      unused: Ragdoll::Core::Models::Embedding.where(usage_count: 0).count
+      high_quality: Ragdoll::Embedding.where('usage_count >= 10').count,
+      medium_quality: Ragdoll::Embedding.where('usage_count BETWEEN 3 AND 9').count,
+      low_quality: Ragdoll::Embedding.where('usage_count BETWEEN 1 AND 2').count,
+      unused: Ragdoll::Embedding.where(usage_count: 0).count
     }
   end
 
   def self.multi_modal_adoption
     # Track multi-modal document usage
     {
-      text_only: Ragdoll::Core::Models::Document.joins(:text_contents)
-        .where.not(id: Ragdoll::Core::Models::Document.joins(:image_contents).select(:id))
-        .where.not(id: Ragdoll::Core::Models::Document.joins(:audio_contents).select(:id))
+      text_only: Ragdoll::Document.joins(:text_contents)
+        .where.not(id: Ragdoll::Document.joins(:image_contents).select(:id))
+        .where.not(id: Ragdoll::Document.joins(:audio_contents).select(:id))
         .count,
-      multi_modal: Ragdoll::Core::Models::Document
-        .where(id: Ragdoll::Core::Models::Document.joins(:text_contents, :image_contents).select(:id))
-        .or(Ragdoll::Core::Models::Document.where(id: Ragdoll::Core::Models::Document.joins(:text_contents, :audio_contents).select(:id)))
+      multi_modal: Ragdoll::Document
+        .where(id: Ragdoll::Document.joins(:text_contents, :image_contents).select(:id))
+        .or(Ragdoll::Document.where(id: Ragdoll::Document.joins(:text_contents, :audio_contents).select(:id)))
         .count
     }
   end
@@ -322,20 +322,20 @@ def export_metrics_json(start_date: 30.days.ago, end_date: Time.current)
       ragdoll_version: Ragdoll::Core::VERSION
     },
     documents: {
-      created: Ragdoll::Core::Models::Document
+      created: Ragdoll::Document
         .where(created_at: start_date..end_date)
         .group(:status, :document_type)
         .count,
-      processing_times: Ragdoll::Core::Models::Document
+      processing_times: Ragdoll::Document
         .where(created_at: start_date..end_date, status: 'processed')
         .pluck(:created_at, :updated_at)
         .map { |created, updated| (updated - created).to_i }
     },
     search_analytics: {
-      total_searches: Ragdoll::Core::Models::Embedding
+      total_searches: Ragdoll::Embedding
         .where(returned_at: start_date..end_date)
         .sum(:usage_count),
-      unique_content_accessed: Ragdoll::Core::Models::Embedding
+      unique_content_accessed: Ragdoll::Embedding
         .where(returned_at: start_date..end_date)
         .distinct
         .count(:embeddable_id)
@@ -350,7 +350,7 @@ def export_usage_csv
   CSV.generate(headers: true) do |csv|
     csv << ['Document Title', 'Document Type', 'Embedding Count', 'Total Usage', 'Last Accessed']
 
-    Ragdoll::Core::Models::Document.includes(:contents, :text_embeddings).find_each do |doc|
+    Ragdoll::Document.includes(:contents, :text_embeddings).find_each do |doc|
       csv << [
         doc.title,
         doc.document_type,
@@ -374,7 +374,7 @@ class MetricsRetention
     # Clear old returned_at timestamps but keep usage_count
     old_threshold = retention_days.days.ago
 
-    Ragdoll::Core::Models::Embedding
+    Ragdoll::Embedding
       .where('returned_at < ?', old_threshold)
       .update_all(returned_at: nil)
   end
@@ -383,7 +383,7 @@ class MetricsRetention
     # Archive processed documents older than threshold
     archive_threshold = archive_after_days.days.ago
 
-    old_docs = Ragdoll::Core::Models::Document
+    old_docs = Ragdoll::Document
       .where('created_at < ? AND status = ?', archive_threshold, 'processed')
 
     # Could export to JSON before cleanup
@@ -398,13 +398,13 @@ class MetricsRetention
 
     {
       period: "#{days} days",
-      documents_processed: Ragdoll::Core::Models::Document
+      documents_processed: Ragdoll::Document
         .where('created_at > ? AND status = ?', period_start, 'processed')
         .count,
-      total_searches: Ragdoll::Core::Models::Embedding
+      total_searches: Ragdoll::Embedding
         .where('returned_at > ?', period_start)
         .sum(:usage_count),
-      new_embeddings: Ragdoll::Core::Models::Embedding
+      new_embeddings: Ragdoll::Embedding
         .where('created_at > ?', period_start)
         .count
     }
@@ -426,38 +426,38 @@ class PerformanceDashboard
     {
       current_time: Time.current.iso8601,
       system_status: {
-        total_documents: Ragdoll::Core::Models::Document.count,
-        processing_queue: Ragdoll::Core::Models::Document.where(status: 'pending').count,
-        currently_processing: Ragdoll::Core::Models::Document.where(status: 'processing').count,
-        failed_jobs: Ragdoll::Core::Models::Document.where(status: 'error').count
+        total_documents: Ragdoll::Document.count,
+        processing_queue: Ragdoll::Document.where(status: 'pending').count,
+        currently_processing: Ragdoll::Document.where(status: 'processing').count,
+        failed_jobs: Ragdoll::Document.where(status: 'error').count
       },
       recent_activity: {
-        documents_added_today: Ragdoll::Core::Models::Document
+        documents_added_today: Ragdoll::Document
           .where('created_at > ?', Date.current)
           .count,
-        searches_last_hour: Ragdoll::Core::Models::Embedding
+        searches_last_hour: Ragdoll::Embedding
           .where('returned_at > ?', 1.hour.ago)
           .sum(:usage_count),
-        embeddings_created_today: Ragdoll::Core::Models::Embedding
+        embeddings_created_today: Ragdoll::Embedding
           .where('created_at > ?', Date.current)
           .count
       },
       performance_indicators: {
-        avg_search_quality: Ragdoll::Core::Models::Embedding
+        avg_search_quality: Ragdoll::Embedding
           .where('returned_at > ?', 24.hours.ago)
           .average(:usage_count) || 0,
-        content_utilization: (Ragdoll::Core::Models::Embedding.where('usage_count > 0').count.to_f /
-                             Ragdoll::Core::Models::Embedding.count * 100).round(2),
+        content_utilization: (Ragdoll::Embedding.where('usage_count > 0').count.to_f /
+                             Ragdoll::Embedding.count * 100).round(2),
         processing_success_rate: calculate_success_rate
       }
     }
   end
 
   def self.calculate_success_rate
-    total = Ragdoll::Core::Models::Document.count
+    total = Ragdoll::Document.count
     return 0 if total == 0
 
-    successful = Ragdoll::Core::Models::Document.where(status: 'processed').count
+    successful = Ragdoll::Document.where(status: 'processed').count
     (successful.to_f / total * 100).round(2)
   end
 end
@@ -486,17 +486,17 @@ class TrendAnalysis
     start_date = end_date - days.days
 
     {
-      daily_processing: Ragdoll::Core::Models::Document
+      daily_processing: Ragdoll::Document
         .where(created_at: start_date..end_date)
         .where(status: 'processed')
         .group_by_day(:updated_at, range: start_date..end_date)
         .count,
-      daily_failures: Ragdoll::Core::Models::Document
+      daily_failures: Ragdoll::Document
         .where(created_at: start_date..end_date)
         .where(status: 'error')
         .group_by_day(:updated_at, range: start_date..end_date)
         .count,
-      content_type_trends: Ragdoll::Core::Models::Document
+      content_type_trends: Ragdoll::Document
         .where(created_at: start_date..end_date)
         .group_by_week(:created_at, range: start_date..end_date)
         .group(:document_type)
@@ -509,17 +509,17 @@ class TrendAnalysis
     start_date = end_date - days.days
 
     {
-      daily_searches: Ragdoll::Core::Models::Embedding
+      daily_searches: Ragdoll::Embedding
         .where(returned_at: start_date..end_date)
         .group_by_day(:returned_at, range: start_date..end_date)
         .sum(:usage_count),
-      popular_content_over_time: Ragdoll::Core::Models::Embedding
+      popular_content_over_time: Ragdoll::Embedding
         .joins(embeddable: :document)
         .where(returned_at: start_date..end_date)
         .group('ragdoll_documents.document_type')
         .group_by_week(:returned_at, range: start_date..end_date)
         .sum(:usage_count),
-      embedding_efficiency: Ragdoll::Core::Models::Embedding
+      embedding_efficiency: Ragdoll::Embedding
         .where('created_at > ?', start_date)
         .group_by_week(:created_at, range: start_date..end_date)
         .average(:usage_count)
@@ -565,20 +565,20 @@ class CustomDashboard
 
   # Example widget methods
   def document_count_by_type
-    Ragdoll::Core::Models::Document.group(:document_type).count
+    Ragdoll::Document.group(:document_type).count
   end
 
   def embedding_usage_distribution
     {
-      'Never Used' => Ragdoll::Core::Models::Embedding.where(usage_count: 0).count,
-      'Low Usage (1-5)' => Ragdoll::Core::Models::Embedding.where(usage_count: 1..5).count,
-      'Medium Usage (6-20)' => Ragdoll::Core::Models::Embedding.where(usage_count: 6..20).count,
-      'High Usage (21+)' => Ragdoll::Core::Models::Embedding.where('usage_count > 20').count
+      'Never Used' => Ragdoll::Embedding.where(usage_count: 0).count,
+      'Low Usage (1-5)' => Ragdoll::Embedding.where(usage_count: 1..5).count,
+      'Medium Usage (6-20)' => Ragdoll::Embedding.where(usage_count: 6..20).count,
+      'High Usage (21+)' => Ragdoll::Embedding.where('usage_count > 20').count
     }
   end
 
   def recent_processing_times
-    Ragdoll::Core::Models::Document
+    Ragdoll::Document
       .where('created_at > ?', 24.hours.ago)
       .where(status: 'processed')
       .limit(50)
@@ -631,7 +631,7 @@ class AlertSystem
     end
 
     # Check queue length
-    queue_length = Ragdoll::Core::Models::Document.where(status: 'pending').count
+    queue_length = Ragdoll::Document.where(status: 'pending').count
     if queue_length > ALERT_THRESHOLDS[:queue_length]
       alerts << create_alert(
         severity: :medium,
@@ -658,10 +658,10 @@ class AlertSystem
   private
 
   def self.calculate_error_rate
-    total_docs = Ragdoll::Core::Models::Document.where('created_at > ?', 24.hours.ago).count
+    total_docs = Ragdoll::Document.where('created_at > ?', 24.hours.ago).count
     return 0 if total_docs == 0
 
-    error_docs = Ragdoll::Core::Models::Document.where('created_at > ?', 24.hours.ago)
+    error_docs = Ragdoll::Document.where('created_at > ?', 24.hours.ago)
                                                .where(status: 'error').count
     (error_docs.to_f / total_docs * 100).round(2)
   end
@@ -730,20 +730,20 @@ class ThresholdAlerts
   private
 
   def self.get_error_rate
-    total = Ragdoll::Core::Models::Document.where('created_at > ?', 24.hours.ago).count
+    total = Ragdoll::Document.where('created_at > ?', 24.hours.ago).count
     return 0 if total == 0
 
-    errors = Ragdoll::Core::Models::Document.where('created_at > ?', 24.hours.ago)
+    errors = Ragdoll::Document.where('created_at > ?', 24.hours.ago)
                                            .where(status: 'error').count
     (errors.to_f / total * 100).round(2)
   end
 
   def self.get_queue_length
-    Ragdoll::Core::Models::Document.where(status: 'pending').count
+    Ragdoll::Document.where(status: 'pending').count
   end
 
   def self.get_avg_processing_time
-    recent_docs = Ragdoll::Core::Models::Document
+    recent_docs = Ragdoll::Document
       .where('created_at > ?', 24.hours.ago)
       .where(status: 'processed')
       .pluck(:created_at, :updated_at)
@@ -755,10 +755,10 @@ class ThresholdAlerts
   end
 
   def self.get_unused_embeddings
-    total = Ragdoll::Core::Models::Embedding.count
+    total = Ragdoll::Embedding.count
     return 0 if total == 0
 
-    unused = Ragdoll::Core::Models::Embedding.where(usage_count: 0).count
+    unused = Ragdoll::Embedding.where(usage_count: 0).count
     (unused.to_f / total * 100).round(2)
   end
 
@@ -816,7 +816,7 @@ class AnomalyDetection
     anomalies = []
 
     # Check for unusual processing patterns
-    recent_times = Ragdoll::Core::Models::Document
+    recent_times = Ragdoll::Document
       .where('created_at > ?', 24.hours.ago)
       .where(status: 'processed')
       .pluck(:created_at, :updated_at)
@@ -847,7 +847,7 @@ class AnomalyDetection
   private
 
   def self.daily_search_volume(days)
-    Ragdoll::Core::Models::Embedding
+    Ragdoll::Embedding
       .where('returned_at > ?', days.days.ago)
       .group_by_day(:returned_at, last: days)
       .sum(:usage_count)
@@ -1046,18 +1046,18 @@ class PrometheusExporter
     output = []
 
     # Document metrics
-    doc_stats = Ragdoll::Core::Models::Document.group(:status).count
+    doc_stats = Ragdoll::Document.group(:status).count
     doc_stats.each do |status, count|
       output << "ragdoll_documents_total{status=\"#{status}\"} #{count}"
     end
 
     # Embedding metrics
-    output << "ragdoll_embeddings_total #{Ragdoll::Core::Models::Embedding.count}"
-    output << "ragdoll_embeddings_used_total #{Ragdoll::Core::Models::Embedding.where('usage_count > 0').count}"
-    output << "ragdoll_searches_total #{Ragdoll::Core::Models::Embedding.sum(:usage_count)}"
+    output << "ragdoll_embeddings_total #{Ragdoll::Embedding.count}"
+    output << "ragdoll_embeddings_used_total #{Ragdoll::Embedding.where('usage_count > 0').count}"
+    output << "ragdoll_searches_total #{Ragdoll::Embedding.sum(:usage_count)}"
 
     # Processing metrics
-    recent_processing_times = Ragdoll::Core::Models::Document
+    recent_processing_times = Ragdoll::Document
       .where('created_at > ?', 24.hours.ago)
       .where(status: 'processed')
       .pluck(:created_at, :updated_at)
@@ -1075,7 +1075,7 @@ class PrometheusExporter
     output << "ragdoll_connection_pool_checked_in #{pool.stat[:checked_in]}"
 
     # Content type distribution
-    content_types = Ragdoll::Core::Models::Document.group(:document_type).count
+    content_types = Ragdoll::Document.group(:document_type).count
     content_types.each do |type, count|
       output << "ragdoll_documents_by_type{type=\"#{type}\"} #{count}"
     end
@@ -1206,13 +1206,13 @@ class NewRelicIntegration
     return unless defined?(NewRelic)
 
     # Document processing metrics
-    doc_stats = Ragdoll::Core::Models::Document.group(:status).count
+    doc_stats = Ragdoll::Document.group(:status).count
     doc_stats.each do |status, count|
       NewRelic::Agent.record_metric("Custom/Ragdoll/Documents/#{status}", count)
     end
 
     # Search metrics
-    total_searches = Ragdoll::Core::Models::Embedding.sum(:usage_count)
+    total_searches = Ragdoll::Embedding.sum(:usage_count)
     NewRelic::Agent.record_metric("Custom/Ragdoll/Searches/Total", total_searches)
 
     # Processing performance
@@ -1223,8 +1223,8 @@ class NewRelicIntegration
     end
 
     # Embedding efficiency
-    used_embeddings = Ragdoll::Core::Models::Embedding.where('usage_count > 0').count
-    total_embeddings = Ragdoll::Core::Models::Embedding.count
+    used_embeddings = Ragdoll::Embedding.where('usage_count > 0').count
+    total_embeddings = Ragdoll::Embedding.count
     efficiency = total_embeddings > 0 ? (used_embeddings.to_f / total_embeddings * 100) : 0
     NewRelic::Agent.record_metric("Custom/Ragdoll/Embeddings/EfficiencyPercent", efficiency)
   end
@@ -1257,7 +1257,7 @@ class NewRelicIntegration
   private
 
   def self.calculate_recent_processing_times
-    Ragdoll::Core::Models::Document
+    Ragdoll::Document
       .where('created_at > ?', 24.hours.ago)
       .where(status: 'processed')
       .pluck(:created_at, :updated_at)
@@ -1321,26 +1321,26 @@ class CustomMonitoringAdapter
 
   def document_metrics
     {
-      total: Ragdoll::Core::Models::Document.count,
-      by_status: Ragdoll::Core::Models::Document.group(:status).count,
-      by_type: Ragdoll::Core::Models::Document.group(:document_type).count,
-      processing_queue_length: Ragdoll::Core::Models::Document.where(status: 'pending').count
+      total: Ragdoll::Document.count,
+      by_status: Ragdoll::Document.group(:status).count,
+      by_type: Ragdoll::Document.group(:document_type).count,
+      processing_queue_length: Ragdoll::Document.where(status: 'pending').count
     }
   end
 
   def embedding_metrics
     {
-      total: Ragdoll::Core::Models::Embedding.count,
-      total_searches: Ragdoll::Core::Models::Embedding.sum(:usage_count),
-      used_embeddings: Ragdoll::Core::Models::Embedding.where('usage_count > 0').count,
-      recent_searches: Ragdoll::Core::Models::Embedding
+      total: Ragdoll::Embedding.count,
+      total_searches: Ragdoll::Embedding.sum(:usage_count),
+      used_embeddings: Ragdoll::Embedding.where('usage_count > 0').count,
+      recent_searches: Ragdoll::Embedding
         .where('returned_at > ?', 1.hour.ago)
         .sum(:usage_count)
     }
   end
 
   def performance_metrics
-    recent_times = Ragdoll::Core::Models::Document
+    recent_times = Ragdoll::Document
       .where('created_at > ?', 24.hours.ago)
       .where(status: 'processed')
       .pluck(:created_at, :updated_at)
@@ -1458,7 +1458,7 @@ puts "Pool usage: #{pool_stats[:checked_out]}/#{pool_stats[:size]}"
 class SearchOptimizer
   def self.optimize_embedding_search
     # Use index hints for better performance
-    Ragdoll::Core::Models::Embedding.connection.execute("
+    Ragdoll::Embedding.connection.execute("
       SET enable_seqscan = OFF;
       SET work_mem = '256MB';
     ")
@@ -1519,18 +1519,18 @@ ActiveRecord::Base.connection.execute("
 **Diagnostic Commands:**
 ```ruby
 # Check processing status distribution
-processing_status = Ragdoll::Core::Models::Document.group(:status).count
+processing_status = Ragdoll::Document.group(:status).count
 puts "Status distribution: #{processing_status}"
 
 # Find stuck documents
-stuck_docs = Ragdoll::Core::Models::Document
+stuck_docs = Ragdoll::Document
   .where(status: 'processing')
   .where('updated_at < ?', 1.hour.ago)
 
 puts "Stuck documents: #{stuck_docs.count}"
 
 # Check recent errors
-error_docs = Ragdoll::Core::Models::Document
+error_docs = Ragdoll::Document
   .where(status: 'error')
   .where('updated_at > ?', 24.hours.ago)
   .includes(:contents)
@@ -1546,7 +1546,7 @@ error_docs = Ragdoll::Core::Models::Document
 # Recovery procedures
 class DocumentRecovery
   def self.reset_stuck_documents
-    stuck_docs = Ragdoll::Core::Models::Document
+    stuck_docs = Ragdoll::Document
       .where(status: 'processing')
       .where('updated_at < ?', 1.hour.ago)
 
@@ -1555,7 +1555,7 @@ class DocumentRecovery
   end
 
   def self.retry_failed_documents
-    failed_docs = Ragdoll::Core::Models::Document
+    failed_docs = Ragdoll::Document
       .where(status: 'error')
       .where('updated_at > ?', 24.hours.ago)
 
@@ -1563,7 +1563,7 @@ class DocumentRecovery
       begin
         doc.update!(status: 'pending')
         # Trigger reprocessing
-        Ragdoll::Core::Jobs::ExtractText.perform_later(doc.id)
+        Ragdoll::ExtractTextJob.perform_later(doc.id)
       rescue => e
         puts "Failed to retry document #{doc.id}: #{e.message}"
       end
@@ -1605,7 +1605,7 @@ class SystemHealthCheck
 
   def self.check_model_integrity
     {
-      total_documents: Ragdoll::Core::Models::Document.count,
+      total_documents: Ragdoll::Document.count,
       orphaned_embeddings: find_orphaned_embeddings,
       missing_content: find_documents_without_content,
       invalid_embeddings: find_invalid_embeddings
@@ -1613,14 +1613,14 @@ class SystemHealthCheck
   end
 
   def self.check_performance_metrics
-    recent_searches = Ragdoll::Core::Models::Embedding
+    recent_searches = Ragdoll::Embedding
       .where('returned_at > ?', 1.hour.ago)
 
     {
       searches_last_hour: recent_searches.sum(:usage_count),
       avg_search_time: calculate_avg_search_time,
       cache_hit_rate: calculate_cache_hit_rate,
-      processing_backlog: Ragdoll::Core::Models::Document.where(status: 'pending').count
+      processing_backlog: Ragdoll::Document.where(status: 'pending').count
     }
   end
 
@@ -1638,7 +1638,7 @@ class SystemHealthCheck
 
   def self.find_orphaned_embeddings
     # Find embeddings without valid embeddable references
-    Ragdoll::Core::Models::Embedding.left_joins(:embeddable)
+    Ragdoll::Embedding.left_joins(:embeddable)
       .where(ragdoll_contents: { id: nil })
       .count
   end

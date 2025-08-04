@@ -301,8 +301,8 @@ INFO: Search query returned 0 results
 client = Ragdoll::Core.client
 query = "machine learning"
 
-puts "Documents in database: #{Ragdoll::Core::Models::Document.count}"
-puts "Embeddings in database: #{Ragdoll::Core::Models::Embedding.count}"
+puts "Documents in database: #{Ragdoll::Document.count}"
+puts "Embeddings in database: #{Ragdoll::Embedding.count}"
 
 # Test embedding generation
 embedding_service = Ragdoll::Core::EmbeddingService.new
@@ -310,7 +310,7 @@ query_embedding = embedding_service.generate_embedding(query)
 puts "Query embedding dimensions: #{query_embedding&.length || 0}"
 
 # Test direct embedding search
-results = Ragdoll::Core::Models::Embedding.search_similar(
+results = Ragdoll::Embedding.search_similar(
   query_embedding,
   limit: 10,
   threshold: 0.1  # Lower threshold for debugging
@@ -560,9 +560,9 @@ class RagdollDebug
       ruby_version: RUBY_VERSION,
       rails_version: defined?(Rails) ? Rails.version : 'N/A',
       database_adapter: ActiveRecord::Base.connection.adapter_name,
-      total_documents: Ragdoll::Core::Models::Document.count,
-      total_embeddings: Ragdoll::Core::Models::Embedding.count,
-      last_document: Ragdoll::Core::Models::Document.last&.title,
+      total_documents: Ragdoll::Document.count,
+      total_embeddings: Ragdoll::Embedding.count,
+      last_document: Ragdoll::Document.last&.title,
       system_healthy: Ragdoll::Core.client.healthy?
     }
   end

@@ -272,11 +272,11 @@ module Ragdoll
     module FileProcessing
       def self.process_uploaded_file(content_model)
         case content_model.type
-        when 'Ragdoll::Core::Models::TextContent'
+        when 'Ragdoll::TextContent'
           process_text_file(content_model)
-        when 'Ragdoll::Core::Models::ImageContent'
+        when 'Ragdoll::ImageContent'
           process_image_file(content_model)
-        when 'Ragdoll::Core::Models::AudioContent'
+        when 'Ragdoll::AudioContent'
           process_audio_file(content_model)
         end
       end
@@ -290,7 +290,7 @@ module Ragdoll
           text_content.update!(content: extracted_text)
           
           # Queue embedding generation
-          Ragdoll::Core::Jobs::GenerateEmbeddings.perform_later(
+          Ragdoll::GenerateEmbeddingsJob.perform_later(
             text_content.document_id
           )
         end
@@ -303,7 +303,7 @@ module Ragdoll
           image_content.update!(content: description) # Store description in content field
           
           # Queue embedding generation for the description
-          Ragdoll::Core::Jobs::GenerateEmbeddings.perform_later(
+          Ragdoll::GenerateEmbeddingsJob.perform_later(
             image_content.document_id
           )
         end
@@ -316,7 +316,7 @@ module Ragdoll
           audio_content.update!(content: transcript) # Store transcript in content field
           
           # Queue embedding generation for the transcript
-          Ragdoll::Core::Jobs::GenerateEmbeddings.perform_later(
+          Ragdoll::GenerateEmbeddingsJob.perform_later(
             audio_content.document_id
           )
         end
@@ -1689,7 +1689,7 @@ class HybridStorageManager
     # Move files between storage tiers based on access patterns
     
     # Move frequently accessed files to hot storage
-    frequently_accessed = Ragdoll::Core::Models::Embedding
+    frequently_accessed = Ragdoll::Embedding
       .where('usage_count > ? AND returned_at > ?', 10, 30.days.ago)
       .includes(:embeddable)
     
@@ -1701,7 +1701,7 @@ class HybridStorageManager
     end
     
     # Move rarely accessed files to cold storage
-    rarely_accessed = Ragdoll::Core::Models::Embedding
+    rarely_accessed = Ragdoll::Embedding
       .where('usage_count < ? AND (returned_at IS NULL OR returned_at < ?)', 2, 90.days.ago)
       .includes(:embeddable)
     
@@ -2240,7 +2240,7 @@ Create database records with comprehensive metadata:
 def create_database_records(document_id, content_type, file_info, metadata, processing_info)
   ActiveRecord::Base.transaction do
     # Find or create document
-    document = Models::Document.find(document_id)
+    document = Ragdoll::Document.find(document_id)
     
     # Create content record based on type
     content_record = create_content_record(
@@ -2269,10 +2269,10 @@ end
 
 def create_content_record(document, content_type, file_info, metadata, processing_info)
   content_class = case content_type
-                  when 'document' then Models::TextContent
-                  when 'image' then Models::ImageContent
-                  when 'audio' then Models::AudioContent
-                  else Models::Content
+                  when 'document' then Ragdoll::TextContent
+                  when 'image' then Ragdoll::ImageContent
+                  when 'audio' then Ragdoll::AudioContent
+                  else Ragdoll::Content
                   end
   
   content_attributes = {
@@ -2311,11 +2311,11 @@ def queue_processing_jobs(content_record, job_names)
   job_names.each do |job_name|
     case job_name
     when 'GenerateEmbeddings'
-      Ragdoll::Core::Jobs::GenerateEmbeddings.perform_later(content_record.document_id)
+      Ragdoll::GenerateEmbeddingsJob.perform_later(content_record.document_id)
     when 'ExtractKeywords'
-      Ragdoll::Core::Jobs::ExtractKeywords.perform_later(content_record.document_id)
+      Ragdoll::ExtractKeywordsJob.perform_later(content_record.document_id)
     when 'GenerateSummary'
-      Ragdoll::Core::Jobs::GenerateSummary.perform_later(content_record.document_id)
+      Ragdoll::GenerateSummaryJob.perform_later(content_record.document_id)
     when 'TranscribeAudio'
       # Custom job for audio transcription
       TranscribeAudioJob.perform_later(content_record.id)
@@ -2344,7 +2344,7 @@ module Ragdoll
       end
       
       def self.recover_failed_processing(document_id)
-        document = Models::Document.find(document_id)
+        document = Ragdoll::Document.find(document_id)
         
         # Analyze what went wrong
         failure_analysis = analyze_processing_failure(document)

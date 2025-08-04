@@ -8,10 +8,10 @@ Ragdoll implements a comprehensive background processing system using ActiveJob 
 
 The background processing architecture consists of four specialized job types that handle different aspects of document intelligence:
 
-- **GenerateEmbeddingsJob**: Vector embedding creation for search
-- **ExtractTextJob**: Content extraction from various file formats  
-- **ExtractKeywordsJob**: AI-powered keyword analysis
-- **GenerateSummaryJob**: Document summarization
+- **Ragdoll::GenerateEmbeddingsJob**: Vector embedding creation for search
+- **Ragdoll::ExtractTextJob**: Content extraction from various file formats  
+- **Ragdoll::ExtractKeywordsJob**: AI-powered keyword analysis
+- **Ragdoll::GenerateSummaryJob**: Document summarization
 
 All jobs are designed to work together in a coordinated pipeline while maintaining individual reliability and error handling.
 
@@ -32,27 +32,27 @@ class ApplicationJob < ActiveJob::Base
 end
 
 # Specialized job implementations
-class GenerateEmbeddingsJob < ApplicationJob
-class ExtractTextJob < ApplicationJob  
-class ExtractKeywordsJob < ApplicationJob
-class GenerateSummaryJob < ApplicationJob
+class Ragdoll::GenerateEmbeddingsJob < ApplicationJob
+class Ragdoll::ExtractTextJob < ApplicationJob  
+class Ragdoll::ExtractKeywordsJob < ApplicationJob
+class Ragdoll::GenerateSummaryJob < ApplicationJob
 ```
 
 ### Queue Configuration
 
 ```ruby
 # Queue priorities and routing
-class GenerateEmbeddingsJob < ApplicationJob
+class Ragdoll::GenerateEmbeddingsJob < ApplicationJob
   queue_as :embeddings
   queue_with_priority 10  # High priority for search functionality
 end
 
-class ExtractTextJob < ApplicationJob
+class Ragdoll::ExtractTextJob < ApplicationJob
   queue_as :processing
   queue_with_priority 5   # Medium priority for content extraction
 end
 
-class GenerateSummaryJob < ApplicationJob
+class Ragdoll::GenerateSummaryJob < ApplicationJob
   queue_as :analysis
   queue_with_priority 1   # Lower priority for enhancement features
 end
@@ -66,7 +66,7 @@ end
 
 **Implementation**:
 ```ruby
-class GenerateEmbeddingsJob < ApplicationJob
+class Ragdoll::GenerateEmbeddingsJob < ApplicationJob
   def perform(embeddable_id, embeddable_type, options = {})
     embeddable = embeddable_type.constantize.find(embeddable_id)
     
@@ -124,11 +124,11 @@ end
 ```ruby
 # Queue embedding generation for text content
 text_content = TextContent.find(123)
-GenerateEmbeddingsJob.perform_later(text_content.id, 'TextContent')
+Ragdoll::GenerateEmbeddingsJob.perform_later(text_content.id, 'TextContent')
 
 # Batch processing with options
 TextContent.where(embeddings_count: 0).find_each do |content|
-  GenerateEmbeddingsJob.perform_later(
+  Ragdoll::GenerateEmbeddingsJob.perform_later(
     content.id, 
     'TextContent',
     model: 'text-embedding-3-large',
@@ -143,7 +143,7 @@ end
 
 **Implementation**:
 ```ruby
-class ExtractTextJob < ApplicationJob
+class Ragdoll::ExtractTextJob < ApplicationJob
   def perform(document_id, options = {})
     document = Document.find(document_id)
     
@@ -173,15 +173,15 @@ class ExtractTextJob < ApplicationJob
     )
     
     # Queue embedding generation
-    GenerateEmbeddingsJob.perform_later(text_content.id, 'TextContent')
+    Ragdoll::GenerateEmbeddingsJob.perform_later(text_content.id, 'TextContent')
     
     # Queue additional analysis
     if Configuration.enable_keyword_extraction?
-      ExtractKeywordsJob.perform_later(text_content.id)
+      Ragdoll::ExtractKeywordsJob.perform_later(text_content.id)
     end
     
     if Configuration.enable_document_summarization?
-      GenerateSummaryJob.perform_later(text_content.id)
+      Ragdoll::GenerateSummaryJob.perform_later(text_content.id)
     end
     
     # Update document status
@@ -209,7 +209,7 @@ end
 
 **Implementation**:
 ```ruby
-class ExtractKeywordsJob < ApplicationJob
+class Ragdoll::ExtractKeywordsJob < ApplicationJob
   def perform(text_content_id, options = {})
     text_content = TextContent.find(text_content_id)
     
@@ -263,7 +263,7 @@ end
 
 **Implementation**:
 ```ruby
-class GenerateSummaryJob < ApplicationJob
+class Ragdoll::GenerateSummaryJob < ApplicationJob
   def perform(text_content_id, options = {})
     text_content = TextContent.find(text_content_id)
     
@@ -294,7 +294,7 @@ class GenerateSummaryJob < ApplicationJob
     
     # Create searchable summary embedding
     if Configuration.enable_summary_embeddings?
-      GenerateEmbeddingsJob.perform_later(
+      Ragdoll::GenerateEmbeddingsJob.perform_later(
         document.id,
         'Document', 
         content_type: 'summary',
@@ -326,7 +326,7 @@ end
 class DocumentProcessingOrchestrator
   def self.process_document(document)
     # 1. Extract text content
-    ExtractTextJob.perform_later(document.id)
+    Ragdoll::ExtractTextJob.perform_later(document.id)
     
     # 2. Handle multi-modal content
     if document.has_images?
@@ -337,7 +337,7 @@ class DocumentProcessingOrchestrator
     
     if document.has_audio?
       document.audio_contents.each do |audio|
-        ExtractTextJob.perform_later(audio.id, content_type: 'audio')
+        Ragdoll::ExtractTextJob.perform_later(audio.id, content_type: 'audio')
       end
     end
     
@@ -452,10 +452,10 @@ class JobStatusTracker
       jobs_completed: count_completed_jobs(document),
       estimated_completion: estimate_completion_time(document),
       processing_steps: {
-        text_extraction: job_status('ExtractTextJob', document),
-        embedding_generation: job_status('GenerateEmbeddingsJob', document),
-        keyword_extraction: job_status('ExtractKeywordsJob', document),
-        summary_generation: job_status('GenerateSummaryJob', document)
+        text_extraction: job_status('Ragdoll::ExtractTextJob', document),
+        embedding_generation: job_status('Ragdoll::GenerateEmbeddingsJob', document),
+        keyword_extraction: job_status('Ragdoll::ExtractKeywordsJob', document),
+        summary_generation: job_status('Ragdoll::GenerateSummaryJob', document)
       }
     }
   end
@@ -480,11 +480,11 @@ GET /api/documents/123/status
 class JobMetrics
   def self.embedding_generation_stats
     {
-      average_duration: calculate_average_duration('GenerateEmbeddingsJob'),
-      success_rate: calculate_success_rate('GenerateEmbeddingsJob'),
-      throughput_per_hour: calculate_throughput('GenerateEmbeddingsJob'),
+      average_duration: calculate_average_duration('Ragdoll::GenerateEmbeddingsJob'),
+      success_rate: calculate_success_rate('Ragdoll::GenerateEmbeddingsJob'),
+      throughput_per_hour: calculate_throughput('Ragdoll::GenerateEmbeddingsJob'),
       queue_depth: queue_depth('embeddings'),
-      error_types: error_breakdown('GenerateEmbeddingsJob')
+      error_types: error_breakdown('Ragdoll::GenerateEmbeddingsJob')
     }
   end
 end

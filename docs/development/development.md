@@ -329,7 +329,7 @@ module TestHelpers
   end
   
   def assert_document_processed(document_id)
-    document = Ragdoll::Core::Models::Document.find(document_id)
+    document = Ragdoll::Document.find(document_id)
     assert_equal 'processed', document.status
     assert document.content.present?
   end
@@ -392,7 +392,7 @@ class DocumentProcessingTest < Minitest::Test
     document_id = result[:document_id]
     
     # Verify processing (background jobs run inline in test)
-    document = Ragdoll::Core::Models::Document.find(document_id)
+    document = Ragdoll::Document.find(document_id)
     assert_equal 'processed', document.status
     assert document.embeddings.any?
     

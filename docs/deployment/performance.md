@@ -55,7 +55,7 @@ end
 
 ```ruby
 # Optimize embedding searches with proper scoping
-results = Models::Embedding
+results = Ragdoll::Embedding
   .includes(:embeddable) # Eager load to avoid N+1
   .nearest_neighbors(:embedding_vector, query_vector, distance: "cosine")
   .limit(50)
@@ -293,7 +293,7 @@ class BatchEmbeddingJob < ActiveJob::Base
       }
     end
     
-    Models::Embedding.insert_all(embedding_data)
+    Ragdoll::Embedding.insert_all(embedding_data)
   end
 end
 ```
@@ -325,7 +325,7 @@ class SearchEngine
     query_embedding = @embedding_service.generate_embedding_cached(query)
     
     # Optimized database query
-    Models::Embedding.search_similar(
+    Ragdoll::Embedding.search_similar(
       query_embedding,
       limit: options[:limit] || 20,
       threshold: options[:threshold] || 0.7

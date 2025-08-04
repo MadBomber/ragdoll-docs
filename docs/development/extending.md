@@ -123,8 +123,8 @@ module Ragdoll
       class Document
         # Add video content relationship
         has_many :video_contents,
-                 -> { where(type: "Ragdoll::Core::Models::VideoContent") },
-                 class_name: "Ragdoll::Core::Models::VideoContent",
+                 -> { where(type: "Ragdoll::VideoContent") },
+                 class_name: "Ragdoll::VideoContent",
                  foreign_key: "document_id"
         
         has_many :video_embeddings, through: :video_contents, source: :embeddings
@@ -180,7 +180,7 @@ module Ragdoll
           return Embedding.none if content_ids.empty?
           
           Embedding.where(
-            embeddable_type: 'Ragdoll::Core::Models::Content',
+            embeddable_type: 'Ragdoll::Content',
             embeddable_id: content_ids
           )
         end
@@ -529,7 +529,7 @@ module Ragdoll
         private
         
         def semantic_search(query_embedding, options)
-          Models::Embedding.search_similar(
+          Ragdoll::Embedding.search_similar(
             query_embedding,
             limit: options[:limit] || 50,
             threshold: options[:threshold] || 0.5,
@@ -544,7 +544,7 @@ module Ragdoll
         
         def keyword_search(query, options)
           # Use PostgreSQL full-text search
-          documents = Models::Document.search_content(
+          documents = Ragdoll::Document.search_content(
             query,
             limit: options[:limit] || 50
           )
@@ -604,7 +604,7 @@ module Ragdoll
             
             # Apply recency boost if enabled
             if @boost_recent
-              doc = Models::Document.find(result[:document_id])
+              doc = Ragdoll::Document.find(result[:document_id])
               days_old = (Time.current - doc.created_at) / 1.day
               recency_boost = [1.0 - (days_old / 365), 0.1].max  # Decay over a year
               score *= (1.0 + recency_boost * 0.2)  # Up to 20% boost for recent docs
@@ -639,7 +639,7 @@ module Ragdoll
         end
         
         def calculate_content_type_boost(result, boost_config)
-          doc = Models::Document.find(result[:document_id])
+          doc = Ragdoll::Document.find(result[:document_id])
           boost_config[doc.document_type&.to_sym] || 1.0
         end
       end

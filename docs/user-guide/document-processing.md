@@ -367,16 +367,16 @@ Ragdoll uses background jobs for resource-intensive processing operations:
 **Available Background Jobs:**
 ```ruby
 # Text extraction job
-Ragdoll::Core::Jobs::ExtractText.perform_later(document_id)
+Ragdoll::ExtractTextJob.perform_later(document_id)
 
 # Embedding generation job
-Ragdoll::Core::Jobs::GenerateEmbeddings.perform_later(content_id, content_type)
+Ragdoll::GenerateEmbeddingsJob.perform_later(content_id, content_type)
 
 # Summary generation job
-Ragdoll::Core::Jobs::GenerateSummary.perform_later(document_id)
+Ragdoll::GenerateSummaryJob.perform_later(document_id)
 
 # Keyword extraction job
-Ragdoll::Core::Jobs::ExtractKeywords.perform_later(document_id)
+Ragdoll::ExtractKeywordsJob.perform_later(document_id)
 ```
 
 **Job Configuration:**

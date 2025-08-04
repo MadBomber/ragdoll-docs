@@ -29,7 +29,7 @@ module Ragdoll
         queue_as :default
 
         def perform(document_id)
-          document = Models::Document.find(document_id)
+          document = Ragdoll::Document.find(document_id)
           return unless document.file_attached?
           return if document.content.present?
 
@@ -44,9 +44,9 @@ module Ragdoll
             )
 
             # Queue follow-up jobs
-            GenerateSummaryJob.perform_later(document_id)
+            Ragdoll::GenerateSummaryJob.perform_later(document_id)
             GenerateKeywordsJob.perform_later(document_id)
-            GenerateEmbeddingsJob.perform_later(document_id)
+            Ragdoll::GenerateEmbeddingsJob.perform_later(document_id)
           else
             document.update!(status: "error")
           end
@@ -71,13 +71,13 @@ end
 **Usage Examples:**
 ```ruby
 # Queue text extraction for a document
-Ragdoll::Core::Jobs::ExtractText.perform_later(document.id)
+Ragdoll::ExtractTextJob.perform_later(document.id)
 
 # Process immediately (synchronous)
-Ragdoll::Core::Jobs::ExtractText.perform_now(document.id)
+Ragdoll::ExtractTextJob.perform_now(document.id)
 
 # Schedule for later processing
-Ragdoll::Core::Jobs::ExtractText.set(wait: 1.hour).perform_later(document.id)
+Ragdoll::ExtractTextJob.set(wait: 1.hour).perform_later(document.id)
 ```
 
 ### GenerateEmbeddings
@@ -92,7 +92,7 @@ module Ragdoll
         queue_as :default
 
         def perform(document_id, chunk_size: nil, chunk_overlap: nil)
-          document = Models::Document.find(document_id)
+          document = Ragdoll::Document.find(document_id)
           return unless document.content.present?
           return if document.all_embeddings.exists?
 
@@ -124,7 +124,7 @@ end
 **Configuration Options:**
 ```ruby
 # Custom chunk sizing
-Ragdoll::Core::Jobs::GenerateEmbeddings.perform_later(
+Ragdoll::GenerateEmbeddingsJob.perform_later(
   document.id,
   chunk_size: 1500,
   chunk_overlap: 300
@@ -148,7 +148,7 @@ module Ragdoll
         queue_as :default
 
         def perform(document_id)
-          document = Models::Document.find(document_id)
+          document = Ragdoll::Document.find(document_id)
           return unless document.content.present?
           return if document.keywords.present?
 
@@ -202,7 +202,7 @@ module Ragdoll
         queue_as :default
 
         def perform(document_id)
-          document = Models::Document.find(document_id)
+          document = Ragdoll::Document.find(document_id)
           return unless document.content.present?
           return if document.summary.present?
 
@@ -636,11 +636,11 @@ end
 
 # Usage examples
 # Route to least loaded extraction queue
-LoadBalancer.distribute_job(Ragdoll::Core::Jobs::ExtractText, document.id)
+LoadBalancer.distribute_job(Ragdoll::ExtractTextJob, document.id)
 
 # Route by geographic region
 GeographicLoadBalancer.route_job_by_region(
-  Ragdoll::Core::Jobs::GenerateEmbeddings,
+  Ragdoll::GenerateEmbeddingsJob,
   'us-west-2',
   document.id
 )
@@ -666,7 +666,7 @@ module Ragdoll
           
           # Update document status if applicable
           if job.respond_to?(:document_id) && job.arguments.first
-            document = Models::Document.find_by(id: job.arguments.first)
+            document = Ragdoll::Document.find_by(id: job.arguments.first)
             document&.update(status: 'processing') # Keep as processing during retries
           end
         end
@@ -709,7 +709,7 @@ module Ragdoll
         def self.handle_final_failure(job, exception)
           # Mark document as failed if applicable
           if job.respond_to?(:document_id) && job.arguments.first
-            document = Models::Document.find_by(id: job.arguments.first)
+            document = Ragdoll::Document.find_by(id: job.arguments.first)
             if document
               document.update!(
                 status: 'error',
@@ -831,7 +831,7 @@ class SidekiqDeadJobHandler
     dead_set = Sidekiq::DeadSet.new
     
     dead_set.each do |job|
-      if job['class'].start_with?('Ragdoll::Core::Jobs::')
+      if job['class'].start_with?('Ragdoll::')
         # Extract Ragdoll-specific failed jobs
         failed_job_data = {
           job_class: job['class'],
@@ -975,7 +975,7 @@ module Ragdoll
   module Core
     module JobDebugging
       def self.debug_failed_document(document_id)
-        document = Models::Document.find(document_id)
+        document = Ragdoll::Document.find(document_id)
         
         debug_info = {
           document: {
@@ -1079,7 +1079,7 @@ Ragdoll::Core::JobDebugging.debug_failed_document(123)
 
 # Trace a job execution with detailed logging
 Ragdoll::Core::JobDebugging.trace_job_execution(
-  Ragdoll::Core::Jobs::ExtractText,
+  Ragdoll::ExtractTextJob,
   document.id
 )
 
@@ -1103,7 +1103,7 @@ module Ragdoll
   module Core
     class JobStatusTracker
       def self.document_processing_status(document_id)
-        document = Models::Document.find(document_id)
+        document = Ragdoll::Document.find(document_id)
         
         {
           document_id: document.id,
@@ -1122,16 +1122,16 @@ module Ragdoll
       
       def self.system_processing_overview
         {
-          total_documents: Models::Document.count,
-          status_distribution: Models::Document.group(:status).count,
+          total_documents: Ragdoll::Document.count,
+          status_distribution: Ragdoll::Document.group(:status).count,
           processing_pipeline: {
-            pending_extraction: Models::Document.where(status: 'pending').count,
-            currently_processing: Models::Document.where(status: 'processing').count,
-            completed_today: Models::Document
+            pending_extraction: Ragdoll::Document.where(status: 'pending').count,
+            currently_processing: Ragdoll::Document.where(status: 'processing').count,
+            completed_today: Ragdoll::Document
               .where(status: 'processed')
               .where('updated_at > ?', Date.current)
               .count,
-            failed_processing: Models::Document.where(status: 'error').count
+            failed_processing: Ragdoll::Document.where(status: 'error').count
           },
           queue_depths: get_all_queue_depths,
           active_workers: get_active_worker_count
@@ -1215,7 +1215,7 @@ class JobPerformanceMetrics
   end
   
   def self.calculate_processing_times
-    recent_docs = Models::Document
+    recent_docs = Ragdoll::Document
       .where('updated_at > ?', 24.hours.ago)
       .where(status: 'processed')
       .includes(:contents)
@@ -1254,7 +1254,7 @@ class JobPerformanceMetrics
     throughput_data = {}
     
     time_periods.each do |period, start_time|
-      processed_count = Models::Document
+      processed_count = Ragdoll::Document
         .where('updated_at > ?', start_time)
         .where(status: 'processed')
         .count
@@ -1265,7 +1265,7 @@ class JobPerformanceMetrics
         documents_processed: processed_count,
         documents_per_hour: processed_count / time_span_hours,
         embeddings_generated: calculate_embeddings_in_period(start_time),
-        summaries_created: Models::Document
+        summaries_created: Ragdoll::Document
           .where('updated_at > ?', start_time)
           .where.not(summary: [nil, ''])
           .count
@@ -1310,8 +1310,8 @@ class JobPerformanceMetrics
                     else :last_week
                     end
       
-      total_attempts = Models::Document.where('created_at > ?', start_time).count
-      failed_attempts = Models::Document
+      total_attempts = Ragdoll::Document.where('created_at > ?', start_time).count
+      failed_attempts = Ragdoll::Document
         .where('created_at > ?', start_time)
         .where(status: 'error')
         .count
@@ -1742,7 +1742,7 @@ module Ragdoll
         
         # Helper method for document status updates
         def update_document_status(document_id, status, metadata = {})
-          document = Models::Document.find_by(id: document_id)
+          document = Ragdoll::Document.find_by(id: document_id)
           return unless document
           
           update_data = { status: status }
@@ -1771,11 +1771,11 @@ module Ragdoll
 end
 
 # Example custom job: Advanced content analysis
-class AdvancedContentAnalysis < Ragdoll::Core::Jobs::CustomBaseJob
+class AdvancedContentAnalysis < Ragdoll::CustomBaseJob
   def perform(document_id, analysis_options = {})
     log_progress("Starting advanced content analysis", document_id: document_id)
     
-    document = Models::Document.find(document_id)
+    document = Ragdoll::Document.find(document_id)
     return unless document.content.present?
     
     # Update status to show processing
@@ -1829,7 +1829,7 @@ class AdvancedContentAnalysis < Ragdoll::Core::Jobs::CustomBaseJob
 end
 
 # Example: Batch processing job
-class BatchDocumentProcessor < Ragdoll::Core::Jobs::CustomBaseJob
+class BatchDocumentProcessor < Ragdoll::CustomBaseJob
   queue_as :batch_processing
   
   def perform(document_ids, processing_options = {})
@@ -1891,9 +1891,9 @@ Seamless integration with Ragdoll services:
 
 ```ruby
 # Custom job using core services
-class CustomEmbeddingEnhancement < Ragdoll::Core::Jobs::CustomBaseJob
+class CustomEmbeddingEnhancement < Ragdoll::CustomBaseJob
   def perform(document_id, enhancement_type)
-    document = Models::Document.find(document_id)
+    document = Ragdoll::Document.find(document_id)
     
     # Use core embedding service
     embedding_service = Ragdoll::Core::EmbeddingService.new
@@ -1966,9 +1966,9 @@ class CustomEmbeddingEnhancement < Ragdoll::Core::Jobs::CustomBaseJob
 end
 
 # Custom job using search engine
-class DocumentSimilarityAnalysis < Ragdoll::Core::Jobs::CustomBaseJob
+class DocumentSimilarityAnalysis < Ragdoll::CustomBaseJob
   def perform(document_id, similarity_threshold = 0.8)
-    document = Models::Document.find(document_id)
+    document = Ragdoll::Document.find(document_id)
     
     # Use core search engine
     embedding_service = Ragdoll::Core::EmbeddingService.new
@@ -2029,7 +2029,7 @@ module JobTestHelpers
       file_modified_at: Time.current
     }
     
-    Ragdoll::Core::Models::Document.create!(default_attributes.merge(attributes))
+    Ragdoll::Core::Ragdoll::Document.create!(default_attributes.merge(attributes))
   end
 end
 
@@ -2145,14 +2145,14 @@ Optimization strategies for custom jobs:
 
 ```ruby
 # Performance-optimized job patterns
-class PerformantCustomJob < Ragdoll::Core::Jobs::CustomBaseJob
+class PerformantCustomJob < Ragdoll::CustomBaseJob
   # Configuration for performance optimization
   queue_as :high_performance
   timeout 30.minutes
   
   def perform(document_ids, options = {})
     # Batch processing for efficiency
-    documents = Models::Document.includes(:contents, :embeddings)
+    documents = Ragdoll::Document.includes(:contents, :embeddings)
                                .where(id: document_ids)
     
     # Pre-load services to avoid repeated initialization
@@ -2218,9 +2218,9 @@ class PerformantCustomJob < Ragdoll::Core::Jobs::CustomBaseJob
 end
 
 # Memory-efficient streaming job
-class StreamingProcessorJob < Ragdoll::Core::Jobs::CustomBaseJob
+class StreamingProcessorJob < Ragdoll::CustomBaseJob
   def perform(large_document_id)
-    document = Models::Document.find(large_document_id)
+    document = Ragdoll::Document.find(large_document_id)
     
     # Process document in chunks to avoid loading entire content into memory
     process_in_chunks(document) do |chunk, chunk_index|
@@ -2248,7 +2248,7 @@ class StreamingProcessorJob < Ragdoll::Core::Jobs::CustomBaseJob
 end
 
 # Concurrent processing job (be careful with database connections)
-class ConcurrentProcessingJob < Ragdoll::Core::Jobs::CustomBaseJob
+class ConcurrentProcessingJob < Ragdoll::CustomBaseJob
   def perform(document_ids, max_concurrency: 5)
     require 'concurrent-ruby'
     
