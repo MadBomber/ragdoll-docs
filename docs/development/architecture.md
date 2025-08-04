@@ -402,7 +402,7 @@ end
 
 ### 6. Background Job System
 
-**Primary Component**: `Ragdoll::Core::Jobs::GenerateEmbeddings`
+**Primary Component**: `Ragdoll::GenerateEmbeddingsJob`
 
 **Responsibilities**:
 - Asynchronous embedding generation for new content

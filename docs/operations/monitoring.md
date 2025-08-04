@@ -1563,7 +1563,7 @@ class DocumentRecovery
       begin
         doc.update!(status: 'pending')
         # Trigger reprocessing
-        Ragdoll::Core::Jobs::ExtractText.perform_later(doc.id)
+        Ragdoll::ExtractTextJob.perform_later(doc.id)
       rescue => e
         puts "Failed to retry document #{doc.id}: #{e.message}"
       end

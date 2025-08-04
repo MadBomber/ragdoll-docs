@@ -290,7 +290,7 @@ module Ragdoll
           text_content.update!(content: extracted_text)
           
           # Queue embedding generation
-          Ragdoll::Core::Jobs::GenerateEmbeddings.perform_later(
+          Ragdoll::GenerateEmbeddingsJob.perform_later(
             text_content.document_id
           )
         end
@@ -303,7 +303,7 @@ module Ragdoll
           image_content.update!(content: description) # Store description in content field
           
           # Queue embedding generation for the description
-          Ragdoll::Core::Jobs::GenerateEmbeddings.perform_later(
+          Ragdoll::GenerateEmbeddingsJob.perform_later(
             image_content.document_id
           )
         end
@@ -316,7 +316,7 @@ module Ragdoll
           audio_content.update!(content: transcript) # Store transcript in content field
           
           # Queue embedding generation for the transcript
-          Ragdoll::Core::Jobs::GenerateEmbeddings.perform_later(
+          Ragdoll::GenerateEmbeddingsJob.perform_later(
             audio_content.document_id
           )
         end
@@ -2311,11 +2311,11 @@ def queue_processing_jobs(content_record, job_names)
   job_names.each do |job_name|
     case job_name
     when 'GenerateEmbeddings'
-      Ragdoll::Core::Jobs::GenerateEmbeddings.perform_later(content_record.document_id)
+      Ragdoll::GenerateEmbeddingsJob.perform_later(content_record.document_id)
     when 'ExtractKeywords'
-      Ragdoll::Core::Jobs::ExtractKeywords.perform_later(content_record.document_id)
+      Ragdoll::ExtractKeywordsJob.perform_later(content_record.document_id)
     when 'GenerateSummary'
-      Ragdoll::Core::Jobs::GenerateSummary.perform_later(content_record.document_id)
+      Ragdoll::GenerateSummaryJob.perform_later(content_record.document_id)
     when 'TranscribeAudio'
       # Custom job for audio transcription
       TranscribeAudioJob.perform_later(content_record.id)

@@ -99,7 +99,7 @@ text_content = TextContent.create!(
 )
 
 # Automatic chunking and embedding generation
-GenerateEmbeddingsJob.perform_later(text_content)
+Ragdoll::GenerateEmbeddingsJob.perform_later(text_content)
 ```
 
 **Features:**
@@ -152,8 +152,8 @@ audio_content = AudioContent.create!(
 )
 
 # Transcription and embedding
-ExtractTextJob.perform_later(audio_content)
-GenerateEmbeddingsJob.perform_later(audio_content)
+Ragdoll::ExtractTextJob.perform_later(audio_content)
+Ragdoll::GenerateEmbeddingsJob.perform_later(audio_content)
 ```
 
 **Features:**
@@ -268,14 +268,14 @@ All multi-modal operations are designed for background processing:
 
 ```ruby
 # Jobs for each content type
-GenerateEmbeddingsJob.perform_later(text_content)
-GenerateEmbeddingsJob.perform_later(image_content)  # From description
-GenerateEmbeddingsJob.perform_later(audio_content)  # From transcript
+Ragdoll::GenerateEmbeddingsJob.perform_later(text_content)
+Ragdoll::GenerateEmbeddingsJob.perform_later(image_content)  # From description
+Ragdoll::GenerateEmbeddingsJob.perform_later(audio_content)  # From transcript
 
 # Content analysis jobs
-ExtractTextJob.perform_later(audio_content)         # Speech-to-text
-GenerateSummaryJob.perform_later(text_content)      # Summarization
-ExtractKeywordsJob.perform_later(image_content)     # Image analysis
+Ragdoll::ExtractTextJob.perform_later(audio_content)         # Speech-to-text
+Ragdoll::GenerateSummaryJob.perform_later(text_content)      # Summarization
+Ragdoll::ExtractKeywordsJob.perform_later(image_content)     # Image analysis
 ```
 
 ## Usage Analytics
@@ -370,7 +370,7 @@ WHERE embeddable_type = 'TextContent';
 # Efficient batch embedding generation
 TextContent.where(embeddings_count: 0)
            .find_in_batches(batch_size: 100) do |batch|
-  GenerateEmbeddingsJob.perform_later(batch.map(&:id))
+  Ragdoll::GenerateEmbeddingsJob.perform_later(batch.map(&:id))
 end
 
 # Cross-modal batch search
@@ -407,7 +407,7 @@ class DocumentProcessor
 end
 
 # 3. Add embedding generation
-class GenerateEmbeddingsJob
+class Ragdoll::GenerateEmbeddingsJob
   def perform_for_video(video_content)
     # Generate embeddings from transcript + frame descriptions
     combined_text = "#{video_content.transcript} #{video_content.frame_descriptions.join(' ')}"

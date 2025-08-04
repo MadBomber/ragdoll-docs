@@ -44,9 +44,9 @@ module Ragdoll
             )
 
             # Queue follow-up jobs
-            GenerateSummaryJob.perform_later(document_id)
+            Ragdoll::GenerateSummaryJob.perform_later(document_id)
             GenerateKeywordsJob.perform_later(document_id)
-            GenerateEmbeddingsJob.perform_later(document_id)
+            Ragdoll::GenerateEmbeddingsJob.perform_later(document_id)
           else
             document.update!(status: "error")
           end
@@ -71,13 +71,13 @@ end
 **Usage Examples:**
 ```ruby
 # Queue text extraction for a document
-Ragdoll::Core::Jobs::ExtractText.perform_later(document.id)
+Ragdoll::ExtractTextJob.perform_later(document.id)
 
 # Process immediately (synchronous)
-Ragdoll::Core::Jobs::ExtractText.perform_now(document.id)
+Ragdoll::ExtractTextJob.perform_now(document.id)
 
 # Schedule for later processing
-Ragdoll::Core::Jobs::ExtractText.set(wait: 1.hour).perform_later(document.id)
+Ragdoll::ExtractTextJob.set(wait: 1.hour).perform_later(document.id)
 ```
 
 ### GenerateEmbeddings
@@ -124,7 +124,7 @@ end
 **Configuration Options:**
 ```ruby
 # Custom chunk sizing
-Ragdoll::Core::Jobs::GenerateEmbeddings.perform_later(
+Ragdoll::GenerateEmbeddingsJob.perform_later(
   document.id,
   chunk_size: 1500,
   chunk_overlap: 300
@@ -636,11 +636,11 @@ end
 
 # Usage examples
 # Route to least loaded extraction queue
-LoadBalancer.distribute_job(Ragdoll::Core::Jobs::ExtractText, document.id)
+LoadBalancer.distribute_job(Ragdoll::ExtractTextJob, document.id)
 
 # Route by geographic region
 GeographicLoadBalancer.route_job_by_region(
-  Ragdoll::Core::Jobs::GenerateEmbeddings,
+  Ragdoll::GenerateEmbeddingsJob,
   'us-west-2',
   document.id
 )
@@ -831,7 +831,7 @@ class SidekiqDeadJobHandler
     dead_set = Sidekiq::DeadSet.new
     
     dead_set.each do |job|
-      if job['class'].start_with?('Ragdoll::Core::Jobs::')
+      if job['class'].start_with?('Ragdoll::')
         # Extract Ragdoll-specific failed jobs
         failed_job_data = {
           job_class: job['class'],
@@ -1079,7 +1079,7 @@ Ragdoll::Core::JobDebugging.debug_failed_document(123)
 
 # Trace a job execution with detailed logging
 Ragdoll::Core::JobDebugging.trace_job_execution(
-  Ragdoll::Core::Jobs::ExtractText,
+  Ragdoll::ExtractTextJob,
   document.id
 )
 
@@ -1771,7 +1771,7 @@ module Ragdoll
 end
 
 # Example custom job: Advanced content analysis
-class AdvancedContentAnalysis < Ragdoll::Core::Jobs::CustomBaseJob
+class AdvancedContentAnalysis < Ragdoll::CustomBaseJob
   def perform(document_id, analysis_options = {})
     log_progress("Starting advanced content analysis", document_id: document_id)
     
@@ -1829,7 +1829,7 @@ class AdvancedContentAnalysis < Ragdoll::Core::Jobs::CustomBaseJob
 end
 
 # Example: Batch processing job
-class BatchDocumentProcessor < Ragdoll::Core::Jobs::CustomBaseJob
+class BatchDocumentProcessor < Ragdoll::CustomBaseJob
   queue_as :batch_processing
   
   def perform(document_ids, processing_options = {})
@@ -1891,7 +1891,7 @@ Seamless integration with Ragdoll services:
 
 ```ruby
 # Custom job using core services
-class CustomEmbeddingEnhancement < Ragdoll::Core::Jobs::CustomBaseJob
+class CustomEmbeddingEnhancement < Ragdoll::CustomBaseJob
   def perform(document_id, enhancement_type)
     document = Ragdoll::Document.find(document_id)
     
@@ -1966,7 +1966,7 @@ class CustomEmbeddingEnhancement < Ragdoll::Core::Jobs::CustomBaseJob
 end
 
 # Custom job using search engine
-class DocumentSimilarityAnalysis < Ragdoll::Core::Jobs::CustomBaseJob
+class DocumentSimilarityAnalysis < Ragdoll::CustomBaseJob
   def perform(document_id, similarity_threshold = 0.8)
     document = Ragdoll::Document.find(document_id)
     
@@ -2145,7 +2145,7 @@ Optimization strategies for custom jobs:
 
 ```ruby
 # Performance-optimized job patterns
-class PerformantCustomJob < Ragdoll::Core::Jobs::CustomBaseJob
+class PerformantCustomJob < Ragdoll::CustomBaseJob
   # Configuration for performance optimization
   queue_as :high_performance
   timeout 30.minutes
@@ -2218,7 +2218,7 @@ class PerformantCustomJob < Ragdoll::Core::Jobs::CustomBaseJob
 end
 
 # Memory-efficient streaming job
-class StreamingProcessorJob < Ragdoll::Core::Jobs::CustomBaseJob
+class StreamingProcessorJob < Ragdoll::CustomBaseJob
   def perform(large_document_id)
     document = Ragdoll::Document.find(large_document_id)
     
@@ -2248,7 +2248,7 @@ class StreamingProcessorJob < Ragdoll::Core::Jobs::CustomBaseJob
 end
 
 # Concurrent processing job (be careful with database connections)
-class ConcurrentProcessingJob < Ragdoll::Core::Jobs::CustomBaseJob
+class ConcurrentProcessingJob < Ragdoll::CustomBaseJob
   def perform(document_ids, max_concurrency: 5)
     require 'concurrent-ruby'
     
