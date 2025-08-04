@@ -121,7 +121,7 @@ module RagdollTestHelpers
   end
   
   def create_test_document(content: "Test content", title: "Test Document")
-    doc_id = Ragdoll::Core::DocumentManagement.add_document(
+    doc_id = Ragdoll::DocumentManagement.add_document(
       "test://#{title}", content, { title: title }
     )
     
@@ -559,7 +559,7 @@ end
 def test_file_processing_with_stub
   # Stub File.read to return controlled content
   File.stub(:read, "mocked file content") do
-    result = Ragdoll::Core::DocumentProcessor.parse("any_path.txt")
+    result = Ragdoll::DocumentProcessor.parse("any_path.txt")
     assert_equal "mocked file content", result[:content]
   end
 end

@@ -195,7 +195,7 @@ ERROR: Unable to parse PDF file: Invalid PDF structure
 ```ruby
 # Test document parsing
 begin
-  result = Ragdoll::Core::DocumentProcessor.parse('/path/to/document.pdf')
+  result = Ragdoll::DocumentProcessor.parse('/path/to/document.pdf')
   puts "Parsing successful: #{result[:document_type]}"
   puts "Content length: #{result[:content]&.length || 0}"
 rescue => e
@@ -234,7 +234,7 @@ WARNING: Extracted content is empty or contains only whitespace
 **Diagnosis**:
 ```ruby
 # Debug content extraction
-class DebugDocumentProcessor < Ragdoll::Core::DocumentProcessor
+class DebugDocumentProcessor < Ragdoll::DocumentProcessor
   def self.parse_with_debug(file_path)
     puts "Processing: #{file_path}"
     puts "File size: #{File.size(file_path)}"

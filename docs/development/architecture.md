@@ -236,7 +236,7 @@ search_analytics(days: 30) → analytics_data
 
 ### 2. Document Processing Pipeline
 
-**Primary Component**: `Ragdoll::Core::DocumentProcessor`
+**Primary Component**: `Ragdoll::DocumentProcessor`
 
 **Responsibilities**:
 - Multi-format document parsing (PDF, DOCX, HTML, Markdown, Text)
@@ -244,7 +244,7 @@ search_analytics(days: 30) → analytics_data
 - Format-specific handling and validation
 - Error handling for malformed documents
 
-**Related Component**: `Ragdoll::Core::DocumentManagement`
+**Related Component**: `Ragdoll::DocumentManagement`
 
 **Responsibilities**:
 - Document CRUD operations (create, read, update, delete)
@@ -333,7 +333,7 @@ end
 
 ### 4. Search and Retrieval Engine
 
-**Primary Component**: `Ragdoll::Core::SearchEngine`
+**Primary Component**: `Ragdoll::SearchEngine`
 
 **Responsibilities**:
 - Semantic search using vector embeddings and pgvector
