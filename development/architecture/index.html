@@ -2114,13 +2114,13 @@
 </span></code></pre></div></p>
 <p><strong>Design Pattern</strong>: <strong>Facade Pattern</strong> - Simplifies complex subsystem interactions</p>
 <h3 id="2-document-processing-pipeline">2. Document Processing Pipeline<a class="headerlink" href="#2-document-processing-pipeline" title="Permanent link">&para;</a></h3>
-<p><strong>Primary Component</strong>: <code>Ragdoll::Core::DocumentProcessor</code></p>
+<p><strong>Primary Component</strong>: <code>Ragdoll::DocumentProcessor</code></p>
 <p><strong>Responsibilities</strong>:
 - Multi-format document parsing (PDF, DOCX, HTML, Markdown, Text)
 - Content extraction and normalization
 - Format-specific handling and validation
 - Error handling for malformed documents</p>
-<p><strong>Related Component</strong>: <code>Ragdoll::Core::DocumentManagement</code></p>
+<p><strong>Related Component</strong>: <code>Ragdoll::DocumentManagement</code></p>
 <p><strong>Responsibilities</strong>:
 - Document CRUD operations (create, read, update, delete)
 - Database persistence and retrieval
@@ -2195,7 +2195,7 @@
 </span></code></pre></div></p>
 <p><strong>Design Pattern</strong>: <strong>Adapter Pattern</strong> - Unifies diverse LLM provider APIs</p>
 <h3 id="4-search-and-retrieval-engine">4. Search and Retrieval Engine<a class="headerlink" href="#4-search-and-retrieval-engine" title="Permanent link">&para;</a></h3>
-<p><strong>Primary Component</strong>: <code>Ragdoll::Core::SearchEngine</code></p>
+<p><strong>Primary Component</strong>: <code>Ragdoll::SearchEngine</code></p>
 <p><strong>Responsibilities</strong>:
 - Semantic search using vector embeddings and pgvector
 - Hybrid search combining semantic and full-text approaches
