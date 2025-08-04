@@ -17,10 +17,10 @@ flowchart TD
     B --> G[TextChunker]
     
     C --> E
-    C --> H[Models::Embedding]
+    C --> H[Ragdoll::Embedding]
     
-    D --> I[Models::Document]
-    D --> J[Models::Content]
+    D --> I[Ragdoll::Document]
+    D --> J[Ragdoll::Content]
     
     E --> K[RubyLLM]
     F --> K
@@ -295,7 +295,7 @@ results = search_engine.search_similar_content(
   "neural networks",
   filters: {
     document_type: 'pdf',
-    embeddable_type: 'Ragdoll::Core::Models::TextContent'
+    embeddable_type: 'Ragdoll::TextContent'
   }
 )
 
@@ -538,7 +538,7 @@ class DocumentPipeline
     )
     
     # 3. Generate embeddings (via background job)
-    document = Models::Document.find(doc_id)
+    document = Ragdoll::Document.find(doc_id)
     document.generate_embeddings_for_all_content!
     
     # 4. Generate metadata (via background job)
@@ -583,7 +583,7 @@ end
 # Services work seamlessly with ActiveJob
 class GenerateEmbeddings < ActiveJob::Base
   def perform(document_id)
-    document = Models::Document.find(document_id)
+    document = Ragdoll::Document.find(document_id)
     
     # Use services within jobs
     chunker = TextChunker

@@ -318,7 +318,7 @@ class AccessController
   def self.resource_accessible?(user_role, resource)
     # Implement resource-specific access logic
     case resource
-    when Ragdoll::Core::Models::Document
+    when Ragdoll::Document
       # Check document ownership or sharing permissions
       true  # Placeholder
     else
@@ -775,8 +775,8 @@ class GDPRCompliance
   
   def self.delete_user_data(user_id)
     # Comprehensive data deletion
-    Ragdoll::Core::Models::Document.where(user_id: user_id).destroy_all
-    Ragdoll::Core::Models::Embedding.joins(:embeddable)
+    Ragdoll::Document.where(user_id: user_id).destroy_all
+    Ragdoll::Embedding.joins(:embeddable)
                                    .where(ragdoll_contents: { user_id: user_id })
                                    .destroy_all
     

@@ -104,7 +104,7 @@ module RagdollTestHelpers
   end
   
   def assert_document_processed(document_id)
-    document = Ragdoll::Core::Models::Document.find(document_id)
+    document = Ragdoll::Document.find(document_id)
     assert_equal 'processed', document.status
     assert document.content.present?
     refute_empty document.all_embeddings
@@ -126,7 +126,7 @@ module RagdollTestHelpers
     )
     
     # Process immediately for tests (no background jobs)
-    document = Ragdoll::Core::Models::Document.find(doc_id)
+    document = Ragdoll::Document.find(doc_id)
     document.update!(status: 'processed')
     doc_id
   end
@@ -187,7 +187,7 @@ end
 # test/core/models/document_test.rb
 class DocumentTest < Minitest::Test
   def test_creates_document_with_required_fields
-    document = Ragdoll::Core::Models::Document.create!(
+    document = Ragdoll::Document.create!(
       location: "/test/path.txt",
       title: "Test Document",
       document_type: "text",
@@ -201,7 +201,7 @@ class DocumentTest < Minitest::Test
   end
   
   def test_validates_required_fields
-    document = Ragdoll::Core::Models::Document.new
+    document = Ragdoll::Document.new
     
     refute document.valid?
     assert document.errors[:location].present?
@@ -209,7 +209,7 @@ class DocumentTest < Minitest::Test
   end
   
   def test_normalizes_file_paths
-    document = Ragdoll::Core::Models::Document.create!(
+    document = Ragdoll::Document.create!(
       location: "relative/path.txt",
       title: "Test",
       document_type: "text",
@@ -250,7 +250,7 @@ class ClientIntegrationTest < Minitest::Test
       assert document_id.present?
       
       # Verify document was created
-      document = Ragdoll::Core::Models::Document.find(document_id)
+      document = Ragdoll::Document.find(document_id)
       assert_equal "text", document.document_type
       
       # Simulate background job processing
@@ -319,7 +319,7 @@ class RAGWorkflowTest < Minitest::Test
     
     # Process all documents
     doc_ids.each do |doc_id|
-      document = Ragdoll::Core::Models::Document.find(doc_id)
+      document = Ragdoll::Document.find(doc_id)
       document.generate_embeddings_for_all_content!
     end
     
@@ -570,7 +570,7 @@ def test_with_time_stub
   
   Time.stub(:current, fixed_time) do
     document = create_test_document
-    doc = Ragdoll::Core::Models::Document.find(document)
+    doc = Ragdoll::Document.find(document)
     assert_equal fixed_time.to_i, doc.created_at.to_i
   end
 end

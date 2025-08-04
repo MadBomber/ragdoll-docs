@@ -137,9 +137,9 @@ CREATE TABLE ragdoll_embeddings (
 belongs_to :embeddable, polymorphic: true
 
 # Content types that can have embeddings:
-# - Ragdoll::Core::Models::TextContent
-# - Ragdoll::Core::Models::ImageContent  
-# - Ragdoll::Core::Models::AudioContent
+# - Ragdoll::TextContent
+# - Ragdoll::ImageContent  
+# - Ragdoll::AudioContent
 ```
 
 ### Vector Dimensionality Handling
@@ -231,11 +231,11 @@ end
 -- Partition by embeddable_type for query optimization
 CREATE TABLE ragdoll_embeddings_text 
 PARTITION OF ragdoll_embeddings 
-FOR VALUES IN ('Ragdoll::Core::Models::TextContent');
+FOR VALUES IN ('Ragdoll::TextContent');
 
 CREATE TABLE ragdoll_embeddings_image 
 PARTITION OF ragdoll_embeddings 
-FOR VALUES IN ('Ragdoll::Core::Models::ImageContent');
+FOR VALUES IN ('Ragdoll::ImageContent');
 ```
 
 **Storage Monitoring:**

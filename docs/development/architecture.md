@@ -357,7 +357,7 @@ class SearchEngine
     embedding = @embedding_service.generate_embedding(query)
     
     # Use pgvector for efficient similarity search
-    Models::Embedding.search_similar(
+    Ragdoll::Embedding.search_similar(
       embedding,
       limit: options[:limit],
       threshold: options[:threshold],
@@ -415,7 +415,7 @@ end
 ```ruby
 class GenerateEmbeddings < ActiveJob::Base
   def perform(document_id)
-    document = Models::Document.find(document_id)
+    document = Ragdoll::Document.find(document_id)
     
     # Process each content type polymorphically
     document.content_items.each do |content|
@@ -694,7 +694,7 @@ class GenerateEmbeddings < ActiveJob::Base
   
   # High priority for interactive operations
   def self.perform_now_if_small(document_id)
-    document = Models::Document.find(document_id)
+    document = Ragdoll::Document.find(document_id)
     if document.estimated_processing_time < 5.seconds
       perform_now(document_id)
     else

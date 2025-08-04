@@ -256,19 +256,19 @@ The `extract_keywords` method intelligently identifies significant terms from se
 
 ```ruby
 # Extract meaningful keywords from queries
-keywords = Ragdoll::Core::Models::Document.extract_keywords(
+keywords = Ragdoll::Document.extract_keywords(
   query: "machine learning algorithms neural networks"
 )
 # Returns: ["machine", "learning", "algorithms", "neural", "networks"]
 
 # Handles punctuation and formatting
-keywords = Ragdoll::Core::Models::Document.extract_keywords(
+keywords = Ragdoll::Document.extract_keywords(
   query: "deep-learning, artificial-intelligence!"
 )  
 # Returns: ["deep-learning,", "artificial-intelligence!"]
 
 # Filters short words automatically
-keywords = Ragdoll::Core::Models::Document.extract_keywords(
+keywords = Ragdoll::Document.extract_keywords(
   query: "AI and ML for big data analysis"
 )
 # Returns: ["analysis"] # Only words > 4 characters

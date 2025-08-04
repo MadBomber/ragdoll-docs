@@ -17,7 +17,7 @@ The model architecture provides:
 
 ### Document Model
 
-**Class:** `Ragdoll::Core::Models::Document`
+**Class:** `Ragdoll::Document`
 
 **Table:** `ragdoll_documents`
 
@@ -43,10 +43,10 @@ updated_at        :datetime
 **Multi-Modal Content Associations:**
 ```ruby
 # STI-based content relationships
-has_many :contents, class_name: "Ragdoll::Core::Models::Content", dependent: :destroy
-has_many :text_contents, class_name: "Ragdoll::Core::Models::TextContent"
-has_many :image_contents, class_name: "Ragdoll::Core::Models::ImageContent"
-has_many :audio_contents, class_name: "Ragdoll::Core::Models::AudioContent"
+has_many :contents, class_name: "Ragdoll::Content", dependent: :destroy
+has_many :text_contents, class_name: "Ragdoll::TextContent"
+has_many :image_contents, class_name: "Ragdoll::ImageContent"
+has_many :audio_contents, class_name: "Ragdoll::AudioContent"
 
 # Embedding relationships through content
 has_many :text_embeddings, through: :text_contents, source: :embeddings
@@ -101,14 +101,14 @@ Document.hybrid_search(
 
 ### Content Models (STI Architecture)
 
-**Base Class:** `Ragdoll::Core::Models::Content`
+**Base Class:** `Ragdoll::Content`
 
 **Table:** `ragdoll_contents` (shared by all content types)
 
 **STI Classes:**
-- `Ragdoll::Core::Models::TextContent`
-- `Ragdoll::Core::Models::ImageContent` 
-- `Ragdoll::Core::Models::AudioContent`
+- `Ragdoll::TextContent`
+- `Ragdoll::ImageContent` 
+- `Ragdoll::AudioContent`
 
 **Shared Attributes:**
 ```ruby
@@ -128,10 +128,10 @@ updated_at      :datetime
 **Polymorphic Relationships:**
 ```ruby
 # Each content model belongs to a document
-belongs_to :document, class_name: "Ragdoll::Core::Models::Document"
+belongs_to :document, class_name: "Ragdoll::Document"
 
 # Each content model can have many embeddings
-has_many :embeddings, class_name: "Ragdoll::Core::Models::Embedding", as: :embeddable
+has_many :embeddings, class_name: "Ragdoll::Embedding", as: :embeddable
 ```
 
 #### TextContent Model
@@ -234,7 +234,7 @@ audio_content.speakers             # Speaker identification (from metadata)
 
 ### Embedding Model
 
-**Class:** `Ragdoll::Core::Models::Embedding`
+**Class:** `Ragdoll::Embedding`
 
 **Table:** `ragdoll_embeddings`
 
@@ -259,7 +259,7 @@ belongs_to :embeddable, polymorphic: true
 
 # Can belong to TextContent, ImageContent, or AudioContent
 embedding.embeddable                # Returns the associated content object
-embedding.embeddable_type           # "Ragdoll::Core::Models::TextContent"
+embedding.embeddable_type           # "Ragdoll::TextContent"
 embedding.embeddable_id             # Content record ID
 ```
 
@@ -271,7 +271,7 @@ Embedding.search_similar(
   limit: 20,
   threshold: 0.7,
   filters: {
-    embeddable_type: "Ragdoll::Core::Models::TextContent",
+    embeddable_type: "Ragdoll::TextContent",
     document_type: "pdf",
     embedding_model: "text-embedding-3-large"
   }
@@ -289,7 +289,7 @@ embedding.embedding_dimensions      # Number of vector dimensions
   {
     embedding_id: "123",
     embeddable_id: "456",
-    embeddable_type: "Ragdoll::Core::Models::TextContent",
+    embeddable_type: "Ragdoll::TextContent",
     document_id: "789",
     document_title: "AI Research Paper",
     document_location: "/path/to/document.pdf",
@@ -402,7 +402,7 @@ class Document < ActiveRecord::Base
       end
     else
       Embedding.where(
-        embeddable_type: 'Ragdoll::Core::Models::Content',
+        embeddable_type: 'Ragdoll::Content',
         embeddable_id: contents.pluck(:id)
       )
     end
@@ -435,9 +435,9 @@ class Embedding < ActiveRecord::Base
   end
   
   # Scopes for different content types
-  scope :text_embeddings, -> { where(embeddable_type: "Ragdoll::Core::Models::TextContent") }
-  scope :image_embeddings, -> { where(embeddable_type: "Ragdoll::Core::Models::ImageContent") }
-  scope :audio_embeddings, -> { where(embeddable_type: "Ragdoll::Core::Models::AudioContent") }
+  scope :text_embeddings, -> { where(embeddable_type: "Ragdoll::TextContent") }
+  scope :image_embeddings, -> { where(embeddable_type: "Ragdoll::ImageContent") }
+  scope :audio_embeddings, -> { where(embeddable_type: "Ragdoll::AudioContent") }
 end
 ```
 
@@ -483,9 +483,9 @@ CHECK (status IN ('pending', 'processing', 'processed', 'error'));
 -- Ensure valid content types for STI
 ALTER TABLE ragdoll_contents 
 ADD CONSTRAINT valid_content_type 
-CHECK (type IN ('Ragdoll::Core::Models::TextContent', 
-                'Ragdoll::Core::Models::ImageContent', 
-                'Ragdoll::Core::Models::AudioContent'));
+CHECK (type IN ('Ragdoll::TextContent', 
+                'Ragdoll::ImageContent', 
+                'Ragdoll::AudioContent'));
 ```
 
 ### Index Strategy
@@ -695,7 +695,7 @@ Embedding.search_similar(
   limit: 20,
   threshold: 0.7,
   filters: {
-    embeddable_type: 'Ragdoll::Core::Models::TextContent',
+    embeddable_type: 'Ragdoll::TextContent',
     document_type: 'pdf'
   }
 )
@@ -929,7 +929,7 @@ Embedding.search_similar(
   limit: 20,
   threshold: 0.75,
   filters: {
-    embeddable_type: 'Ragdoll::Core::Models::TextContent',
+    embeddable_type: 'Ragdoll::TextContent',
     embedding_model: 'text-embedding-3-large',
     document_type: 'pdf',
     created_after: 1.month.ago
@@ -1099,9 +1099,9 @@ class Content < ActiveRecord::Base
   # Ensure valid STI type
   validates :type, inclusion: {
     in: %w[
-      Ragdoll::Core::Models::TextContent
-      Ragdoll::Core::Models::ImageContent
-      Ragdoll::Core::Models::AudioContent
+      Ragdoll::TextContent
+      Ragdoll::ImageContent
+      Ragdoll::AudioContent
     ],
     message: "must be a valid content type"
   }
