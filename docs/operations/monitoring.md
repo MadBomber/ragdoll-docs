@@ -1653,7 +1653,7 @@ class PerformanceProfiler
     require 'benchmark'
 
     results = []
-    embedding_service = Ragdoll::Core::EmbeddingService.new
+    embedding_service = Ragdoll::EmbeddingService.new
     search_engine = Ragdoll::Core::SearchEngine.new(embedding_service)
 
     # Warm up

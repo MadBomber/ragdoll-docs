@@ -1896,7 +1896,7 @@ class CustomEmbeddingEnhancement < Ragdoll::CustomBaseJob
     document = Ragdoll::Document.find(document_id)
     
     # Use core embedding service
-    embedding_service = Ragdoll::Core::EmbeddingService.new
+    embedding_service = Ragdoll::EmbeddingService.new
     
     case enhancement_type
     when 'multi_provider'
@@ -1971,7 +1971,7 @@ class DocumentSimilarityAnalysis < Ragdoll::CustomBaseJob
     document = Ragdoll::Document.find(document_id)
     
     # Use core search engine
-    embedding_service = Ragdoll::Core::EmbeddingService.new
+    embedding_service = Ragdoll::EmbeddingService.new
     search_engine = Ragdoll::Core::SearchEngine.new(embedding_service)
     
     # Find similar documents
@@ -2171,7 +2171,7 @@ class PerformantCustomJob < Ragdoll::CustomBaseJob
   
   def initialize_services
     {
-      embedding_service: Ragdoll::Core::EmbeddingService.new,
+      embedding_service: Ragdoll::EmbeddingService.new,
       text_chunker: Ragdoll::Core::TextChunker.new,
       search_engine: Ragdoll::Core::SearchEngine.new(embedding_service)
     }

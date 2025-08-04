@@ -300,7 +300,7 @@ end
 
 ### 3. Embedding Generation System
 
-**Primary Component**: `Ragdoll::Core::EmbeddingService`
+**Primary Component**: `Ragdoll::EmbeddingService`
 
 **Responsibilities**:
 - Vector embedding generation using multiple LLM providers

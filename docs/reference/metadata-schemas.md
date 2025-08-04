@@ -1609,7 +1609,7 @@ Ragdoll uses advanced prompt engineering and LLM integration for high-quality me
 
 #### Content Analysis Pipeline
 ```ruby
-class MetadataGenerator
+class Ragdoll::MetadataGenerator
   def generate_for_document(document)
     content_analyzer = ContentAnalyzer.new(document)
 
