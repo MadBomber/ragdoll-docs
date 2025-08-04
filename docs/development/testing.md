@@ -96,7 +96,7 @@ end
 # Custom assertions for Ragdoll-specific testing
 module RagdollTestHelpers
   def assert_embedding_generated(text)
-    service = Ragdoll::Core::EmbeddingService.new
+    service = Ragdoll::EmbeddingService.new
     embedding = service.generate_embedding(text)
     assert embedding.is_a?(Array), "Expected array, got #{embedding.class}"
     assert embedding.length > 0, "Expected non-empty embedding"
@@ -121,7 +121,7 @@ module RagdollTestHelpers
   end
   
   def create_test_document(content: "Test content", title: "Test Document")
-    doc_id = Ragdoll::Core::DocumentManagement.add_document(
+    doc_id = Ragdoll::DocumentManagement.add_document(
       "test://#{title}", content, { title: title }
     )
     
@@ -147,7 +147,7 @@ Unit tests focus on individual classes and methods:
 class EmbeddingServiceTest < Minitest::Test
   def setup
     super
-    @service = Ragdoll::Core::EmbeddingService.new
+    @service = Ragdoll::EmbeddingService.new
   end
   
   def test_generates_embedding_for_text
@@ -158,7 +158,7 @@ class EmbeddingServiceTest < Minitest::Test
       [Hash]
     )
     
-    service = Ragdoll::Core::EmbeddingService.new(client: mock_client)
+    service = Ragdoll::EmbeddingService.new(client: mock_client)
     embedding = service.generate_embedding("test text")
     
     assert_instance_of Array, embedding
@@ -416,7 +416,7 @@ class ServiceTest < Minitest::Test
   def setup
     super
     @mock_client = MockLLMClient.new
-    @service = Ragdoll::Core::EmbeddingService.new(client: @mock_client)
+    @service = Ragdoll::EmbeddingService.new(client: @mock_client)
   end
 end
 ```
@@ -522,7 +522,7 @@ end
 # Use in tests
 def test_handles_api_failures
   mock_service = MockOpenAIService.new(embed_error: "Rate limit exceeded")
-  service = Ragdoll::Core::EmbeddingService.new(client: mock_service)
+  service = Ragdoll::EmbeddingService.new(client: mock_service)
   
   assert_raises(Ragdoll::Core::EmbeddingError) do
     service.generate_embedding("test text")
@@ -559,7 +559,7 @@ end
 def test_file_processing_with_stub
   # Stub File.read to return controlled content
   File.stub(:read, "mocked file content") do
-    result = Ragdoll::Core::DocumentProcessor.parse("any_path.txt")
+    result = Ragdoll::DocumentProcessor.parse("any_path.txt")
     assert_equal "mocked file content", result[:content]
   end
 end
@@ -586,7 +586,7 @@ require 'benchmark'
 
 class EmbeddingBenchmarkTest < Minitest::Test
   def test_embedding_generation_performance
-    service = Ragdoll::Core::EmbeddingService.new
+    service = Ragdoll::EmbeddingService.new
     texts = Array.new(100) { "Sample text #{rand(1000)}" }
     
     time = Benchmark.measure do

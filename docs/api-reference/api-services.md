@@ -66,7 +66,7 @@ end
 - **DOCX**: Uses `docx` gem for Office document processing
 - **HTML**: Strip tags and extract clean text content
 - **Text/Markdown**: Direct file reading with encoding detection
-- **Images**: Uses `ImageMagick` for metadata and AI description via `ImageDescriptionService`
+- **Images**: Uses `ImageMagick` for metadata and AI description via `Ragdoll::ImageDescriptionService`
 
 **Usage Examples**:
 ```ruby
@@ -422,7 +422,7 @@ code_chunks = TextChunker.chunk_code(code_text, language: 'ruby')
 **Implementation**: `/lib/ragdoll/core/services/metadata_generator.rb`
 
 ```ruby
-class Services::MetadataGenerator
+class Ragdoll::MetadataGenerator
   def generate_for_document(document)
     # Returns: Hash of structured metadata following document-type schemas
   end
@@ -452,7 +452,7 @@ end
 **Implementation**: `/lib/ragdoll/core/services/image_description_service.rb`
 
 ```ruby
-class Services::ImageDescriptionService
+class Ragdoll::ImageDescriptionService
   def generate_description(image_path)
     # Returns: String description of image content for embedding
   end

@@ -611,7 +611,7 @@ module SearchInstrumentation
   end
 end
 
-Ragdoll::Core::SearchEngine.prepend(SearchInstrumentation)
+Ragdoll::SearchEngine.prepend(SearchInstrumentation)
 ```
 
 ### Grafana Dashboard

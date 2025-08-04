@@ -322,7 +322,7 @@ end
 # Custom assertions
 module TestHelpers
   def assert_embedding_generated(text)
-    service = Ragdoll::Core::EmbeddingService.new
+    service = Ragdoll::EmbeddingService.new
     embedding = service.generate_embedding(text)
     assert embedding.is_a?(Array), "Expected array, got #{embedding.class}"
     assert embedding.length > 0, "Expected non-empty embedding"
@@ -365,7 +365,7 @@ bundle exec rake test:performance
 # test/core/embedding_service_test.rb
 class EmbeddingServiceTest < Minitest::Test
   def setup
-    @service = Ragdoll::Core::EmbeddingService.new
+    @service = Ragdoll::EmbeddingService.new
   end
   
   def test_generates_embedding_for_text

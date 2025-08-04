@@ -195,7 +195,7 @@ ERROR: Unable to parse PDF file: Invalid PDF structure
 ```ruby
 # Test document parsing
 begin
-  result = Ragdoll::Core::DocumentProcessor.parse('/path/to/document.pdf')
+  result = Ragdoll::DocumentProcessor.parse('/path/to/document.pdf')
   puts "Parsing successful: #{result[:document_type]}"
   puts "Content length: #{result[:content]&.length || 0}"
 rescue => e
@@ -234,7 +234,7 @@ WARNING: Extracted content is empty or contains only whitespace
 **Diagnosis**:
 ```ruby
 # Debug content extraction
-class DebugDocumentProcessor < Ragdoll::Core::DocumentProcessor
+class DebugDocumentProcessor < Ragdoll::DocumentProcessor
   def self.parse_with_debug(file_path)
     puts "Processing: #{file_path}"
     puts "File size: #{File.size(file_path)}"
@@ -263,7 +263,7 @@ ERROR: Failed to generate embedding: OpenAI API key not configured
 **Diagnosis**:
 ```ruby
 # Test embedding generation
-service = Ragdoll::Core::EmbeddingService.new
+service = Ragdoll::EmbeddingService.new
 begin
   embedding = service.generate_embedding("test text")
   puts "Embedding generated: #{embedding&.length || 0} dimensions"
@@ -305,7 +305,7 @@ puts "Documents in database: #{Ragdoll::Document.count}"
 puts "Embeddings in database: #{Ragdoll::Embedding.count}"
 
 # Test embedding generation
-embedding_service = Ragdoll::Core::EmbeddingService.new
+embedding_service = Ragdoll::EmbeddingService.new
 query_embedding = embedding_service.generate_embedding(query)
 puts "Query embedding dimensions: #{query_embedding&.length || 0}"
 
@@ -571,7 +571,7 @@ class RagdollDebug
     puts "Testing complete pipeline..."
     
     # Test embedding generation
-    service = Ragdoll::Core::EmbeddingService.new
+    service = Ragdoll::EmbeddingService.new
     embedding = service.generate_embedding(text)
     puts "✓ Embedding generated: #{embedding.length} dimensions"
     

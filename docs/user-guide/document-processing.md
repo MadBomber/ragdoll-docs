@@ -63,7 +63,7 @@ Ragdoll supports a wide range of file formats through specialized parsers:
 - Error-resilient processing with fallback descriptions
 
 **Vision AI Integration**
-- Integrated with `ImageDescriptionService`
+- Integrated with `Ragdoll::ImageDescriptionService`
 - Configurable vision models (GPT-4 Vision, Claude 3, etc.)
 - Generates contextual descriptions for semantic search
 - Fallback to filename-based descriptions if AI fails
@@ -220,7 +220,7 @@ Ragdoll uses AI-powered metadata extraction to enhance document searchability an
 
 **MetadataGenerator Service:**
 ```ruby
-generator = Services::MetadataGenerator.new
+generator = Ragdoll::MetadataGenerator.new
 metadata = generator.generate_for_document(document)
 
 # Example generated metadata:

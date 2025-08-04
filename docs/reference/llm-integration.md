@@ -303,7 +303,7 @@ parsed = config.parse_provider_model("gpt-4o")
 
 **Fallback Provider Chains:**
 ```ruby
-class CustomTextGenerationService < Ragdoll::Core::TextGenerationService
+class CustomTextGenerationService < Ragdoll::TextGenerationService
   private
 
   def generate_with_fallback(prompt, models)
@@ -423,7 +423,7 @@ class APIKeyRotationService
   def self.test_api_key(provider, key)
     # Test API key with minimal request
     test_config = { provider => { api_key: key } }
-    service = Ragdoll::Core::EmbeddingService.new
+    service = Ragdoll::EmbeddingService.new
     service.generate_embedding("test")
     true
   rescue
@@ -480,7 +480,7 @@ config.models[:embedding] = {
 }
 
 # Dynamic embedding model selection
-class SmartEmbeddingService < Ragdoll::Core::EmbeddingService
+class SmartEmbeddingService < Ragdoll::EmbeddingService
   def generate_embedding(text, content_type: :text)
     model = select_embedding_model(text, content_type)
     super(text, model: model)
@@ -552,7 +552,7 @@ config.keyword_extraction = {
 }
 
 # Context-aware keyword extraction
-class AdvancedKeywordExtraction < Ragdoll::Core::TextGenerationService
+class AdvancedKeywordExtraction < Ragdoll::TextGenerationService
   def extract_keywords(text, context: :general)
     model = select_keyword_model(text, context)
 
@@ -717,7 +717,7 @@ end
 **Batch Processing Optimization:**
 ```ruby
 # Efficient batch processing
-class BatchOptimizedEmbeddingService < Ragdoll::Core::EmbeddingService
+class BatchOptimizedEmbeddingService < Ragdoll::EmbeddingService
   MAX_BATCH_SIZE = 100
   OPTIMAL_BATCH_SIZE = 50
 
