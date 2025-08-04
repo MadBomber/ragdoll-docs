@@ -2009,7 +2009,7 @@
 - Content stored as descriptive text for search indexing
 - Error-resilient processing with fallback descriptions</p>
 <p><strong>Vision AI Integration</strong>
-- Integrated with <code>ImageDescriptionService</code>
+- Integrated with <code>Ragdoll::ImageDescriptionService</code>
 - Configurable vision models (GPT-4 Vision, Claude 3, etc.)
 - Generates contextual descriptions for semantic search
 - Fallback to filename-based descriptions if AI fails</p>
@@ -2130,7 +2130,7 @@
 <p>Ragdoll uses AI-powered metadata extraction to enhance document searchability and organization:</p>
 <h3 id="llm-based-content-analysis">LLM-Based Content Analysis<a class="headerlink" href="#llm-based-content-analysis" title="Permanent link">&para;</a></h3>
 <p><strong>MetadataGenerator Service:</strong>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">generator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Services</span><span class="o">::</span><span class="no">MetadataGenerator</span><span class="o">.</span><span class="n">new</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">generator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Ragdoll</span><span class="o">::</span><span class="no">MetadataGenerator</span><span class="o">.</span><span class="n">new</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">generator</span><span class="o">.</span><span class="n">generate_for_document</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Example generated metadata:</span>

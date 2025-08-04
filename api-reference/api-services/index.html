@@ -1938,7 +1938,7 @@
 - <strong>DOCX</strong>: Uses <code>docx</code> gem for Office document processing
 - <strong>HTML</strong>: Strip tags and extract clean text content
 - <strong>Text/Markdown</strong>: Direct file reading with encoding detection
-- <strong>Images</strong>: Uses <code>ImageMagick</code> for metadata and AI description via <code>ImageDescriptionService</code></p>
+- <strong>Images</strong>: Uses <code>ImageMagick</code> for metadata and AI description via <code>Ragdoll::ImageDescriptionService</code></p>
 <p><strong>Usage Examples</strong>:
 <div class="language-ruby highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Basic document parsing</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">DocumentProcessor</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;/path/to/document.pdf&#39;</span><span class="p">)</span>
@@ -2246,7 +2246,7 @@
 <h3 id="metadatagenerator">MetadataGenerator<a class="headerlink" href="#metadatagenerator" title="Permanent link">&para;</a></h3>
 <p><strong>Responsibility</strong>: AI-powered structured metadata creation</p>
 <p><strong>Implementation</strong>: <code>/lib/ragdoll/core/services/metadata_generator.rb</code></p>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Services</span><span class="o">::</span><span class="no">MetadataGenerator</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Ragdoll</span><span class="o">::</span><span class="no">MetadataGenerator</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">generate_for_document</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="c1"># Returns: Hash of structured metadata following document-type schemas</span>
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="k">end</span>
@@ -2270,7 +2270,7 @@
 <h3 id="imagedescriptionservice">ImageDescriptionService<a class="headerlink" href="#imagedescriptionservice" title="Permanent link">&para;</a></h3>
 <p><strong>Responsibility</strong>: AI-powered image content description</p>
 <p><strong>Implementation</strong>: <code>/lib/ragdoll/core/services/image_description_service.rb</code></p>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Services</span><span class="o">::</span><span class="no">ImageDescriptionService</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Ragdoll</span><span class="o">::</span><span class="no">ImageDescriptionService</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">generate_description</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="c1"># Returns: String description of image content for embedding</span>
 </span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="k">end</span>
