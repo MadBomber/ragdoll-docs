@@ -36,6 +36,8 @@ graph TB
         ImageContent[Image Content<br/>🖼️ Image Analysis]
         AudioContent[Audio Content<br/>🎵 Audio Processing]
         EmbedModel[Embedding Model<br/>🎯 Vector Storage]
+        SearchModel[Search Model<br/>🔍 Query Tracking]
+        SearchResultModel[Search Result Model<br/>📊 Analytics]
     end
     
     subgraph "Infrastructure Layer"
@@ -80,11 +82,17 @@ graph TB
     TextContent --> EmbedModel
     ImageContent --> EmbedModel
     AudioContent --> EmbedModel
+    SearchEng --> SearchModel
+    SearchModel --> SearchResultModel
+    SearchResultModel --> EmbedModel
     
     %% Infrastructure Connections
     DocModel --> PostgreSQL
     EmbedModel --> PostgreSQL
+    SearchModel --> PostgreSQL
+    SearchResultModel --> PostgreSQL
     EmbedModel --> VectorSearch
+    SearchModel --> VectorSearch
     DocModel --> FullText
     DocProc --> Shrine
     Shrine --> FileStorage
@@ -539,6 +547,36 @@ erDiagram
         timestamp updated_at
     }
     
+    SEARCHES {
+        uuid id PK
+        text query "Original search query"
+        vector query_embedding "Query vector for similarity"
+        string search_type "semantic, hybrid, fulltext"
+        integer results_count "Number of results returned"
+        float max_similarity_score
+        float min_similarity_score
+        float avg_similarity_score
+        jsonb search_filters "Applied filters"
+        jsonb search_options "Search configuration"
+        integer execution_time_ms "Query performance"
+        string session_id "User session"
+        string user_id "User identifier"
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    SEARCH_RESULTS {
+        uuid id PK
+        uuid search_id FK
+        uuid embedding_id FK
+        float similarity_score "Result similarity"
+        integer result_rank "Position in results"
+        boolean clicked "User engagement"
+        timestamp clicked_at "Click timestamp"
+        timestamp created_at
+        timestamp updated_at
+    }
+    
     %% Relationships
     DOCUMENTS ||--o{ TEXT_CONTENTS : "has_many"
     DOCUMENTS ||--o{ IMAGE_CONTENTS : "has_many"
@@ -547,6 +585,9 @@ erDiagram
     TEXT_CONTENTS ||--o{ EMBEDDINGS : "embeddable (polymorphic)"
     IMAGE_CONTENTS ||--o{ EMBEDDINGS : "embeddable (polymorphic)"
     AUDIO_CONTENTS ||--o{ EMBEDDINGS : "embeddable (polymorphic)"
+    
+    SEARCHES ||--o{ SEARCH_RESULTS : "has_many"
+    EMBEDDINGS ||--o{ SEARCH_RESULTS : "has_many"
 ```
 
 ### Dual Metadata Architecture
@@ -569,6 +610,64 @@ class Document < ActiveRecord::Base
   store :metadata, accessors: [:summary, :keywords, :classification, :topics, :sentiment]
 end
 ```
+
+### Search Tracking Architecture
+
+**Decision**: Comprehensive search analytics with vector similarity for query analysis
+
+**Rationale**:
+- **User Behavior Analytics**: Track search patterns, click-through rates, and engagement
+- **Query Similarity**: Use vector embeddings to find similar searches and improve relevance
+- **Performance Monitoring**: Measure search execution times and optimize slow queries
+- **Session Tracking**: Associate searches with users and sessions for personalization
+- **Automatic Cleanup**: Cascade deletion and orphaned search cleanup for data integrity
+
+**Schema Design**:
+```ruby
+class Search < ActiveRecord::Base
+  # Vector similarity support for finding similar searches
+  has_neighbors :query_embedding
+  has_many :search_results, dependent: :destroy
+  has_many :embeddings, through: :search_results
+  
+  # Analytics methods
+  def click_through_rate
+    return 0.0 if search_results.count.zero?
+    (search_results.clicked.count / search_results.count.to_f) * 100
+  end
+  
+  # Find searches with similar queries
+  def similar_searches(limit: 5)
+    nearest_neighbors(:query_embedding, distance: :cosine).limit(limit)
+  end
+end
+
+class SearchResult < ActiveRecord::Base
+  belongs_to :search
+  belongs_to :embedding
+  
+  # User engagement tracking
+  def mark_as_clicked!
+    update!(clicked: true, clicked_at: Time.current)
+  end
+  
+  # Automatic cleanup when search becomes empty
+  after_destroy :cleanup_empty_search
+  
+  private
+  
+  def cleanup_empty_search
+    search.destroy if search.search_results.count == 0
+  end
+end
+```
+
+**Key Features**:
+- **Automatic Recording**: All searches tracked unless explicitly disabled
+- **Vector Similarity**: Query embeddings enable finding similar searches
+- **Performance Metrics**: Execution time, result counts, and similarity scores
+- **User Engagement**: Click tracking and analytics
+- **Data Integrity**: Cascade deletion and automatic cleanup
 
 ### Background Processing Approach
 

@@ -576,22 +576,253 @@ class SearchSuggestions
 end
 ```
 
+## Search Tracking System
+
+Ragdoll includes a comprehensive search tracking system that automatically records all searches performed through the platform. This provides valuable insights into user behavior, search patterns, and system performance.
+
+### Database Schema
+
+The search tracking system uses two main tables:
+
+1. **`ragdoll_searches`** - Stores search queries and metadata
+2. **`ragdoll_search_results`** - Junction table linking searches to returned embeddings
+
+```ruby
+# Search record with vector support for similarity analysis
+class Ragdoll::Search < ActiveRecord::Base
+  has_many :search_results, dependent: :destroy
+  has_many :embeddings, through: :search_results
+  
+  # Vector similarity support for finding similar searches
+  has_neighbors :query_embedding
+  
+  # Automatic tracking is enabled by default
+  def self.record_search(query:, query_embedding:, results:, **options)
+    search = create!(
+      query: query,
+      query_embedding: query_embedding,
+      search_type: options[:search_type] || 'semantic',
+      results_count: results.size,
+      search_filters: options[:filters],
+      search_options: options[:options],
+      execution_time_ms: options[:execution_time_ms],
+      session_id: options[:session_id],
+      user_id: options[:user_id]
+    )
+    
+    # Record individual results with similarity scores
+    results.each_with_index do |result, index|
+      search.search_results.create!(
+        embedding_id: result[:embedding_id],
+        similarity_score: result[:similarity],
+        result_rank: index + 1
+      )
+    end
+    
+    # Calculate and store similarity statistics
+    search.calculate_similarity_stats!
+    search
+  end
+end
+```
+
+### Automatic Search Tracking
+
+All searches are automatically tracked unless explicitly disabled:
+
+```ruby
+# Search with automatic tracking (default)
+results = client.search(
+  query: "machine learning algorithms",
+  session_id: "user_session_123",
+  user_id: "user_456"
+)
+
+# Disable tracking for specific searches
+results = client.search(
+  query: "private query",
+  track_search: false  # Disables tracking for this search
+)
+
+# Hybrid search with tracking
+results = client.hybrid_search(
+  query: "neural networks",
+  session_id: "session_789",
+  user_id: "user_456"
+)
+```
+
+### Search Result Tracking
+
+Each search result is tracked with detailed metrics:
+
+```ruby
+class Ragdoll::SearchResult < ActiveRecord::Base
+  belongs_to :search
+  belongs_to :embedding
+  
+  # Track user interactions
+  def mark_as_clicked!
+    update!(clicked: true, clicked_at: Time.current)
+  end
+  
+  # Analytics methods
+  scope :clicked, -> { where(clicked: true) }
+  scope :unclicked, -> { where(clicked: false) }
+  scope :high_similarity, ->(threshold) { where('similarity_score >= ?', threshold) }
+  scope :by_rank, -> { order(result_rank: :asc) }
+end
+```
+
+### Finding Similar Searches
+
+The system can identify similar searches using vector similarity:
+
+```ruby
+# Find searches similar to a given query
+similar_searches = Ragdoll::Search.find_similar(
+  query_embedding,
+  limit: 10,
+  threshold: 0.8
+)
+
+# Find searches similar to an existing search
+search = Ragdoll::Search.first
+similar = search.nearest_neighbors(:query_embedding, distance: :cosine).limit(5)
+
+# Analyze search patterns
+similar.each do |similar_search|
+  puts "Query: #{similar_search.query}"
+  puts "Similarity: #{similar_search.neighbor_distance}"
+  puts "Results: #{similar_search.results_count}"
+  puts "CTR: #{similar_search.click_through_rate}%"
+end
+```
+
+### Search Performance Metrics
+
+Track execution time and performance characteristics:
+
+```ruby
+# Search records include performance metrics
+search = Ragdoll::Search.last
+puts "Query: #{search.query}"
+puts "Execution time: #{search.execution_time_ms}ms"
+puts "Results returned: #{search.results_count}"
+puts "Avg similarity: #{search.avg_similarity_score}"
+puts "Search type: #{search.search_type}"
+
+# Analyze slow searches
+slow_searches = Ragdoll::Search.slow_searches(threshold_ms: 1000)
+slow_searches.each do |search|
+  puts "Slow query: #{search.query} (#{search.execution_time_ms}ms)"
+end
+```
+
+### Click-Through Rate (CTR) Analysis
+
+Monitor which searches lead to user engagement:
+
+```ruby
+# Calculate CTR for individual searches
+search = Ragdoll::Search.find(id)
+ctr = search.click_through_rate
+puts "CTR: #{ctr}%"
+
+# Analyze CTR by result rank
+rank_analysis = Ragdoll::SearchResult.rank_click_analysis
+rank_analysis.each do |rank, stats|
+  puts "Rank #{rank}: #{stats[:ctr]}% CTR (#{stats[:clicked]}/#{stats[:total]})"
+end
+
+# Find top performing embeddings
+top_embeddings = Ragdoll::SearchResult.top_performing_embeddings(limit: 10)
+top_embeddings.each do |embedding_stats|
+  puts "Embedding #{embedding_stats.embedding_id}:"
+  puts "  Appearances: #{embedding_stats.appearance_count}"
+  puts "  Clicks: #{embedding_stats.click_count}"
+  puts "  CTR: #{embedding_stats.ctr}%"
+  puts "  Avg Similarity: #{embedding_stats.avg_similarity}"
+end
+```
+
+### Cleanup and Maintenance
+
+The system includes automatic cleanup capabilities:
+
+```ruby
+# Remove orphaned searches (searches with no results)
+orphaned_count = Ragdoll::Search.cleanup_orphaned_searches
+puts "Cleaned up #{orphaned_count} orphaned searches"
+
+# Remove old unused searches
+cleaned_count = Ragdoll::Search.cleanup_old_unused_searches(days: 30)
+puts "Cleaned up #{cleaned_count} old unused searches"
+
+# Automatic cascade deletion
+# When documents are deleted, associated search results are automatically cleaned up
+# Empty searches (with no results) are automatically removed
+```
+
 ## Analytics and Reporting
 
 ### Search Analytics Dashboard
 
+With the comprehensive search tracking system, you can generate detailed analytics:
+
 ```ruby
-class SearchAnalytics
-  def self.dashboard_metrics(date_range = 30.days.ago..Time.current)
+# Generate analytics from tracked searches
+analytics = Ragdoll::Search.search_analytics(days: 30)
+
+puts "Search Analytics (Last 30 Days):"
+puts "  Total searches: #{analytics[:total_searches]}"
+puts "  Unique queries: #{analytics[:unique_queries]}"
+puts "  Avg results per search: #{analytics[:avg_results_per_search]}"
+puts "  Avg execution time: #{analytics[:avg_execution_time]}ms"
+puts "  Search types: #{analytics[:search_types]}"
+puts "  Searches with results: #{analytics[:searches_with_results]}"
+
+# Detailed search result analytics
+result_analytics = Ragdoll::SearchResult.analytics(days: 30)
+
+puts "Search Result Analytics:"
+puts "  Total results: #{result_analytics[:total_results]}"
+puts "  Clicked results: #{result_analytics[:clicked_results]}"
+puts "  CTR: #{result_analytics[:click_through_rate]}%"
+puts "  Avg similarity: #{result_analytics[:avg_similarity_score]}"
+puts "  High similarity results: #{result_analytics[:high_similarity_results]}"
+puts "  Low similarity results: #{result_analytics[:low_similarity_results]}"
+
+# Get popular searches
+popular = Ragdoll::Search.popular.limit(10)
+popular.each do |search|
+  puts "#{search.query} - #{search.results_count} results, #{search.click_through_rate}% CTR"
+end
+```
+
+### Enhanced Analytics Methods
+
+```ruby
+class Ragdoll::Search
+  # Comprehensive search analytics
+  def self.search_analytics(days: 30)
+    searches = where('created_at >= ?', days.days.ago)
+    
     {
-      total_searches: total_searches(date_range),
-      unique_queries: unique_queries(date_range),
-      top_queries: top_queries(date_range, limit: 10),
-      search_trends: search_trends(date_range),
-      content_type_distribution: content_type_distribution(date_range),
-      average_results_per_search: average_results_per_search(date_range),
-      user_engagement: user_engagement_metrics(date_range),
-      performance_metrics: performance_metrics(date_range)
+      total_searches: searches.count,
+      unique_queries: searches.distinct.count(:query),
+      avg_results_per_search: searches.average(:results_count) || 0.0,
+      avg_execution_time: searches.average(:execution_time_ms) || 0.0,
+      search_types: searches.group(:search_type).count,
+      searches_with_results: searches.with_results.count,
+      searches_without_results: searches.without_results.count,
+      avg_similarity_scores: {
+        max: searches.average(:max_similarity_score) || 0.0,
+        min: searches.average(:min_similarity_score) || 0.0,
+        avg: searches.average(:avg_similarity_score) || 0.0
+      },
+      session_count: searches.distinct.count(:session_id),
+      user_count: searches.distinct.count(:user_id)
     }
   end
   

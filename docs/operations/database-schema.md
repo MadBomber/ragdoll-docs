@@ -287,6 +287,96 @@ embedding.embeddable_type = 'ImageContent'
 }
 ```
 
+### Search Tracking Tables
+
+Ragdoll includes comprehensive search tracking capabilities with two additional tables for analytics and similarity analysis.
+
+#### Searches Table (`ragdoll_searches`)
+
+Stores all search queries with vector embeddings for similarity analysis and performance tracking.
+
+```sql
+CREATE TABLE ragdoll_searches (
+  id                    BIGINT PRIMARY KEY,
+  query                 TEXT NOT NULL,                    -- Original search query
+  query_embedding       VECTOR(1536) NOT NULL,            -- Query vector for similarity
+  search_type           VARCHAR DEFAULT 'semantic',       -- semantic, hybrid, fulltext
+  results_count         INTEGER DEFAULT 0,                -- Number of results returned
+  max_similarity_score  FLOAT,                            -- Highest similarity score
+  min_similarity_score  FLOAT,                            -- Lowest similarity score
+  avg_similarity_score  FLOAT,                            -- Average similarity score
+  search_filters        JSON DEFAULT '{}',                -- Applied filters
+  search_options        JSON DEFAULT '{}',                -- Search options used
+  execution_time_ms     INTEGER,                          -- Query execution time
+  session_id            VARCHAR,                          -- User session identifier
+  user_id               VARCHAR,                          -- User identifier
+  created_at           TIMESTAMP NOT NULL,
+  updated_at           TIMESTAMP NOT NULL
+);
+```
+
+**Key Features:**
+- Stores query embeddings for finding similar searches
+- Tracks performance metrics (execution time, result counts)
+- Records search configuration (filters, options, weights)
+- Links to user sessions for behavior analysis
+
+#### Search Results Table (`ragdoll_search_results`)
+
+Junction table linking searches to returned embeddings with engagement tracking.
+
+```sql
+CREATE TABLE ragdoll_search_results (
+  id                BIGINT PRIMARY KEY,
+  search_id         BIGINT NOT NULL REFERENCES ragdoll_searches(id) ON DELETE CASCADE,
+  embedding_id      BIGINT NOT NULL REFERENCES ragdoll_embeddings(id) ON DELETE CASCADE,
+  similarity_score  FLOAT NOT NULL,                  -- Similarity score for this result
+  result_rank       INTEGER NOT NULL,                -- Position in result list (1-based)
+  clicked           BOOLEAN DEFAULT FALSE,           -- User engagement tracking
+  clicked_at        TIMESTAMP,                       -- When result was clicked
+  created_at        TIMESTAMP NOT NULL,
+  updated_at        TIMESTAMP NOT NULL,
+  
+  UNIQUE(search_id, result_rank)                    -- One rank per search
+);
+```
+
+**Key Features:**
+- Tracks which embeddings were returned for each search
+- Records similarity scores and ranking positions
+- Monitors user engagement (click-through tracking)
+- Automatic cascade deletion when searches or embeddings are removed
+
+#### Search Tracking Indexes
+
+```sql
+-- Vector similarity search for finding similar queries
+CREATE INDEX idx_searches_query_embedding 
+  ON ragdoll_searches 
+  USING ivfflat (query_embedding vector_cosine_ops) 
+  WITH (lists = 100);
+
+-- Performance analysis indexes
+CREATE INDEX idx_searches_execution_time 
+  ON ragdoll_searches(execution_time_ms DESC);
+CREATE INDEX idx_searches_created_at 
+  ON ragdoll_searches(created_at DESC);
+CREATE INDEX idx_searches_session 
+  ON ragdoll_searches(session_id);
+CREATE INDEX idx_searches_user 
+  ON ragdoll_searches(user_id);
+
+-- Search results indexes
+CREATE INDEX idx_search_results_search 
+  ON ragdoll_search_results(search_id);
+CREATE INDEX idx_search_results_embedding_score 
+  ON ragdoll_search_results(embedding_id, similarity_score DESC);
+CREATE INDEX idx_search_results_clicked 
+  ON ragdoll_search_results(clicked, clicked_at DESC);
+```
+
+```
+
 ### PostgreSQL Extensions Table
 
 Ragdoll requires several PostgreSQL extensions enabled in the database:

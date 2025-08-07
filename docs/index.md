@@ -51,6 +51,20 @@ hide:
   </div>
 </div>
 
+## 🆕 What's New
+
+### Search Tracking System (v0.1.9)
+Ragdoll now includes comprehensive search tracking and analytics capabilities:
+
+- **Automatic Search Recording**: All searches are automatically tracked with query embeddings, execution times, and result metrics
+- **Search Similarity Analysis**: Find similar searches using vector similarity on query embeddings  
+- **Click-Through Tracking**: Monitor user engagement with search results
+- **Performance Analytics**: Track slow queries, execution times, and search patterns
+- **Session & User Tracking**: Associate searches with sessions and users for behavior analysis
+- **Automatic Cleanup**: Orphaned and old unused searches are automatically cleaned up
+
+[Learn more about Search Tracking →](user-guide/search-analytics.md#search-tracking-system)
+
 ## 📚 Documentation Overview
 
 ### Getting Started

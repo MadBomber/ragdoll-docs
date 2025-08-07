@@ -129,8 +129,12 @@ end
 ### 3. Search Your Document
 
 ```ruby
-# Search for content
-results = Ragdoll::Core.search(query: 'machine learning algorithms')
+# Search for content (automatically tracked)
+results = Ragdoll::Core.search(
+  query: 'machine learning algorithms',
+  session_id: 123,  # Optional: track user sessions
+  user_id:    456   # Optional: track by user
+)
 
 results.each do |result|
   puts "Score: #{result[:similarity_score]}"
@@ -138,6 +142,11 @@ results.each do |result|
   puts "Document: #{result[:document_title]}"
   puts "---"
 end
+
+# View search analytics
+analytics = Ragdoll::Search.search_analytics(days: 1)
+puts "Searches today: #{analytics[:total_searches]}"
+puts "Avg execution time: #{analytics[:avg_execution_time]}ms"
 ```
 
 ### 4. Use RAG Enhancement
