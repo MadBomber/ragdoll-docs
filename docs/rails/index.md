@@ -52,9 +52,11 @@ Add to your Gemfile:
 gem 'ragdoll-rails'
 ```
 
-Run the installer:
+Run the initializer and install migrations:
 ```bash
-rails generate ragdoll:install
+rails generate ragdoll:init
+rails ragdoll:install:migrations
+rails db:migrate
 ```
 
 Mount the engine:

@@ -29,19 +29,29 @@ bundle install
 
 ### 3. Run the Generator
 
-The installer generator sets up the basic configuration:
+The initializer generator sets up the basic configuration:
 
 ```bash
-rails generate ragdoll:install
+rails generate ragdoll:init
 ```
 
 This creates:
-- Configuration files
-- Database migrations
-- Routes
-- Initializers
+- Configuration initializer file
+- Setup instructions
 
-### 4. Configure Database
+### 4. Install Migrations
+
+Copy the database migrations from the ragdoll engine:
+
+```bash
+rails ragdoll:install:migrations
+```
+
+This copies:
+- Database migrations for documents, embeddings, and content tables
+- PostgreSQL extension setup
+
+### 5. Configure Database
 
 Ensure PostgreSQL with pgvector is set up:
 
@@ -50,18 +60,18 @@ Ensure PostgreSQL with pgvector is set up:
 psql your_database -c "CREATE EXTENSION IF NOT EXISTS vector;"
 ```
 
-### 5. Run Migrations
+### 6. Run Migrations
 
 ```bash
 rails db:migrate
 ```
 
-### 6. Configure LLM Provider
+### 7. Configure LLM Provider
 
 Edit the generated configuration:
 
 ```ruby
-# config/initializers/ragdoll.rb
+# config/initializers/ragdoll_config.rb
 Ragdoll.configure do |config|
   config.llm_provider = :openai
   config.openai_api_key = Rails.application.credentials.openai_api_key
@@ -70,7 +80,7 @@ Ragdoll.configure do |config|
 end
 ```
 
-### 7. Mount the Engine
+### 8. Mount the Engine
 
 Add to your routes file:
 
