@@ -1208,36 +1208,45 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-configure-database" class="md-nav__link">
+  <a href="#4-install-migrations" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Configure Database
+      4. Install Migrations
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-run-migrations" class="md-nav__link">
+  <a href="#5-configure-database" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Run Migrations
+      5. Configure Database
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-configure-llm-provider" class="md-nav__link">
+  <a href="#6-run-migrations" class="md-nav__link">
     <span class="md-ellipsis">
-      6. Configure LLM Provider
+      6. Run Migrations
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#7-mount-the-engine" class="md-nav__link">
+  <a href="#7-configure-llm-provider" class="md-nav__link">
     <span class="md-ellipsis">
-      7. Mount the Engine
+      7. Configure LLM Provider
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-mount-the-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Mount the Engine
     </span>
   </a>
   
@@ -2527,36 +2536,45 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-configure-database" class="md-nav__link">
+  <a href="#4-install-migrations" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Configure Database
+      4. Install Migrations
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-run-migrations" class="md-nav__link">
+  <a href="#5-configure-database" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Run Migrations
+      5. Configure Database
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-configure-llm-provider" class="md-nav__link">
+  <a href="#6-run-migrations" class="md-nav__link">
     <span class="md-ellipsis">
-      6. Configure LLM Provider
+      6. Run Migrations
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#7-mount-the-engine" class="md-nav__link">
+  <a href="#7-configure-llm-provider" class="md-nav__link">
     <span class="md-ellipsis">
-      7. Mount the Engine
+      7. Configure LLM Provider
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-mount-the-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Mount the Engine
     </span>
   </a>
   
@@ -2935,311 +2953,316 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>bundle<span class="w"> </span>install
 </span></code></pre></div>
 <h3 id="3-run-the-generator">3. Run the Generator<a class="headerlink" href="#3-run-the-generator" title="Permanent link">&para;</a></h3>
-<p>The installer generator sets up the basic configuration:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>rails<span class="w"> </span>generate<span class="w"> </span>ragdoll:install
+<p>The initializer generator sets up the basic configuration:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>rails<span class="w"> </span>generate<span class="w"> </span>ragdoll:init
 </span></code></pre></div>
 <p>This creates:
-- Configuration files
-- Database migrations
-- Routes
-- Initializers</p>
-<h3 id="4-configure-database">4. Configure Database<a class="headerlink" href="#4-configure-database" title="Permanent link">&para;</a></h3>
+- Configuration initializer file
+- Setup instructions</p>
+<h3 id="4-install-migrations">4. Install Migrations<a class="headerlink" href="#4-install-migrations" title="Permanent link">&para;</a></h3>
+<p>Copy the database migrations from the ragdoll engine:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>rails<span class="w"> </span>ragdoll:install:migrations
+</span></code></pre></div>
+<p>This copies:
+- Database migrations for documents, embeddings, and content tables
+- PostgreSQL extension setup</p>
+<h3 id="5-configure-database">5. Configure Database<a class="headerlink" href="#5-configure-database" title="Permanent link">&para;</a></h3>
 <p>Ensure PostgreSQL with pgvector is set up:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Install pgvector extension</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>psql<span class="w"> </span>your_database<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;CREATE EXTENSION IF NOT EXISTS vector;&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Install pgvector extension</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>psql<span class="w"> </span>your_database<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;CREATE EXTENSION IF NOT EXISTS vector;&quot;</span>
 </span></code></pre></div>
-<h3 id="5-run-migrations">5. Run Migrations<a class="headerlink" href="#5-run-migrations" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>rails<span class="w"> </span>db:migrate
+<h3 id="6-run-migrations">6. Run Migrations<a class="headerlink" href="#6-run-migrations" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>rails<span class="w"> </span>db:migrate
 </span></code></pre></div>
-<h3 id="6-configure-llm-provider">6. Configure LLM Provider<a class="headerlink" href="#6-configure-llm-provider" title="Permanent link">&para;</a></h3>
+<h3 id="7-configure-llm-provider">7. Configure LLM Provider<a class="headerlink" href="#7-configure-llm-provider" title="Permanent link">&para;</a></h3>
 <p>Edit the generated configuration:</p>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># config/initializers/ragdoll.rb</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">llm_provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:openai</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">openai_api_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">openai_api_key</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">default_embedding_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;text-embedding-3-small&quot;</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">default_chat_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;gpt-4&quot;</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">end</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># config/initializers/ragdoll_config.rb</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">llm_provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:openai</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">openai_api_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">openai_api_key</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">default_embedding_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;text-embedding-3-small&quot;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">default_chat_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;gpt-4&quot;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">end</span>
 </span></code></pre></div>
-<h3 id="7-mount-the-engine">7. Mount the Engine<a class="headerlink" href="#7-mount-the-engine" title="Permanent link">&para;</a></h3>
+<h3 id="8-mount-the-engine">8. Mount the Engine<a class="headerlink" href="#8-mount-the-engine" title="Permanent link">&para;</a></h3>
 <p>Add to your routes file:</p>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># config/routes.rb</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="n">mount</span><span class="w"> </span><span class="no">Ragdoll</span><span class="o">::</span><span class="no">Engine</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;/ragdoll&#39;</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="c1"># Your other routes...</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">end</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># config/routes.rb</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="n">mount</span><span class="w"> </span><span class="no">Ragdoll</span><span class="o">::</span><span class="no">Engine</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;/ragdoll&#39;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="c1"># Your other routes...</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">end</span>
 </span></code></pre></div>
 <h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Permanent link">&para;</a></h2>
 <h3 id="basic-configuration">Basic Configuration<a class="headerlink" href="#basic-configuration" title="Permanent link">&para;</a></h3>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># config/initializers/ragdoll.rb</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="c1"># LLM Provider Settings</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">llm_provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:openai</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">openai_api_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">openai_api_key</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">openai_base_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://api.openai.com/v1&quot;</span><span class="w"> </span><span class="c1"># Optional</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="c1"># Model Settings</span>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">default_embedding_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;text-embedding-3-small&quot;</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">default_chat_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;gpt-4&quot;</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">embedding_dimensions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1536</span>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">  </span><span class="c1"># Processing Settings</span>
-</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">chunk_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span>
-</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">chunk_overlap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span>
-</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">max_file_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="o">.</span><span class="n">megabytes</span>
-</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>
-</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">  </span><span class="c1"># Search Settings</span>
-</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">default_search_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
-</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">similarity_threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">.</span><span class="mi">7</span>
-</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>
-</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">  </span><span class="c1"># Background Job Settings</span>
-</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">processing_queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:ragdoll</span>
-</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">job_adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:sidekiq</span><span class="w"> </span><span class="c1"># or :resque, :delayed_job</span>
-</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="k">end</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># config/initializers/ragdoll.rb</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="c1"># LLM Provider Settings</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">llm_provider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:openai</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">openai_api_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">openai_api_key</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">openai_base_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;https://api.openai.com/v1&quot;</span><span class="w"> </span><span class="c1"># Optional</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="c1"># Model Settings</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">default_embedding_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;text-embedding-3-small&quot;</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">default_chat_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;gpt-4&quot;</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">embedding_dimensions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1536</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">  </span><span class="c1"># Processing Settings</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">chunk_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">chunk_overlap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">max_file_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="o">.</span><span class="n">megabytes</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">  </span><span class="c1"># Search Settings</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">default_search_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">similarity_threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">.</span><span class="mi">7</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">  </span><span class="c1"># Background Job Settings</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">processing_queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:ragdoll</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">job_adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:sidekiq</span><span class="w"> </span><span class="c1"># or :resque, :delayed_job</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="k">end</span>
 </span></code></pre></div>
 <h3 id="environment-specific-configuration">Environment-Specific Configuration<a class="headerlink" href="#environment-specific-configuration" title="Permanent link">&para;</a></h3>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># config/environments/development.rb</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">config</span><span class="o">.</span><span class="n">after_initialize</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">ragdoll</span><span class="o">|</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="n">ragdoll</span><span class="o">.</span><span class="n">log_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:debug</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="n">ragdoll</span><span class="o">.</span><span class="n">async_processing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">false</span><span class="w"> </span><span class="c1"># Process immediately in development</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="k">end</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="k">end</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1"># config/environments/production.rb</span>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="n">config</span><span class="o">.</span><span class="n">after_initialize</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">ragdoll</span><span class="o">|</span>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="n">ragdoll</span><span class="o">.</span><span class="n">log_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:info</span>
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">    </span><span class="n">ragdoll</span><span class="o">.</span><span class="n">async_processing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">true</span>
-</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">    </span><span class="n">ragdoll</span><span class="o">.</span><span class="n">processing_queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:ragdoll_production</span>
-</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">  </span><span class="k">end</span>
-</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="k">end</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># config/environments/development.rb</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">config</span><span class="o">.</span><span class="n">after_initialize</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">ragdoll</span><span class="o">|</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="n">ragdoll</span><span class="o">.</span><span class="n">log_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:debug</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="n">ragdoll</span><span class="o">.</span><span class="n">async_processing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">false</span><span class="w"> </span><span class="c1"># Process immediately in development</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="k">end</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1"># config/environments/production.rb</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="n">config</span><span class="o">.</span><span class="n">after_initialize</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">  </span><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">ragdoll</span><span class="o">|</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="n">ragdoll</span><span class="o">.</span><span class="n">log_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:info</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">    </span><span class="n">ragdoll</span><span class="o">.</span><span class="n">async_processing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">true</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">    </span><span class="n">ragdoll</span><span class="o">.</span><span class="n">processing_queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:ragdoll_production</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="k">end</span>
 </span></code></pre></div>
 <h2 id="background-job-setup">Background Job Setup<a class="headerlink" href="#background-job-setup" title="Permanent link">&para;</a></h2>
 <h3 id="sidekiq-setup">Sidekiq Setup<a class="headerlink" href="#sidekiq-setup" title="Permanent link">&para;</a></h3>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Gemfile</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">gem</span><span class="w"> </span><span class="s1">&#39;sidekiq&#39;</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># config/application.rb</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">config</span><span class="o">.</span><span class="n">active_job</span><span class="o">.</span><span class="n">queue_adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:sidekiq</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># config/initializers/sidekiq.rb</span>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="no">Sidekiq</span><span class="o">.</span><span class="n">configure_server</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">redis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="no">ENV</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;REDIS_URL&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;redis://localhost:6379/0&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="k">end</span>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="no">Sidekiq</span><span class="o">.</span><span class="n">configure_client</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">redis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="no">ENV</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;REDIS_URL&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;redis://localhost:6379/0&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="k">end</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Gemfile</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">gem</span><span class="w"> </span><span class="s1">&#39;sidekiq&#39;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># config/application.rb</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">config</span><span class="o">.</span><span class="n">active_job</span><span class="o">.</span><span class="n">queue_adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:sidekiq</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># config/initializers/sidekiq.rb</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="no">Sidekiq</span><span class="o">.</span><span class="n">configure_server</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">redis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="no">ENV</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;REDIS_URL&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;redis://localhost:6379/0&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="k">end</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="no">Sidekiq</span><span class="o">.</span><span class="n">configure_client</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">redis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="no">ENV</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;REDIS_URL&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;redis://localhost:6379/0&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="k">end</span>
 </span></code></pre></div>
 <h3 id="queue-configuration">Queue Configuration<a class="headerlink" href="#queue-configuration" title="Permanent link">&para;</a></h3>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># config/initializers/ragdoll.rb</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">processing_queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:ragdoll</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">embedding_queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:ragdoll_embeddings</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">indexing_queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:ragdoll_indexing</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">end</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># config/initializers/ragdoll.rb</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">processing_queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:ragdoll</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">embedding_queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:ragdoll_embeddings</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">indexing_queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:ragdoll_indexing</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="k">end</span>
 </span></code></pre></div>
 <h2 id="asset-pipeline-setup">Asset Pipeline Setup<a class="headerlink" href="#asset-pipeline-setup" title="Permanent link">&para;</a></h2>
 <h3 id="sprockets-rails-67">Sprockets (Rails 6/7)<a class="headerlink" href="#sprockets-rails-67" title="Permanent link">&para;</a></h3>
-<div class="language-javascript highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// app/assets/javascripts/application.js</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1">//= require ragdoll/application</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1">// app/assets/stylesheets/application.css</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="o">*=</span><span class="w"> </span><span class="nx">require</span><span class="w"> </span><span class="nx">ragdoll</span><span class="o">/</span><span class="nx">application</span>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">// app/assets/javascripts/application.js</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c1">//= require ragdoll/application</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1">// app/assets/stylesheets/application.css</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="o">*=</span><span class="w"> </span><span class="nx">require</span><span class="w"> </span><span class="nx">ragdoll</span><span class="o">/</span><span class="nx">application</span>
 </span></code></pre></div>
 <h3 id="webpackershakapacker">Webpacker/Shakapacker<a class="headerlink" href="#webpackershakapacker" title="Permanent link">&para;</a></h3>
-<div class="language-javascript highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">// app/javascript/packs/application.js</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;ragdoll/application&#39;</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1">// app/assets/stylesheets/application.scss</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="err">@</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;ragdoll/application&#39;</span><span class="p">;</span>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1">// app/javascript/packs/application.js</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;ragdoll/application&#39;</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1">// app/assets/stylesheets/application.scss</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="err">@</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;ragdoll/application&#39;</span><span class="p">;</span>
 </span></code></pre></div>
 <h2 id="database-configuration">Database Configuration<a class="headerlink" href="#database-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="postgresql-with-pgvector">PostgreSQL with pgvector<a class="headerlink" href="#postgresql-with-pgvector" title="Permanent link">&para;</a></h3>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># config/database.yml</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;default</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="nt">adapter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql</span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="nt">encoding</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unicode</span>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span><span class="nt">pool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;%= ENV.fetch(&quot;RAILS_MAX_THREADS&quot;) { 5 } %&gt;</span>
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="nt">development</span><span class="p">:</span>
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">  </span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nv">*default</span>
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">  </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp_development</span>
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">  </span><span class="c1"># Ensure pgvector extension is available</span>
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
-</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="nt">production</span><span class="p">:</span>
-</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">  </span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nv">*default</span>
-</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">  </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp_production</span>
-</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;%= ENV[&#39;DATABASE_URL&#39;] %&gt;</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># config/database.yml</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="nl">&amp;default</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="nt">adapter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span><span class="nt">encoding</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unicode</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">  </span><span class="nt">pool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;%= ENV.fetch(&quot;RAILS_MAX_THREADS&quot;) { 5 } %&gt;</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="nt">development</span><span class="p">:</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">  </span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nv">*default</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">  </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp_development</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">  </span><span class="c1"># Ensure pgvector extension is available</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="nt">production</span><span class="p">:</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">  </span><span class="nt">&lt;&lt;</span><span class="p">:</span><span class="w"> </span><span class="nv">*default</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">  </span><span class="nt">database</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp_production</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;%= ENV[&#39;DATABASE_URL&#39;] %&gt;</span>
 </span></code></pre></div>
 <h3 id="migration-customization">Migration Customization<a class="headerlink" href="#migration-customization" title="Permanent link">&para;</a></h3>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Override default migration if needed</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">CustomRagdollSetup</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="o">[</span><span class="mi">7</span><span class="o">.</span><span class="mi">0</span><span class="o">]</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">change</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="c1"># Enable pgvector extension</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="n">enable_extension</span><span class="w"> </span><span class="s1">&#39;vector&#39;</span>
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="c1"># Run standard Ragdoll migrations</span>
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="no">Ragdoll</span><span class="o">::</span><span class="no">InstallGenerator</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">create_migrations</span>
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
-</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">    </span><span class="c1"># Add custom indexes or modifications</span>
-</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">    </span><span class="n">add_index</span><span class="w"> </span><span class="ss">:ragdoll_documents</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="ss">:user_id</span><span class="p">,</span><span class="w"> </span><span class="ss">:created_at</span><span class="o">]</span>
-</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">  </span><span class="k">end</span>
-</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="k">end</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Override default migration if needed</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">CustomRagdollSetup</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span><span class="o">[</span><span class="mi">7</span><span class="o">.</span><span class="mi">0</span><span class="o">]</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">change</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="c1"># Enable pgvector extension</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="n">enable_extension</span><span class="w"> </span><span class="s1">&#39;vector&#39;</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">    </span><span class="c1"># Run standard Ragdoll migrations</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">    </span><span class="no">Ragdoll</span><span class="o">::</span><span class="no">InstallGenerator</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">create_migrations</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="c1"># Add custom indexes or modifications</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">    </span><span class="n">add_index</span><span class="w"> </span><span class="ss">:ragdoll_documents</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="ss">:user_id</span><span class="p">,</span><span class="w"> </span><span class="ss">:created_at</span><span class="o">]</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="k">end</span>
 </span></code></pre></div>
 <h2 id="security-configuration">Security Configuration<a class="headerlink" href="#security-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="strong-parameters">Strong Parameters<a class="headerlink" href="#strong-parameters" title="Permanent link">&para;</a></h3>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># config/initializers/ragdoll.rb</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span><span class="c1"># Permitted file types</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">allowed_file_types</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sx">%w[.pdf .doc .docx .txt .md .html]</span>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span><span class="c1"># Maximum file size</span>
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">max_file_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="o">.</span><span class="n">megabytes</span>
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
-</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">  </span><span class="c1"># Content security</span>
-</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">sanitize_content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">true</span>
-</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">extract_metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">true</span>
-</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="k">end</span>
-</span></code></pre></div>
-<h3 id="authentication-integration">Authentication Integration<a class="headerlink" href="#authentication-integration" title="Permanent link">&para;</a></h3>
 <div class="language-ruby highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># config/initializers/ragdoll.rb</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="c1"># Integrate with your authentication system</span>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">current_user_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:current_user</span>
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">authenticate_user_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:authenticate_user!</span>
-</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span><span class="c1"># Authorization</span>
-</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">authorize_document_access</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-&gt;</span><span class="p">(</span><span class="n">document</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">    </span><span class="n">document</span><span class="o">.</span><span class="n">user</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">admin?</span>
-</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="k">end</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="c1"># Permitted file types</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">allowed_file_types</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sx">%w[.pdf .doc .docx .txt .md .html]</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">  </span><span class="c1"># Maximum file size</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">max_file_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="o">.</span><span class="n">megabytes</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">  </span><span class="c1"># Content security</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">sanitize_content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">true</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">extract_metadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">true</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="k">end</span>
+</span></code></pre></div>
+<h3 id="authentication-integration">Authentication Integration<a class="headerlink" href="#authentication-integration" title="Permanent link">&para;</a></h3>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># config/initializers/ragdoll.rb</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span><span class="c1"># Integrate with your authentication system</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">current_user_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:current_user</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">authenticate_user_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:authenticate_user!</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">  </span><span class="c1"># Authorization</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">authorize_document_access</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-&gt;</span><span class="p">(</span><span class="n">document</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span><span class="n">document</span><span class="o">.</span><span class="n">user</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">user</span><span class="o">.</span><span class="n">admin?</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="k">end</span>
 </span></code></pre></div>
 <h2 id="file-storage-configuration">File Storage Configuration<a class="headerlink" href="#file-storage-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="active-storage-setup">Active Storage Setup<a class="headerlink" href="#active-storage-setup" title="Permanent link">&para;</a></h3>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># config/storage.yml</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="ss">local</span><span class="p">:</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span><span class="ss">service</span><span class="p">:</span><span class="w"> </span><span class="no">Disk</span>
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="ss">root</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="sx">%= Rails.root.join(&quot;storage&quot;) %&gt;</span>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="sx">production:</span>
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="sx">  service: S3</span>
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="sx">  access_key_id: &lt;%=</span><span class="w"> </span><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">aws</span><span class="o">[</span><span class="ss">:access_key_id</span><span class="o">]</span><span class="w"> </span><span class="sx">%&gt;</span>
-</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="sx">  secret_access_key: &lt;%= Rails.application.credentials.aws[:secret_access_key] %&gt;</span>
-</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">  </span><span class="ss">region</span><span class="p">:</span><span class="w"> </span><span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mi">1</span>
-</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">  </span><span class="ss">bucket</span><span class="p">:</span><span class="w"> </span><span class="n">your</span><span class="o">-</span><span class="n">bucket</span><span class="o">-</span><span class="nb">name</span>
-</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>
-</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="c1"># config/environments/production.rb</span>
-</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="n">config</span><span class="o">.</span><span class="n">active_storage</span><span class="o">.</span><span class="n">variant_processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:mini_magick</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># config/storage.yml</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="ss">local</span><span class="p">:</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="ss">service</span><span class="p">:</span><span class="w"> </span><span class="no">Disk</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span><span class="ss">root</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="sx">%= Rails.root.join(&quot;storage&quot;) %&gt;</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="sx">production:</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="sx">  service: S3</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="sx">  access_key_id: &lt;%=</span><span class="w"> </span><span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">aws</span><span class="o">[</span><span class="ss">:access_key_id</span><span class="o">]</span><span class="w"> </span><span class="sx">%&gt;</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="sx">  secret_access_key: &lt;%= Rails.application.credentials.aws[:secret_access_key] %&gt;</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">  </span><span class="ss">region</span><span class="p">:</span><span class="w"> </span><span class="n">us</span><span class="o">-</span><span class="n">east</span><span class="o">-</span><span class="mi">1</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">  </span><span class="ss">bucket</span><span class="p">:</span><span class="w"> </span><span class="n">your</span><span class="o">-</span><span class="n">bucket</span><span class="o">-</span><span class="nb">name</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="c1"># config/environments/production.rb</span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="n">config</span><span class="o">.</span><span class="n">active_storage</span><span class="o">.</span><span class="n">variant_processor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:mini_magick</span>
 </span></code></pre></div>
 <h3 id="storage-configuration">Storage Configuration<a class="headerlink" href="#storage-configuration" title="Permanent link">&para;</a></h3>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># config/initializers/ragdoll.rb</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="c1"># File storage options</span>
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">storage_service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:local</span><span class="w"> </span><span class="c1"># or :s3, :gcs, etc.</span>
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">preserve_original_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">true</span>
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">generate_thumbnails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">true</span>
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">thumbnail_sizes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="ss">small</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;150x150&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">medium</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;300x300&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">large</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;600x600&#39;</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="k">end</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># config/initializers/ragdoll.rb</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span><span class="c1"># File storage options</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">storage_service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:local</span><span class="w"> </span><span class="c1"># or :s3, :gcs, etc.</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">preserve_original_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">true</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">generate_thumbnails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">true</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">thumbnail_sizes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="ss">small</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;150x150&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">medium</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;300x300&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">large</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;600x600&#39;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="k">end</span>
 </span></code></pre></div>
 <h2 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h2>
 <h3 id="test-the-installation">Test the Installation<a class="headerlink" href="#test-the-installation" title="Permanent link">&para;</a></h3>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># In Rails console</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">rails</span><span class="w"> </span><span class="n">console</span>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># Test configuration</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">llm_provider</span>
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="c1"># =&gt; :openai</span>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="c1"># Test model creation</span>
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Ragdoll</span><span class="o">::</span><span class="no">Document</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span>
-</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">  </span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Test Document&quot;</span><span class="p">,</span>
-</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">  </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is a test document for verification.&quot;</span>
-</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="p">)</span>
-</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>
-</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="c1"># Test search</span>
-</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="no">Ragdoll</span><span class="o">::</span><span class="no">Document</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># In Rails console</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">rails</span><span class="w"> </span><span class="n">console</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># Test configuration</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">llm_provider</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="c1"># =&gt; :openai</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="c1"># Test model creation</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Ragdoll</span><span class="o">::</span><span class="no">Document</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">  </span><span class="ss">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Test Document&quot;</span><span class="p">,</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">  </span><span class="ss">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;This is a test document for verification.&quot;</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="p">)</span>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="c1"># Test search</span>
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="no">Ragdoll</span><span class="o">::</span><span class="no">Document</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="health-check">Health Check<a class="headerlink" href="#health-check" title="Permanent link">&para;</a></h3>
 <p>Create a health check endpoint:</p>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># config/routes.rb</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">get</span><span class="w"> </span><span class="s1">&#39;/health/ragdoll&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;health#ragdoll&#39;</span>
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># app/controllers/health_controller.rb</span>
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">HealthController</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationController</span>
-</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">ragdoll</span>
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">    </span><span class="n">checks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">      </span><span class="ss">database</span><span class="p">:</span><span class="w"> </span><span class="n">check_database</span><span class="p">,</span>
-</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">      </span><span class="ss">llm_provider</span><span class="p">:</span><span class="w"> </span><span class="n">check_llm_provider</span><span class="p">,</span>
-</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">      </span><span class="ss">background_jobs</span><span class="p">:</span><span class="w"> </span><span class="n">check_background_jobs</span>
-</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>
-</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="w">    </span><span class="n">render</span><span class="w"> </span><span class="ss">json</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="n">checks</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">all?</span><span class="w"> </span><span class="p">?</span><span class="w"> </span><span class="s1">&#39;healthy&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;unhealthy&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">checks</span><span class="p">:</span><span class="w"> </span><span class="n">checks</span><span class="w"> </span><span class="p">}</span>
-</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="w">  </span><span class="k">end</span>
-</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>
-</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="w">  </span><span class="kp">private</span>
-</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>
-</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">check_database</span>
-</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="w">    </span><span class="no">Ragdoll</span><span class="o">::</span><span class="no">Document</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">active?</span>
-</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="w">  </span><span class="k">rescue</span>
-</span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a><span class="w">    </span><span class="kp">false</span>
-</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a><span class="w">  </span><span class="k">end</span>
-</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>
-</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">check_llm_provider</span>
-</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a><span class="w">    </span><span class="no">Ragdoll</span><span class="o">::</span><span class="no">LLMService</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">health_check</span>
-</span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a><span class="w">  </span><span class="k">rescue</span>
-</span><span id="__span-20-27"><a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a><span class="w">    </span><span class="kp">false</span>
-</span><span id="__span-20-28"><a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a><span class="w">  </span><span class="k">end</span>
-</span><span id="__span-20-29"><a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>
-</span><span id="__span-20-30"><a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">check_background_jobs</span>
-</span><span id="__span-20-31"><a id="__codelineno-20-31" name="__codelineno-20-31" href="#__codelineno-20-31"></a><span class="w">    </span><span class="no">Sidekiq</span><span class="o">.</span><span class="n">redis</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:ping</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;PONG&#39;</span>
-</span><span id="__span-20-32"><a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a><span class="w">  </span><span class="k">rescue</span>
-</span><span id="__span-20-33"><a id="__codelineno-20-33" name="__codelineno-20-33" href="#__codelineno-20-33"></a><span class="w">    </span><span class="kp">false</span>
-</span><span id="__span-20-34"><a id="__codelineno-20-34" name="__codelineno-20-34" href="#__codelineno-20-34"></a><span class="w">  </span><span class="k">end</span>
-</span><span id="__span-20-35"><a id="__codelineno-20-35" name="__codelineno-20-35" href="#__codelineno-20-35"></a><span class="k">end</span>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># config/routes.rb</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">get</span><span class="w"> </span><span class="s1">&#39;/health/ragdoll&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;health#ragdoll&#39;</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># app/controllers/health_controller.rb</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">HealthController</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="no">ApplicationController</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">ragdoll</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">    </span><span class="n">checks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">      </span><span class="ss">database</span><span class="p">:</span><span class="w"> </span><span class="n">check_database</span><span class="p">,</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="w">      </span><span class="ss">llm_provider</span><span class="p">:</span><span class="w"> </span><span class="n">check_llm_provider</span><span class="p">,</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="w">      </span><span class="ss">background_jobs</span><span class="p">:</span><span class="w"> </span><span class="n">check_background_jobs</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="w">    </span><span class="n">render</span><span class="w"> </span><span class="ss">json</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="ss">status</span><span class="p">:</span><span class="w"> </span><span class="n">checks</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">all?</span><span class="w"> </span><span class="p">?</span><span class="w"> </span><span class="s1">&#39;healthy&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;unhealthy&#39;</span><span class="p">,</span><span class="w"> </span><span class="ss">checks</span><span class="p">:</span><span class="w"> </span><span class="n">checks</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="w">  </span><span class="kp">private</span>
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">check_database</span>
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="w">    </span><span class="no">Ragdoll</span><span class="o">::</span><span class="no">Document</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">active?</span>
+</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="w">  </span><span class="k">rescue</span>
+</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="w">    </span><span class="kp">false</span>
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>
+</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">check_llm_provider</span>
+</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a><span class="w">    </span><span class="no">Ragdoll</span><span class="o">::</span><span class="no">LLMService</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">health_check</span>
+</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a><span class="w">  </span><span class="k">rescue</span>
+</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a><span class="w">    </span><span class="kp">false</span>
+</span><span id="__span-21-28"><a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>
+</span><span id="__span-21-30"><a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a><span class="w">  </span><span class="k">def</span><span class="w"> </span><span class="nf">check_background_jobs</span>
+</span><span id="__span-21-31"><a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a><span class="w">    </span><span class="no">Sidekiq</span><span class="o">.</span><span class="n">redis</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:ping</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;PONG&#39;</span>
+</span><span id="__span-21-32"><a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a><span class="w">  </span><span class="k">rescue</span>
+</span><span id="__span-21-33"><a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a><span class="w">    </span><span class="kp">false</span>
+</span><span id="__span-21-34"><a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a><span class="w">  </span><span class="k">end</span>
+</span><span id="__span-21-35"><a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a><span class="k">end</span>
 </span></code></pre></div>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <h3 id="common-issues">Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h3>
 <h4 id="pgvector-extension-missing">pgvector Extension Missing<a class="headerlink" href="#pgvector-extension-missing" title="Permanent link">&para;</a></h4>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Install on Ubuntu/Debian</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>postgresql-14-pgvector
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># Install on macOS with Homebrew</span>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>brew<span class="w"> </span>install<span class="w"> </span>pgvector
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="c1"># Enable in database</span>
-</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>psql<span class="w"> </span>your_database<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;CREATE EXTENSION vector;&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Install on Ubuntu/Debian</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>postgresql-14-pgvector
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># Install on macOS with Homebrew</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>brew<span class="w"> </span>install<span class="w"> </span>pgvector
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="c1"># Enable in database</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>psql<span class="w"> </span>your_database<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;CREATE EXTENSION vector;&quot;</span>
 </span></code></pre></div>
 <h4 id="asset-compilation-issues">Asset Compilation Issues<a class="headerlink" href="#asset-compilation-issues" title="Permanent link">&para;</a></h4>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Precompile assets</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>rails<span class="w"> </span>assets:precompile
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># Clear asset cache</span>
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>rails<span class="w"> </span>assets:clobber
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Precompile assets</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>rails<span class="w"> </span>assets:precompile
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1"># Clear asset cache</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>rails<span class="w"> </span>assets:clobber
 </span></code></pre></div>
 <h4 id="background-job-issues">Background Job Issues<a class="headerlink" href="#background-job-issues" title="Permanent link">&para;</a></h4>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Check Sidekiq status</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>bundle<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>sidekiq
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
-</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1"># Monitor queues</span>
-</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>bundle<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>sidekiq-web
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Check Sidekiq status</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>bundle<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>sidekiq
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># Monitor queues</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>bundle<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>sidekiq-web
 </span></code></pre></div>
 <h3 id="configuration-validation">Configuration Validation<a class="headerlink" href="#configuration-validation" title="Permanent link">&para;</a></h3>
-<div class="language-ruby highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># config/initializers/ragdoll.rb</span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span><span class="c1"># ... your configuration</span>
-</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>
-</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">  </span><span class="c1"># Validate configuration on startup</span>
-</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">validate_on_startup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">true</span>
-</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="k">end</span>
-</span></code></pre></div>
-<h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
 <div class="language-ruby highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># config/initializers/ragdoll.rb</span>
 </span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Rails</span><span class="o">.</span><span class="n">logger</span>
-</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">log_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">production?</span><span class="w"> </span><span class="p">?</span><span class="w"> </span><span class="ss">:info</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="ss">:debug</span>
-</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="k">end</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">  </span><span class="c1"># ... your configuration</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">  </span><span class="c1"># Validate configuration on startup</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">validate_on_startup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kp">true</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="k">end</span>
+</span></code></pre></div>
+<h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># config/initializers/ragdoll.rb</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="no">Ragdoll</span><span class="o">.</span><span class="n">configure</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">logger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Rails</span><span class="o">.</span><span class="n">logger</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">  </span><span class="n">config</span><span class="o">.</span><span class="n">log_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">production?</span><span class="w"> </span><span class="p">?</span><span class="w"> </span><span class="ss">:info</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="ss">:debug</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="k">end</span>
 </span></code></pre></div>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <ul>

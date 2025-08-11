@@ -2307,8 +2307,10 @@
 <p>Add to your Gemfile:
 <div class="language-ruby highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">gem</span><span class="w"> </span><span class="s1">&#39;ragdoll-rails&#39;</span>
 </span></code></pre></div></p>
-<p>Run the installer:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>rails<span class="w"> </span>generate<span class="w"> </span>ragdoll:install
+<p>Run the initializer and install migrations:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>rails<span class="w"> </span>generate<span class="w"> </span>ragdoll:init
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>rails<span class="w"> </span>ragdoll:install:migrations
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>rails<span class="w"> </span>db:migrate
 </span></code></pre></div></p>
 <p>Mount the engine:
 <div class="language-ruby highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># config/routes.rb</span>
