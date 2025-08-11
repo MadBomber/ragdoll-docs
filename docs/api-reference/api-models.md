@@ -82,6 +82,14 @@ document.generate_metadata!         # Generate LLM-based metadata
 # PostgreSQL full-text search
 Document.search_content("machine learning")
 
+# Keywords search (array overlap - finds documents with any matching keywords)
+Document.search_by_keywords(['machine', 'learning', 'ai'])
+# Returns documents with keywords_match_count attribute
+
+# Keywords search (array contains - finds documents with ALL keywords)
+Document.search_by_keywords_all(['python', 'programming'])
+# Returns documents with total_keywords_count attribute
+
 # Faceted search with metadata filters
 Document.faceted_search(
   query: "AI research",

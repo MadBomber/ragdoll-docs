@@ -157,6 +157,7 @@ nav:
   - 📖 User Guide:
       - Document Processing: user-guide/document-processing.md
       - Embedding System: user-guide/embedding-system.md
+      - Keywords Search: user-guide/keywords-search.md
       - File Uploads: user-guide/file-uploads.md
       - Multi-Modal: user-guide/multi-modal.md
       - Search Analytics: user-guide/search-analytics.md

@@ -299,6 +299,23 @@ results = search_engine.search_similar_content(
   }
 )
 
+# Keywords-enhanced semantic search
+results = search_engine.search_similar_content(
+  "machine learning applications",
+  keywords: ['python', 'tensorflow', 'neural networks'],
+  limit: 15,
+  threshold: 0.7
+)
+
+# Keywords search with tracking
+results = search_engine.search_similar_content(
+  "artificial intelligence",
+  keywords: ['ai', 'deep learning'],
+  session_id: 'user-session-123',
+  user_id: 'user-456',
+  track_search: true
+)
+
 # Direct embedding search
 query_embedding = embedding_service.generate_embedding("query text")
 results = search_engine.search_similar_content(query_embedding)
