@@ -365,4 +365,4 @@ The keywords search system is designed for extensibility:
 - **Analytics Integration**: Keyword search tracking and optimization
 - **Custom Operators**: Support for additional PostgreSQL array operators
 
-For the latest features and updates, check the [changelog](../../changelog.md) and [API reference](../api-reference/api-models.md).
+For the latest features and updates, check the [What's New section](../index.md#whats-new) and [API reference](../api-reference/api-models.md).

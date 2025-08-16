@@ -53,6 +53,13 @@ hide:
 
 ## 🆕 What's New
 
+### Latest Release (v0.1.10)
+Latest gem release includes:
+
+- Updated API documentation and RDoc coverage
+- Improved command-line interface with enhanced commands
+- Bug fixes and performance improvements
+
 ### Search Tracking System (v0.1.9)
 Ragdoll now includes comprehensive search tracking and analytics capabilities:
 

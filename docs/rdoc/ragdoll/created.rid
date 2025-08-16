@@ -1,0 +1,13 @@
+Sat, 16 Aug 2025 00:36:27 -0500
+lib/ragdoll/core/client.rb	Thu, 07 Aug 2025 21:00:59 -0500
+lib/ragdoll/core/configuration.rb	Wed, 30 Jul 2025 12:22:10 -0500
+lib/ragdoll/core/database.rb	Sat, 16 Aug 2025 00:21:31 -0500
+lib/ragdoll/core/errors.rb	Tue, 29 Jul 2025 06:10:50 -0500
+lib/ragdoll/core/model.rb	Thu, 07 Aug 2025 15:37:07 -0500
+lib/ragdoll/core/shrine_config.rb	Tue, 29 Jul 2025 06:10:50 -0500
+lib/ragdoll/core/version.rb	Sun, 10 Aug 2025 15:15:25 -0500
+lib/ragdoll/core.rb	Thu, 07 Aug 2025 15:37:07 -0500
+lib/ragdoll-core.rb	Tue, 29 Jul 2025 06:10:50 -0500
+lib/ragdoll.rb	Thu, 07 Aug 2025 15:37:07 -0500
+lib/tasks/annotate.rake	Wed, 30 Jul 2025 12:22:10 -0500
+lib/tasks/db.rake	Sat, 16 Aug 2025 00:21:31 -0500

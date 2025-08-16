@@ -2,6 +2,9 @@
 
 Ragdoll uses a sophisticated ActiveRecord model architecture with Single Table Inheritance (STI) for multi-modal content storage and polymorphic associations for flexible embeddings.
 
+!!! note "Detailed API Documentation"
+    For complete class and method documentation, see the [Ruby API Documentation (RDoc)](../rdoc/index.md) which provides detailed technical reference for all Ragdoll models and their methods.
+
 ## ActiveRecord Models and Relationships
 
 The model architecture provides:

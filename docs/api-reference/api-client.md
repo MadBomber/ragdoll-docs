@@ -2,6 +2,9 @@
 
 The Ragdoll Client provides a high-level interface for all document intelligence operations. This comprehensive API handles document management, search operations, RAG enhancement, and system monitoring through a clean, intuitive interface.
 
+!!! note "Detailed API Documentation"
+    For complete class and method documentation, see the [Ruby API Documentation (RDoc)](../rdoc/index.md) which provides detailed technical reference for all Ragdoll classes and methods.
+
 ## Overview
 
 **Schema Note**: Following recent schema optimization, the Ragdoll database now uses a normalized schema where `embedding_model` information is stored in content-specific tables rather than duplicated in individual embeddings. This provides better data organization while maintaining all API functionality.

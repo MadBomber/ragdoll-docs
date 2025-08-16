@@ -39,7 +39,7 @@ Add to your `Gemfile`:
 
 ```ruby
 # Gemfile
-gem 'ragdoll', '~> 0.1.0'
+gem 'ragdoll', '~> 0.1.10'
 
 # Required: PostgreSQL adapter  
 gem 'pg', '~> 1.5'        # PostgreSQL - REQUIRED
