@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../../assets/ragdoll-logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.17">
     
     
       
@@ -2334,6 +2334,10 @@
       
         
       
+        
+          
+        
+      
     
     
     
@@ -2350,8 +2354,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../../rdoc/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -2360,8 +2365,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_10">
@@ -2414,6 +2425,8 @@
     </li>
   
 
+              
+            
               
             
           </ul>
@@ -2833,6 +2846,10 @@
 
 <h1 id="client-api-reference">Client API Reference<a class="headerlink" href="#client-api-reference" title="Permanent link">&para;</a></h1>
 <p>The Ragdoll Client provides a high-level interface for all document intelligence operations. This comprehensive API handles document management, search operations, RAG enhancement, and system monitoring through a clean, intuitive interface.</p>
+<div class="admonition note">
+<p class="admonition-title">Detailed API Documentation</p>
+<p>For complete class and method documentation, see the <a href="../../rdoc/">Ruby API Documentation (RDoc)</a> which provides detailed technical reference for all Ragdoll classes and methods.</p>
+</div>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p><strong>Schema Note</strong>: Following recent schema optimization, the Ragdoll database now uses a normalized schema where <code>embedding_model</code> information is stored in content-specific tables rather than duplicated in individual embeddings. This provides better data organization while maintaining all API functionality.</p>
 <p>The Client class serves as the primary orchestration layer, providing:</p>
@@ -3265,10 +3282,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "search.share", "header.autohide", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "0.1.10"}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "search.share", "header.autohide", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "0.1.10"}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
         <script src="../../assets/javascripts/mathjax.js"></script>
       
