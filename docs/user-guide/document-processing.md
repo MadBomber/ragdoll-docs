@@ -8,6 +8,7 @@ The document processing pipeline transforms raw files into searchable, embedded 
 
 - **File Format Detection**: Automatic detection and routing to appropriate parsers
 - **Content Extraction**: Specialized extraction for text, images, and metadata
+- **Duplicate Detection**: Multi-level duplicate prevention using file hash, content hash, and metadata
 - **Multi-Modal STI Storage**: Stores content in specialized models (TextContent, ImageContent, AudioContent)
 - **LLM-Powered Metadata**: AI-generated summaries, keywords, and structured metadata
 - **Vector Embeddings**: Semantic search capabilities through embedding generation
@@ -43,7 +44,8 @@ Ragdoll supports a wide range of file formats through specialized parsers:
 - Preserves content structure and readability
 
 **Plain Text Handling**
-- UTF-8 encoding with fallback to ISO-8859-1
+- UTF-8 encoding with automatic fallback to ISO-8859-1
+- Robust encoding detection and conversion
 - File size and encoding metadata
 - Direct content preservation without modification
 - Supports `.txt`, `.md`, `.markdown` extensions
@@ -102,10 +104,18 @@ document = DocumentProcessor.create_document_from_upload(
   title: 'Uploaded Document',
   metadata: { user_id: 123 }
 )
+
+# Force option to bypass duplicate detection
+document = DocumentProcessor.create_document_from_file(
+  'path/to/document.pdf',
+  title: 'Forced Duplicate',
+  force: true  # Creates new document even if duplicate exists
+)
 ```
 
 **Validation Steps:**
 - File existence and accessibility verification
+- Duplicate detection using file hash and metadata comparison
 - File size limits (configurable)
 - Format detection via extension and MIME type
 - Permission checks for file access
@@ -210,6 +220,176 @@ USING gin(to_tsvector('english', title || ' ' ||
 -- Vector similarity index
 CREATE INDEX idx_embeddings_vector ON ragdoll_embeddings 
 USING ivfflat (embedding_vector vector_cosine_ops);
+
+-- Duplicate detection indexes
+CREATE UNIQUE INDEX idx_documents_location ON ragdoll_documents (location);
+CREATE INDEX idx_documents_file_hash ON ragdoll_documents 
+USING gin((metadata->>'file_hash'));
+```
+
+## Duplicate Detection
+
+Ragdoll includes sophisticated duplicate detection to prevent redundant document processing and storage:
+
+### Multi-Level Detection Strategy
+
+**Primary Detection (Exact Match):**
+```ruby
+# 1. Location-based detection
+existing = Document.find_by(location: file_path)
+
+# 2. Location + modification time for files
+existing = Document.find_by(
+  location: file_path,
+  file_modified_at: File.mtime(file_path)
+)
+```
+
+**Secondary Detection (Content-Based):**
+```ruby
+# 3. File content hash (SHA256)
+file_hash = Digest::SHA256.file(file_path).hexdigest
+existing = Document.where("metadata->>'file_hash' = ?", file_hash).first
+
+# 4. Content hash for text documents
+content_hash = Digest::SHA256.hexdigest(content)
+existing = Document.where("metadata->>'content_hash' = ?", content_hash).first
+```
+
+**Tertiary Detection (Similarity-Based):**
+```ruby
+# 5. File size + metadata similarity
+same_size_docs = Document.where("metadata->>'file_size' = ?", file_size.to_s)
+same_size_docs.each do |doc|
+  return doc if documents_are_similar?(doc, new_document)
+end
+```
+
+### Detection Criteria
+
+**File-Based Documents:**
+- Exact location/path match
+- File modification time comparison
+- SHA256 file content hash
+- File size and type matching
+- Filename similarity (basename)
+
+**Web/URL Documents:**
+- URL location match
+- Content hash comparison (SHA256)
+- Content length similarity (5% tolerance)
+- Title and document type matching
+
+**Metadata Comparison:**
+```ruby
+def documents_are_similar?(existing_doc, new_doc)
+  # Compare basename without extension
+  existing_basename = File.basename(existing_doc.location, File.extname(existing_doc.location))
+  new_basename = File.basename(new_doc.location, File.extname(new_doc.location))
+  return false unless existing_basename == new_basename
+  
+  # Compare content length (5% tolerance)
+  if existing_doc.content.present? && new_doc.content.present?
+    length_diff = (existing_doc.content.length - new_doc.content.length).abs
+    max_length = [existing_doc.content.length, new_doc.content.length].max
+    return false if max_length > 0 && (length_diff.to_f / max_length) > 0.05
+  end
+  
+  # Compare document type and title
+  return false if existing_doc.document_type != new_doc.document_type
+  return false if existing_doc.title != new_doc.title
+  
+  true
+end
+```
+
+### Force Override Option
+
+**Bypassing Duplicate Detection:**
+```ruby
+# Add document with force option
+result = Ragdoll.add_document(
+  path: 'document.pdf',
+  force: true  # Creates new document even if duplicate exists
+)
+
+# In DocumentManagement service
+if force
+  # Modify location to avoid unique constraint violation
+  final_location = "#{location}#forced_#{Time.current.to_i}_#{SecureRandom.hex(4)}"
+else
+  final_location = location
+end
+```
+
+### Configuration Options
+
+**Duplicate Detection Settings:**
+```ruby
+config.duplicate_detection.tap do |dd|
+  dd[:enabled] = true                     # Enable/disable duplicate detection
+  dd[:content_similarity_threshold] = 0.95  # Content similarity threshold
+  dd[:content_length_tolerance] = 0.05    # 5% content length tolerance
+  dd[:check_file_hash] = true            # Enable file hash checking
+  dd[:check_content_hash] = true         # Enable content hash checking
+  dd[:check_metadata_similarity] = true  # Enable metadata comparison
+end
+```
+
+### Performance Optimizations
+
+**Database Indexes for Fast Lookups:**
+```sql
+-- Primary lookup index
+CREATE UNIQUE INDEX idx_documents_location ON ragdoll_documents (location);
+
+-- Hash-based lookups
+CREATE INDEX idx_documents_file_hash ON ragdoll_documents 
+USING gin((metadata->>'file_hash'));
+
+CREATE INDEX idx_documents_content_hash ON ragdoll_documents 
+USING gin((metadata->>'content_hash'));
+
+-- Size-based filtering
+CREATE INDEX idx_documents_file_size ON ragdoll_documents 
+USING btree((metadata->>'file_size'));
+```
+
+**Efficient Detection Process:**
+1. **Fast Path**: Exact location match (unique index lookup)
+2. **Hash Path**: File/content hash lookup (GIN index)
+3. **Similarity Path**: Size filtering + metadata comparison
+4. **Fallback**: Full content analysis if needed
+
+### Use Cases and Benefits
+
+**Development Environment:**
+```ruby
+# Avoid re-processing during development
+result = Ragdoll.add_document(path: 'test_document.pdf')
+# Second call returns existing document ID immediately
+
+result2 = Ragdoll.add_document(path: 'test_document.pdf')
+assert_equal result[:document_id], result2[:document_id]
+```
+
+**Production Import Scripts:**
+```ruby
+# Safe bulk import without duplicates
+documents.each do |file_path|
+  result = Ragdoll.add_document(path: file_path)
+  puts "#{result[:duplicate] ? 'Skipped' : 'Added'}: #{file_path}"
+end
+```
+
+**Content Versioning:**
+```ruby
+# Force new version when needed
+updated_result = Ragdoll.add_document(
+  path: 'updated_document.pdf',
+  force: true,
+  metadata: { version: '2.0', previous_id: original_id }
+)
 ```
 
 ## Metadata Generation
