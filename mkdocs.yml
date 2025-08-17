@@ -135,7 +135,7 @@ extra_javascript:
 # Extra content
 extra:
   # Version string
-  version: 0.1.11
+  version: 0.1.12
 
   # Social media links
   social:
